@@ -20,6 +20,9 @@ from analysis.conclusion_1.dbscan_iterator import DBSCANIterator
 from analysis.conclusion_1.fast_global_kmeans_iterator import FastGlobalKMeansIterator
 from analysis.conclusion_1.birch_super_iterator import BIRCHSuperIterator
 
+
+np.seterr(over='ignore')
+
 class DataSource:
     def __init__(self,path, sheet_name):
         self.path = path
