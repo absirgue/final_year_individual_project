@@ -25,7 +25,7 @@ class KMeansIterator:
             silhouette_score_sum = 0
             wcss_sum = 0
             for i in range(self.NB_ITERATINS_PER_CONFIG):
-                k_means = KMeans(n_clusters=K).fit(self.data)
+                k_means = KMeans(n_clusters=K,n_init=1).fit(self.data)
                 labels = k_means.labels_
                 try:
                     calinski_harabasz_sum+= calinski_harabasz_score(self.data, labels)

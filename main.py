@@ -15,9 +15,11 @@ from analysis.dimensionality_evaluation import DimensionalityEvaluation
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.conclusion_1.kmeans_iterator import KMeansIterator
 from analysis.conclusion_1.birch_iterator import BIRCHIterator
-from analysis.conclusion_1.fuzzy_cmean_iterator import FuzzyCMeansIterator
+# from analysis.conclusion_1.fuzzy_cmean_iterator import FuzzyCMeansIterator
 from analysis.conclusion_1.dbscan_iterator import DBSCANIterator
 from analysis.conclusion_1.fast_global_kmeans_iterator import FastGlobalKMeansIterator
+from analysis.conclusion_1.birch_super_iterator import BIRCHSuperIterator
+
 class DataSource:
     def __init__(self,path, sheet_name):
         self.path = path
@@ -31,22 +33,23 @@ optimal_dimensionalities_for_default_configs = {'RATIOS': 37, 'RAW NUMBERS': 37,
 
 config = DataConfiguration()
 config.set_to_default_configuration("RATIOS")
-
-it = FastGlobalKMeansIterator(DataPreparator(data_source=data_source,configuration=config).apply_configuration(0.8),2)
+data = DataPreparator(data_source=data_source,configuration=config).apply_configuration(0.8)
+it = FastGlobalKMeansIterator(data,100)
 it.iterate()
 it.graph()
 print(it.get_optimal())
+
 # EmptyRowsDeletionEvaluation().run_evaluation(data_source)
 # print(DimensionalityEvaluation().run_evaluation(data_source))
 
 # data = pd.DataFrame({'Number of Geographic Segments [Annual]':[1,2,3,4],"Number of Business Segments [Annual]":[-2,3,4,5],"Geographic Segments (Screen by Sum) (Details): % of Revenue [LTM]":[-12,7,3.14,2],"Business Segments (Screen by Sum) (Details): % of Revenue [LTM]":[1,5,46,5]})
 # data = data.values
-# # # kmeans = K(n_clusters=3).fit(data)
-# # # print(kmeans.cluster_centers_)
-# # # print("HERE")
-# # # k = KMeans(3,0.001)
-# # # k.cluster(data)
-# # # print(k.get_centroids())
+# # # # kmeans = K(n_clusters=3).fit(data)
+# # # # print(kmeans.cluster_centers_)
+# # # # print("HERE")
+# # # # k = KMeans(3,0.001)
+# # # # k.cluster(data)
+# # # # print(k.get_centroids())
         
 
 # fast = FastGlobalKMeans(3, 0.001)

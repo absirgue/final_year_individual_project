@@ -47,7 +47,7 @@ class DBSCANIterator:
         return {"Calinski Harbasz Index Optimum":
                 {"Eps": calinski_best[0],"MinPts": calinski_best[1],"Calinski Harbasz Index":calinski_best[2],"Number of Clusters":calinski_best[3]},
                 "Silhouette Score Optimum":
-                {"Eps": silhouette_best[0],"MinPts": silhouette_best[1],"Calinski Harbasz Index":silhouette_best[2],"Number of Clusters":calinski_best[3]},
+                {"Eps": silhouette_best[0],"MinPts": silhouette_best[1],"Silhouette Score":silhouette_best[2],"Number of Clusters":calinski_best[3]},
                 }
 
     def get_values_for_max_measure_value(self,measure_of_interest):
@@ -77,7 +77,6 @@ class DBSCANIterator:
         return None
 
     def graph(self):
-        print(self.silhouette_score_data)
         GraphingHelper().plot_3d_array_of_ponts(self.clusters_count,"Eps","MinPts","Number of Clusters","DBSCAN: Number of clusters across parameters")
         GraphingHelper().plot_3d_array_of_ponts(self.calinski_harabasz_data,"Eps","MinPts","Calinski Harbasz Index","DBSCAN: Calinski-Harabasz Index values across parameters")
         GraphingHelper().plot_3d_array_of_ponts(self.silhouette_score_data,"Eps","MinPts","Silhouette Score","DBSCAN: Silhouette Score values across paramters")

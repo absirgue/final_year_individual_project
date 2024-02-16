@@ -39,6 +39,8 @@ class DataPreparator:
         self.number_added_columns = data.shape[1] - initial_columns_count
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
         self.write_to_csv(data)
+        data = data.values
+        data = data.astype(float)
         return data
     
     def get_number_added_columns(self):

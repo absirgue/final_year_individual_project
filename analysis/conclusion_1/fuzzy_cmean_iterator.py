@@ -9,7 +9,6 @@ class FuzzyCMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None):
         self.data = data.astype(float).values
-        print(self.data)
         self.NB_ITERATINS_PER_CONFIG = 5
         self.MIN_C_TO_TEST = 2
         self.MAX_C_TO_TEST = int(self.data.shape[0])

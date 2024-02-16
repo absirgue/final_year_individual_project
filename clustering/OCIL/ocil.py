@@ -19,7 +19,7 @@ class OCIL:
                     self.clusters[best_cluster_idx].add_point(self.get_categorical_values_for_point(data_point),self.get_numerical_values_for_point(data_point))
                     if self.Y[index]:
                         self.clusters[self.Y[index]].remove_point(self.get_categorical_values_for_point(data_point),self.get_numerical_values_for_point(data_point))
-        return self.get_clusters()
+        return self.Y
     
     def initialization(self,data):
         self.data,self.categorical_data_count = self.organise_data_by_type(data)

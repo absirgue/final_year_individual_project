@@ -19,7 +19,6 @@ class KMeans:
         self.centroids = []
         self.labels = []
         self.iteration_count = 0
-        print(data)
         features_count = data.shape[1]
         if not self.centroids:
             self.initialize_random_cluster_centroids(data)

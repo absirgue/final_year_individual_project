@@ -15,33 +15,26 @@ class TestKMeans(unittest.TestCase):
 
     def test_fast_global_k_means_is_as_expected_for_4_clusters(self):
         k = FastGlobalKMeans(4,0.001)
-        expected_clusters = [[[1,34,-12,-10]],[[2,10,-20,-6.78]],[[-9,-8,11.14,10]],[[-5.12,-6.89,15,12]]]
+        expected_labels = [0,2,3,1]
         correct_clusterings_count = 0
         repeats = 10
         for i in range(repeats):
-            clusters = k.cluster(self.data)
-            for cluster in clusters:
-                true_clustering = len(clusters) == len(expected_clusters) and self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[0]) or self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[1]) or self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[2]) or self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[3])
-            if true_clustering:
+            labels = k.cluster(self.data)
+            if len(labels) == len(expected_labels) and labels[0] == expected_labels[0] and labels[1] == expected_labels[1] and labels[2] == expected_labels[2] and labels[3] == expected_labels[3]:
                 correct_clusterings_count += 1
         self.assertEqual(correct_clusterings_count,repeats)
 
     def test_fast_global_k_means_is_as_expected_for_2_clusters(self):
         k = FastGlobalKMeans(2,0.001)
-        expected_clusters = [[[1,34,-12,-10],[2,10,-20,-6.78]],[[-9,-8,11.14,10],[-5.12,-6.89,15,12]]]
+        expected_labels = [0,0,1,1]
         correct_clusterings_count = 0
-        repeats = 100
+        correct_clusterings_count = 0
+        repeats = 10
         for i in range(repeats):
-            clusters = k.cluster(self.data)
-            true_clustering = False
-            if len(clusters) == len(expected_clusters):
-                true_clustering = True
-            for cluster in clusters:
-                true_clustering = true_clustering and self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[0]) or self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[1]) 
-            if true_clustering:
+            labels = k.cluster(self.data)
+            if len(labels) == len(expected_labels) and labels[0] == expected_labels[0] and labels[1] == expected_labels[1] and labels[2] == expected_labels[2] and labels[3] == expected_labels[3]:
                 correct_clusterings_count += 1
-        # we expect at least 50% success.
-        self.assertGreater(correct_clusterings_count,repeats/2)
+        self.assertEqual(correct_clusterings_count,repeats)
 
     def test_fast_global_k_can_not_be_greater_than_nb_of_data_points(self):
         with self.assertRaises(ValueError):

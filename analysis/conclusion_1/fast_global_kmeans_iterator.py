@@ -13,7 +13,7 @@ class FastGlobalKMeansIterator:
         self.MAX_K_TO_TEST = int(self.data.shape[0])
         if max_nb_of__clusters and self.data.shape[0] > max_nb_of__clusters:
             self.MAX_K_TO_TEST = max_nb_of__clusters
-        self.alg_name = "K-Means"
+        self.alg_name = "Fast Global K-Means"
     
     def iterate(self):
         self.silhouette_score_data = []
@@ -26,8 +26,7 @@ class FastGlobalKMeansIterator:
             wcss_sum = 0
             for i in range(self.NB_ITERATINS_PER_CONFIG):
                 fast = FastGlobalKMeans(K)
-                fast.cluster(self.data)
-                labels = fast.get_labels()
+                labels = fast.cluster(self.data)
                 try:
                     calinski_harabasz_sum+= calinski_harabasz_score(self.data, labels)
                     silhouette_score_sum += silhouette_score(self.data, labels)
@@ -51,8 +50,8 @@ class FastGlobalKMeansIterator:
         return None
 
     def graph(self):
-        GraphingHelper().plot_2d_array_of_points(self.calinski_harabasz_data,"K value","Calinski-Harabasz Index","K-Means: Calinski-Harabasz Index values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.silhouette_score_data,"K value","Silhouette Score","K-Means: Silhouette Score values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.wcss_data,"K value","WCSS","K-Means: WCSS values across K values")
+        GraphingHelper().plot_2d_array_of_points(self.calinski_harabasz_data,"K value","Calinski-Harabasz Index","Fast Global K-Means: Calinski-Harabasz Index values across K values")
+        GraphingHelper().plot_2d_array_of_points(self.silhouette_score_data,"K value","Silhouette Score","Fast Global K-Means: Silhouette Score values across K values")
+        GraphingHelper().plot_2d_array_of_points(self.wcss_data,"K value","Fast Global WCSS","K-Means: WCSS values across K values")
 
 

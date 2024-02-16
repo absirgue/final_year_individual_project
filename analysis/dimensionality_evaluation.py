@@ -28,7 +28,6 @@ class DimensionalityEvaluation:
             analyser = PrincipalComponentAnalysisPerformanceMeasurement(data,extra_title_precision=config_name)
             min_nb_dimensions_tested, explained_variance_ratios = analyser.compute_and_plot_explained_variance_ratio_to_components_count()
             ideal_dimensionalities[config_name] = self.compute_index_first_element_above_threshold(explained_variance_ratios) + min_nb_dimensions_tested
-            print("GOT OPTIMAL",ideal_dimensionalities[config_name])
         return ideal_dimensionalities
     
     def compute_index_first_element_above_threshold(self, array):

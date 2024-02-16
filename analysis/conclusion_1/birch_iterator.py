@@ -2,7 +2,6 @@ from analysis.conclusion_1.helper import create_floats_list,create_ints_list
 from sklearn.cluster import Birch
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
-from analysis.function_analysis import FunctionAnalysis
 
 class BIRCHIterator:
 
@@ -44,7 +43,7 @@ class BIRCHIterator:
         return {"Calinski Harbasz Index Optimum":
                 {"Treshold Value": calinski_best[0],"Branching Factor": calinski_best[1],"Calinski Harbasz Index":calinski_best[2]},
                 "Silhouette Score Optimum":
-                {"Treshold Value": silhouette_best[0],"Branching Factor": silhouette_best[1],"Calinski Harbasz Index":silhouette_best[2]},
+                {"Treshold Value": silhouette_best[0],"Branching Factor": silhouette_best[1],"Silhouette Score":silhouette_best[2]},
                 }
 
     def get_values_for_max_measure_value(self,measure_of_interest):
