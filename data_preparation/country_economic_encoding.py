@@ -12,6 +12,7 @@ class CountryEconomicEncoding:
         self.generate_economic_variables_mapping()
 
     def encode(self):
+        print("CALLED THE COUNTRY")
         self.add_averaged_economic_data_columns()
         return self.data
 
@@ -57,9 +58,9 @@ class CountryEconomicEncoding:
 
     def set_avg_economic_indicators(self,index,economic_indicators_value):
         for eco_variable in economic_indicators_value:
-            if eco_variable not in self.data.columns:
-                self.data[eco_variable] = None
-            self.data.loc[index, eco_variable] = economic_indicators_value[eco_variable]
+            if "CUSTOM"+eco_variable not in self.data.columns:
+                self.data["CUSTOM"+eco_variable] = None
+            self.data.loc[index, "CUSTOM"+eco_variable] = economic_indicators_value[eco_variable]
 
     def get_latest_value_economic_variable(self, country_ticker, eco_variable):
         return self.economic_variables_values[country_ticker+"_"+eco_variable]

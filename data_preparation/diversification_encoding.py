@@ -23,18 +23,18 @@ class DiversificationEncoding:
         for index, row in self.data.iterrows():
             cell_content = str(row[column_name])
             encoding = SegmentsCount().encode(cell_content)
-            if self.result_col_name not in self.data.columns:
-                self.data[self.result_col_name] = None
-            self.data.loc[index, self.result_col_name] = encoding
+            if "CUSTOM"+self.result_col_name not in self.data.columns:
+                self.data["CUSTOM"+self.result_col_name] = None
+            self.data.loc[index, "CUSTOM"+self.result_col_name] = encoding
         return self.data
     
     def entropy_encoding(self,column_name):
         for index, row in self.data.iterrows():
             cell_content = str(row[column_name])
             encoding = EntropyCalculator().encode(cell_content)
-            if self.result_col_name not in self.data.columns:
-                self.data[self.result_col_name] = None
-            self.data.loc[index, self.result_col_name] = encoding
+            if "CUSTOM"+self.result_col_name not in self.data.columns:
+                self.data["CUSTOM"+self.result_col_name] = None
+            self.data.loc[index, "CUSTOM"+self.result_col_name] = encoding
         return self.data
 
         

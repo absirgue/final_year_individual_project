@@ -49,7 +49,7 @@ class FastGlobalKMeans:
         bn = 0
         for xj in data:
             squared_euclidian_dist = np.linalg.norm(xj - closest_centroid)**2
-            squared_p_norm = PNorm(len(xj)).calculate_norm(data_point, xj)**2
+            squared_p_norm = np.linalg.norm(data_point - xj, ord=len(xj))**2
             bn += max(squared_euclidian_dist-squared_p_norm, 0)
         return bn
     

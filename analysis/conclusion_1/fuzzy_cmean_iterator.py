@@ -2,13 +2,14 @@ from analysis.conclusion_1.helper import create_ints_list
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
+import time
 from skfuzzy.cluster import cmeans
 import numpy as np 
-
+from analysis.conclusion_1.list_transformations import ListTransformations
 class FuzzyCMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None):
-        self.data = data.astype(float).values
+        self.data = data
         self.NB_ITERATINS_PER_CONFIG = 5
         self.MIN_C_TO_TEST = 2
         self.MAX_C_TO_TEST = int(self.data.shape[0])
@@ -18,42 +19,44 @@ class FuzzyCMeansIterator:
         self.alg_name = "Fuzzy C-Means"
     
     def iterate(self):
-        self.silhouette_score_data = []
-        self.calinski_harabasz_data = []
-        self.wcss_data = []
+        self.performance_data = []
         c_values = create_ints_list(self.MIN_C_TO_TEST,self.MAX_C_TO_TEST,1)
         for C in c_values:
+            wcss_sum = 0
             calinski_harabasz_sum = 0
             silhouette_score_sum = 0
-            wcss_sum = 0
+            time_sum = 0
             for i in range(self.NB_ITERATINS_PER_CONFIG):
                 cntr, u, _, _, _, _, _ = cmeans(self.data.T, c=C, m=self.M,error=0.001,maxiter=400)
                 try:
+                    start_time = time.time()
                     fuzzy_cluster_labels = np.argmax(u, axis=0)
+                    end_time = time.time()
+                    time_sum += (end_time-start_time)
                     calinski_harabasz_sum+= calinski_harabasz_score(self.data, fuzzy_cluster_labels)
                     silhouette_score_sum += silhouette_score(self.data, fuzzy_cluster_labels)
                     wcss_sum += np.sum(np.power(np.linalg.norm(self.data.T - cntr.T[:, fuzzy_cluster_labels], axis=1), 2))
                 except Exception as e:
-                    calinski_harabasz_sum = 0
-                    silhouette_score_sum = 0
-            self.calinski_harabasz_data.append([C,calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG])
-            self.silhouette_score_data.append([C,silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG])
-            self.wcss_data.append([C,wcss_sum/self.NB_ITERATINS_PER_CONFIG])
-        
+                    calinski_harabasz_sum += 0
+                    silhouette_score_sum += 0
+            self.performance_data.append({"C":C,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"time":time_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"wcss":wcss_sum/self.NB_ITERATINS_PER_CONFIG})
+        return self.performance_data
+    
     def get_optimal(self):
-        wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(self.wcss_data)
+        wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"))
         optimal_point = wcss_inflection_points[0]
-        return {"K":optimal_point[0],"WCSS":optimal_point[1],"Silhouette Score": self.get_y_value_for_given_x(self.silhouette_score_data,optimal_point[0]),"Calinski Harbasz Index":self.get_y_value_for_given_x(self.calinski_harabasz_data,optimal_point[0])}
-        
-    def get_y_value_for_given_x(self,arr,x_val):
-        for point in arr:
-            if point[0] == x_val:
-                return point[1]
-        return None
+        optimal_point = self.find_perf_entry_for_given_C(optimal_point[0])
+        return {"C":optimal_point["C"],"WCSS":optimal_point["wcss"],"Silhouette Score": optimal_point["calinski harabasz index"],"Running Time":optimal_point["time"],"Calinski Harbasz Index":optimal_point["calinski harabasz index"]}
+
+    def find_perf_entry_for_given_C(self, C_val):
+        for element in self.performance_data:
+            if element["C"] == C_val:
+                return element
 
     def graph(self):
-        GraphingHelper().plot_2d_array_of_points(self.calinski_harabasz_data,"C value","Calinski-Harabasz Index","Fuzzy C-Means: Calinski-Harabasz Index values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.silhouette_score_data,"C value","Silhouette Score","Fuzzy C-Means: Silhouette Score values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.wcss_data,"C value","WCSS","Fuzzy C-Means: WCSS values across K values")
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","calinski harabasz index"),"C value","Calinski-Harabasz Index","Fuzzy C-Means: Calinski-Harabasz Index values across C values")
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","silhouette score"),"C value","Silhouette Score","Fuzzy C-Means: Silhouette Score values across C values")
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"),"C value","WCSS","Fuzzy C-Means: WCSS values across C values")
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","time"),"C value","Running Time","Fuzzy C-Means: Running time across C values")
 
 

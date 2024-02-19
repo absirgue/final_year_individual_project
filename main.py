@@ -15,11 +15,10 @@ from analysis.dimensionality_evaluation import DimensionalityEvaluation
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.conclusion_1.kmeans_iterator import KMeansIterator
 from analysis.conclusion_1.birch_iterator import BIRCHIterator
-# from analysis.conclusion_1.fuzzy_cmean_iterator import FuzzyCMeansIterator
+from analysis.conclusion_1.fuzzy_cmean_iterator import FuzzyCMeansIterator
 from analysis.conclusion_1.dbscan_iterator import DBSCANIterator
 from analysis.conclusion_1.fast_global_kmeans_iterator import FastGlobalKMeansIterator
 from analysis.conclusion_1.birch_super_iterator import BIRCHSuperIterator
-
 
 np.seterr(over='ignore')
 
@@ -37,10 +36,10 @@ optimal_dimensionalities_for_default_configs = {'RATIOS': 37, 'RAW NUMBERS': 37,
 config = DataConfiguration()
 config.set_to_default_configuration("RATIOS")
 data = DataPreparator(data_source=data_source,configuration=config).apply_configuration(0.8)
-it = FastGlobalKMeansIterator(data,100)
-it.iterate()
-it.graph()
-print(it.get_optimal())
+# it = BIRCHSuperIterator(data,4)
+# it.iterate()
+# it.graph()
+# print(it.get_optimal())
 
 # EmptyRowsDeletionEvaluation().run_evaluation(data_source)
 # print(DimensionalityEvaluation().run_evaluation(data_source))

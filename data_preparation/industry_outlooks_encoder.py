@@ -16,9 +16,10 @@ class IndustryOutlookEncode:
                 if industry_outlook_type in col_name.lower().split(" "):
                     ordered_weights.append(weight_distribution[industry_outlook_type])
         try:
-            self.data['Industry Outlook Weighted Average'] = (self.data[industry_outlooks_col_names].mul(ordered_weights)).sum(axis=1)
+            self.data['CUSTOM Industry Outlook Weighted Average'] = (self.data[industry_outlooks_col_names].mul(ordered_weights)).sum(axis=1)
             self.data.drop(industry_outlooks_col_names, axis=1,inplace=True)
-        except:
+        except Exception as e:
+            print(e)
             pass
             # print("INDUSTRY OUTLOOK ENCODING: One or more columns missing")
         return self.data

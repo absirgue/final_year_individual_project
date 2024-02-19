@@ -15,7 +15,7 @@ class DataConfiguration:
     def set_to_default_configuration(self, default_configuration_id,mixed_data = False):
         data_types_wanted = self.default_configurations[default_configuration_id]
         if mixed_data:
-            data_types_wanted.append("INDUSTRY NAMES")
+            # data_types_wanted.append("INDUSTRY NAMES")
             # TO DO: encode differently for mixed
             data_types_wanted.append('DIVERSIFICATION - GEOGRAPHY - REVENUE')
             data_types_wanted.append('DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE')
@@ -23,16 +23,19 @@ class DataConfiguration:
         self.set_indutry_outlooks_encoding_preference(True,self.default_outlooks_weight_distribution)
         self.set_data_types_wanted(data_types_wanted)
         if not mixed_data:
-            self.set_industry_name_encoding_preference(True)
+            # self.set_industry_name_encoding_preference(True)
+            self.set_country_economic_data_encoding_preference(True)
             self.set_country_risk_score_encoding_preference(True)
             self.set_geography_diversification_encoding_preference(True, 0)
             self.set_business_diversification_encoding_preference(True,0)
 
     def set_data_types_wanted(self,data_types_wanted):
         self.data_types = data_types_wanted
-        if "COUNTRY RISK SCORE" not in data_types_wanted:
-            data_types_wanted.append('DIVERSIFICATION - GEOGRAPHY - REVENUE')
-            self.encode_country = True
+
+    def set_country_economic_data_encoding_preference(self,encode_industry_outlooks):   
+        if encode_industry_outlooks and "COUNTRY RISK SCORE" not in self.data_types:
+            self.data_types.append('DIVERSIFICATION - GEOGRAPHY - REVENUE')
+        self.encode_country = True
     
     def set_indutry_outlooks_encoding_preference(self, encode_industry_outlooks, outlooks_weight_distribution):
         if encode_industry_outlooks and ("INDUSTRY OUTLOOK" not in self.data_types):
