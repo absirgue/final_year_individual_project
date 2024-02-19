@@ -13,7 +13,7 @@ class FunctionAnalysis:
             second_derivatives.append(self.get_second_derivative_of_point_at_index(i,x_y_mapping))
         inflection_points = []
         for i in range(1, len(second_derivatives) - 1):
-            if second_derivatives[i - 1] * second_derivatives[i + 1] < 0:
+            if second_derivatives[i - 1] * second_derivatives[i + 1] <= 0:
                 inflection_points.append(x_y_mapping[i])
         return inflection_points
     

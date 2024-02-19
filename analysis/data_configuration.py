@@ -20,8 +20,8 @@ class DataConfiguration:
             data_types_wanted.append('DIVERSIFICATION - GEOGRAPHY - REVENUE')
             data_types_wanted.append('DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE')
             data_types_wanted.append('COUNTRY RISK SCORE')
-        self.set_indutry_outlooks_encoding_preference(True,self.default_outlooks_weight_distribution)
         self.set_data_types_wanted(data_types_wanted)
+        self.set_indutry_outlooks_encoding_preference(True,self.default_outlooks_weight_distribution)
         if not mixed_data:
             # self.set_industry_name_encoding_preference(True)
             self.set_country_economic_data_encoding_preference(True)

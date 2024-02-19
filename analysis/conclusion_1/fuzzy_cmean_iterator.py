@@ -40,7 +40,7 @@ class FuzzyCMeansIterator:
                     calinski_harabasz_sum += 0
                     silhouette_score_sum += 0
             self.performance_data.append({"C":C,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"time":time_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"wcss":wcss_sum/self.NB_ITERATINS_PER_CONFIG})
-        return self.performance_data
+        return self.get_optimal()
     
     def get_optimal(self):
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"))
@@ -53,10 +53,10 @@ class FuzzyCMeansIterator:
             if element["C"] == C_val:
                 return element
 
-    def graph(self):
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","calinski harabasz index"),"C value","Calinski-Harabasz Index","Fuzzy C-Means: Calinski-Harabasz Index values across C values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","silhouette score"),"C value","Silhouette Score","Fuzzy C-Means: Silhouette Score values across C values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"),"C value","WCSS","Fuzzy C-Means: WCSS values across C values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","time"),"C value","Running Time","Fuzzy C-Means: Running time across C values")
+    def graph(self,folder_name):
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","calinski harabasz index"),"C value","Calinski-Harabasz Index","Fuzzy C-Means: Calinski-Harabasz Index values across C values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","silhouette score"),"C value","Silhouette Score","Fuzzy C-Means: Silhouette Score values across C values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"),"C value","WCSS","Fuzzy C-Means: WCSS values across C values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","time"),"C value","Running Time","Fuzzy C-Means: Running time across C values",folder_name)
 
 

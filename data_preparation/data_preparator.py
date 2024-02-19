@@ -20,7 +20,6 @@ class DataPreparator:
     
     def apply_configuration(self,threshold_of_column_emptiness=0):
         data = DataTypeIsolator(self.data).isolate_data_types(self.configuration.data_types)
-        # We can now remove the data "categories"
         data.columns = data.iloc[0]
         data = data.drop(0)
         initial_columns_count = data.shape[1]

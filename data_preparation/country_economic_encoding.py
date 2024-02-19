@@ -12,7 +12,6 @@ class CountryEconomicEncoding:
         self.generate_economic_variables_mapping()
 
     def encode(self):
-        print("CALLED THE COUNTRY")
         self.add_averaged_economic_data_columns()
         return self.data
 

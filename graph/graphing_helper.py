@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
+import os
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 class GraphingHelper:
 
-    def plot_3d_array_of_ponts(self, d3_arr, x_label, y_label, z_label, title):
+    def plot_3d_array_of_ponts(self, d3_arr, x_label, y_label, z_label, title,folder_name=None):
         cleaned_d3_arr = self.remove_elements_with_None_values(d3_arr)
         x_values = self.extract_x_values(cleaned_d3_arr)
         y_values = self.extract_y_values(cleaned_d3_arr)
@@ -18,7 +19,12 @@ class GraphingHelper:
         ax.set_zlabel(z_label)
         ax.view_init(elev=20, azim=15)
         ax.set_title(title)
-        plt.savefig(title+'.png')
+        file_path = title+'.png'
+        if folder_name:
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            file_path = os.path.join(folder_name, file_path)
+        plt.savefig(file_path)
     
     def remove_elements_with_None_values(self, arr):
         cleaned = []
@@ -27,7 +33,7 @@ class GraphingHelper:
                 cleaned.append(element)
         return cleaned
 
-    def plot_2d_array_of_points(self,d2_arr,x_label,y_label,title):
+    def plot_2d_array_of_points(self,d2_arr,x_label,y_label,title,folder_name=None):
         x_values = self.extract_x_values(d2_arr)
         y_values = self.extract_y_values(d2_arr)
         plt.figure()
@@ -36,7 +42,12 @@ class GraphingHelper:
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
-        plt.savefig(title+'.png')
+        file_path = title+'.png'
+        if folder_name:
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            file_path = os.path.join(folder_name, file_path)
+        plt.savefig(file_path)
     
     def extract_x_values(self, array):
         x_vals = []

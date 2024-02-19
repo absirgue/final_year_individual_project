@@ -25,7 +25,7 @@ class BIRCHSuperIterator:
             optimum["Silhouette Score Optimum"]["Silhouette Score"]
             self.calinski_harabasz_data.append([K,optimum["Calinski Harabasz Index Optimum"]["Calinski Harabasz Index"],optimum["Calinski Harabasz Index Optimum"]["Treshold Value"],optimum["Calinski Harabasz Index Optimum"]["Branching Factor"],optimum["Calinski Harabasz Index Optimum"]["Time"]])
             self.silhouette_score_data.append([K,optimum["Silhouette Score Optimum"]["Silhouette Score"],optimum["Silhouette Score Optimum"]["Treshold Value"],optimum["Silhouette Score Optimum"]["Branching Factor"],optimum["Silhouette Score Optimum"]["Time"]])
-        return self.calinski_harabasz_data,self.silhouette_score_data
+        return self.get_optimal()
     
     def get_optimal(self):
         calinski_best = self.get_values_for_max_measure_value("Calinski Harabasz Index")
@@ -62,9 +62,9 @@ class BIRCHSuperIterator:
             points.append([element[0], element[idx]])
         return points
 
-    def graph(self):
-        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.calinski_harabasz_data,1),"K value","Calinski-Harabasz Index","BIRCH: Calinski-Harabasz Index values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.silhouette_score_data,1),"K value","Silhouette Score","BIRCH: Silhouette Score values across K values")
-        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.silhouette_score_data,4),"K value","Time","BIRCH: Time across K values")
+    def graph(self,folder_name):
+        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.calinski_harabasz_data,1),"K value","Calinski-Harabasz Index","BIRCH: Calinski-Harabasz Index values across K values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.silhouette_score_data,1),"K value","Silhouette Score","BIRCH: Silhouette Score values across K values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(self.extract_K_and_val_at_idx(self.silhouette_score_data,4),"K value","Time","BIRCH: Time across K values",folder_name)
 
 

@@ -13,7 +13,7 @@ class FastGlobalKMeans:
         self.error_tolerance = error_tolerance
     
     def cluster(self,data):
-        if self.K > data.shape[1]:
+        if self.K > data.shape[0]:
             raise ValueError()
         self.k_means = KMeans(n_clusters=1,n_init=1)
         self.k_means.fit(data)

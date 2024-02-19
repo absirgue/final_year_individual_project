@@ -38,7 +38,7 @@ class KMeansIterator:
                     silhouette_score_sum += 0
                 wcss_sum += k_means.inertia_
             self.performance_data.append({"K":K,"time":time_sum/self.NB_ITERATINS_PER_CONFIG,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"wcss":wcss_sum/self.NB_ITERATINS_PER_CONFIG})
-        return self.performance_data
+        return self.get_optimal()
         
     def get_optimal(self):
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"))
@@ -51,9 +51,9 @@ class KMeansIterator:
             if element["K"] == K_val:
                 return element
 
-    def graph(self):
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","calinski harabasz index"),"K value","Calinski-Harabasz Index","K-Means: Calinski-Harabasz Index values across K values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","silhouette score"),"K value","Silhouette Score","K-Means: Silhouette Score values across K values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"),"K value","WCSS","K-Means: WCSS values across K values")
-        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","time"),"K value","Running Time","K-Means: Running time across K values")
+    def graph(self,folder_name):
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","calinski harabasz index"),"K value","Calinski-Harabasz Index","K-Means: Calinski-Harabasz Index values across K values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","silhouette score"),"K value","Silhouette Score","K-Means: Silhouette Score values across K values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"),"K value","WCSS","K-Means: WCSS values across K values",folder_name)
+        GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","time"),"K value","Running Time","K-Means: Running time across K values",folder_name)
 

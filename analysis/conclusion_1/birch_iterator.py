@@ -13,11 +13,9 @@ class BIRCHIterator:
         self.NB_ITERATINS_PER_CONFIG = 1
         self.CLUSTERS_COUNT = number_of_clusters
         self.MIN_BRANCHING_FACTOR = 2
-        # self.MAX_BRANCHING_FACTOR = 65
-        self.MAX_BRANCHING_FACTOR = 20
+        self.MAX_BRANCHING_FACTOR = 65
         self.MIN_THRESHOLD = 0.1
-        # self.MAX_THRESHOLD = 10
-        self.MAX_THRESHOLD = 3
+        self.MAX_THRESHOLD = 10
         self.alg_name = "BIRCH for "+str(number_of_clusters)+" clusters"
     
     def iterate(self):
@@ -42,7 +40,7 @@ class BIRCHIterator:
                         calinski_harabasz_sum = 0
                         silhouette_score_sum = 0
                 self.performance_data.append({"threshold":threshold,"branching factor":branching_factor,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"time":time_sum})
-        return self.performance_data
+        return self.get_optimal()
     
     def get_optimal(self):
         calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"calinski harabasz index")
@@ -53,6 +51,6 @@ class BIRCHIterator:
                 {"Treshold Value": silhouette_best["threshold"],"Branching Factor": silhouette_best["branching factor"],"Silhouette Score":silhouette_best["silhouette score"],"Time":silhouette_best["time"]}
                 }
 
-    def graph(self):
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","calinski harabasz index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters")
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","silhouette score"),"Threshold","Branching Factor","Silhouette Score","BIRCH: Silhouette Score values across parameters")
+    def graph(self,folder_name):
+        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","calinski harabasz index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","silhouette score"),"Threshold","Branching Factor","Silhouette Score","BIRCH: Silhouette Score values across parameters",folder_name)
