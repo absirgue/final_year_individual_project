@@ -13,12 +13,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from analysis.dimensionality_evaluation import DimensionalityEvaluation
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
-from analysis.conclusion_1.kmeans_iterator import KMeansIterator
-from analysis.conclusion_1.birch_iterator import BIRCHIterator
-from analysis.conclusion_1.fuzzy_cmean_iterator import FuzzyCMeansIterator
-from analysis.conclusion_1.dbscan_iterator import DBSCANIterator
-from analysis.conclusion_1.fast_global_kmeans_iterator import FastGlobalKMeansIterator
-from analysis.conclusion_1.birch_super_iterator import BIRCHSuperIterator
+from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
+
 from analysis.conclusion_1.algorithms_best_performance import AlgorithmsBestPerformanceEvaluation
 np.seterr(over='ignore')
 
@@ -29,13 +25,15 @@ class DataSource:
 
 data_source = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
 
-AlgorithmsBestPerformanceEvaluation(data_source).run_evaluation()
+# AlgorithmsBestPerformanceEvaluation(data_source).run_evaluation()
 
 # optimal_col_emptiness_ratios_for_default_config = {'RATIOS': 0.8, 'RAW NUMBERS': 0.45, 'BOTH': 0.8}
 # {'RATIOS': 29, 'RAW NUMBERS': 29, 'BOTH': 38}
-# config = DataConfiguration()
-# config.set_to_default_configuration("RAW NUMBERS")
-# data = DataPreparator(data_source=data_source,configuration=config).apply_configuration(0.1)
+config = DataConfiguration()
+config.set_to_default_configuration("RAW NUMBERS")
+dp = DataPreparator(data_source=data_source,configuration=config)
+data = dp.apply_configuration(0.1)
+print(dp.get_credit_ratings())
 # # it = BIRCHSuperIterator(data,4)
 # # it.iterate()
 # # it.graph()

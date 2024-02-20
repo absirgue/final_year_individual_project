@@ -7,10 +7,12 @@ from data_preparation.industry_outlooks_encoder import IndustryOutlookEncode
 from data_preparation.diversification_encoding import DiversificationEncoding
 from data_preparation.data_frame_cleaner import DataFrameCleaner
 from data_preparation.industry_name_encoding import IndustryNameHashEncoding
-
+from data_preparation.credit_rating_encoding import CreditRatingEncoding
 class DataPreparator:
 
     def __init__(self,configuration,data_source):
+        self.NAME_CREDIT_RATING_ABSTRACT_COL = "CREDIT RATING"
+        self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating  Issuer Credit Rating  Foreign Currency LT [Latest] (Rating)"
         self.configuration = configuration 
         self.data_source = data_source
         self.data = self.read_data_from_csv()
@@ -19,10 +21,11 @@ class DataPreparator:
         return pd.read_excel(self.data_source.path, sheet_name=self.data_source.sheet_name)
     
     def apply_configuration(self,threshold_of_column_emptiness=0):
-        data = DataTypeIsolator(self.data).isolate_data_types(self.configuration.data_types)
+        data = DataTypeIsolator(self.data,self.NAME_CREDIT_RATING_ABSTRACT_COL).isolate_data_types(self.configuration.data_types)
         data.columns = data.iloc[0]
         data = data.drop(0)
         initial_columns_count = data.shape[1]
+        data,self.NAME_CREDIT_RATING_COL = CreditRatingEncoding(data,self.NAME_CREDIT_RATING_COL).encode()
         if self.configuration.encode_geography_diversification:
             data = DiversificationEncoding(data).encode(self.configuration.geography_encoding_type,"Geography")
         if self.configuration.encode_business_diversification:
@@ -37,10 +40,19 @@ class DataPreparator:
             data = CountryEconomicEncoding(data).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
+        self.write_to_csv_1(data)
+        self.credit_ratings = []
+        for index, row in data.iterrows():
+            cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]
+            self.credit_ratings.append(cell_content)
+        data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
         self.write_to_csv(data)
         data = data.values
         data = data.astype(float)
         return data
+    
+    def get_credit_ratings(self):
+        return self.credit_ratings
     
     def get_number_added_columns(self):
         return self.number_added_columns
@@ -48,5 +60,11 @@ class DataPreparator:
     def write_to_csv(self,data):
         df = pd.DataFrame(data)
         excel_filename = 'data_preparator_output.csv'
+        df.to_csv(excel_filename, index=False)
+        return data
+
+    def write_to_csv_1(self,data):
+        df = pd.DataFrame(data)
+        excel_filename = 'data_preparator_output_1.csv'
         df.to_csv(excel_filename, index=False)
         return data

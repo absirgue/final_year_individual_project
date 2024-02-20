@@ -25,6 +25,7 @@ class GraphingHelper:
                 os.makedirs(folder_name)
             file_path = os.path.join(folder_name, file_path)
         plt.savefig(file_path)
+        plt.close()
     
     def remove_elements_with_None_values(self, arr):
         cleaned = []
@@ -48,6 +49,7 @@ class GraphingHelper:
                 os.makedirs(folder_name)
             file_path = os.path.join(folder_name, file_path)
         plt.savefig(file_path)
+        plt.close()
     
     def extract_x_values(self, array):
         x_vals = []
