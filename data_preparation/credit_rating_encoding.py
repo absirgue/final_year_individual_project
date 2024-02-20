@@ -1,3 +1,4 @@
+import math
 class CreditRatingEncoding:
 
     def __init__(self, data, credit_rating_col_name):
@@ -32,14 +33,13 @@ class CreditRatingEncoding:
             encoding = self.compute_numeric_encoding_of_credit_rating(cell_content)
             if "CUSTOM Credit Rating" not in self.data.columns:
                 self.data["CUSTOM Credit Rating"] = None
-            self.data.loc[index, "CUSTOM Credit Rating"] = encoding
+            self.data.at[index, "CUSTOM Credit Rating"] = encoding
         self.data.drop(self.NAME_COL_TO_ENCODE, axis=1,inplace=True)
+        self.data["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"].astype(float)
         return self.data, "CUSTOM Credit Rating"
     
     def compute_numeric_encoding_of_credit_rating(self, rating):
         if rating in self.CR_NUMBER_MAPPING.keys():
             return self.CR_NUMBER_MAPPING[rating]
         else:
-            print("NOT")
-            print(rating)
-            return None
+            return math.nan

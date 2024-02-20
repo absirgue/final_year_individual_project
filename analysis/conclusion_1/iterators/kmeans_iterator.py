@@ -46,7 +46,6 @@ class KMeansIterator:
                 return perf_data
             
     def get_optimal(self):
-        return {"K":3,"WCSS":"test","Running":"test","Silhouette Score": "test","Calinski Harbasz Index":"test"}
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"))
         optimal_point = wcss_inflection_points[0]
         optimal_point = self.find_perf_entry_for_given_K(optimal_point[0])

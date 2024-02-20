@@ -15,7 +15,7 @@ class AlgorithmsBestPerformanceEvaluation:
     def __init__(self,data_source):
         self.data_source = data_source
         self.set_configurations_to_test()
-        # self.MAX_NUMBER_OF_CLUSTERS_TO_TRY = 80
+        self.MAX_NUMBER_OF_CLUSTERS_TO_TRY = 50
         self.MAX_NUMBER_OF_CLUSTERS_TO_TRY=3
     
     def set_configurations_to_test(self):
@@ -35,14 +35,13 @@ class AlgorithmsBestPerformanceEvaluation:
     def run_evaluation(self):
         algorithms_best_perf = {}
         algorithms_perf_on_others_optimal_K = {}
+        algorithms_perf_on_nb_unique_credit_ratings = {}
         optimal_col_emptiness_tresholds,optimal_dimensions = self.get_optimal_parameters()
-        print(optimal_col_emptiness_tresholds)
-        print(optimal_dimensions)
         for config in self.configurations_to_test.keys():
             optimal_ks = set()
             folder_name = "conclusion_1_graphs/algorithms_comparisons/"+config
             config_optimal_results = {}
-            data = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
+            data,nb_credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
             birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name)
             dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
             kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name)
@@ -51,9 +50,25 @@ class AlgorithmsBestPerformanceEvaluation:
             algorithms_best_perf[config] = config_optimal_results
             perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
             algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
-        self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K)
+            perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
+            algorithms_perf_on_nb_unique_credit_ratings[config+" (number of unique credit ratings: "+ str(nb_credit_ratings) +")"] = perf_on_clusters_count
+        self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings)
         return algorithms_best_perf,algorithms_perf_on_others_optimal_K
     
+    def compute_algs_performance_on_nb_cluster(self,nb_clusters,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator):
+        perf_on_clusters_count = {}
+        kmeans_perf = kmeans_iterator.get_performance_on_given_K(nb_clusters)
+        perf_on_clusters_count[kmeans_iterator.alg_name] = kmeans_perf
+        birch_perf = birch_iterator.get_performance_on_given_K(nb_clusters)
+        perf_on_clusters_count[birch_iterator.alg_name] = birch_perf
+        fuzzy_cmeans_perf = fuzzy_cmeans_iterator.get_performance_on_given_C(nb_clusters)
+        perf_on_clusters_count[fuzzy_cmeans_iterator.alg_name] = fuzzy_cmeans_perf
+        fgkm_perf = fgkm_iterator.get_performance_on_given_K(nb_clusters)
+        perf_on_clusters_count[fgkm_iterator.alg_name] = fgkm_perf
+        dbscan_perf = dbscan_iterator.get_performance_on_given_K(nb_clusters)
+        perf_on_clusters_count[dbscan_iterator.alg_name] = dbscan_perf
+        return perf_on_clusters_count
+
     def compute_algs_performance_on_each_others_optimals(self,optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator):
         perf_on_respective_optimals = {}
         for K in optimal_ks:
@@ -70,13 +85,15 @@ class AlgorithmsBestPerformanceEvaluation:
             perf_on_respective_optimals[K][dbscan_iterator.alg_name] = dbscan_perf
         return perf_on_respective_optimals
 
-    def print_results(self,algorithms_best_perf,algorithms_perf_on_others_optimal_K):
+    def print_results(self,algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings):
         print("***************************************************************\n")
         print("!!!!!!!!!!!!!! CONCLUSION 1 RESULTS !!!!!!!!!!!!!!\n")
         print("############## OPTIMAL PERFORMANCE OF THE ALGORITHMS ##############\n")
         print(algorithms_best_perf)
         print("\n############## PERFORMANCE ON OTHERS OPTIMAL K ##############\n")
         print(algorithms_perf_on_others_optimal_K)
+        print("\n############## PERFORMANCE ON NUMBER OF UNIQUE CREDIT RATINGS ##############\n")
+        print(algorithms_perf_on_nb_unique_credit_ratings)
         print("\n***************************************************************")
 
     def measure_fuzzy_cmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name):
@@ -126,6 +143,9 @@ class AlgorithmsBestPerformanceEvaluation:
         dimensionality = optimal_dimensions[config]
         configuration = DataConfiguration()
         configuration.set_to_default_configuration("RAW NUMBERS")
-        data = DataPreparator(data_source=self.data_source,configuration=configuration).apply_configuration(col_emptiness_thresh)
+        data_preparator = DataPreparator(data_source=self.data_source,configuration=configuration)
+        data = data_preparator.apply_configuration(col_emptiness_thresh)
+        credit_ratings = data_preparator.get_credit_ratings()
+        unique_credit_ratings = set(credit_ratings)
         dimensioned_data = PrincipalComponentAnalysis(data,dimensionality).reduce_dimensionality()
-        return dimensioned_data
+        return dimensioned_data,len(unique_credit_ratings)

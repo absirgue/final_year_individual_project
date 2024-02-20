@@ -48,7 +48,6 @@ class FuzzyCMeansIterator:
                 return perf_data
     
     def get_optimal(self):
-        return {"C":2,"WCSS":"test","Running":"test","Silhouette Score": "test","Calinski Harbasz Index":"test"}
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","wcss"))
         optimal_point = wcss_inflection_points[0]
         optimal_point = self.find_perf_entry_for_given_C(optimal_point[0])
@@ -59,6 +58,7 @@ class FuzzyCMeansIterator:
             if element["C"] == C_val:
                 return element
         return None
+    
     def graph(self,folder_name):
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","calinski harabasz index"),"C value","Calinski-Harabasz Index","Fuzzy C-Means: Calinski-Harabasz Index values across C values",folder_name)
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","silhouette score"),"C value","Silhouette Score","Fuzzy C-Means: Silhouette Score values across C values",folder_name)

@@ -6,7 +6,6 @@ class BIRCHSuperIterator:
 
     def __init__(self,data,max_nb_of__clusters = None):
         self.data = data
-        self.NB_ITERATINS_PER_CONFIG = 1
         self.MIN_K_TO_TEST = 2
         self.MAX_K_TO_TEST = int(self.data.shape[0])
         if max_nb_of__clusters and self.data.shape[0] > max_nb_of__clusters:

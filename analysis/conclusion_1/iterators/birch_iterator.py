@@ -13,11 +13,9 @@ class BIRCHIterator:
         self.NB_ITERATINS_PER_CONFIG = 1
         self.CLUSTERS_COUNT = number_of_clusters
         self.MIN_BRANCHING_FACTOR = 2
-        self.MAX_BRANCHING_FACTOR = 7
-        # self.MAX_BRANCHING_FACTOR = 65
+        self.MAX_BRANCHING_FACTOR = 65
         self.MIN_THRESHOLD = 0.1
-        self.MAX_THRESHOLD = 0.4
-        # self.MAX_THRESHOLD = 10
+        self.MAX_THRESHOLD = 10
         self.alg_name = "BIRCH for "+str(number_of_clusters)+" clusters"
     
     def iterate(self):
