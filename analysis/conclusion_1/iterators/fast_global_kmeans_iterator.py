@@ -10,7 +10,7 @@ class FastGlobalKMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None):
         self.data = data
-        self.NB_ITERATINS_PER_CONFIG = 1
+        self.NB_ITERATIONS_PER_CONFIG = 2
         self.MIN_K_TO_TEST = 2
         self.MAX_K_TO_TEST = int(self.data.shape[0])
         if max_nb_of__clusters and self.data.shape[0] > max_nb_of__clusters:
@@ -21,15 +21,16 @@ class FastGlobalKMeansIterator:
         self.performance_data = []
         k_values = create_ints_list(self.MIN_K_TO_TEST,self.MAX_K_TO_TEST,1)
         for K in k_values:
+            print(K)
             calinski_harabasz_sum = 0
             silhouette_score_sum = 0
             wcss_sum = 0
             time_sum = 0
-            for i in range(self.NB_ITERATINS_PER_CONFIG):
+            for i in range(self.NB_ITERATIONS_PER_CONFIG):
                 start_time = time.time()
                 fast = FastGlobalKMeans(K)
                 end_time = time.time()
-                time_sum + (end_time-start_time)
+                time_sum += (end_time-start_time)
                 labels = fast.cluster(self.data)
                 centroids = fast.get_centroids()
                 try:
@@ -39,7 +40,8 @@ class FastGlobalKMeansIterator:
                 except:
                     calinski_harabasz_sum += 0
                     silhouette_score_sum += 0
-            self.performance_data.append({"K":K,"time":time_sum/self.NB_ITERATINS_PER_CONFIG,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"wcss":wcss_sum/self.NB_ITERATINS_PER_CONFIG})
+            print(time_sum/self.NB_ITERATIONS_PER_CONFIG)
+            self.performance_data.append({"K":K,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"wcss":wcss_sum/self.NB_ITERATIONS_PER_CONFIG})
         return self.get_optimal()
     
     def get_performance_on_given_K(self, K):

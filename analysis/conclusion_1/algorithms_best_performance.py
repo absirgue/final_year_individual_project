@@ -15,8 +15,6 @@ class AlgorithmsBestPerformanceEvaluation:
     def __init__(self,data_source):
         self.data_source = data_source
         self.set_configurations_to_test()
-        self.MAX_NUMBER_OF_CLUSTERS_TO_TRY = 50
-        self.MAX_NUMBER_OF_CLUSTERS_TO_TRY=3
     
     def set_configurations_to_test(self):
         ratios_config = DataConfiguration()
@@ -42,11 +40,17 @@ class AlgorithmsBestPerformanceEvaluation:
             folder_name = "conclusion_1_graphs/algorithms_comparisons/"+config
             config_optimal_results = {}
             data,nb_credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
-            birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name)
+            max_k_value_to_test = nb_credit_ratings+10
+            birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+            print("********* BIRCH DONE *********")
             dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
-            kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name)
-            fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name)
-            fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name)
+            print("********* DBSCAN DONE *********")
+            kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+            print("********* KMEANS DONE *********")
+            fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+            print("********* FGKM DONE *********")
+            fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+            print("********* FUZZY C DONE *********")
             algorithms_best_perf[config] = config_optimal_results
             perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
             algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
@@ -96,24 +100,25 @@ class AlgorithmsBestPerformanceEvaluation:
         print(algorithms_perf_on_nb_unique_credit_ratings)
         print("\n***************************************************************")
 
-    def measure_fuzzy_cmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name):
-        fuzzy_cmeans_iterator = FuzzyCMeansIterator(data,self.MAX_NUMBER_OF_CLUSTERS_TO_TRY)
+    def measure_fuzzy_cmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test):
+        fuzzy_cmeans_iterator = FuzzyCMeansIterator(data,max_k_value_to_test)
         fuzzy_cm_optimal_config = fuzzy_cmeans_iterator.iterate()
         config_optimal_results[fuzzy_cmeans_iterator.alg_name] = fuzzy_cm_optimal_config
         optimal_ks.add(fuzzy_cm_optimal_config["C"])
         fuzzy_cmeans_iterator.graph(folder_name)
         return fuzzy_cmeans_iterator
 
-    def measure_fast_global_kmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name):
-        fast_global_kmeans_iterator = FastGlobalKMeansIterator(data,self.MAX_NUMBER_OF_CLUSTERS_TO_TRY)
+    def measure_fast_global_kmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test):
+        #  nb_credit_ratings bcs Fast Global KMeans is very slow 
+        fast_global_kmeans_iterator = FastGlobalKMeansIterator(data,max_k_value_to_test)
         fgkm_optimal_config = fast_global_kmeans_iterator.iterate()
         config_optimal_results[fast_global_kmeans_iterator.alg_name] = fgkm_optimal_config
         optimal_ks.add(fgkm_optimal_config["K"])
         fast_global_kmeans_iterator.graph(folder_name)
         return fast_global_kmeans_iterator
 
-    def measure_kmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name):
-        kmeans_iterator = KMeansIterator(data,self.MAX_NUMBER_OF_CLUSTERS_TO_TRY)
+    def measure_kmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test):
+        kmeans_iterator = KMeansIterator(data,max_k_value_to_test)
         kmeans_optimal_config = kmeans_iterator.iterate()
         config_optimal_results[kmeans_iterator.alg_name] = kmeans_optimal_config
         optimal_ks.add(kmeans_optimal_config["K"])
@@ -129,8 +134,8 @@ class AlgorithmsBestPerformanceEvaluation:
         dbscan_iterator.graph(folder_name)
         return dbscan_iterator
 
-    def measure_birch_optimality(self,data,config_optimal_results,optimal_ks,folder_name):
-        birch_iterator = BIRCHSuperIterator(data,self.MAX_NUMBER_OF_CLUSTERS_TO_TRY)
+    def measure_birch_optimality(self,data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test):
+        birch_iterator = BIRCHSuperIterator(data,max_k_value_to_test)
         birch_optimal_config = birch_iterator.iterate()
         config_optimal_results[birch_iterator.alg_name] = birch_optimal_config
         optimal_ks.add(birch_optimal_config["Calinski Harabasz Index Optimum"]["K"])

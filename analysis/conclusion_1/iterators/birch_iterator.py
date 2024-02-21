@@ -10,7 +10,7 @@ class BIRCHIterator:
 
     def __init__(self,data,number_of_clusters):
         self.data = data
-        self.NB_ITERATINS_PER_CONFIG = 1
+        self.NB_ITERATIONS_PER_CONFIG = 1
         self.CLUSTERS_COUNT = number_of_clusters
         self.MIN_BRANCHING_FACTOR = 2
         self.MAX_BRANCHING_FACTOR = 65
@@ -27,7 +27,7 @@ class BIRCHIterator:
                 calinski_harabasz_sum = 0
                 silhouette_score_sum = 0
                 time_sum = 0
-                for i in range(self.NB_ITERATINS_PER_CONFIG):
+                for i in range(self.NB_ITERATIONS_PER_CONFIG):
                     start_time = time.time()
                     birch = Birch(threshold=threshold, branching_factor=branching_factor, n_clusters=self.CLUSTERS_COUNT).fit(self.data)
                     end_time = time.time()
@@ -39,7 +39,7 @@ class BIRCHIterator:
                     except:
                         calinski_harabasz_sum = 0
                         silhouette_score_sum = 0
-                self.performance_data.append({"threshold":threshold,"branching factor":branching_factor,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATINS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATINS_PER_CONFIG,"time":time_sum})
+                self.performance_data.append({"threshold":threshold,"branching factor":branching_factor,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum})
         return self.get_optimal()
 
     def get_optimal(self):
