@@ -2,7 +2,7 @@ import unittest
 from data_treatment.principal_component_analysis import PrincipalComponentAnalysis
 import pandas as pd
 import numpy as np
-class TestCleanCellOfParenthesis(unittest.TestCase):
+class TestPrincipalComponentAnalysis(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest"):
         self.data = pd.DataFrame({"col 1":[1,-4,-3.14],"col 2":[-30,6.789,0.1],"col 3": [12,30,-12],"col 4":[-1,0.01,98]})

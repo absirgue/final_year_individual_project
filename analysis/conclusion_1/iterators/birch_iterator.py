@@ -51,6 +51,6 @@ class BIRCHIterator:
                 {"Treshold Value": silhouette_best["threshold"],"Branching Factor": silhouette_best["branching factor"],"Silhouette Score":silhouette_best["silhouette score"],"Time":silhouette_best["time"]}
                 }
 
-    def graph(self,folder_name):
+    def graph(self,folder_name=None):
         GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","calinski harabasz index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters",folder_name)
         GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","silhouette score"),"Threshold","Branching Factor","Silhouette Score","BIRCH: Silhouette Score values across parameters",folder_name)

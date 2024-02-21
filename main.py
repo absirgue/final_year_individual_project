@@ -14,8 +14,10 @@ import numpy as np
 from analysis.dimensionality_evaluation import DimensionalityEvaluation
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
-
+from data_treatment.principal_component_analysis import PrincipalComponentAnalysis
 from analysis.conclusion_1.algorithms_best_performance import AlgorithmsBestPerformanceEvaluation
+from analysis.conclusion_1.iterators.birch_iterator import BIRCHIterator
+from analysis.conclusion_1.iterators.dbscan_iterator import DBSCANIterator
 np.seterr(over='ignore')
 
 class DataSource:
@@ -25,13 +27,24 @@ class DataSource:
 
 data_source = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
 
-AlgorithmsBestPerformanceEvaluation(data_source).run_evaluation()
+# AlgorithmsBestPerformanceEvaluation(data_source).run_evaluation()
 
-# optimal_col_emptiness_ratios_for_default_config = {'RATIOS': 0.8, 'RAW NUMBERS': 0.45, 'BOTH': 0.8}
-# # {'RATIOS': 29, 'RAW NUMBERS': 29, 'BOTH': 38}
-# config = DataConfiguration()
-# config.set_to_default_configuration("BOTH")
-# dp = DataPreparator(data_source=data_source,configuration=config)
+optimal_col_emptiness_ratios_for_default_config = {'RATIOS': 0.8, 'RAW NUMBERS': 0.45, 'BOTH': 0.8}
+# {'RATIOS': 29, 'RAW NUMBERS': 29, 'BOTH': 38}
+config = DataConfiguration()
+config.set_to_default_configuration("BOTH")
+dp = DataPreparator(data_source=data_source,configuration=config)
+data= dp.apply_configuration(0.1)
+b = BIRCHIterator(data,2)
+b.iterate()
+b.graph()
+# print(data.shape)
+# pca = PrincipalComponentAnalysis(data,20)
+# print(type(pca.reduce_dimensionality()))
+# print(pca.reduce_dimensionality().shape)
+
+
+
 # data = dp.apply_configuration(0.1)
 # dp.get_credit_ratings()
 # # it = BIRCHSuperIterator(data,4)

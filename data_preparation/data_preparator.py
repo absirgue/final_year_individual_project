@@ -15,6 +15,8 @@ class DataPreparator:
         self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating  Issuer Credit Rating  Foreign Currency LT [Latest] (Rating)"
         self.configuration = configuration 
         self.data_source = data_source
+        self.col_names = None
+        self.credit_ratings = None
         self.data = self.read_data_from_csv()
 
     def read_data_from_csv(self):
@@ -49,10 +51,14 @@ class DataPreparator:
             self.credit_ratings.append(cell_content)
         data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
         self.write_to_csv(data)
+        self.col_names = data.columns
         data = data.values
         data = data.astype(float)
         return data
     
+    def get_column_names(self):
+        return self.col_names
+
     def get_credit_ratings(self):
         return self.credit_ratings
     
