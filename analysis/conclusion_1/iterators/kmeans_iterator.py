@@ -49,7 +49,7 @@ class KMeansIterator:
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"))
         optimal_point = wcss_inflection_points[0]
         optimal_point = self.find_perf_entry_for_given_K(optimal_point[0])
-        return {"K":optimal_point["K"],"WCSS":optimal_point["wcss"],"Running":optimal_point["time"],"Silhouette Score": optimal_point["calinski harabasz index"],"Calinski Harbasz Index":optimal_point["calinski harabasz index"]}
+        return {"K":optimal_point["K"],"WCSS":optimal_point["wcss"],"Running":optimal_point["time"],"Silhouette Score": optimal_point["silhouette score"],"Calinski Harbasz Index":optimal_point["calinski harabasz index"]}
 
     def find_perf_entry_for_given_K(self, K_val):
         for element in self.performance_data:
@@ -57,7 +57,7 @@ class KMeansIterator:
                 return element
         return None
     
-    def graph(self,folder_name):
+    def graph(self,folder_name=None):
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","calinski harabasz index"),"K value","Calinski-Harabasz Index","K-Means: Calinski-Harabasz Index values across K values",folder_name)
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","silhouette score"),"K value","Silhouette Score","K-Means: Silhouette Score values across K values",folder_name)
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"),"K value","WCSS","K-Means: WCSS values across K values",folder_name)

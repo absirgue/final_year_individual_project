@@ -64,8 +64,8 @@ class DBSCANIterator:
                 return point[1]
         return None
 
-    def graph(self,folder_name):
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","cluster counts"),"Eps","MinPts","Number of Clusters","DBSCAN: Number of clusters across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","calinski harabasz index"),"Eps","MinPts","Calinski Harbasz Index","DBSCAN: Calinski-Harabasz Index values across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","silhouette score"),"Eps","MinPts","Silhouette Score","DBSCAN: Silhouette Score values across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","time"),"Eps","MinPts","Running Time","DBSCAN: Running time across paramters",folder_name)
+    def graph(self,folder_name=None):
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","cluster counts"),"Eps","MinPts","Number of Clusters","DBSCAN: Number of clusters across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","calinski harabasz index"),"Eps","MinPts","Calinski Harbasz Index","DBSCAN: Calinski-Harabasz Index values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","silhouette score"),"Eps","MinPts","Silhouette Score","DBSCAN: Silhouette Score values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","time"),"Eps","MinPts","Running Time","DBSCAN: Running time across paramters",folder_name)

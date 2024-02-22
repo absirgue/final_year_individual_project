@@ -6,7 +6,7 @@ from matplotlib.ticker import LinearLocator
 import numpy as np
 class GraphingHelper:
 
-    def plot_3d_array_of_ponts(self, d3_arr, x_label, y_label, z_label, title,folder_name=None):
+    def plot_3d_array_of_points(self, d3_arr, x_label, y_label, z_label, title,folder_name=None):
         cleaned_d3_arr = self.remove_elements_with_None_values(d3_arr)
         x_values = self.extract_x_values(cleaned_d3_arr)
         y_values = self.extract_y_values(cleaned_d3_arr)
@@ -20,13 +20,13 @@ class GraphingHelper:
         ax.set_zlabel(z_label)
         ax.view_init(elev=20, azim=15)
         ax.set_title(title)
-        x_scale = np.arange(min(x_values),max(x_values+1),1)
-        y_scale = np.arange(min(y_values),max(y_values+1),1)
-        z_scale = np.arange(min(z_values),max(z_values+1),1)
-        plt.xticks(x_scale, x_scale)
-        plt.yticks(y_scale, y_scale)
-        ax.set_zticks(z_scale)
-        ax.set_ztickslabels(z_scale)
+        # x_scale = np.arange(min(x_values),max(x_values)+1,1)
+        # y_scale = np.arange(min(y_values),max(y_values)+1,1)
+        # z_scale = np.arange(min(z_values),max(z_values)+1,1)
+        # plt.xticks(x_scale, x_scale)
+        # plt.yticks(y_scale, y_scale)
+        # ax.set_zticks(z_scale)
+        # ax.set_zticklabels(z_scale)
         file_path = title+'.png'
         if folder_name:
             if not os.path.exists(folder_name):
@@ -51,10 +51,11 @@ class GraphingHelper:
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
-        x_scale = np.arange(min(x_values),max(x_values+1),1)
-        y_scale = np.arange(min(y_values),max(y_values+1),1)
-        plt.xticks(x_scale, x_scale)
-        plt.yticks(y_scale, y_scale)
+        # x_scale = np.arange(min(x_values),max(x_values)+1,1)
+        # y_scale = np.arange(min(y_values),max(y_values)+1,1)
+        # plt.xticks(x_scale, x_scale)
+        # plt.yticks(y_scale, y_scale)
+        # plt.xticks(rotation=45)
         file_path = title+'.png'
         if folder_name:
             if not os.path.exists(folder_name):

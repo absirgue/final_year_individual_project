@@ -29,9 +29,9 @@ class FastGlobalKMeansIterator:
             for i in range(self.NB_ITERATIONS_PER_CONFIG):
                 start_time = time.time()
                 fast = FastGlobalKMeans(K)
+                labels = fast.cluster(self.data)
                 end_time = time.time()
                 time_sum += (end_time-start_time)
-                labels = fast.cluster(self.data)
                 centroids = fast.get_centroids()
                 try:
                     calinski_harabasz_sum+= calinski_harabasz_score(self.data, labels)
@@ -53,7 +53,7 @@ class FastGlobalKMeansIterator:
         wcss_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"))
         optimal_point = wcss_inflection_points[0]
         optimal_point = self.find_perf_entry_for_given_K(optimal_point[0])
-        return {"K":optimal_point["K"],"WCSS":optimal_point["wcss"],"Silhouette Score": optimal_point["calinski harabasz index"],"Calinski Harbasz Index":optimal_point["calinski harabasz index"],"Running Time":optimal_point["time"]}
+        return {"K":optimal_point["K"],"WCSS":optimal_point["wcss"],"Silhouette Score": optimal_point["silhouette score"],"Calinski Harbasz Index":optimal_point["calinski harabasz index"],"Running Time":optimal_point["time"]}
 
     def find_perf_entry_for_given_K(self, K_val):
         for element in self.performance_data:
@@ -61,7 +61,7 @@ class FastGlobalKMeansIterator:
                 return element
         return None
 
-    def graph(self,folder_name):
+    def graph(self,folder_name=None):
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","calinski harabasz index"),"K value","Calinski-Harabasz Index","Fast Global K-Means: Calinski-Harabasz Index values across K values",folder_name)
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","silhouette score"),"K value","Silhouette Score","Fast Global K-Means: Silhouette Score values across K values",folder_name)
         GraphingHelper().plot_2d_array_of_points(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","wcss"),"K value","WCSS","Fast Global K-Means: WCSS values across K values",folder_name)

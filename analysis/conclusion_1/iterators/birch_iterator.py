@@ -39,7 +39,7 @@ class BIRCHIterator:
                     except:
                         calinski_harabasz_sum = 0
                         silhouette_score_sum = 0
-                self.performance_data.append({"threshold":threshold,"branching factor":branching_factor,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum})
+                self.performance_data.append({"threshold":threshold,"branching factor":branching_factor,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"silhouette score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG})
         return self.get_optimal()
 
     def get_optimal(self):
@@ -52,5 +52,5 @@ class BIRCHIterator:
                 }
 
     def graph(self,folder_name=None):
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","calinski harabasz index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_ponts(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","silhouette score"),"Threshold","Branching Factor","Silhouette Score","BIRCH: Silhouette Score values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","calinski harabasz index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","silhouette score"),"Threshold","Branching Factor","Silhouette Score","BIRCH: Silhouette Score values across parameters",folder_name)
