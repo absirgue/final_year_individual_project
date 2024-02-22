@@ -31,8 +31,8 @@ class CreditRatingAnalyzer:
         return {"Mean":mean,"Median":median,"Mode":mode,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
     
     def get_top_X__most_important_columns(self,X):
-        count_top_20_percent = int(len(self.data[0])*X)
-        X_best_entropies,cols_entropy = self.get_X_best_entropies(count_top_20_percent)
+        count_top_X_percent = int(len(self.data[0])*X)
+        X_best_entropies,cols_entropy = self.get_X_best_entropies(count_top_X_percent)
         best_cols = []
         for entropy in X_best_entropies:
             for key, val in cols_entropy:
