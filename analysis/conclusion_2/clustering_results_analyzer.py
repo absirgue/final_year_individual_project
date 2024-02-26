@@ -18,6 +18,7 @@ from analysis.conclusion_2.analysers.dbscan_analyser import DBSCANAnalyser
 from analysis.conclusion_2.analysers.fast_global_kmeans_analyser import FastGlobalKMeansAnalyser
 from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAnalyser
+from analysis.conclusion_2.json_helper import JSONHelper
 # Iterates over a series of algorithms and parameter settings from the JSON
 # for each config
 # gathers conclusions
@@ -27,8 +28,7 @@ from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAn
 class ClusteringResultsAnalyzer:
     # output_dir must be "conclusion2/with-withotu pca"
     def __init__(self, source_file_path, output_dir,data_source,with_pca):
-        with open(source_file_path) as f:
-            self.clustering_results = json.load(f)
+        self.clustering_results = JSONHelper().read(source_file_path)
         self.output_dir = output_dir
         self.data_source = data_source
         self.optimal_col_emptiness_tresholds = {'RATIOS': 0.8, 'RAW NUMBERS': 0.45, 'BOTH': 0.8}
@@ -40,7 +40,7 @@ class ClusteringResultsAnalyzer:
             # self.optimal_dimensions = DimensionalityEvaluation().run_evaluation(self.data_source,self.optimal_col_emptiness_tresholds)
 
     def analyse(self):
-        folder_name = "conclusion_2/"
+        folder_name = "conclusion_2_results/"
         if self.with_pca:
             folder_name += "with_pca/"
         else:

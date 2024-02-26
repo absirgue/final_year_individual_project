@@ -19,3 +19,8 @@ class JSONHelper:
         # keep silhouette, calinski harabasaz, and time metrics in the json 
         # then the analysis 
         # so analyze must buckle 
+    
+    def read(self, source_file_path):
+        with open(source_file_path) as f:
+            content = json.load(f)
+            return content

@@ -19,6 +19,7 @@ from analysis.conclusion_1.algorithms_best_performance import AlgorithmsBestPerf
 from analysis.conclusion_1.iterators.birch_iterator import BIRCHIterator
 from analysis.conclusion_1.iterators.birch_super_iterator import BIRCHSuperIterator
 from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
+from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
 np.seterr(over='ignore')
 
 class DataSource:
@@ -28,8 +29,9 @@ class DataSource:
 
 data_source = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
 
-analyser = ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "conclusion_2",data_source,False)
-analyser.analyse()
+# analyser = ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "conclusion_2",data_source,False)
+# analyser.analyse()
+ManualAnalysisHelper()
 
 # AlgorithmsBestPerformanceEvaluation(data_source,run_pca=True).run_evaluation()
 # AlgorithmsBestPerformanceEvaluation(data_source,run_pca=False).run_evaluation()
