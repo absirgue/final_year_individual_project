@@ -5,24 +5,36 @@ import scipy.stats as sp
 # or median range of each of the columns
 class CreditRatingCluster:
 
-    def __init__(self):
+    def __init__(self,first_junk_credit_rating,significance_threshold_for_split):
         self.companies_count = 0
         self.entropy = None
         self.credit_ratings_counts = {}
         self.data = {}
-    
+        self.first_junk_credit_rating = first_junk_credit_rating
+        self.significance_threshold_for_split = significance_threshold_for_split
+
+    def get_credit_ratings_counts(self):
+        return self.credit_ratings_counts
+
     def get_companies_count(self):
         return self.companies_count
 
-    def get_is_significant_cluster(self,first_junk_credit_rating,signifcance_threshold_for_split):
+    def get_is_significant_cluster(self):
         count_investment_grade = 0
         count_junk = 0
         for credit_rating in self.credit_ratings_counts:
-            if credit_rating >  first_junk_credit_rating:
-                count_investment_grade +=1
-            if credit_rating <= signifcance_threshold_for_split:
-                count_junk +=1 
-        return (count_investment_grade/self.companies_count > signifcance_threshold_for_split and count_investment_grade/self.companies_count<1) or (count_junk/self.companies_count > signifcance_threshold_for_split and count_junk/self.companies_count<1)
+            if float(credit_rating) >  self.first_junk_credit_rating:
+                count_investment_grade +=self.credit_ratings_counts[credit_rating]
+            if float(credit_rating) <= self.first_junk_credit_rating:
+                count_junk +=self.credit_ratings_counts[credit_rating]
+        return (count_investment_grade/self.companies_count > self.significance_threshold_for_split) and (count_junk/self.companies_count > self.significance_threshold_for_split)
+
+    def get_credit_ratings_held_in_significant_proportions(self,significant_proportion):
+        ratings = []
+        for cr,count in self.credit_ratings_counts.items():
+            if count/self.companies_count > significant_proportion:
+                ratings.append(cr)
+        return ratings
 
     def get_credit_ratings_proportion(self):
         percent_proportions = {}
@@ -36,38 +48,42 @@ class CreditRatingCluster:
         return self.get_measures_of_location_and_dispersion(col_values)
 
     def get_list_of_col_values(self,data, col_idx):
-        data = []
+        col_values = []
         for element in data:
-            data.append(element[col_idx])
-        return data
+            col_values.append(element[col_idx])
+        return col_values
     
     def get_rating_range(self):
-        return max(self.credit_ratings_counts.keys()) - min(self.credit_ratings_counts.keys())
+        return max([float(x) for x in self.credit_ratings_counts.keys()]) - min([float(x) for x in self.credit_ratings_counts.keys()])
     
     def get_measures_of_location_and_dispersion(self,data):
+        if len(data) == 0:
+            return None
         data = np.array(data)
         mean = data.mean()
         median = np.median(data)
-        mode = sp.mode(data)[0][0]
         q_25 = np.quantile(data, 0.25)
         q_75 = np.quantile(data, 0.75)
         std = np.std(data)
-        return {"Mean":mean,"Median":median,"Mode":mode,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
+        return {"Mean":mean,"Median":median,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
 
     # TO BE USED FOR PRED.
     def get_measures_of_location_and_dispersion_for_credit_ratings_values(self):
         data = []
         for rating in self.credit_ratings_counts.keys():
             for i in range(self.credit_ratings_counts[rating]):
-                data.append(rating)
-        return self.get_measures_of_location_and_dispersion(data)
+                data.append(float(rating))
+        measures = self.get_measures_of_location_and_dispersion(data)
+        measures["Is Signficant"] = self.get_is_significant_cluster()
+        return measures
 
     def get_entropy(self):
         entropy = 0
-        for cr in self.credit_ratings_counts.keys():
-            p = self.credit_ratings_counts[cr] / self.companies_count
-            entropy += p*math.log2(p)
-        return -1 * entropy
+        for cr_count in self.credit_ratings_counts.values():
+            p = cr_count / self.companies_count
+            if p > 0:
+                entropy += p*math.log2(p)
+        return -1 * entropy if entropy else 0
 
     def add_clustered_credit_rating(self, credit_rating, data):
         self.companies_count += 1
@@ -76,12 +92,14 @@ class CreditRatingCluster:
         
     def insert_rating_in_proportion(self, credit_rating):
         if credit_rating in self.credit_ratings_counts.keys():
+            self.credit_ratings_counts[credit_rating] = self.credit_ratings_counts[credit_rating] + 1
+        else:
             self.credit_ratings_counts[credit_rating] = 1
-        else:
-            self.credit_ratings_counts[credit_rating] += 1
-    
+            
     def insert_rating_and_data(self, credit_rating,data):
-        if credit_rating in self.credit_ratings_counts.keys():
-            self.credit_ratings_counts[credit_rating] = [data]
+        if not (credit_rating in self.data.keys()):
+            self.data[credit_rating] = [data]
         else:
-            self.credit_ratings_counts[credit_rating] = self.credit_ratings_counts[credit_rating].append(data)
+            cr_data = self.data[credit_rating]
+            cr_data.append(data)
+            self.data[credit_rating] = cr_data

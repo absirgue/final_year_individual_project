@@ -62,7 +62,7 @@ class AlgorithmsBestPerformanceEvaluation:
             best_perf_when_K_greater_than_nb_credit_ratings = self.compute_algs_performance_when_K_greater_credit_ratings_count(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator,max_k_value_to_test)
             algorithms_best_perf_K_superior_credit_ratings_count[config] = best_perf_when_K_greater_than_nb_credit_ratings
             perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
-            algorithms_perf_on_nb_unique_credit_ratings[config+" (number of unique credit ratings: "+ str(nb_credit_ratings) +")"] = perf_on_clusters_count
+            algorithms_perf_on_nb_unique_credit_ratings[config] = perf_on_clusters_count
         self.save_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         return algorithms_best_perf,algorithms_perf_on_others_optimal_K
@@ -117,10 +117,10 @@ class AlgorithmsBestPerformanceEvaluation:
         best_perf = None
         for i in range(min_val,max_val+1):
             result = iterator.get_performance_on_given_K(i)
-            if result and "silhouette score" in result.keys() and "calinski harabasz index" in result.keys() and result["silhouette score"] > best_silhouette_score and result["calinski harabasz index"] > best_calinski_harabasz:
+            if result and "Silhouette Score" in result.keys() and "Calinski Harabasz Index" in result.keys() and result["Silhouette Score"] > best_silhouette_score and result["Calinski Harabasz Index"] > best_calinski_harabasz:
                 best_perf = result
-                best_calinski_harabasz = result["calinski harabasz index"]
-                best_silhouette_score = result["silhouette score"]
+                best_calinski_harabasz = result["Calinski Harabasz Index"]
+                best_silhouette_score = result["Silhouette Score"]
         return best_perf
     
     def compute_algs_performance_on_each_others_optimals(self,optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator):

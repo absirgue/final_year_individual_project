@@ -1,7 +1,7 @@
 import math
 class CreditRatingEncoding:
 
-    def __init__(self, data, credit_rating_col_name):
+    def __init__(self, data=[], credit_rating_col_name=""):
         self.NAME_COL_TO_ENCODE  = credit_rating_col_name
         self.data = data
         self.CR_NUMBER_MAPPING = {"AAA":1,
@@ -43,3 +43,6 @@ class CreditRatingEncoding:
             return self.CR_NUMBER_MAPPING[rating]
         else:
             return math.nan
+    
+    def get_encoding_first_junk_rating(self):
+        return self.CR_NUMBER_MAPPING["BB+"]

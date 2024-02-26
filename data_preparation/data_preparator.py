@@ -56,6 +56,9 @@ class DataPreparator:
         data = data.astype(float)
         return data
     
+    def get_encoding_of_first_junk_rating(self):
+        return CreditRatingEncoding().get_encoding_first_junk_rating()
+
     def get_column_names(self):
         return self.col_names
 

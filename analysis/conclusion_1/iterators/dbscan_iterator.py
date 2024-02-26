@@ -40,7 +40,7 @@ class DBSCANIterator:
                     except:
                         calinski_harabasz_sum = None
                         silhouette_score_sum = None
-                self.performance_data.append({"eps":eps,"min pts":min_pts,"calinski harabasz index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG if calinski_harabasz_sum else None,"silhouette score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG if silhouette_score_sum else None,"cluster counts":clusters_count/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG})
+                self.performance_data.append({"eps":eps,"min pts":min_pts,"Calinski Harabasz Index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG if calinski_harabasz_sum else None,"Silhouette Score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG if silhouette_score_sum else None,"cluster counts":clusters_count/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG})
         return self.get_optimal()
     
     def get_performance_on_given_K(self, K):
@@ -50,12 +50,12 @@ class DBSCANIterator:
         return None
 
     def get_optimal(self):
-        calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"calinski harabasz index")
-        silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"silhouette score")
+        calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
+        silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
         return {"Calinski Harabasz Index Optimum":
-                {"Eps": calinski_best["eps"],"MinPts": calinski_best["min pts"],"Calinski Harbasz Index":calinski_best["calinski harabasz index"],"Number of Clusters":calinski_best["cluster counts"],"Time":calinski_best["time"]},
+                {"Eps": calinski_best["eps"],"MinPts": calinski_best["min pts"],"Calinski Harbasz Index":calinski_best["Calinski Harabasz Index"],"Number of Clusters":calinski_best["cluster counts"],"Time":calinski_best["time"]},
                 "Silhouette Score Optimum":
-                {"Eps": silhouette_best["eps"],"MinPts": silhouette_best["min pts"],"Silhouette Score":silhouette_best["silhouette score"],"Number of Clusters":calinski_best["cluster counts"],"Running Time":calinski_best["time"]},
+                {"Eps": silhouette_best["eps"],"MinPts": silhouette_best["min pts"],"Silhouette Score":silhouette_best["Silhouette Score"],"Number of Clusters":calinski_best["cluster counts"],"Running Time":calinski_best["time"]},
                 }
 
     def get_y_value_for_given_x(self,arr,x_val):
@@ -66,6 +66,6 @@ class DBSCANIterator:
 
     def graph(self,folder_name=None):
         GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","cluster counts"),"Eps","MinPts","Number of Clusters","DBSCAN: Number of clusters across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","calinski harabasz index"),"Eps","MinPts","Calinski Harbasz Index","DBSCAN: Calinski-Harabasz Index values across parameters",folder_name)
-        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","silhouette score"),"Eps","MinPts","Silhouette Score","DBSCAN: Silhouette Score values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","Calinski Harabasz Index"),"Eps","MinPts","Calinski Harbasz Index","DBSCAN: Calinski-Harabasz Index values across parameters",folder_name)
+        GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","Silhouette Score"),"Eps","MinPts","Silhouette Score","DBSCAN: Silhouette Score values across parameters",folder_name)
         GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"eps","min pts","time"),"Eps","MinPts","Running Time","DBSCAN: Running time across paramters",folder_name)

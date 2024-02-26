@@ -15,23 +15,23 @@ class BIRCHSuperIterator:
     def iterate(self):
         self.silhouette_score_data = []
         self.calinski_harabasz_data = []
-        self.wcss_data = []
+        self.WCSS_data = []
         k_values = create_ints_list(self.MIN_K_TO_TEST,self.MAX_K_TO_TEST,1)
         for K in k_values:
             birch_iterator = BIRCHIterator(data=self.data,number_of_clusters=K)
             birch_iterator.iterate()
             optimum = birch_iterator.get_optimal()
-            self.calinski_harabasz_data.append([K,optimum["Calinski Harabasz Index Optimum"]["Calinski Harabasz Index"],optimum["Calinski Harabasz Index Optimum"]["Treshold Value"],optimum["Calinski Harabasz Index Optimum"]["Branching Factor"],optimum["Calinski Harabasz Index Optimum"]["Time"]])
-            self.silhouette_score_data.append([K,optimum["Silhouette Score Optimum"]["Silhouette Score"],optimum["Silhouette Score Optimum"]["Treshold Value"],optimum["Silhouette Score Optimum"]["Branching Factor"],optimum["Silhouette Score Optimum"]["Time"]])
+            self.calinski_harabasz_data.append([K,optimum["Calinski Harabasz Index Optimum"]["Calinski Harabasz Index"],optimum["Calinski Harabasz Index Optimum"]["Threshold Value"],optimum["Calinski Harabasz Index Optimum"]["Branching Factor"],optimum["Calinski Harabasz Index Optimum"]["Time"]])
+            self.silhouette_score_data.append([K,optimum["Silhouette Score Optimum"]["Silhouette Score"],optimum["Silhouette Score Optimum"]["Threshold Value"],optimum["Silhouette Score Optimum"]["Branching Factor"],optimum["Silhouette Score Optimum"]["Time"]])
         return self.get_optimal()
     
     def get_optimal(self):
         calinski_best = self.get_values_for_max_measure_value("Calinski Harabasz Index")
         silhouette_best = self.get_values_for_max_measure_value("Silhouette Score")
         return {"Calinski Harabasz Index Optimum":
-                {"K": calinski_best[0],"Running Time":calinski_best[4],"Treshold Value": calinski_best[2],"Branching Factor": calinski_best[3],"Calinski Harabasz Index":calinski_best[1]},
+                {"K": calinski_best[0],"Running Time":calinski_best[4],"Threshold Value": calinski_best[2],"Branching Factor": calinski_best[3],"Calinski Harabasz Index":calinski_best[1]},
                 "Silhouette Score Optimum":
-                {"K": silhouette_best[0],"Treshold Value": calinski_best[2],"Running Time":silhouette_best[4],"Branching Factor": silhouette_best[3],"Silhouette Score":silhouette_best[1]},
+                {"K": silhouette_best[0],"Threshold Value": calinski_best[2],"Running Time":silhouette_best[4],"Branching Factor": silhouette_best[3],"Silhouette Score":silhouette_best[1]},
                 }
 
     def get_performance_on_given_K(self, K):
@@ -39,14 +39,14 @@ class BIRCHSuperIterator:
         something_found = False
         for calinski_perf in self.calinski_harabasz_data:
             if calinski_perf[0] == K:
-                return_value["calinski harabasz index"] = calinski_perf[1]
+                return_value["Calinski Harabasz Index"] = calinski_perf[1]
                 return_value["Running Time"]["Calinski Harabasz Index Optimum"] = calinski_perf[4]
                 return_value["Threshold Value"]["Calinski Harabasz Index Optimum"] = calinski_perf[2]
                 return_value["Branching Factor"]["Calinski Harabasz Index Optimum"] = calinski_perf[3]
                 something_found = True
         for silhouette_perf in self.silhouette_score_data:
             if silhouette_perf[0] == K:
-                return_value["silhouette score"] = silhouette_perf[1]
+                return_value["Silhouette Score"] = silhouette_perf[1]
                 return_value["Running Time"]["Silhouette Score Optimum"] = silhouette_perf[4]
                 return_value["Threshold Value"]["Silhouette Score Optimum"] = silhouette_perf[2]
                 return_value["Branching Factor"]["Silhouette Score Optimum"] = silhouette_perf[3]
@@ -82,7 +82,7 @@ class BIRCHSuperIterator:
     def graph(self,folder_name=None):
         GraphingHelper().plot_2d_array_of_points(self.extract_value_pairs_at_indexes(self.calinski_harabasz_data,0,1),"K value","Calinski-Harabasz Index","BIRCH: Calinski-Harabasz Index values across K values",folder_name)
         GraphingHelper().plot_2d_array_of_points(self.extract_value_pairs_at_indexes(self.silhouette_score_data,0,1),"K value","Silhouette Score","BIRCH: Silhouette Score values across K values",folder_name)
-        GraphingHelper().plot_2d_array_of_points(self.extract_value_pairs_at_indexes(self.silhouette_score_data,2,4),"Treshold Value","Time","BIRCH: Time across Thresholds",folder_name)
+        GraphingHelper().plot_2d_array_of_points(self.extract_value_pairs_at_indexes(self.silhouette_score_data,2,4),"Threshold Value","Time","BIRCH: Time across Thresholds",folder_name)
         GraphingHelper().plot_2d_array_of_points(self.extract_value_pairs_at_indexes(self.silhouette_score_data,3,4),"Branching Factor","Time","BIRCH: Time across Branching Factors",folder_name)
 
 

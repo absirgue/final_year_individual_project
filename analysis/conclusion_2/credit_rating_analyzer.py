@@ -2,6 +2,7 @@ import numpy as np
 import scipy.stats as sp
 from sklearn.neighbors import KernelDensity
 from scipy.integrate import quad
+from scipy.stats import norm
 # Add a class that calculates the ranges, mean, median, quartiles, 
 # entropy on each of the columns for each of the ratings
 class CreditRatingAnalyzer:
@@ -24,47 +25,41 @@ class CreditRatingAnalyzer:
         data = np.array(data)
         mean = data.mean()
         median = np.median(data)
-        mode = sp.mode(data)[0][0]
         q_25 = np.quantile(data, 0.25)
         q_75 = np.quantile(data, 0.75)
         std = np.std(data)
-        return {"Mean":mean,"Median":median,"Mode":mode,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
+        return {"Mean":mean,"Median":median,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
     
-    def get_top_X__most_important_columns(self,X):
-        count_top_X_percent = int(len(self.data[0])*X)
-        X_best_entropies,cols_entropy = self.get_X_best_entropies(count_top_X_percent)
-        best_cols = []
-        for entropy in X_best_entropies:
-            for key, val in cols_entropy:
-                if val == entropy:
-                    best_cols.append(key)
-        return best_cols
+    def get_top_X_most_important_columns(self,X,full_data):
+        X_best_cols = self.get_X_smaller_normalized_range(X,full_data)
+        return X_best_cols
 
-    def get_X_best_entropies(self, X):
+    def get_X_smaller_normalized_range(self, X,full_data):
         cols_entropy = {}
-        best_entropies = []
         for col_idx in range(len(self.data[0])):
-            entropy = self.get_column_differential_entropy(col_idx)
-            cols_entropy[col_idx] = entropy
-            if len(best_entropies) < X:
-                best_entropies.append(entropy)
+            entropy = self.get_col_normalized_range(col_idx,full_data)
+            if len(cols_entropy.keys()) < X:
+                cols_entropy[entropy] = col_idx
             else:
-                if entropy > min(best_entropies):
-                    best_entropies.pop(min(best_entropies))
-                    best_entropies.append(entropy)
-        return best_entropies,cols_entropy
+                current_min = min(cols_entropy.keys())
+                if entropy > current_min:
+                    del cols_entropy[current_min]
+                    cols_entropy[entropy] = col_idx
+        return cols_entropy.values()
+    
+    def get_col_normalized_range(self,col_idx,full_data):
+        overall_range = np.max(full_data[:, col_idx]) - np.min(full_data[:, col_idx])
+        cr_col_values = self.get_list_of_col_values(col_idx)
+        cr_range = max(cr_col_values)-  min(cr_col_values)
+        return cr_range/overall_range
 
     def get_column_differential_entropy(self, col_idx):
         data = self.get_list_of_col_values(col_idx)
-        # 'auto' so that Kernel's bandwith is automatically 
-        # calculated (avoids assumption of Gaussian distribution)
-        kernel_density_obj = KernelDensity(kernel='auto')
-        kernel_density_obj.fit(data)
-        prob_density_function = kernel_density_obj.score_samples(data)
-        def differential_entropy_formula(value, prob_density_function):
-            return -prob_density_function(value) * np.log2(prob_density_function(value))
-        entropy, _ = quad(differential_entropy_formula, np.min(data), np.max(data), args=(prob_density_function,))
-        return entropy
+        data = np.array(data)
+        kde = norm.pdf
+        pdf_values = kde(data, data)
+        result, _ = quad(lambda x: -pdf_values[np.abs(data - x).argmin()] * np.log(pdf_values[np.abs(data - x).argmin()]), -np.inf, np.inf)
+        return result
     
     def get_list_of_col_values(self,col_idx):
         data = []
