@@ -20,6 +20,7 @@ from analysis.conclusion_1.iterators.birch_iterator import BIRCHIterator
 from analysis.conclusion_1.iterators.birch_super_iterator import BIRCHSuperIterator
 from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
 from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
+from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
 np.seterr(over='ignore')
 
 class DataSource:
@@ -29,9 +30,41 @@ class DataSource:
 
 data_source = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
 
+# RatingChangesIdentifier(data_source).identify_changes()
+
+import pandas as pd
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+
+def pca_and_plot(data_array):
+    std_scaler = StandardScaler()
+    scaled_df = std_scaler.fit_transform(data_array)
+    nan_rows = np.isnan(scaled_df).any(axis=1)
+    cleaned_scaled_df = scaled_df[~nan_rows]
+    pca = PCA(n_components=2)
+    reduced_data = pca.fit_transform(cleaned_scaled_df)
+
+    # Plot the reduced data
+    plt.figure(figsize=(8, 6))
+    plt.scatter(reduced_data[:, 0], reduced_data[:, 1], alpha=0.7)
+    plt.title('2D PCA Plot')
+    plt.xlabel('Principal Component 1 (PC1)')
+    plt.ylabel('Principal Component 2 (PC2)')
+    plt.grid(True)
+    plt.show()
+
+data_configuration = DataConfiguration()
+data_configuration.set_to_default_configuration("BOTH")
+data_preparator = DataPreparator(data_source=data_source,configuration=data_configuration)
+data = data_preparator.apply_configuration(0.8)
+# has_nan = np.isnan(data).any()
+# print("Contains NaN values:", has_nan)
+pca_and_plot(data)
+
 # analyser = ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "conclusion_2",data_source,False)
 # analyser.analyse()
-ManualAnalysisHelper()
+# ManualAnalysisHelper()
 
 # AlgorithmsBestPerformanceEvaluation(data_source,run_pca=True).run_evaluation()
 # AlgorithmsBestPerformanceEvaluation(data_source,run_pca=False).run_evaluation()

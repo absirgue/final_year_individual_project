@@ -19,6 +19,7 @@ from analysis.conclusion_2.analysers.fast_global_kmeans_analyser import FastGlob
 from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAnalyser
 from analysis.conclusion_2.json_helper import JSONHelper
+from graph.graphing_helper import GraphingHelper
 # Iterates over a series of algorithms and parameter settings from the JSON
 # for each config
 # gathers conclusions
@@ -81,17 +82,34 @@ class ClusteringResultsAnalyzer:
             print("NOT RUNNING PCA")
         credit_rating_analyzers = self.generate_credit_ratings_analysers(credit_ratings,data)
         print("GENERATED CREDIT RATING ANALYSERS")
+        singificant_cluster_counts = {}
         if "BIRCH" in performances.keys() and performances["BIRCH"]:
-            BIRCHAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers).analyse(performances["BIRCH"])
+            birch_analyser = BIRCHAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            birch_analyser.analyse(performances["BIRCH"])
+            name, significant_clusters_count = birch_analyser.get_name_and_significant_cluster_count()
+            singificant_cluster_counts[name] = significant_clusters_count
         if "Fuzzy C-Means" in performances.keys() and performances["Fuzzy C-Means"]:
-            FuzzyCMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers).analyse(performances["Fuzzy C-Means"])
+            fuzzy_c_analyser = FuzzyCMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            fuzzy_c_analyser.analyse(performances["Fuzzy C-Means"])
+            name, significant_clusters_count = fuzzy_c_analyser.get_name_and_significant_cluster_count()
+            singificant_cluster_counts[name] = significant_clusters_count
         if "K-Means" in performances.keys() and performances["K-Means"]:
-            KMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers).analyse(performances["K-Means"])
+            kmeans_analyser = KMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            kmeans_analyser.analyse(performances["K-Means"])
+            name, significant_clusters_count = kmeans_analyser.get_name_and_significant_cluster_count()
+            singificant_cluster_counts[name] = significant_clusters_count
         if "Fast Global K-Means" in performances.keys() and performances["Fast Global K-Means"]:
-            FastGlobalKMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers).analyse(performances["Fast Global K-Means"])
+            fgkm_analyser = FastGlobalKMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            fgkm_analyser.analyse(performances["Fast Global K-Means"])
+            name, significant_clusters_count = fgkm_analyser.get_name_and_significant_cluster_count()
+            singificant_cluster_counts[name] = significant_clusters_count
         if "DBSCAN" in performances.keys() and performances["DBSCAN"]:
-            DBSCANAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers).analyse(performances["DBSCAN"])
-    
+            dbscan_analyser = DBSCANAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            dbscan_analyser.analyse(performances["DBSCAN"])
+            name, significant_clusters_count = dbscan_analyser.get_name_and_significant_cluster_count()
+            singificant_cluster_counts[name] = significant_clusters_count
+        GraphingHelper().create_bar_chart_from_dictionary(singificant_cluster_counts,"Algorithm Name", "Number of Significant Clusters","Number of Significant Clusters for each Algorithm", folder_name)
+
     def generate_credit_ratings_analysers(self,credit_ratings,data):
         credit_ratings_analysers = {}
         for cr_idx in range(len(credit_ratings)):

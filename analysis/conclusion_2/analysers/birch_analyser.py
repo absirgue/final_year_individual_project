@@ -21,6 +21,9 @@ class BIRCHAnalyser:
             elif "Threshold Value" in performance_metrics.keys():
                 self.analyse_alg_optimum_in_format_2(self.col_names,self.encoding_first_junk,self.folder_name, self.data, self.credit_ratings, performance_metrics,self.credit_rating_analyzers,optimum)
 
+    def get_name_and_significant_cluster_count(self):
+        return self.name, self.significant_clusters_count
+
     def analyse_alg_optimum_in_format_1(self,col_names,encoding_first_junk,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum):
         birch = Birch(threshold=float(performance_metrics[optimum]["Threshold Value"]), branching_factor=int(performance_metrics[optimum]["Branching Factor"]), n_clusters=int(performance_metrics[optimum]["K"])).fit(self.data)
         labels = birch.labels_
@@ -31,7 +34,9 @@ class BIRCHAnalyser:
         elif "silhouette" in optimum.lower():
             analysis["Algorithm Performance"] = {"Silhouette Score":performance_metrics[optimum]["Silhouette Score"]}
         cluster_analyzer = ClustersAnalyzer(encoding_first_junk,labels,credit_ratings,credit_rating_analyzers,data,col_names)
-        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze()
+        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(folder_name,self.alg_name+"_"+optimum)
+        self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
+        self.name = self.alg_name+"_"+optimum
         JSONHelper().save(folder_name,self.alg_name+"_"+optimum,analysis)
     
     def analyse_alg_optimum_in_format_2(self,col_names,encoding_first_junk,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum):
@@ -44,5 +49,7 @@ class BIRCHAnalyser:
         elif "silhouette" in optimum.lower():
             analysis["Algorithm Performance"] = {"Silhouette Score":performance_metrics["Silhouette Score"]}
         cluster_analyzer = ClustersAnalyzer(encoding_first_junk,labels,credit_ratings,credit_rating_analyzers,data,col_names)
-        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze()
+        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(folder_name,self.alg_name+"_"+optimum)
+        self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
+        self.name = self.alg_name+"_"+optimum
         JSONHelper().save(folder_name,self.alg_name+"_"+optimum,analysis)

@@ -4,6 +4,9 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 import numpy as np
+import seaborn as sns
+from matplotlib.colors import Normalize
+from matplotlib.cm import ScalarMappable
 class GraphingHelper:
 
     def plot_3d_array_of_points(self, d3_arr, x_label, y_label, z_label, title,folder_name=None):
@@ -51,17 +54,62 @@ class GraphingHelper:
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
-        # x_scale = np.arange(min(x_values),max(x_values)+1,1)
-        # y_scale = np.arange(min(y_values),max(y_values)+1,1)
-        # plt.xticks(x_scale, x_scale)
-        # plt.yticks(y_scale, y_scale)
-        # plt.xticks(rotation=45)
         file_path = title+'.png'
         if folder_name:
             if not os.path.exists(folder_name):
                 os.makedirs(folder_name)
             file_path = os.path.join(folder_name, file_path)
 
+        plt.savefig(file_path)
+        plt.close()
+
+    def create_bar_chart_from_dictionary(self,data,x_label, y_label,title, folder_name=None):
+        plt.figure()
+        plt.bar(data.keys(), data.values())
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        file_path = title+'.png'
+        if folder_name:
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            file_path = os.path.join(folder_name, file_path)
+
+        plt.savefig(file_path)
+        plt.close()
+    
+    def create_box_plot(self,x_label,y_label, title,data,folder_name=None):
+        counts = {key: len(value) for key, value in data.items()}
+        # Create a color scale based on the counts
+        norm = Normalize(vmin=min(counts.values()), vmax=max(counts.values()))
+        colors = [plt.cm.viridis(norm(count)) for count in counts.values()]
+
+        # Create a ScalarMappable to display the color scale
+        sm = ScalarMappable(cmap=plt.cm.viridis, norm=norm)
+        sm.set_array([])  # This line is necessary for the color scale to work properly
+
+        # Create a boxplot with color-coded boxes
+        plt.figure(figsize=(13, 9))
+        plt.grid()
+        plt.xlabel(x_label)
+        plt.ylabel(y_label)
+        plt.title(title)
+        plt.title(title)
+        plt.xticks(rotation=45)
+        bplot = plt.boxplot(data.values(), labels=data.keys(), patch_artist=True)
+
+        # Set box colors based on the counts
+        for box, color in zip(bplot['boxes'], colors):
+            box.set_facecolor(color)
+
+        # Add color scale to the plot
+        plt.colorbar(sm, label='Number of Elements')
+        
+        file_path = title+'.png'
+        if folder_name:
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            file_path = os.path.join(folder_name, file_path)
         plt.savefig(file_path)
         plt.close()
     

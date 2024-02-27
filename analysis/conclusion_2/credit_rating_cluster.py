@@ -76,6 +76,13 @@ class CreditRatingCluster:
         measures = self.get_measures_of_location_and_dispersion(data)
         measures["Is Signficant"] = self.get_is_significant_cluster()
         return measures
+    
+    def get_list_of_credit_ratings_appearances(self):
+        cr_list = []
+        for key in self.credit_ratings_counts.keys():
+            for i in range(self.credit_ratings_counts[key]):
+                cr_list.append(float(key))
+        return cr_list
 
     def get_entropy(self):
         entropy = 0

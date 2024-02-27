@@ -1,7 +1,7 @@
 import os
 import json
 from analysis.conclusion_2.credit_rating_cluster import CreditRatingCluster
-
+from graph.graphing_helper import GraphingHelper
 class ClustersAnalyzer:
 
     def __init__(self, encoding_first_junk_rating, cluster_labels,data_ordered_credit_ratings,credit_ratings_analyzers,data,col_names):
@@ -15,7 +15,7 @@ class ClustersAnalyzer:
         self.data = data
         self.col_names = col_names
     
-    def analyze(self):
+    def analyze(self,folder_name_for_graph,alg_name):
         analysis = {}
         credit_rating_clusters = self.create_credit_rating_clusters()
         nb_clusters_with_various_cr_ranges = len(self.get_clusters_with_various_cr_ranges(credit_rating_clusters))
@@ -37,7 +37,14 @@ class ClustersAnalyzer:
         if nb_clusters_with_various_cr_ranges or nb_clusters_with_significant_incoherencies:
             incoherencies_explanations = self.explain_incoherencies(credit_rating_clusters)
             analysis["Incoherencies explanations"] = incoherencies_explanations
+        self.create_and_save_graph(credit_rating_clusters,folder_name_for_graph,alg_name)
         return analysis
+
+    def create_and_save_graph(self, cr_clusters,folder_name,alg_name):
+        data = {}
+        for cluster_idx in range(len(cr_clusters)):
+            data[("CLUSTER "+str(cluster_idx))] = cr_clusters[cluster_idx].get_list_of_credit_ratings_appearances()
+        GraphingHelper().create_box_plot("Cluster","Credit Rating", alg_name+" Clusters and held credit ratings",data,folder_name)
 
     def get_cluster_cr_counts(self,credit_rating_clusters):
         counts = []
