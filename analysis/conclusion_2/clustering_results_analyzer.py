@@ -20,25 +20,15 @@ from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAnalyser
 from analysis.conclusion_2.json_helper import JSONHelper
 from graph.graphing_helper import GraphingHelper
-# Iterates over a series of algorithms and parameter settings from the JSON
-# for each config
-# gathers conclusions
-# on the best for each algorithm
-# on each alg's config with nb of credit ratings
-# on each alg's best perf with nb of credit ratings > 
+
 class ClusteringResultsAnalyzer:
-    # output_dir must be "conclusion2/with-withotu pca"
-    def __init__(self, source_file_path, output_dir,data_source,with_pca):
+    def __init__(self, source_file_path, output_dir,with_pca):
         self.clustering_results = JSONHelper().read(source_file_path)
         self.output_dir = output_dir
-        self.data_source = data_source
-        self.optimal_col_emptiness_tresholds = {'RATIOS': 0.8, 'RAW NUMBERS': 0.45, 'BOTH': 0.8}
-# # {'RATIOS': 29, 'RAW NUMBERS': 29, 'BOTH': 38}
-        # self.optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation(self.data_source)
+        self.optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation()
         self.with_pca = with_pca
         if self.with_pca:
-            self.optimal_dimensions = {'RATIOS': 29, 'RAW NUMBERS': 29, 'BOTH': 38}
-            # self.optimal_dimensions = DimensionalityEvaluation().run_evaluation(self.data_source,self.optimal_col_emptiness_tresholds)
+            self.optimal_dimensions = DimensionalityEvaluation().run_evaluation(self.optimal_col_emptiness_tresholds)
 
     def analyse(self):
         folder_name = "conclusion_2_results/"
@@ -66,11 +56,11 @@ class ClusteringResultsAnalyzer:
             self.analyse_config(config_name,self.clustering_results["algorithms best performance"][config_name],folder_name)
 
     def analyse_config(self, config_name, performances,folder_name):
-        print("ANALYSING CONGIF " + config_name)
+        print("ANALYSING CONFIG " + config_name)
         folder_name += config_name + "/"
         data_configuration = DataConfiguration()
         data_configuration.set_to_default_configuration(config_name)
-        data_preparator = DataPreparator(data_source=self.data_source,configuration=data_configuration)
+        data_preparator = DataPreparator(data_source=data_configuration.get_data_source(),configuration=data_configuration)
         data = data_preparator.apply_configuration(self.optimal_col_emptiness_tresholds[config_name])
         credit_ratings = data_preparator.get_credit_ratings()
         encoding_first_junk = data_preparator.get_encoding_of_first_junk_rating()
@@ -139,17 +129,4 @@ class ClusteringResultsAnalyzer:
         cluster_analyzer = ClustersAnalyzer(encoding_first_junk,labels,credit_ratings,credit_rating_analyzers,data,col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze()
         self.save_analysis(folder_name,alg_name+"_"+optimum,analysis)
-
-    # def analyse_dbscan(self, col_names,encoding_first_junk,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers):
-    #     optimum_names = ["Calinski Harabasz Index Optimum","Silhouette Score Optimum"]
-    #     for optimum in optimum_names:
-    #         dbscan = DBSCAN(eps=float(performance_metrics[optimum]["Eps"]),min_samples=int(performance_metrics[optimum]["MinPts"])).fit(data)
-    #         labels = dbscan.labels_
-    #         self.analyse_alg_optimum(col_names,encoding_first_junk,labels,"DBSCAN",folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum)
-
-    # def analyse_fgkm(self, performance_metrics):
-    # def analyse_k_means(self, performance_metrics):
-    # def analyse_fuzzy_c_means(self, performance_metrics):
-    # def analyse_ocil(self, performance_metrics_c_means, performance_metrics_k_means, performance_metrics_fgkm):
-    
     

@@ -1,6 +1,3 @@
-from clustering.p_norm import PNorm
-from clustering.vector_calculations import VectorCalculations
-# from clustering.k_means import KMeans
 from sklearn.cluster import KMeans
 import sys
 import numpy as np

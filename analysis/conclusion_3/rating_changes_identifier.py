@@ -9,9 +9,6 @@ class RatingChangesIdentifier:
     def identify_changes(self):
         original_mapping_sp_identifier_to_credit_rating = self.generate_sp_identifier_to_credit_rating_mapping_from_data_configuration()
         differences = self.identify_changes_in_mapping_with_most_recent_file(original_mapping_sp_identifier_to_credit_rating)
-        print(len(differences.keys()))
-        print(len(original_mapping_sp_identifier_to_credit_rating.keys()))
-        print(len(differences.keys())/len(original_mapping_sp_identifier_to_credit_rating.keys()))
 
     def identify_changes_in_mapping_with_most_recent_file(self,original_mapping):
         changes = {}
@@ -26,9 +23,6 @@ class RatingChangesIdentifier:
                     changes[str(row['S&P Entity ID'])] = {"was":rating_was,"is":rating_is,"difference":difference}
                     if difference <0:
                         count_upgrade += 1
-                        print("DIFF WAS NEG")
-                        print(rating_was)
-                        print(rating_is)
         print("UPGRADES: "+str(count_upgrade))
         print(count_upgrade/len(changes.keys()))
         return changes

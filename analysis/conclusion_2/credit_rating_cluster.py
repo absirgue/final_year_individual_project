@@ -1,8 +1,7 @@
 import math
 import numpy as np
 import scipy.stats as sp
-# For each cluster then, we can locate if it’s the higher, lower, 
-# or median range of each of the columns
+
 class CreditRatingCluster:
 
     def __init__(self,first_junk_credit_rating,significance_threshold_for_split):
@@ -67,7 +66,7 @@ class CreditRatingCluster:
         std = np.std(data)
         return {"Mean":mean,"Median":median,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
 
-    # TO BE USED FOR PRED.
+    # TO Do -  USED FOR PRED.
     def get_measures_of_location_and_dispersion_for_credit_ratings_values(self):
         data = []
         for rating in self.credit_ratings_counts.keys():

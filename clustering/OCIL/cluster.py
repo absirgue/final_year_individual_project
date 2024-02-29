@@ -1,7 +1,6 @@
 from clustering.vector_calculations import VectorCalculations
 import math 
 
-# WE NOTE THAT WE CAN"T REMOVE A POINT THAT"S NOT IT, IT WILL NOT BE DETECTED ANS WILL CAUSE ERRORS
 class Cluster:
 
     def __init__(self,categorical_attributes_count):

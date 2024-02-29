@@ -12,7 +12,7 @@ class DataPreparator:
 
     def __init__(self,configuration,data_source):
         self.NAME_CREDIT_RATING_ABSTRACT_COL = "CREDIT RATING"
-        self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating  Issuer Credit Rating  Foreign Currency LT [Latest] (Rating)"
+        self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating - Issuer Credit Rating - Local Currency LT [Latest] (Rating)"
         self.configuration = configuration 
         self.data_source = data_source
         self.col_names = None
@@ -50,21 +50,6 @@ class DataPreparator:
                 cell_content = cell_content.iloc[0]
             self.credit_ratings.append(cell_content)
         data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
-        data.drop("No Country Risk Score Known", axis=1)
-        # data.drop("a ", axis=1)
-        # data.drop("a+ ", axis=1)
-        # data.drop("aa ", axis=1)
-        # data.drop("aa+ ", axis=1)
-        # data.drop("aaa ", axis=1)
-        # data.drop("b ", axis=1)
-        # data.drop("b+ ", axis=1)
-        # data.drop("bb ", axis=1)
-        # data.drop("bb+ ", axis=1)
-        # data.drop("bbb ", axis=1)
-        # data.drop("bbb+ ", axis=1)
-        # data.drop("ccc or worse ", axis=1)
-        # data.drop("ccc+ ", axis=1)
-        data = self.remove_custom_columns(data)
         self.write_to_csv(data)
         self.col_names = data.columns
         data = data.values

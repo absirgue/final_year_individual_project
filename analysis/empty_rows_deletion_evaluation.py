@@ -13,24 +13,30 @@ class EmptyRowsDeletionEvaluation:
         ratios_config.set_to_default_configuration("RATIOS")
         raw_nbs_config = DataConfiguration()
         raw_nbs_config.set_to_default_configuration("RAW NUMBERS")
-        both_config = DataConfiguration()
-        both_config.set_to_default_configuration("BOTH")
-        self.configurations_to_test = {"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH":both_config}
+        both_config_ratios_and_raw_numbers = DataConfiguration()
+        both_config_ratios_and_raw_numbers.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS")
+        credit_health__config = DataConfiguration()
+        credit_health__config.set_to_default_configuration("CREDIT HEALTH")
+        credit_model_config = DataConfiguration()
+        credit_model_config.set_to_default_configuration("CREDIT MODEL")
+        both_config_credit_health_and_credit_model = DataConfiguration()
+        both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
+        self.configurations_to_test = {"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH RATIOS AND RAW NUMBERS":both_config_ratios_and_raw_numbers,"CREDIT MODEL":credit_model_config,"CREDIT HEALTH":credit_health__config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model}
     
-    def run_evaluation(self,data_source):
+    def run_evaluation(self):
         self.ideal_empty_col_thresholds = {}
         for config_name in self.configurations_to_test:
-            # mappings_nb_columns_nb_rows = []
             point_product_thresh_map = {}
             points = []
             for i in range(0, 21):
                 empty_col_threshold = i * 0.05
-                preparator = DataPreparator(self.configurations_to_test[config_name], data_source)
+                config = self.configurations_to_test[config_name]
+                preparator = DataPreparator(config, config.get_data_source())
                 data = preparator.apply_configuration(empty_col_threshold)
                 number_added_columns = preparator.get_number_added_columns()
                 points.append([data.shape[0],data.shape[1]-number_added_columns])
                 point_product_thresh_map[data.shape[0]*(data.shape[1]-number_added_columns)] = empty_col_threshold
-            GraphingHelper().plot_2d_array_of_points(points,"Number of rows","Number of columns","Rows and Columns for Data Cleaning of Default Configuration "+config_name)
+            GraphingHelper().plot_2d_array_of_points(points,folder_name="empty_rows_deletion_evaluation_graphs",x_label="Number of rows",y_label="Number of columns",title=config_name+": Rows and Columns for Data Cleaning of Default Configuration")
             inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(points)
             favored_point = self.get_best_inflection_point(inflection_points,points)
             self.ideal_empty_col_thresholds[config_name] = point_product_thresh_map[favored_point[0]*favored_point[1]]
@@ -41,7 +47,7 @@ class EmptyRowsDeletionEvaluation:
             for point in points:
                 if point[0] >= self.IDEAL_MIN_ROW_COUNT:
                     return point
-        for i in range(len(inflection_points)):
+        for i in range(len(inflection_points)-1,0,-1):
             if inflection_points[i][0] >= self.IDEAL_MIN_ROW_COUNT:
                 return inflection_points[i]
         return inflection_points[len(inflection_points)-1]

@@ -34,9 +34,6 @@ class TestKMeans(unittest.TestCase):
                 true_clustering = true_clustering and (self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[0]) or self.check_2D_arrays_contain_same_rows(cluster, expected_clusters[1]))
             if true_clustering:
                 correct_clusterings_count += 1
-        # We need to repeat several times and expect only a correct clustering 
-        # rate around 1/2 as there is a 1/2 chance that both cluster centroids are initialized in the same
-        # cluster.
         self.assertGreaterEqual(correct_clusterings_count,(repeats/2)-1)
 
     def test_k_can_not_be_greater_than_nb_of_data_points(self):

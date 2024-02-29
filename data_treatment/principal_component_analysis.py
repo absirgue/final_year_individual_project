@@ -68,3 +68,4 @@ class PrincipalComponentAnalysisPerformanceMeasurement:
             graph_title += " " + self.extra_title_precision
         plt.title(graph_title)
         plt.savefig(graph_title+'.png')
+        plt.close()

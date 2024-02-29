@@ -14,10 +14,9 @@ from analysis.data_configuration import DataConfiguration
 
 class AlgorithmsBestPerformanceEvaluation:
 
-    def __init__(self,data_source,run_pca=False):
+    def __init__(self,run_pca=False):
         self.RESULTS_FILE_NAME = "performance_metrics.json"
         self.run_pca = run_pca
-        self.data_source = data_source
         self.set_configurations_to_test()
     
     def set_configurations_to_test(self):
@@ -25,13 +24,19 @@ class AlgorithmsBestPerformanceEvaluation:
         ratios_config.set_to_default_configuration("RATIOS")
         raw_nbs_config = DataConfiguration()
         raw_nbs_config.set_to_default_configuration("RAW NUMBERS")
-        both_config = DataConfiguration()
-        both_config.set_to_default_configuration("BOTH")
-        self.configurations_to_test = {"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH":both_config}
+        both_config_ratios_and_raw_numbers = DataConfiguration()
+        both_config_ratios_and_raw_numbers.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS")
+        credit_health__config = DataConfiguration()
+        credit_health__config.set_to_default_configuration("CREDIT HEALTH")
+        credit_model_config = DataConfiguration()
+        credit_model_config.set_to_default_configuration("CREDIT MODEL")
+        both_config_credit_health_and_credit_model = DataConfiguration()
+        both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
+        self.configurations_to_test = {"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH RATIOS AND RAW NUMBERS":both_config_ratios_and_raw_numbers,"CREDIT MODEL":credit_model_config,"CREDIT HEALTH":credit_health__config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model}
     
     def get_optimal_parameters(self):
-        optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation(self.data_source)
-        optimal_dimensions = DimensionalityEvaluation().run_evaluation(self.data_source,optimal_col_emptiness_tresholds)
+        optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation()
+        optimal_dimensions = DimensionalityEvaluation().run_evaluation(optimal_col_emptiness_tresholds)
         return optimal_col_emptiness_tresholds,optimal_dimensions
     
     def run_evaluation(self):
@@ -203,7 +208,7 @@ class AlgorithmsBestPerformanceEvaluation:
         dimensionality = optimal_dimensions[config]
         configuration = DataConfiguration()
         configuration.set_to_default_configuration("RAW NUMBERS")
-        data_preparator = DataPreparator(data_source=self.data_source,configuration=configuration)
+        data_preparator = DataPreparator(data_source=configuration.get_data_source(),configuration=configuration)
         data = data_preparator.apply_configuration(col_emptiness_thresh)
         credit_ratings = data_preparator.get_credit_ratings()
         unique_credit_ratings = set(credit_ratings)

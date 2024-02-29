@@ -16,20 +16,12 @@ class GraphingHelper:
         z_values = self.extract_z_values(cleaned_d3_arr)
         fig = plt.figure()
         ax = plt.figure().add_subplot(projection='3d')
-        # ax.scatter(x_values, y_values, z_values)
         ax.plot_trisurf(x_values, y_values, z_values, linewidth=0.2, antialiased=True)
         ax.set_xlabel(x_label)
         ax.set_ylabel(y_label)
         ax.set_zlabel(z_label)
         ax.view_init(elev=20, azim=15)
         ax.set_title(title)
-        # x_scale = np.arange(min(x_values),max(x_values)+1,1)
-        # y_scale = np.arange(min(y_values),max(y_values)+1,1)
-        # z_scale = np.arange(min(z_values),max(z_values)+1,1)
-        # plt.xticks(x_scale, x_scale)
-        # plt.yticks(y_scale, y_scale)
-        # ax.set_zticks(z_scale)
-        # ax.set_zticklabels(z_scale)
         file_path = title+'.png'
         if folder_name:
             if not os.path.exists(folder_name):

@@ -31,6 +31,10 @@ class DataFrameCleaner:
         self.data.replace('', pd.NA, inplace=True)
         self.data.replace('None', pd.NA, inplace=True)
         self.data.replace('nan', pd.NA, inplace=True)
+        self.data.replace('- ', pd.NA, inplace=True)
+        self.data.replace('-', pd.NA, inplace=True)
+        self.data.replace('--', pd.NA, inplace=True)
+        self.data.replace('NM', pd.NA, inplace=True)
         self.data.replace(np.NaN, pd.NA, inplace=True)
         self.data.replace(np.NAN, pd.NA, inplace=True)
         threshold = len(self.data) * threshold_of_column_emptiness

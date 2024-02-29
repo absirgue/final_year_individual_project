@@ -51,7 +51,7 @@ class TestDataPreparator(unittest.TestCase):
     
     def test_non_numerical_columns_are_left_out(self):
         configuration = DataConfiguration()
-        configuration.set_data_types_wanted(["RATIO","DIVERSIFICATION - GEOGRAPHY - REVENUE"])
+        configuration.set_data_types_wanted(["RATIO","DIVERSIFICATION - GEOGRAPHIC SEGMENTS - REVENUE"])
         result = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")).apply_configuration()
         self.assertNotIn("Geographic Segments (Screen by Sum) (Details): % of Revenue [LTM]",result.columns)
     

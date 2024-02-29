@@ -3,8 +3,7 @@ import scipy.stats as sp
 from sklearn.neighbors import KernelDensity
 from scipy.integrate import quad
 from scipy.stats import norm
-# Add a class that calculates the ranges, mean, median, quartiles, 
-# entropy on each of the columns for each of the ratings
+
 class CreditRatingAnalyzer:
 
     def __init__(self):

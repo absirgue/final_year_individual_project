@@ -30,7 +30,6 @@ class CountryEconomicEncoding:
             try:
                 countries_by_share_of_rev = str(row['Geographic Segments (Screen by Sum) (Details): % of Revenue [LTM]'])
             except:
-                # print("COUNTRY ECONOMIC ENCODING: Missing split column")
                 return
             if countries_by_share_of_rev and not pd.isna(countries_by_share_of_rev):
                 total_share = 0
@@ -53,7 +52,6 @@ class CountryEconomicEncoding:
                     for variable in totals:
                         totals[variable] = totals[variable]/total_share
                 self.set_avg_economic_indicators(index,totals)
-        # print("Countries formulations unconsidered counts: "+str(len(forgotten_countries)))
 
     def set_avg_economic_indicators(self,index,economic_indicators_value):
         for eco_variable in economic_indicators_value:
