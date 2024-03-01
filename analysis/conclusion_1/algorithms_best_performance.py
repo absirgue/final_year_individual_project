@@ -20,23 +20,23 @@ class AlgorithmsBestPerformanceEvaluation:
         self.set_configurations_to_test()
     
     def set_configurations_to_test(self):
-        ratios_config = DataConfiguration()
-        ratios_config.set_to_default_configuration("RATIOS")
-        raw_nbs_config = DataConfiguration()
-        raw_nbs_config.set_to_default_configuration("RAW NUMBERS")
-        both_config_ratios_and_raw_numbers = DataConfiguration()
-        both_config_ratios_and_raw_numbers.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS")
+        credit_health_avg = DataConfiguration()
+        credit_health_avg.set_to_default_configuration("CREDIT HEALTH",average_by_category=True)
+        credit_model_avg = DataConfiguration()
+        credit_model_avg.set_to_default_configuration("CREDIT MODEL",average_by_category=True)
+        both_config_credit_health_and_credit_model_avg = DataConfiguration()
+        both_config_credit_health_and_credit_model_avg.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
         credit_health__config = DataConfiguration()
         credit_health__config.set_to_default_configuration("CREDIT HEALTH")
         credit_model_config = DataConfiguration()
         credit_model_config.set_to_default_configuration("CREDIT MODEL")
         both_config_credit_health_and_credit_model = DataConfiguration()
         both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
-        self.configurations_to_test = {"CREDIT MODEL":credit_model_config,"CREDIT HEALTH":credit_health__config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model,"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH RATIOS AND RAW NUMBERS":both_config_ratios_and_raw_numbers}
+        self.configurations_to_test = {"CREDIT HEALTH - CR PILAR AVERAGES":credit_health_avg,"CREDIT MODEL - CR PILAR AVERAGES":credit_model_avg,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model_avg,"CREDIT HEALTH":credit_health__config,"CREDIT MODEL":credit_model_config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model}
     
     def get_optimal_parameters(self):
-        optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation()
-        optimal_dimensions = DimensionalityEvaluation().run_evaluation(optimal_col_emptiness_tresholds)
+        optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
+        optimal_dimensions = DimensionalityEvaluation(self.configurations_to_test).run_evaluation(optimal_col_emptiness_tresholds)
         return optimal_col_emptiness_tresholds,optimal_dimensions
     
     def run_evaluation(self):

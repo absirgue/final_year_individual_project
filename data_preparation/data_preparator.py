@@ -8,6 +8,7 @@ from data_preparation.diversification_encoding import DiversificationEncoding
 from data_preparation.data_frame_cleaner import DataFrameCleaner
 from data_preparation.industry_name_encoding import IndustryNameHashEncoding
 from data_preparation.credit_rating_encoding import CreditRatingEncoding
+from data_preparation.credit_rating_factor_averages_calculator import CreditRatingFactorAveragesCalculator
 class DataPreparator:
 
     def __init__(self,configuration,data_source):
@@ -28,6 +29,7 @@ class DataPreparator:
         data = data.drop(0)
         initial_columns_count = data.shape[1]
         data,self.NAME_CREDIT_RATING_COL = CreditRatingEncoding(data,self.NAME_CREDIT_RATING_COL).encode()
+        data = data.drop_duplicates()
         if self.configuration.encode_geography_diversification:
             data = DiversificationEncoding(data).encode(self.configuration.geography_encoding_type,"Geography")
         if self.configuration.encode_business_diversification:
@@ -41,9 +43,7 @@ class DataPreparator:
         if self.configuration.encode_country:
             data = CountryEconomicEncoding(data,self.configuration.normalise_economic_variables).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
-        self.write_to_csv_1(data)
-        data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
-       
+
         self.credit_ratings = []
         for index, row in data.iterrows():
             cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]
@@ -51,6 +51,13 @@ class DataPreparator:
                 cell_content = cell_content.iloc[0]
             self.credit_ratings.append(cell_content)
         data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
+
+        if self.configuration.average_by_cr_factor:
+            data = CreditRatingFactorAveragesCalculator(data).encode()
+        self.write_to_csv_1(data)
+        data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
+       
+        
         self.write_to_csv(data)
         self.col_names = data.columns
         data = data.values

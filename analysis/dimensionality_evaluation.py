@@ -6,7 +6,11 @@ from analysis.function_analysis import FunctionAnalysis
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 class DimensionalityEvaluation:
 
-    def __init__(self):
+    def __init__(self,configuration_to_test=None):
+        if configuration_to_test:
+            self.configurations_to_test = configuration_to_test
+        else:
+            self.set_configurations_to_test()
         self.DESIRED_EXPLAINED_VARIANCE_RATIO = 0.95
         self.set_configurations_to_test()
     

@@ -4,8 +4,11 @@ from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
 class EmptyRowsDeletionEvaluation:
 
-    def __init__(self):
-        self.set_configurations_to_test()
+    def __init__(self,configuration_to_test = None):
+        if configuration_to_test:
+            self.configurations_to_test = configuration_to_test
+        else:
+            self.set_configurations_to_test()
         self.IDEAL_MIN_ROW_COUNT = 500
     
     def set_configurations_to_test(self):
