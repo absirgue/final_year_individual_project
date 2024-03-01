@@ -4,12 +4,16 @@ from analysis.conclusion_1.algorithms_best_performance import AlgorithmsBestPerf
 from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
 from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
 from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
+from data_preparation.data_preparator import DataPreparator
+from analysis.data_configuration import DataConfiguration
 np.seterr(over='ignore')
 
-EmptyRowsDeletionEvaluation().run_evaluation()
-
-
-
+# AlgorithmsBestPerformanceEvaluation().run_evaluation()
+# AlgorithmsBestPerformanceEvaluation(run_pca=True).run_evaluation()
+# ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
+d = DataConfiguration()
+d.set_to_default_configuration("CREDIT HEALTH")
+DataPreparator(d,d.get_data_source()).apply_configuration(0.5)
 # def pca_and_plot(data_array):
 #     std_scaler = StandardScaler()
 #     scaled_df = std_scaler.fit_transform(data_array)

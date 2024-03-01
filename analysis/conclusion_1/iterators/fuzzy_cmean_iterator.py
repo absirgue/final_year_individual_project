@@ -50,7 +50,7 @@ class FuzzyCMeansIterator:
         WCSS_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"C","WCSS"))
         optimal_point = WCSS_inflection_points[0]
         optimal_point = self.find_perf_entry_for_given_C(optimal_point[0])
-        return {"C":optimal_point["C"],"WCSS":optimal_point["WCSS"],"Silhouette Score": optimal_point["Silhouette Score"],"Running Time":optimal_point["time"],"Calinski Harbasz Index":optimal_point["Calinski Harabasz Index"]}
+        return {"C":optimal_point["C"],"WCSS":optimal_point["WCSS"],"Silhouette Score": optimal_point["Silhouette Score"],"Running Time":optimal_point["time"],"Calinski Harabasz Index":optimal_point["Calinski Harabasz Index"]}
 
     def find_perf_entry_for_given_C(self, C_val):
         for element in self.performance_data:

@@ -39,10 +39,11 @@ class DataPreparator:
         if self.configuration.encode_industry_outlooks:
             data = IndustryOutlookEncode(data).encode(self.configuration.outlooks_weight_distribution)
         if self.configuration.encode_country:
-            data = CountryEconomicEncoding(data).encode()
+            data = CountryEconomicEncoding(data,self.configuration.normalise_economic_variables).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
-        data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
         self.write_to_csv_1(data)
+        data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
+       
         self.credit_ratings = []
         for index, row in data.iterrows():
             cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]

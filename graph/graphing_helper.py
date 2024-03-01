@@ -1,10 +1,5 @@
 import matplotlib.pyplot as plt
 import os
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator
-import numpy as np
-import seaborn as sns
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 class GraphingHelper:

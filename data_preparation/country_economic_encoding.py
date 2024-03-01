@@ -5,7 +5,8 @@ import csv
 from data_preparation.number_from_string_extractor import NumberFromStringExtractor
 class CountryEconomicEncoding:
 
-    def __init__(self, data):
+    def __init__(self, data,normalise_columns):
+        self.normalise_columns = normalise_columns
         self.data = data
         self.ECONOMIC_VARIABLES = ["PPPPC","PPPGDP","PCPIE","PCPI","NGDP_FY","NGDPPC","LUR","LP","GGX_NGDP","GGXWDN_NGDP","GGX","BCA"]
         self.generate_country_letters_mapping()
@@ -13,8 +14,15 @@ class CountryEconomicEncoding:
 
     def encode(self):
         self.add_averaged_economic_data_columns()
+        if self.normalise_columns:
+            self.normalise_added_column()
         return self.data
 
+    def normalise_added_column(self):
+        for eco_variable in self.ECONOMIC_VARIABLES:
+            max_value = self.data["CUSTOM"+eco_variable].max()
+            self.data["CUSTOM"+eco_variable] = self.data["CUSTOM"+eco_variable] / max_value
+    
     def generate_country_letters_mapping(self):
         self.country_letters_mapping = {}
         with open('./data/country_letter_symbols.csv', mode='r') as file:

@@ -82,10 +82,10 @@ class ClustersAnalyzer:
                         cluster_members_col_values = unique_clusters_requiring_explanations[cluster_idx].get_measures_of_location_and_dispersion_for_col_of_credit_rating_instances(col_idx, rating)
                         comparison = self.compare_cluster_and_credit_rating_values(cr_col_values,cluster_members_col_values)
                         if not (("RATING " +rating) in cluster_explanations.keys()):
-                            cluster_explanations[("RATING " +rating)] = [{self.get_col_name(col_idx):{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}}]
+                            cluster_explanations[("RATING " +rating)] = [{self.get_col_name(col_idx) if self.col_names else col_idx:{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}}]
                         else:
                             initial_value = cluster_explanations[("RATING " +rating)]
-                            initial_value.append({self.get_col_name(col_idx):{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}})
+                            initial_value.append({self.get_col_name(col_idx) if self.col_names else col_idx:{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}})
                             cluster_explanations[("RATING " +rating)] = initial_value
             explanations["CLUSTER "+str(cluster_idx)] =  cluster_explanations
         return explanations 

@@ -64,11 +64,11 @@ class ClusteringResultsAnalyzer:
         data = data_preparator.apply_configuration(self.optimal_col_emptiness_tresholds[config_name])
         credit_ratings = data_preparator.get_credit_ratings()
         encoding_first_junk = data_preparator.get_encoding_of_first_junk_rating()
-        col_names = data_preparator.get_column_names()
-        print("DATA AND ALL GENERATED")
+        col_names = None
         if self.with_pca:
             data = PrincipalComponentAnalysis(data,self.optimal_dimensions[config_name]).reduce_dimensionality()
         else:
+            col_names = data_preparator.get_column_names()
             print("NOT RUNNING PCA")
         credit_rating_analyzers = self.generate_credit_ratings_analysers(credit_ratings,data)
         print("GENERATED CREDIT RATING ANALYSERS")

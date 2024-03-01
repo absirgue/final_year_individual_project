@@ -20,10 +20,10 @@ class DataFrameCleaner:
     def get_data(self):
         return self.data
         
-    def remove_too_empty_cols_except_customs(self,threshold):
+    def remove_too_empty_cols(self,threshold):
         columns_to_remove = self.data.columns[self.data.isna().sum() > threshold]
-        custom_columns = [col for col in self.data.columns if col.startswith("CUSTOM")]
-        columns_to_keep = custom_columns + [col for col in self.data.columns if col not in columns_to_remove]
+        # custom_columns = [col for col in self.data.columns if col.startswith("CUSTOM")]
+        columns_to_keep =[col for col in self.data.columns if col not in columns_to_remove]
         filtered_df = self.data[columns_to_keep]
         self.data = filtered_df
 
@@ -38,7 +38,7 @@ class DataFrameCleaner:
         self.data.replace(np.NaN, pd.NA, inplace=True)
         self.data.replace(np.NAN, pd.NA, inplace=True)
         threshold = len(self.data) * threshold_of_column_emptiness
-        self.remove_too_empty_cols_except_customs(threshold)
+        self.remove_too_empty_cols(threshold)
         self.data.dropna(how='any',inplace=True)
 
     def clean(self,threshold_of_column_emptiness):

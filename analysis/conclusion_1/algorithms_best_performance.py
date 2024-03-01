@@ -32,7 +32,7 @@ class AlgorithmsBestPerformanceEvaluation:
         credit_model_config.set_to_default_configuration("CREDIT MODEL")
         both_config_credit_health_and_credit_model = DataConfiguration()
         both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
-        self.configurations_to_test = {"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH RATIOS AND RAW NUMBERS":both_config_ratios_and_raw_numbers,"CREDIT MODEL":credit_model_config,"CREDIT HEALTH":credit_health__config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model}
+        self.configurations_to_test = {"CREDIT MODEL":credit_model_config,"CREDIT HEALTH":credit_health__config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model,"RATIOS":ratios_config,"RAW NUMBERS":raw_nbs_config,"BOTH RATIOS AND RAW NUMBERS":both_config_ratios_and_raw_numbers}
     
     def get_optimal_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation()
