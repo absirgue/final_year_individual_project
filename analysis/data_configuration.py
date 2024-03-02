@@ -11,6 +11,7 @@ class DataConfiguration:
         self.encode_geography_diversification = False
         self.encode_business_diversification = False
         self.encode_country_risk_score = False
+        self.average_by_cr_factor = False
         self.data_source = None
         self.data_types=[]
         self.default_configurations = {"CREDIT MODEL":["CREDIT MODEL"],"CREDIT HEALTH":["CREDIT HEALTH"],"BOTH RATIOS AND RAW NUMBERS":["RATIO","RAW NUMBER"],"BOTH CREDIT HEALTH AND CREDIT MODEL":["CREDIT HEALTH","CREDIT MODEL"],"RAW NUMBERS":["RAW NUMBER"],"RATIOS":["RATIO"]}

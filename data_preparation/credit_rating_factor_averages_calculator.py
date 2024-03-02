@@ -32,6 +32,6 @@ class CreditRatingFactorAveragesCalculator:
                     lambda row: np.nanmean([float(val) for val in row if isinstance(val, (int, float))]),
                     axis=1
                 )
-
+        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
         return new_dataframe
 

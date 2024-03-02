@@ -8,9 +8,14 @@ class CreditRatingAnalyzer:
 
     def __init__(self):
         self.credit_rating = None
+        self.companies_count = 0
         self.data = []
     
+    def get_comapnies_count(self):
+        return self.companies_count
+
     def insert_company(self, company_rating, company_data):
+        self.companies_count += 1
         if not self.credit_rating:
             self.credit_rating = company_rating
         elif self.credit_rating != company_rating:

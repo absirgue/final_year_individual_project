@@ -18,16 +18,21 @@ class IndustryNameHashEncoding:
                     industry_share_mapping[share] = name
             if len(cell_content.split(";")) > max_nb_industries:
                 max_nb_industries = len(cell_content.split(";"))
+            old_len = len(row_industry_share_mapping)
             row_industry_share_mapping.append(industry_share_mapping)
+            if len(row_industry_share_mapping) == old_len:
+                print("NOT ADDED")
+                print(industry_share_mapping)
         for i in range(max_nb_industries):
             self.data["CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = None
         for index, row in self.data.iterrows():
-            industry_share_mapping = row_industry_share_mapping[index-1]
-            ordered_industries = sorted(industry_share_mapping.keys())
-            for i in range(len(ordered_industries)):
-                self.data.loc[index,"CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = self.hash_to_strictly_numerical(industry_share_mapping[ordered_industries[i]])
-            for i in range(len(ordered_industries),max_nb_industries):
-                self.data.loc[index,"CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = 0
+            if index < len(row_industry_share_mapping):
+                industry_share_mapping = row_industry_share_mapping[index]
+                ordered_industries = sorted(industry_share_mapping.keys())
+                for i in range(len(ordered_industries)):
+                    self.data.loc[index,"CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = self.hash_to_strictly_numerical(industry_share_mapping[ordered_industries[i]])
+                for i in range(len(ordered_industries),max_nb_industries):
+                    self.data.loc[index,"CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = 0
         return self.data
     
     def hash_to_strictly_numerical(self,str):

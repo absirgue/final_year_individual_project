@@ -12,6 +12,7 @@ from data_preparation.credit_rating_factor_averages_calculator import CreditRati
 class DataPreparator:
 
     def __init__(self,configuration,data_source):
+        self.intermediary_dataframe = None
         self.NAME_CREDIT_RATING_ABSTRACT_COL = "CREDIT RATING"
         self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating - Issuer Credit Rating - Local Currency LT [Latest] (Rating)"
         self.configuration = configuration 
@@ -43,25 +44,31 @@ class DataPreparator:
         if self.configuration.encode_country:
             data = CountryEconomicEncoding(data,self.configuration.normalise_economic_variables).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
-
-        self.credit_ratings = []
-        for index, row in data.iterrows():
-            cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]
-            if type(cell_content) == pd.core.series.Series:
-                cell_content = cell_content.iloc[0]
-            self.credit_ratings.append(cell_content)
-        data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
-
         if self.configuration.average_by_cr_factor:
             data = CreditRatingFactorAveragesCalculator(data).encode()
         self.write_to_csv_1(data)
+        self.intermediary_dataframe = data
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
+        data = self.extract_and_delete_product_ratings(data)
        
-        
         self.write_to_csv(data)
         self.col_names = data.columns
         data = data.values
         data = data.astype(float)
+        return data
+
+    def get_intermediary_dataframe(self):
+        return self.intermediary_dataframe
+    
+    def extract_and_delete_product_ratings(self,data):
+        if "CUSTOM Credit Rating" in data.columns:
+            self.credit_ratings = []
+            for index, row in data.iterrows():
+                cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]
+                if type(cell_content) == pd.core.series.Series:
+                    cell_content = cell_content.iloc[0]
+                self.credit_ratings.append(cell_content)
+            data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
         return data
     
     def remove_custom_columns(self,dataframe):

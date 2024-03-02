@@ -11,9 +11,15 @@ class CreditRatingCluster:
         self.data = {}
         self.first_junk_credit_rating = first_junk_credit_rating
         self.significance_threshold_for_split = significance_threshold_for_split
-
+    
     def get_credit_ratings_counts(self):
         return self.credit_ratings_counts
+
+    def get_credit_ratings_shares(self):
+        shares = {}
+        for cr,count in self.credit_ratings_counts.items():
+            shares[cr] = count/self.companies_count
+        return shares
 
     def get_companies_count(self):
         return self.companies_count

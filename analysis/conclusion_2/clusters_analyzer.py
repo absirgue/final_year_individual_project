@@ -18,13 +18,17 @@ class ClustersAnalyzer:
     def analyze(self,folder_name_for_graph,alg_name):
         analysis = {}
         credit_rating_clusters = self.create_credit_rating_clusters()
+        nb_shares_of_companies_by_cluster = self.get_share_of_companies_in_each_clusters(credit_rating_clusters)
+        analysis["Share of total companies in each clusters"] = nb_shares_of_companies_by_cluster
         nb_clusters_with_various_cr_ranges = len(self.get_clusters_with_various_cr_ranges(credit_rating_clusters))
         analysis["Clusters with significant ranges (count)"] = nb_clusters_with_various_cr_ranges
         nb_clusters_with_significant_incoherencies = len(self.get_singificant_clusters(credit_rating_clusters))
         analysis["Significant Clusters (count)"] = nb_clusters_with_significant_incoherencies
-        cluster_credit_ratings_count = self.get_cluster_cr_counts(credit_rating_clusters)
-        analysis["Cluster Credit Ratings Counts"] = cluster_credit_ratings_count
+        cluster_credit_ratings_shares = self.get_cluster_cr_shares(credit_rating_clusters)
+        analysis["Cluster Credit Ratings Shares"] = cluster_credit_ratings_shares
         clusters_range = self.get_cluster_ranges(credit_rating_clusters)
+        clusters_share_of_overal_credit_ratings = self.get_clusters_share_of_overal_credit_ratings(credit_rating_clusters)
+        analysis["Share of total companies with given credit rating in each cluter"] = clusters_share_of_overal_credit_ratings
         analysis["Cluster ranges"] = clusters_range
         clusters_metric_of_location_and_dispersion = self.get_measures_of_location_and_dispersion(credit_rating_clusters)
         analysis["Cluster metrics of location and dispersion"] = clusters_metric_of_location_and_dispersion
@@ -40,16 +44,37 @@ class ClustersAnalyzer:
         self.create_and_save_graph(credit_rating_clusters,folder_name_for_graph,alg_name)
         return analysis
 
+    def get_clusters_share_of_overal_credit_ratings(self,credit_rating_clusters):
+        shares = []
+        for cluster in credit_rating_clusters:
+            cluster_shares = {}
+            cr_counts = cluster.get_credit_ratings_counts()
+            for cr, count in cr_counts.items():
+                cluster_shares[cr] = count/self.credit_ratings_analyzers[cr].get_comapnies_count()
+            shares.append(cluster_shares)
+        return shares
+
+    def get_share_of_companies_in_each_clusters(self,credit_rating_clusters):
+        shares = []
+        for cr_cluster in credit_rating_clusters:
+            count = cr_cluster.get_companies_count() if cr_cluster.get_companies_count() else 0
+            shares.append(count/len(self.cluster_labels))
+        sum = 0 
+        for share in shares:
+            sum += share
+        shares.append({"SUM":sum})
+        return shares
+
     def create_and_save_graph(self, cr_clusters,folder_name,alg_name):
         data = {}
         for cluster_idx in range(len(cr_clusters)):
             data[("CLUSTER "+str(cluster_idx))] = cr_clusters[cluster_idx].get_list_of_credit_ratings_appearances()
         GraphingHelper().create_box_plot("Cluster","Credit Rating", alg_name+" Clusters and held credit ratings",data,folder_name)
 
-    def get_cluster_cr_counts(self,credit_rating_clusters):
+    def get_cluster_cr_shares(self,credit_rating_clusters):
         counts = []
         for cr_cluster in credit_rating_clusters:
-            counts.append(cr_cluster.get_credit_ratings_counts())
+            counts.append(cr_cluster.get_credit_ratings_shares())
         return counts
     
     def get_measures_of_location_and_dispersion(self,credit_rating_clusters):

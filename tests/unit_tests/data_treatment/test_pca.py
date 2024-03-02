@@ -9,7 +9,7 @@ class TestPrincipalComponentAnalysis(unittest.TestCase):
         super().__init__(methodName)
 
     def test_principal_component_analysis_gives_expected_result(self):
-        obtained_components = PrincipalComponentAnalysis(self.data,2).get_principal_components()
+        obtained_components = PrincipalComponentAnalysis(self.data,2).reduce_dimensionality()
         self.assertTrue(np.array_equal(obtained_components,[[1.9917240408405805,-0.6723157797872941],
                                                             [-0.32398847423276017,1.8309341493965197],
                                                             [-1.66773556660782,-1.1586183696092256]]))

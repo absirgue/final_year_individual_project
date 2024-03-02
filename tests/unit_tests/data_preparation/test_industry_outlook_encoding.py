@@ -10,11 +10,11 @@ class TestIndustryOutlookEncoder(unittest.TestCase):
 
     def test_successful_with_equal_weights(self):
         result = IndustryOutlookEncode(self.data).encode({'buy':1,'high':1,'highest':1,'hold':1,'low':1,'lowest':1,'neutral':1})
-        self.assertEqual(result.loc[0,'Industry Outlook Weighted Average'],10)
+        self.assertEqual(result.loc[0,'CUSTOM Industry Outlook Weighted Average'],10)
 
     def test_successful_with_different_weights(self):
         result = IndustryOutlookEncode(self.data).encode({'buy':1,'high':1,'highest':2,'hold':7,'low':1,'lowest':1,'neutral':1})
-        self.assertEqual(result.loc[0,'Industry Outlook Weighted Average'],30)
+        self.assertEqual(result.loc[0,'CUSTOM Industry Outlook Weighted Average'],30)
 
     def test_fails_graciously_when_no_weight(self):
         try:

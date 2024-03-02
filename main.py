@@ -6,14 +6,35 @@ from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
 from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
 from data_preparation.data_preparator import DataPreparator
 from analysis.data_configuration import DataConfiguration
+from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
+from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
 np.seterr(over='ignore')
 
 # AlgorithmsBestPerformanceEvaluation().run_evaluation()
 # AlgorithmsBestPerformanceEvaluation(run_pca=True).run_evaluation()
 # ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
-d = DataConfiguration()
-d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
-DataPreparator(d,d.get_data_source()).apply_configuration(0.5)
+
+
+# d = DataConfiguration()
+# d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
+# prep = DataPreparator(d,d.get_data_source())
+# data = prep.apply_configuration(0.5)
+# print(len(data))
+# credit_ratings = prep.get_credit_ratings()
+# print(len(credit_ratings))
+# credit_ratings_analysers = {}
+# for cr_idx in range(len(credit_ratings)):
+#     if credit_ratings[cr_idx] in credit_ratings_analysers.keys():
+#         analyser = credit_ratings_analysers[credit_ratings[cr_idx]]
+#         analyser.insert_company(credit_ratings[cr_idx], data[cr_idx])
+#     else:
+#         analyser = CreditRatingAnalyzer()
+#         analyser.insert_company(credit_ratings[cr_idx], data[cr_idx])
+#         credit_ratings_analysers[credit_ratings[cr_idx]] = analyser
+# print(prep.get_column_names())
+# KMeansAnalyser(list(prep.get_column_names()),prep.get_encoding_of_first_junk_rating(),"./test",data,prep.get_credit_ratings(),credit_ratings_analysers).analyse({"K":13,"WCSS":0,"Calinski Harabasz Index":0,"Silhouette Score":0})
+
+
 # def pca_and_plot(data_array):
 #     std_scaler = StandardScaler()
 #     scaled_df = std_scaler.fit_transform(data_array)

@@ -14,6 +14,7 @@ class PrincipalComponentAnalysis:
         self.data = data
         self.dimensionality = dimensionality
         self.explained_variance_ratio = 0
+        self.reduce_dimensionality()
     
     def get_principal_components(self):
         return self.principal_components

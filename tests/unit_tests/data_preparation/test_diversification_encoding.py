@@ -10,16 +10,16 @@ class TestDiversificationEncoding(unittest.TestCase):
     
     def test_encoding_with_geographic_segment_count_is_successful(self):
         result = DiversificationEncoding(self.data).encode(1,"Geography")
-        self.assertEqual(result.loc[0,'Geography Encoding'], '12')
+        self.assertEqual(result.loc[0,'CUSTOMGeography Encoding'], '12')
     
     def test_encoding_with_business_segment_count_is_successful(self):
         result = DiversificationEncoding(self.data).encode(1,"Business")
-        self.assertEqual(result.loc[0,'Business Encoding'], '30')
+        self.assertEqual(result.loc[0,'CUSTOMBusiness Encoding'], '30')
     
     def test_encoding_with_geographic_segment_entropy_is_successful(self):
         result = DiversificationEncoding(self.data).encode(0,"Geography")
-        self.assertEqual(result.loc[0,'Geography Encoding'],1.419556298571613)
+        self.assertEqual(result.loc[0,'CUSTOMGeography Encoding'],1.419556298571613)
     
     def test_encoding_with_business_segment_entropy_is_successful(self):
         result = DiversificationEncoding(self.data).encode(0,"Business")
-        self.assertEqual(result.loc[0,'Business Encoding'],1.419556298571613)
+        self.assertEqual(result.loc[0,'CUSTOMBusiness Encoding'],1.419556298571613)
