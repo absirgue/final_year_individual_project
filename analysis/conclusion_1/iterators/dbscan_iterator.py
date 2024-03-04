@@ -9,6 +9,7 @@ from analysis.conclusion_1.list_transformations import ListTransformations
 class DBSCANIterator:
 
     def __init__(self,data):
+        self.performance_data = []
         self.data = data
         self.NB_ITERATIONS_PER_CONFIG = 1
         self.MIN_EPS = 0.1
@@ -21,7 +22,6 @@ class DBSCANIterator:
         self.performance_data = []
         eps_values = create_floats_list(self.MIN_EPS,self.MAX_EPS,0.1)
         min_pts_values = create_ints_list(self.MIN_MIN_PTS,self.MAX_MIN_PTS,1)
-        eps_values = [2,3]
         for eps in eps_values:
             for min_pts in min_pts_values:
                 calinski_harabasz_sum = 0
@@ -37,7 +37,8 @@ class DBSCANIterator:
                     try:
                         calinski_harabasz_sum+= calinski_harabasz_score(self.data, labels)
                         silhouette_score_sum += silhouette_score(self.data, labels)
-                    except:
+                    except Exception as e:
+                        print(e)
                         calinski_harabasz_sum = None
                         silhouette_score_sum = None
                 self.performance_data.append({"eps":eps,"min pts":min_pts,"Calinski Harabasz Index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG if calinski_harabasz_sum else None,"Silhouette Score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG if silhouette_score_sum else None,"cluster counts":clusters_count/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG})
@@ -50,6 +51,8 @@ class DBSCANIterator:
         return None
 
     def get_optimal(self):
+        if not self.performance_data:
+            return None
         calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
         silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
         return {"Calinski Harabasz Index Optimum":

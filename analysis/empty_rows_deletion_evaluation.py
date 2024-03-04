@@ -40,9 +40,8 @@ class EmptyRowsDeletionEvaluation:
                 points.append([data.shape[0],data.shape[1]-number_added_columns])
                 point_product_thresh_map[data.shape[0]*(data.shape[1]-number_added_columns)] = empty_col_threshold
             GraphingHelper().plot_2d_array_of_points(points,folder_name="empty_rows_deletion_evaluation_graphs",x_label="Number of rows",y_label="Number of columns",title=config_name+": Rows and Columns for Data Cleaning of Default Configuration")
-            inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(points)
-            favored_point = self.get_best_inflection_point(inflection_points,points)
-            self.ideal_empty_col_thresholds[config_name] = point_product_thresh_map[favored_point[0]*favored_point[1]]
+            elbow_point = FunctionAnalysis().get_elbow_point_from_x_y_2d_array(points)
+            self.ideal_empty_col_thresholds[config_name] = point_product_thresh_map[elbow_point[0]*elbow_point[1]]
         return self.ideal_empty_col_thresholds
 
     def get_best_inflection_point(self, inflection_points,points):

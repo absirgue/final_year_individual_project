@@ -9,6 +9,7 @@ import time
 class FastGlobalKMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None):
+        self.performance_data = []
         self.data = data
         self.NB_ITERATIONS_PER_CONFIG = 2
         self.MIN_K_TO_TEST = 2
@@ -50,10 +51,14 @@ class FastGlobalKMeansIterator:
                 return perf_data
 
     def get_optimal(self):
-        WCSS_inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","WCSS"))
-        optimal_point = WCSS_inflection_points[0]
-        optimal_point = self.find_perf_entry_for_given_K(optimal_point[0])
-        return {"K":optimal_point["K"],"WCSS":optimal_point["WCSS"],"Silhouette Score": optimal_point["Silhouette Score"],"Calinski Harabasz Index":optimal_point["Calinski Harabasz Index"],"Running Time":optimal_point["time"]}
+        if not self.performance_data:
+            return None
+        elif len(self.performance_data) <2:
+            return self.performance_data[0]
+        else:
+            WCSS_elbow_point = FunctionAnalysis().get_elbow_point_from_x_y_2d_array(ListTransformations().extract_2d_list_from_list_of_dics(self.performance_data,"K","WCSS"))
+            optimal_point = self.find_perf_entry_for_given_K(WCSS_elbow_point[0])
+            return {"K":optimal_point["K"],"WCSS":optimal_point["WCSS"],"Silhouette Score": optimal_point["Silhouette Score"],"Calinski Harabasz Index":optimal_point["Calinski Harabasz Index"],"Running Time":optimal_point["time"]}
 
     def find_perf_entry_for_given_K(self, K_val):
         for element in self.performance_data:

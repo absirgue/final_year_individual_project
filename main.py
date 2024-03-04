@@ -5,10 +5,21 @@ from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsA
 from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
 from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
 from data_preparation.data_preparator import DataPreparator
+from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
 from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
 np.seterr(over='ignore')
+
+
+d = DataConfiguration()
+d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
+prep = DataPreparator(d,d.get_data_source())
+data = prep.apply_configuration(0.5)
+it = KMeansIterator(data,20)
+it.iterate()
+print(it.get_optimal())
+
 
 # AlgorithmsBestPerformanceEvaluation().run_evaluation()
 # AlgorithmsBestPerformanceEvaluation(run_pca=True).run_evaluation()

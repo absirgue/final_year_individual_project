@@ -9,6 +9,7 @@ import time
 class BIRCHIterator:
 
     def __init__(self,data,number_of_clusters):
+        self.performance_data = []
         self.data = data
         self.NB_ITERATIONS_PER_CONFIG = 1
         self.CLUSTERS_COUNT = number_of_clusters
@@ -43,6 +44,8 @@ class BIRCHIterator:
         return self.get_optimal()
 
     def get_optimal(self):
+        if not self.performance_data:
+            return None
         calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
         silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
         return {"Calinski Harabasz Index Optimum":
