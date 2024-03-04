@@ -44,16 +44,6 @@ class EmptyRowsDeletionEvaluation:
             self.ideal_empty_col_thresholds[config_name] = point_product_thresh_map[elbow_point[0]*elbow_point[1]]
         return self.ideal_empty_col_thresholds
 
-    def get_best_inflection_point(self, inflection_points,points):
-        if not inflection_points:
-            for point in points:
-                if point[0] >= self.IDEAL_MIN_ROW_COUNT:
-                    return point
-        for i in range(len(inflection_points)-1,0,-1):
-            if inflection_points[i][0] >= self.IDEAL_MIN_ROW_COUNT:
-                return inflection_points[i]
-        return inflection_points[len(inflection_points)-1]
-
     def get_optimal_col_emptiness_threshold(self, config_name):
         if config_name in self.ideal_empty_col_thresholds:
             return self.ideal_empty_col_thresholds[config_name]

@@ -1,6 +1,6 @@
 import numpy as np
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
-from analysis.conclusion_1.algorithms_best_performance import AlgorithmsBestPerformanceEvaluation
+from analysis.conclusion_1.algorithms_performances_evaluation import AlgorithmsPerformancesEvaluation
 from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
 from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
 from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
@@ -21,8 +21,8 @@ it.iterate()
 print(it.get_optimal())
 
 
-# AlgorithmsBestPerformanceEvaluation().run_evaluation()
-# AlgorithmsBestPerformanceEvaluation(run_pca=True).run_evaluation()
+# AlgorithmsPerformancesEvaluation().run_evaluation()
+# AlgorithmsPerformancesEvaluation(run_pca=True).run_evaluation()
 # ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
 
 

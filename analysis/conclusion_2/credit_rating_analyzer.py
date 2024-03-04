@@ -8,14 +8,12 @@ class CreditRatingAnalyzer:
 
     def __init__(self):
         self.credit_rating = None
-        self.companies_count = 0
         self.data = []
     
-    def get_comapnies_count(self):
-        return self.companies_count
+    def get_companies_count(self):
+        return len(self.data)
 
     def insert_company(self, company_rating, company_data):
-        self.companies_count += 1
         if not self.credit_rating:
             self.credit_rating = company_rating
         elif self.credit_rating != company_rating:
@@ -52,19 +50,13 @@ class CreditRatingAnalyzer:
         return cols_entropy.values()
     
     def get_col_normalized_range(self,col_idx,full_data):
+        if col_idx > full_data.shape[1]:
+            return 0
         overall_range = np.max(full_data[:, col_idx]) - np.min(full_data[:, col_idx])
         cr_col_values = self.get_list_of_col_values(col_idx)
         cr_range = max(cr_col_values)-  min(cr_col_values)
         return cr_range/overall_range
 
-    def get_column_differential_entropy(self, col_idx):
-        data = self.get_list_of_col_values(col_idx)
-        data = np.array(data)
-        kde = norm.pdf
-        pdf_values = kde(data, data)
-        result, _ = quad(lambda x: -pdf_values[np.abs(data - x).argmin()] * np.log(pdf_values[np.abs(data - x).argmin()]), -np.inf, np.inf)
-        return result
-    
     def get_list_of_col_values(self,col_idx):
         data = []
         for element in self.data:

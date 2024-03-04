@@ -12,7 +12,7 @@ from analysis.conclusion_1.iterators.fuzzy_cmean_iterator import FuzzyCMeansIter
 from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
 
-class AlgorithmsBestPerformanceEvaluation:
+class AlgorithmsPerformancesEvaluation:
 
     def __init__(self,run_pca=False):
         self.RESULTS_FILE_NAME = "performance_metrics.json"

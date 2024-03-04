@@ -4,7 +4,7 @@ from analysis.conclusion_2.credit_rating_cluster import CreditRatingCluster
 from graph.graphing_helper import GraphingHelper
 class ClustersAnalyzer:
 
-    def __init__(self, encoding_first_junk_rating, cluster_labels,data_ordered_credit_ratings,credit_ratings_analyzers,data,col_names):
+    def __init__(self, encoding_first_junk_rating=None, cluster_labels=None,data_ordered_credit_ratings=None,credit_ratings_analyzers=None,data=None,col_names=None):
         self.PROPORTION_OF_RATING_IN_CLUSTER_CONSIDERED_SIGNIFICANT = 0.15
         self.NUMBER_OF_COLUMNS_WE_WANT_EXPLAINED = 5
         self.JUNK_INVEST_GRADE_SPLIT_CONSIDERED_SIGNIFICANT = 0.15
@@ -36,7 +36,7 @@ class ClustersAnalyzer:
         analysis["Cluster entropies"] = clusters_entropy
         max_entropy = max(clusters_entropy)
         analysis["Maximum entropy"] = max_entropy
-        weighted_avg_entropy = self.compute_weigthed_avg_entropy(credit_rating_clusters,clusters_entropy)
+        weighted_avg_entropy = self.compute_weigthed_avg_entropy(credit_rating_clusters)
         analysis["Weighted average entropy"] = weighted_avg_entropy
         if nb_clusters_with_various_cr_ranges or nb_clusters_with_significant_incoherencies:
             incoherencies_explanations = self.explain_incoherencies(credit_rating_clusters)
@@ -50,7 +50,7 @@ class ClustersAnalyzer:
             cluster_shares = {}
             cr_counts = cluster.get_credit_ratings_counts()
             for cr, count in cr_counts.items():
-                cluster_shares[cr] = count/self.credit_ratings_analyzers[cr].get_comapnies_count()
+                cluster_shares[cr] = count/self.credit_ratings_analyzers[cr].get_companies_count()
             shares.append(cluster_shares)
         return shares
 
@@ -129,13 +129,18 @@ class ClustersAnalyzer:
             return "Cluster elements are located around median"
 
     def get_col_name(self,col_idx):
-        return self.col_names[col_idx]
+        if not self.col_names:
+            return ""
+        elif col_idx >= len(self.col_names):
+            raise IndexError
+        else:
+            return self.col_names[col_idx]
     
-    def compute_weigthed_avg_entropy(self,credit_rating_clusters,clusters_entropy):
+    def compute_weigthed_avg_entropy(self,credit_rating_clusters):
         weighted_sum = 0
         for cr_cluster_idx in range(len(credit_rating_clusters)):
             credit_rating_cluster = credit_rating_clusters[cr_cluster_idx]
-            weighted_sum += clusters_entropy[cr_cluster_idx]*(credit_rating_cluster.get_companies_count()/len(self.data))
+            weighted_sum += credit_rating_cluster.get_entropy()*(credit_rating_cluster.get_companies_count()/len(self.data))
         return weighted_sum
     
     def get_clusters_entropies(self, credit_rating_clusters):
