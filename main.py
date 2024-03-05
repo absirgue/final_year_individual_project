@@ -71,12 +71,17 @@ def run_demanded_program(config_name, analysis_only, run_pca):
     configuration = DataConfigurationWrapper().get_config_package(config_name)
     if not analysis_only:
         AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
-        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results",False).analyse()
+        InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
+    ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results",False).analyse()
+    InterfaceBeautifier().print_major_annoucement("analysis of non-pca clusters done")
     if run_pca:
         if not analysis_only:
             AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
+            InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
         ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
+        InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
     ManualAnalysisHelper()
+    InterfaceBeautifier().print_major_annoucement("finished all tasks")
 
 def main():
     InterfaceBeautifier().print_percentage_progress("something",45)
