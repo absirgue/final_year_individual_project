@@ -23,7 +23,8 @@ class DataConfiguration:
     def get_data_source(self):
         return self.data_source
 
-    def set_to_default_configuration(self, default_configuration_id,mixed_data = False,average_by_category=False):
+    # 1 is mean, 2 ....
+    def set_to_default_configuration(self, default_configuration_id,mixed_data = False,average_by_category=0):
         self.data_source=  self.default_data_sources[default_configuration_id]
         data_types_wanted = self.default_configurations[default_configuration_id]
         if mixed_data:

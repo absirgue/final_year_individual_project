@@ -13,7 +13,7 @@ np.seterr(over='ignore')
 
 
 d = DataConfiguration()
-d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
+d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=3)
 prep = DataPreparator(d,d.get_data_source())
 data = prep.apply_configuration(0.5)
 it = KMeansIterator(data,20)

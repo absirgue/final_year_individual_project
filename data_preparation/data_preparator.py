@@ -45,7 +45,7 @@ class DataPreparator:
             data = CountryEconomicEncoding(data,self.configuration.normalise_economic_variables).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
         if self.configuration.average_by_cr_factor:
-            data = CreditRatingFactorAveragesCalculator(data).encode()
+            data = CreditRatingFactorAveragesCalculator(data).encode(self.configuration.average_by_cr_factor)
         self.write_to_csv_1(data)
         self.intermediary_dataframe = data
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)

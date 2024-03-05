@@ -21,7 +21,18 @@ class CreditRatingFactorAveragesCalculator:
             "Government Intervention Adjustment":["CreditModel - Revenue/GDP [Latest Quarter] (%) (Model Version 2.6)","CreditModel - Likelihood of Government Support [Latest Quarter] (Model Version 2.6)"],
         }
     
-    def encode(self):
+    def encode(self,encoding_type=1):
+        match encoding_type:
+            case 1:
+                return self.encode_using_average()
+            case 2:
+                print("MED")
+                return self.encode_using_median()
+            case 3:
+                return self.encode_using_normalized_average()
+        raise ValueError  
+
+    def encode_using_average(self):
         new_dataframe = pd.DataFrame()
 
         for factor, columns in self.credit_rating_factors_to_col_names_mapping.items():
@@ -35,3 +46,58 @@ class CreditRatingFactorAveragesCalculator:
         new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
         return new_dataframe
 
+    def encode_using_median(self):
+        new_dataframe = pd.DataFrame()
+
+        for factor in self.credit_rating_factors_to_col_names_mapping.keys():
+            valid_columns = [col for col in self.credit_rating_factors_to_col_names_mapping[factor] if col in self.data.columns]
+            if valid_columns:
+                new_dataframe[factor] = self.data[valid_columns].apply(
+                    lambda row: np.nanmedian([float(val) for val in row if isinstance(val, (int, float))]),
+                    axis=1
+                )
+
+        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        return new_dataframe
+    
+    def precompute_column_ranges(self, column_names):
+        column_ranges = {}
+        for col in column_names:
+            col_values = self.data[col]
+            numeric_col_values = col_values.apply(pd.to_numeric, errors='coerce').dropna()
+            range = numeric_col_values.max() - numeric_col_values.min()
+            min = numeric_col_values.min()
+            if pd.notna(range):
+                column_ranges[col] = [range,min]
+        return column_ranges
+    
+    def calculate_custom_average(self, row, valid_columns, column_ranges):
+        normalized_values = []
+        for col in valid_columns:
+            col_data = column_ranges.get(col)
+            if col_data is not None and pd.notna(row[col]):
+                numeric_value = pd.to_numeric(row[col], errors='coerce')
+                if col_data[0]:
+                    normalized_value = (numeric_value - col_data[1]) / col_data[0]
+                    normalized_values.append(normalized_value)
+                else:
+                    normalized_values.append(0)
+        return np.nanmean(normalized_values)
+    
+    def encode_using_normalized_average(self):
+        new_dataframe = pd.DataFrame()
+
+        for factor, columns in self.credit_rating_factors_to_col_names_mapping.items():
+            valid_columns = [col for col in columns if col in self.data.columns]
+
+            if valid_columns:
+                # Precompute column ranges outside the loop
+                column_ranges = self.precompute_column_ranges(valid_columns)
+                # Apply the custom average calculation using precomputed ranges
+                new_dataframe[factor] = self.data.apply(
+                    lambda row: self.calculate_custom_average(row, valid_columns,column_ranges),
+                    axis=1
+                )
+
+        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        return new_dataframe
