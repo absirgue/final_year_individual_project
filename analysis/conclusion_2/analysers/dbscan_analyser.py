@@ -1,6 +1,6 @@
 from sklearn.cluster import DBSCAN
 from analysis.conclusion_2.clusters_analyzer import ClustersAnalyzer
-from analysis.conclusion_2.json_helper import JSONHelper
+from analysis.json_helper import JSONHelper
 
 class DBSCANAnalyser:
 

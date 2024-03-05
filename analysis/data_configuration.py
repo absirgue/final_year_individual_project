@@ -19,6 +19,7 @@ class DataConfiguration:
         rn_and_ra_ds = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
         self.default_data_sources = {"CREDIT MODEL":cr_and_ch_ds,"CREDIT HEALTH":cr_and_ch_ds,"BOTH RATIOS AND RAW NUMBERS":rn_and_ra_ds,"BOTH CREDIT HEALTH AND CREDIT MODEL":cr_and_ch_ds,"RAW NUMBERS":rn_and_ra_ds,"RATIOS":rn_and_ra_ds}
         self.default_outlooks_weight_distribution = {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0}
+        self.average_by_cr_factor = 0
 
     def get_data_source(self):
         return self.data_source
@@ -83,3 +84,14 @@ class DataConfiguration:
         self.encode_country_risk_score = encode_country_risk_score
         if encode_country_risk_score and ("COUNTRY RISK SCORE" not in self.data_types):
             self.data_types.append("COUNTRY RISK SCORE")
+
+    def get_appendix_for_averager_modif_of_config(self):
+        match self.average_by_cr_factor:
+            case 1:
+                return " - Factors by Mean"
+            case 2:
+                return " - Factors by Median"
+            case 3:
+                return " - Factors by Normalized Mean"
+            case _:
+                return ""

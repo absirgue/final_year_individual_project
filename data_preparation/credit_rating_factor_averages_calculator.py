@@ -26,7 +26,6 @@ class CreditRatingFactorAveragesCalculator:
             case 1:
                 return self.encode_using_average()
             case 2:
-                print("MED")
                 return self.encode_using_median()
             case 3:
                 return self.encode_using_normalized_average()
@@ -43,7 +42,8 @@ class CreditRatingFactorAveragesCalculator:
                     lambda row: np.nanmean([float(val) for val in row if isinstance(val, (int, float))]),
                     axis=1
                 )
-        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if "CUSTOM Credit Rating" in  self.data.columns :
+            new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
         return new_dataframe
 
     def encode_using_median(self):
@@ -56,8 +56,8 @@ class CreditRatingFactorAveragesCalculator:
                     lambda row: np.nanmedian([float(val) for val in row if isinstance(val, (int, float))]),
                     axis=1
                 )
-
-        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if "CUSTOM Credit Rating" in  self.data.columns :
+            new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
         return new_dataframe
     
     def precompute_column_ranges(self, column_names):
@@ -99,5 +99,6 @@ class CreditRatingFactorAveragesCalculator:
                     axis=1
                 )
 
-        new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if "CUSTOM Credit Rating" in  self.data.columns :
+            new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
         return new_dataframe

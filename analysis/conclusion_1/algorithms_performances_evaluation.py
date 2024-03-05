@@ -11,28 +11,13 @@ from analysis.conclusion_1.iterators.fast_global_kmeans_iterator import FastGlob
 from analysis.conclusion_1.iterators.fuzzy_cmean_iterator import FuzzyCMeansIterator
 from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
-
+from analysis.data_content_analyser import DataContentAnalyser
 class AlgorithmsPerformancesEvaluation:
 
-    def __init__(self,run_pca=False):
+    def __init__(self,configurations_to_test,run_pca=False):
         self.RESULTS_FILE_NAME = "performance_metrics.json"
         self.run_pca = run_pca
-        self.set_configurations_to_test()
-    
-    def set_configurations_to_test(self):
-        credit_health_avg = DataConfiguration()
-        credit_health_avg.set_to_default_configuration("CREDIT HEALTH",average_by_category=True)
-        credit_model_avg = DataConfiguration()
-        credit_model_avg.set_to_default_configuration("CREDIT MODEL",average_by_category=True)
-        both_config_credit_health_and_credit_model_avg = DataConfiguration()
-        both_config_credit_health_and_credit_model_avg.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)
-        credit_health__config = DataConfiguration()
-        credit_health__config.set_to_default_configuration("CREDIT HEALTH")
-        credit_model_config = DataConfiguration()
-        credit_model_config.set_to_default_configuration("CREDIT MODEL")
-        both_config_credit_health_and_credit_model = DataConfiguration()
-        both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
-        self.configurations_to_test = {"CREDIT HEALTH - CR PILAR AVERAGES":credit_health_avg,"CREDIT MODEL - CR PILAR AVERAGES":credit_model_avg,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model_avg,"CREDIT HEALTH":credit_health__config,"CREDIT MODEL":credit_model_config,"BOTH CREDIT HEALTH AND CREDIT MODEL":both_config_credit_health_and_credit_model}
+        self.configurations_to_test = configurations_to_test
     
     def get_optimal_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
@@ -49,7 +34,9 @@ class AlgorithmsPerformancesEvaluation:
             optimal_ks = set()
             folder_name = self.get_folder_name(config)
             config_optimal_results = {}
-            data,nb_credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
+            data,credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
+            DataContentAnalyser(data,config,credit_ratings).analyse()
+            nb_credit_ratings= self.count_unique_credit_ratings(credit_ratings)
             max_k_value_to_test = nb_credit_ratings+10
             birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
             print("********* BIRCH DONE *********")
@@ -211,9 +198,12 @@ class AlgorithmsPerformancesEvaluation:
         data_preparator = DataPreparator(data_source=configuration.get_data_source(),configuration=configuration)
         data = data_preparator.apply_configuration(col_emptiness_thresh)
         credit_ratings = data_preparator.get_credit_ratings()
-        unique_credit_ratings = set(credit_ratings)
         if self.run_pca:
             dimensioned_data = PrincipalComponentAnalysis(data,dimensionality).reduce_dimensionality()
-            return dimensioned_data,len(unique_credit_ratings)
+            return dimensioned_data,credit_ratings
         else:
-            return data,len(unique_credit_ratings)
+            return data,credit_ratings
+    
+    def count_unique_credit_ratings(self, credit_ratings):
+        unique_credit_ratings = set(credit_ratings)
+        return len(unique_credit_ratings)

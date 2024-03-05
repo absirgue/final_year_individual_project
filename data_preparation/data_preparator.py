@@ -67,7 +67,7 @@ class DataPreparator:
                 cell_content = data.loc[index,self.NAME_CREDIT_RATING_COL]
                 if type(cell_content) == pd.core.series.Series:
                     cell_content = cell_content.iloc[0]
-                self.credit_ratings.append(cell_content)
+                self.credit_ratings.append(float(cell_content))
             data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
         return data
     
