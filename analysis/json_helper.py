@@ -11,7 +11,6 @@ class JSONHelper:
             return obj
         file_name+=".json"
         file_path = os.path.join(folder_name, file_name)
-        # Write the dictionary to a JSON file
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w+') as json_file:
             json.dump(content, json_file,default=convert_to_serializable)

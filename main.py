@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.conclusion_1.algorithms_performances_evaluation import AlgorithmsPerformancesEvaluation
@@ -16,7 +17,7 @@ class DataConfigurationWrapper:
     def __init__(self):
         self.create_config_packages()
 
-    def get_config_packages(self, pkg_id):
+    def get_config_package(self, pkg_id):
         return self.config_packages[pkg_id]
 
     def create_config_packages(self):
@@ -65,20 +66,34 @@ class DataConfigurationWrapper:
                 configs["BOTH CREDIT HEALTH AND CREDIT MODEL"+both_config_credit_health_and_credit_model.get_appendix_for_averager_modif_of_config()] = both_config_credit_health_and_credit_model
         return configs
 
+def run_demanded_program(config_name, analysis_only, run_pca):
+    configuration = DataConfigurationWrapper().get_config_package(config_name)
+    if not analysis_only:
+        AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
+        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results",False).analyse()
+    if run_pca:
+        if not analysis_only:
+            AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
+        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
+    ManualAnalysisHelper()
 
-d = DataConfiguration()
-d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=3)
-prep = DataPreparator(d,d.get_data_source())
-data = prep.apply_configuration(0.5)
-it = KMeansIterator(data,20)
-it.iterate()
-print(it.get_optimal())
+def main():
+    args = sys.argv[1:]
+    analysis_only = False
+    run_pca = True
+    if "-configs" in args:
+        config_name = args[args.index("-configs")+1]
+    else:
+        config_name = "ALL - COMPLEX"
+    if "-analysis_only" in args:
+        analysis_only = True
+    if "-skip_pca" in args:
+        run_pca = False
+    run_demanded_program(config_name,analysis_only,run_pca)
 
-
-# AlgorithmsPerformancesEvaluation().run_evaluation()
-# AlgorithmsPerformancesEvaluation(run_pca=True).run_evaluation()
-# ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
-
+# Allow main method to operate.
+if __name__ == "__main__":
+    main()
 
 # d = DataConfiguration()
 # d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)

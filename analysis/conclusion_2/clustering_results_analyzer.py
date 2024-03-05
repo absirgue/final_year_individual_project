@@ -18,7 +18,7 @@ from analysis.conclusion_2.analysers.dbscan_analyser import DBSCANAnalyser
 from analysis.conclusion_2.analysers.fast_global_kmeans_analyser import FastGlobalKMeansAnalyser
 from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAnalyser
-from analysis.conclusion_2.json_helper import JSONHelper
+from analysis.json_helper import JSONHelper
 from graph.graphing_helper import GraphingHelper
 
 class ClusteringResultsAnalyzer:

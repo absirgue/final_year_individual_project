@@ -1,5 +1,5 @@
 import os
-from analysis.conclusion_2.json_helper import JSONHelper
+from analysis.json_helper import JSONHelper
 
 class ManualAnalysisHelper:
 
