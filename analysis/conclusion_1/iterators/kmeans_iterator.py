@@ -5,6 +5,8 @@ from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
 from analysis.conclusion_1.list_transformations import ListTransformations
 import time
+from interface_beautifier import InterfaceBeautifier
+
 class KMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None,nb_iterations=5):
@@ -39,6 +41,7 @@ class KMeansIterator:
                     silhouette_score_sum += 0
                 WCSS_sum += k_means.inertia_
             self.performance_data.append({"K":K,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG,"Calinski Harabasz Index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"Silhouette Score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"WCSS":WCSS_sum/self.NB_ITERATIONS_PER_CONFIG})
+            InterfaceBeautifier().print_percentage_progress("Progress on K-Means Hyperparameters Optimization",(k_values.index(K)+1)*100/len(k_values))
         return self.get_optimal()
         
     def get_performance_on_given_K(self, K):

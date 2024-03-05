@@ -40,6 +40,7 @@ class FuzzyCMeansIterator:
                     calinski_harabasz_sum += 0
                     silhouette_score_sum += 0
             self.performance_data.append({"C":C,"Calinski Harabasz Index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG,"Silhouette Score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG,"WCSS":WCSS_sum/self.NB_ITERATIONS_PER_CONFIG})
+            InterfaceBeautifier().print_percentage_progress("Progress on Fuzzy C-Means Hyperparameters Optimization",(c_values.index(C)+1)*100/len(c_values))
         return self.get_optimal()
     
     def get_performance_on_given_K(self, C):

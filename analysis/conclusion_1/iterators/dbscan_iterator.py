@@ -6,6 +6,7 @@ import sys
 import time
 from analysis.conclusion_1.list_analyser import ListAnalyser
 from analysis.conclusion_1.list_transformations import ListTransformations
+from interface_beautifier import InterfaceBeautifier
 class DBSCANIterator:
 
     def __init__(self,data):
@@ -42,6 +43,7 @@ class DBSCANIterator:
                         calinski_harabasz_sum = None
                         silhouette_score_sum = None
                 self.performance_data.append({"eps":eps,"min pts":min_pts,"Calinski Harabasz Index":calinski_harabasz_sum/self.NB_ITERATIONS_PER_CONFIG if calinski_harabasz_sum else None,"Silhouette Score":silhouette_score_sum/self.NB_ITERATIONS_PER_CONFIG if silhouette_score_sum else None,"cluster counts":clusters_count/self.NB_ITERATIONS_PER_CONFIG,"time":time_sum/self.NB_ITERATIONS_PER_CONFIG})
+        InterfaceBeautifier().print_percentage_progress("Progress on DSCAN Hyperparameters Optimization",(eps_values.index(eps)+1)*100/len(eps_values))
         return self.get_optimal()
     
     def get_performance_on_given_K(self, K):

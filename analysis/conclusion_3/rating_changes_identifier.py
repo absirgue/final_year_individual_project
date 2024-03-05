@@ -23,8 +23,6 @@ class RatingChangesIdentifier:
                     changes[str(row['S&P Entity ID'])] = {"was":rating_was,"is":rating_is,"difference":difference}
                     if difference <0:
                         count_upgrade += 1
-        print("UPGRADES: "+str(count_upgrade))
-        print(count_upgrade/len(changes.keys()))
         return changes
     
     def compute_rating_numerical_difference(self, old_rating, new_rating):

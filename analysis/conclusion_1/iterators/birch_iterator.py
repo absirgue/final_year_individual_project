@@ -4,6 +4,7 @@ from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
 from analysis.conclusion_1.list_transformations import ListTransformations
 from analysis.conclusion_1.list_analyser import ListAnalyser
+from interface_beautifier import InterfaceBeautifier
 import time
 
 class BIRCHIterator:
@@ -21,10 +22,10 @@ class BIRCHIterator:
     
     def iterate(self):
         self.performance_data = []
-        branching_factor_value = create_ints_list(self.MIN_BRANCHING_FACTOR,self.MAX_BRANCHING_FACTOR,5)
-        threshold_value = create_floats_list(self.MIN_THRESHOLD,self.MAX_THRESHOLD,0.25)
-        for threshold in threshold_value:
-            for branching_factor in branching_factor_value:
+        branching_factor_values = create_ints_list(self.MIN_BRANCHING_FACTOR,self.MAX_BRANCHING_FACTOR,5)
+        threshold_values = create_floats_list(self.MIN_THRESHOLD,self.MAX_THRESHOLD,0.25)
+        for threshold in threshold_values:
+            for branching_factor in branching_factor_values:
                 calinski_harabasz_sum = 0
                 silhouette_score_sum = 0
                 time_sum = 0

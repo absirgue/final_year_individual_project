@@ -10,6 +10,7 @@ from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
 from analysis.conclusion_2.analysers.kmeans_analyser import KMeansAnalyser
 from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
+from interface_beautifier import InterfaceBeautifier
 np.seterr(over='ignore')
 
 class DataConfigurationWrapper:
@@ -78,6 +79,7 @@ def run_demanded_program(config_name, analysis_only, run_pca):
     ManualAnalysisHelper()
 
 def main():
+    InterfaceBeautifier().print_percentage_progress("something",45)
     args = sys.argv[1:]
     analysis_only = False
     run_pca = True
@@ -94,6 +96,8 @@ def main():
 # Allow main method to operate.
 if __name__ == "__main__":
     main()
+
+print_percentage_progress
 
 # d = DataConfiguration()
 # d.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL",average_by_category=True)

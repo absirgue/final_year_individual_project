@@ -1,6 +1,7 @@
 from analysis.conclusion_1.iterators.birch_iterator import BIRCHIterator
 from analysis.conclusion_1.helper import create_ints_list
 from graph.graphing_helper import GraphingHelper
+from interface_beautifier import InterfaceBeautifier
 
 class BIRCHSuperIterator:
 
@@ -23,6 +24,7 @@ class BIRCHSuperIterator:
             optimum = birch_iterator.get_optimal()
             self.calinski_harabasz_data.append([K,optimum["Calinski Harabasz Index Optimum"]["Calinski Harabasz Index"],optimum["Calinski Harabasz Index Optimum"]["Threshold Value"],optimum["Calinski Harabasz Index Optimum"]["Branching Factor"],optimum["Calinski Harabasz Index Optimum"]["Time"]])
             self.silhouette_score_data.append([K,optimum["Silhouette Score Optimum"]["Silhouette Score"],optimum["Silhouette Score Optimum"]["Threshold Value"],optimum["Silhouette Score Optimum"]["Branching Factor"],optimum["Silhouette Score Optimum"]["Time"]])
+            InterfaceBeautifier().print_percentage_progress("Progress on BIRCH Hyperparameters Optimization",(k_values.index(K)+1)*100/len(k_values))
         return self.get_optimal()
     
     def get_optimal(self):

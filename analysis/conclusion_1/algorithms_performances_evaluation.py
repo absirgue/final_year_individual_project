@@ -12,6 +12,7 @@ from analysis.conclusion_1.iterators.fuzzy_cmean_iterator import FuzzyCMeansIter
 from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
 from analysis.data_content_analyser import DataContentAnalyser
+from interface_beautifier import InterfaceBeautifier
 class AlgorithmsPerformancesEvaluation:
 
     def __init__(self,configurations_to_test,run_pca=False):
@@ -39,15 +40,20 @@ class AlgorithmsPerformancesEvaluation:
             nb_credit_ratings= self.count_unique_credit_ratings(credit_ratings)
             max_k_value_to_test = nb_credit_ratings+10
             birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            print("********* BIRCH DONE *********")
+            InterfaceBeautifier().print_information_statement("BIRCH Hyperparameters Optimization Done")
+            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",20)
             dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
-            print("********* DBSCAN DONE *********")
+            InterfaceBeautifier().print_information_statement("DSCAN Hyperparameters Optimization Done")
+            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",40)
             kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            print("********* KMEANS DONE *********")
+            InterfaceBeautifier().print_information_statement("K-Means Hyperparameters Optimization Done")
+            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",60)
             fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            print("********* FGKM DONE *********")
+            InterfaceBeautifier().print_information_statement("Fast Global K-Means Hyperparameters Optimization Done")
+            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",80)
             fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            print("********* FUZZY C DONE *********")
+            InterfaceBeautifier().print_information_statement("Fuzzy C-Means Hyperparameters Optimization Done")
+            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",100)
             algorithms_best_perf[config] = config_optimal_results
             perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
             algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
@@ -56,7 +62,7 @@ class AlgorithmsPerformancesEvaluation:
             perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
             algorithms_perf_on_nb_unique_credit_ratings[config] = perf_on_clusters_count
         self.save_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
-        self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
+        # self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         return algorithms_best_perf,algorithms_perf_on_others_optimal_K
     
     def save_results(self,algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count):

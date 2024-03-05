@@ -26,6 +26,10 @@ class ManualAnalysisHelper:
                 number_of_clusters = content["Algorithm Parameters"]["C"]
             if  number_of_significant_clusters/number_of_clusters>= 0.1:
                 important_files.append(file_path)
+        print("\n************ Important Files to Analyse Manually ************\n")
         print(important_files)
-        print("NUMBER OF FILES IDENTIFIED AS IMPORTANT: "+str(len(important_files)))
-        print("TOTAL NUMBER OF FILES: "+str(len(self.files)))
+        print("Number of files identified as important: "+str(len(important_files)))
+        print("Total number of files: "+str(len(self.files)))
+        print("\n*****************************************\n")
+        
+        
