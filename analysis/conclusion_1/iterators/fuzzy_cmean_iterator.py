@@ -6,6 +6,7 @@ import time
 from skfuzzy.cluster import cmeans
 import numpy as np 
 from analysis.conclusion_1.list_transformations import ListTransformations
+from interface_beautifier import InterfaceBeautifier
 class FuzzyCMeansIterator:
 
     def __init__(self,data,max_nb_of__clusters = None,nb_iterations=5):

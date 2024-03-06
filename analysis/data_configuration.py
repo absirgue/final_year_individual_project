@@ -5,6 +5,7 @@ class DataSource:
 class DataConfiguration:
 
     def __init__(self) -> None:
+        self.normalise_economic_variables = False
         self.encode_country = False
         self.encode_industry_outlooks = False
         self.encode_industry_name = False

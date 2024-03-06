@@ -22,7 +22,9 @@ class AlgorithmsPerformancesEvaluation:
     
     def get_optimal_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
+        InterfaceBeautifier().print_major_annoucement(text="Empty rows deletion evaluation done")
         optimal_dimensions = DimensionalityEvaluation(self.configurations_to_test).run_evaluation(optimal_col_emptiness_tresholds)
+        InterfaceBeautifier().print_major_annoucement(text="Dimensionality evaluation done")
         return optimal_col_emptiness_tresholds,optimal_dimensions
     
     def run_evaluation(self):
@@ -36,6 +38,7 @@ class AlgorithmsPerformancesEvaluation:
             folder_name = self.get_folder_name(config)
             config_optimal_results = {}
             data,credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
+            InterfaceBeautifier().print_major_annoucement("Data prepared for configuration "+config)
             DataContentAnalyser(data,config,credit_ratings).analyse()
             nb_credit_ratings= self.count_unique_credit_ratings(credit_ratings)
             max_k_value_to_test = nb_credit_ratings+10

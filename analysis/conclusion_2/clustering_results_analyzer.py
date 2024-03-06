@@ -56,7 +56,7 @@ class ClusteringResultsAnalyzer:
             self.analyse_config(config_name,self.clustering_results["algorithms best performance"][config_name],folder_name)
 
     def analyse_config(self, config_name, performances,folder_name):
-        InterfaceBeautifier.print_major_annoucement("Analysing configuration "+config_name)
+        InterfaceBeautifier().print_major_annoucement("Analysing configuration "+config_name)
         folder_name += config_name + "/"
         data_configuration = DataConfiguration()
         data_configuration.set_to_default_configuration(config_name)

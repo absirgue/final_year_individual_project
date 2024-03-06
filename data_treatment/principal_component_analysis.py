@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
+from graph.graphing_helper import GraphingHelper
 
 class PrincipalComponentAnalysis:
 
@@ -59,14 +60,7 @@ class PrincipalComponentAnalysisPerformanceMeasurement:
         return explained_variance_ratios
     
     def plot(self,max_nb_component,variance_ratios):
-        plt.figure()
-        plt.grid()
-        plt.plot(np.arange(1,max_nb_component+1),variance_ratios,marker='o')
-        plt.xlabel('Number of Components')
-        plt.ylabel('Explained Variance Ratio')
-        graph_title = 'PCA Number of Components to Explained Variance Ratio'
-        if self.extra_title_precision:
-            graph_title += " " + self.extra_title_precision
-        plt.title(graph_title)
-        plt.savefig(graph_title+'.png')
-        plt.close()
+        d2_arr = []
+        for i in range(max_nb_component):
+            d2_arr.append([i+1,variance_ratios[i]])
+        GraphingHelper().plot_2d_array_of_points(d2_arr,"Number of Components","Explained Variance Ratio",self.extra_title_precision+"PCA Number of Components to Explained Variance Ratio",folder_name="dimensionality_evaluation")
