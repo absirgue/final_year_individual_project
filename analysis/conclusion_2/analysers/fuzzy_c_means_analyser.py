@@ -19,6 +19,16 @@ class FuzzyCMeansAnalyser:
         labels = np.argmax(u, axis=0)
         self.produce_analysis(labels,performance_metrics)
     
+    def analyse_from_alg_hyperparameters(self,C,file_name_appendix=None):
+        cntr, u, _, _, _, _, _ = cmeans(self.data.T, c=C, m=2,error=0.001,maxiter=400)
+        labels = np.argmax(u, axis=0)
+        analysis = {}
+        analysis["Algorithm Parameters"] = {"C":C}
+        cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
+        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
+        self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
+        JSONHelper().save(self.folder_name,self.alg_name+file_name_appendix,analysis)
+
     def get_name_and_significant_cluster_count(self):
         return self.alg_name, self.significant_clusters_count
     

@@ -24,7 +24,7 @@ class DataPreparator:
     def read_data_from_csv(self):
         return pd.read_excel(self.data_source.path, sheet_name=self.data_source.sheet_name)
     
-    def apply_configuration(self,threshold_of_column_emptiness=0):
+    def apply_configuration(self,threshold_of_column_emptiness=0.05):
         data = DataTypeIsolator(self.data,self.NAME_CREDIT_RATING_ABSTRACT_COL).isolate_data_types(self.configuration.data_types)
         data.columns = data.iloc[0]
         data = data.drop(0)

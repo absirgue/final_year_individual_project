@@ -22,8 +22,19 @@ class BIRCHAnalyser:
             elif "Threshold Value" in performance_metrics.keys():
                 self.analyse_alg_optimum_in_format_2(optimum,performance_metrics)
 
+    def analyse_from_alg_hyperparameters(self,branching_factor, threshold,n_clusters,file_name_appendix=None):
+        birch = Birch(threshold=threshold, branching_factor=branching_factor, n_clusters=n_clusters).fit(self.data)
+        labels = birch.labels_
+        analysis = {}
+        analysis["Algorithm Parameters"] = {"Threshold Value":threshold,"Braching Factor":branching_factor,"K":n_clusters}
+        cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
+        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
+        self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
+        self.alg_name = self.alg_name
+        JSONHelper().save(self.folder_name,self.alg_name+file_name_appendix,analysis)
+
     def get_name_and_significant_cluster_count(self):
-        return self.name, self.significant_clusters_count
+        return self.alg_name, self.significant_clusters_count
 
     def analyse_alg_optimum_in_format_1(self,optimum,performance_metrics):
         birch = Birch(threshold=float(performance_metrics[optimum]["Threshold Value"]), branching_factor=int(performance_metrics[optimum]["Branching Factor"]), n_clusters=int(performance_metrics[optimum]["K"])).fit(self.data)
@@ -37,7 +48,7 @@ class BIRCHAnalyser:
         cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name+"_"+optimum)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
-        self.name = self.alg_name+"_"+optimum
+        self.alg_name = self.alg_name+"_"+optimum
         JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
     
     def analyse_alg_optimum_in_format_2(self,optimum,performance_metrics):
@@ -52,5 +63,5 @@ class BIRCHAnalyser:
         cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name+"_"+optimum)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
-        self.name = self.alg_name+"_"+optimum
+        self.alg_name = self.alg_name+"_"+optimum
         JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
