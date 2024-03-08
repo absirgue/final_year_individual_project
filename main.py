@@ -10,6 +10,8 @@ from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
 from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
 from interface_beautifier import InterfaceBeautifier
+from analysis.conclusion_1.iterators.dbscan_iterator import DBSCANIterator
+from analysis.conclusion_1.list_analyser import ListAnalyser
 np.seterr(over='ignore')
 
 class DataConfigurationWrapper:
@@ -45,12 +47,12 @@ class DataConfigurationWrapper:
     
     def get_credit_health_and_credit_model(self,complex=False):
         configs = {}
-        credit_health_config = DataConfiguration()
-        credit_health_config.set_to_default_configuration("CREDIT HEALTH")
-        configs["CREDIT HEALTH"] = credit_health_config
         credit_model_config = DataConfiguration()
         credit_model_config.set_to_default_configuration("CREDIT MODEL")
         configs["CREDIT MODEL"] = credit_model_config
+        credit_health_config = DataConfiguration()
+        credit_health_config.set_to_default_configuration("CREDIT HEALTH")
+        configs["CREDIT HEALTH"] = credit_health_config
         both_config_credit_health_and_credit_model = DataConfiguration()
         both_config_credit_health_and_credit_model.set_to_default_configuration("BOTH CREDIT HEALTH AND CREDIT MODEL")
         configs["BOTH CREDIT HEALTH AND CREDIT MODEL"] = both_config_credit_health_and_credit_model
@@ -69,6 +71,7 @@ class DataConfigurationWrapper:
 
 def run_demanded_program(config_name, analysis_only, run_pca):
     configuration = DataConfigurationWrapper().get_config_package(config_name)
+    print(configuration)
     if not analysis_only:
         AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
         InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
@@ -84,13 +87,22 @@ def run_demanded_program(config_name, analysis_only, run_pca):
     InterfaceBeautifier().print_major_annoucement("finished all tasks")
 
 def main():
+    # both_config_credit_health_and_credit_model = DataConfiguration()
+    # both_config_credit_health_and_credit_model.set_to_default_configuration("CREDIT MODEL")
+    # dp = DataPreparator(configuration=both_config_credit_health_and_credit_model,data_source=both_config_credit_health_and_credit_model.get_data_source())
+    # data = dp.apply_configuration(0.65)
+    # print(data.shape[1])
+    # print(data.shape[0])
+    # it = DBSCANIterator(data)
+    # print(it.iterate())
+    # it.graph()
     args = sys.argv[1:]
     analysis_only = False
     run_pca = True
     if "-configs" in args:
         config_name = args[args.index("-configs")+1]
     else:
-        config_name = "ALL - COMPLEX"
+        config_name = "CREDIT HEALTH AND CREDIT MODEL - COMPLEX"
     if "-analysis_only" in args:
         analysis_only = True
     if "-skip_pca" in args:

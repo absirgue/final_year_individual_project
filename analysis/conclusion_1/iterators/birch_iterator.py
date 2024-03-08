@@ -49,11 +49,12 @@ class BIRCHIterator:
             return None
         calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
         silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
-        return {"Calinski Harabasz Index Optimum":
-                {"Threshold Value": calinski_best["threshold"],"Branching Factor": calinski_best["branching factor"],"Calinski Harabasz Index":calinski_best["Calinski Harabasz Index"],"Time":calinski_best["time"]},
-                "Silhouette Score Optimum":
-                {"Threshold Value": silhouette_best["threshold"],"Branching Factor": silhouette_best["branching factor"],"Silhouette Score":silhouette_best["Silhouette Score"],"Time":silhouette_best["time"]}
-                }
+        optimums = {}
+        if calinski_best:
+            optimums["Calinski Harabasz Index Optimum"] =  {"Threshold Value": calinski_best["threshold"],"Branching Factor": calinski_best["branching factor"],"Calinski Harabasz Index":calinski_best["Calinski Harabasz Index"],"Time":calinski_best["time"]}
+        if silhouette_best:
+            optimums["Silhouette Score Optimum"] = {"Threshold Value": silhouette_best["threshold"],"Branching Factor": silhouette_best["branching factor"],"Silhouette Score":silhouette_best["Silhouette Score"],"Time":silhouette_best["time"]}
+        return optimums
 
     def graph(self,folder_name=None):
         GraphingHelper().plot_3d_array_of_points(ListTransformations().extract_3d_list_from_list_of_dics(self.performance_data,"threshold","branching factor","Calinski Harabasz Index"),"Threshold","Branching Factor","Calinski Harabasz Index","BIRCH: Calinski-Harabasz Index values across parameters",folder_name)

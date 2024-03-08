@@ -63,4 +63,4 @@ class PrincipalComponentAnalysisPerformanceMeasurement:
         d2_arr = []
         for i in range(max_nb_component):
             d2_arr.append([i+1,variance_ratios[i]])
-        GraphingHelper().plot_2d_array_of_points(d2_arr,"Number of Components","Explained Variance Ratio",self.extra_title_precision+"PCA Number of Components to Explained Variance Ratio",folder_name="dimensionality_evaluation")
+        GraphingHelper().plot_2d_array_of_points(d2_arr,"Number of Components","Explained Variance Ratio",self.extra_title_precision+" PCA Number of Components to Explained Variance Ratio",folder_name="dimensionality_evaluation")

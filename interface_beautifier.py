@@ -2,7 +2,7 @@ class InterfaceBeautifier:
 
     def print_percentage_progress(self, name_of_task,percent_progress):
         pertwenty_progress = percent_progress//5
-        statement = "Progress on Hyperparameter Optimization: "
+        statement = name_of_task+": "
         for i in range(int(pertwenty_progress)):
             statement+="#"
         for i in range(int(20-pertwenty_progress)):

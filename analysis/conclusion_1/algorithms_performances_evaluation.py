@@ -22,9 +22,13 @@ class AlgorithmsPerformancesEvaluation:
     
     def get_optimal_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
+        print("OTPIMAL COL EM")
+        print(optimal_col_emptiness_tresholds)
         InterfaceBeautifier().print_major_annoucement(text="Empty rows deletion evaluation done")
-        optimal_dimensions = DimensionalityEvaluation(self.configurations_to_test).run_evaluation(optimal_col_emptiness_tresholds)
-        InterfaceBeautifier().print_major_annoucement(text="Dimensionality evaluation done")
+        optimal_dimensions = None
+        if self.run_pca:
+            optimal_dimensions = DimensionalityEvaluation(self.configurations_to_test).run_evaluation(optimal_col_emptiness_tresholds)
+            InterfaceBeautifier().print_major_annoucement(text="Dimensionality evaluation done")
         return optimal_col_emptiness_tresholds,optimal_dimensions
     
     def run_evaluation(self):
@@ -37,26 +41,24 @@ class AlgorithmsPerformancesEvaluation:
             optimal_ks = set()
             folder_name = self.get_folder_name(config)
             config_optimal_results = {}
-            data,credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
+            data,nb_credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
             InterfaceBeautifier().print_major_annoucement("Data prepared for configuration "+config)
-            DataContentAnalyser(data,config,credit_ratings).analyse()
-            nb_credit_ratings= self.count_unique_credit_ratings(credit_ratings)
             max_k_value_to_test = nb_credit_ratings+10
             birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
             InterfaceBeautifier().print_information_statement("BIRCH Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",20)
+            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",20)
             dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
             InterfaceBeautifier().print_information_statement("DSCAN Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",40)
+            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",40)
             kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
             InterfaceBeautifier().print_information_statement("K-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",60)
+            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",60)
             fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
             InterfaceBeautifier().print_information_statement("Fast Global K-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",80)
+            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",80)
             fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
             InterfaceBeautifier().print_information_statement("Fuzzy C-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Hyperparameter Optimization",100)
+            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",100)
             algorithms_best_perf[config] = config_optimal_results
             perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
             algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
@@ -160,7 +162,8 @@ class AlgorithmsPerformancesEvaluation:
         fuzzy_cmeans_iterator = FuzzyCMeansIterator(data,max_k_value_to_test)
         fuzzy_cm_optimal_config = fuzzy_cmeans_iterator.iterate()
         config_optimal_results[fuzzy_cmeans_iterator.alg_name] = fuzzy_cm_optimal_config
-        optimal_ks.add(fuzzy_cm_optimal_config["C"])
+        if "C" in fuzzy_cm_optimal_config.keys():
+            optimal_ks.add(fuzzy_cm_optimal_config["C"])
         fuzzy_cmeans_iterator.graph(folder_name)
         return fuzzy_cmeans_iterator
 
@@ -169,7 +172,8 @@ class AlgorithmsPerformancesEvaluation:
         fast_global_kmeans_iterator = FastGlobalKMeansIterator(data,max_k_value_to_test)
         fgkm_optimal_config = fast_global_kmeans_iterator.iterate()
         config_optimal_results[fast_global_kmeans_iterator.alg_name] = fgkm_optimal_config
-        optimal_ks.add(fgkm_optimal_config["K"])
+        if "K" in fgkm_optimal_config.keys():
+            optimal_ks.add(fgkm_optimal_config["K"])
         fast_global_kmeans_iterator.graph(folder_name)
         return fast_global_kmeans_iterator
 
@@ -177,7 +181,8 @@ class AlgorithmsPerformancesEvaluation:
         kmeans_iterator = KMeansIterator(data,max_k_value_to_test)
         kmeans_optimal_config = kmeans_iterator.iterate()
         config_optimal_results[kmeans_iterator.alg_name] = kmeans_optimal_config
-        optimal_ks.add(kmeans_optimal_config["K"])
+        if "K" in kmeans_optimal_config.keys():
+            optimal_ks.add(kmeans_optimal_config["K"])
         kmeans_iterator.graph(folder_name)
         return kmeans_iterator
     
@@ -185,8 +190,10 @@ class AlgorithmsPerformancesEvaluation:
         dbscan_iterator = DBSCANIterator(data)
         dbscan_optimal_config = dbscan_iterator.iterate()
         config_optimal_results[dbscan_iterator.alg_name] = dbscan_optimal_config
-        optimal_ks.add(dbscan_optimal_config["Calinski Harabasz Index Optimum"]["Number of Clusters"])
-        optimal_ks.add(dbscan_optimal_config["Silhouette Score Optimum"]["Number of Clusters"])
+        if "Calinski Harabasz Index Optimum" in dbscan_optimal_config.keys():
+            optimal_ks.add(dbscan_optimal_config["Calinski Harabasz Index Optimum"]["Number of Clusters"])
+        if "Silhouette Score Optimum" in dbscan_optimal_config.keys():
+            optimal_ks.add(dbscan_optimal_config["Silhouette Score Optimum"]["Number of Clusters"])
         dbscan_iterator.graph(folder_name)
         return dbscan_iterator
 
@@ -194,24 +201,30 @@ class AlgorithmsPerformancesEvaluation:
         birch_iterator = BIRCHSuperIterator(data,max_k_value_to_test)
         birch_optimal_config = birch_iterator.iterate()
         config_optimal_results[birch_iterator.alg_name] = birch_optimal_config
-        optimal_ks.add(birch_optimal_config["Calinski Harabasz Index Optimum"]["K"])
-        optimal_ks.add(birch_optimal_config["Silhouette Score Optimum"]["K"])
+        if "Calinski Harabasz Index Optimum" in birch_optimal_config.keys():
+            optimal_ks.add(birch_optimal_config["Calinski Harabasz Index Optimum"]["K"])
+        if "Silhouette Score Optimum" in birch_optimal_config.keys():
+            optimal_ks.add(birch_optimal_config["Silhouette Score Optimum"]["K"])
         birch_iterator.graph(folder_name)
         return birch_iterator
 
     def prepare_data(self,config,optimal_col_emptiness_tresholds,optimal_dimensions):
         col_emptiness_thresh = optimal_col_emptiness_tresholds[config]
-        dimensionality = optimal_dimensions[config]
         configuration = DataConfiguration()
-        configuration.set_to_default_configuration("RAW NUMBERS")
+        configuration.set_to_default_configuration(config)
         data_preparator = DataPreparator(data_source=configuration.get_data_source(),configuration=configuration)
+        print(config)
+        print(col_emptiness_thresh)
         data = data_preparator.apply_configuration(col_emptiness_thresh)
         credit_ratings = data_preparator.get_credit_ratings()
+        column_names = data_preparator.get_column_names()
+        DataContentAnalyser(data,config,credit_ratings,column_names).analyse()
         if self.run_pca:
+            dimensionality = optimal_dimensions[config]
             dimensioned_data = PrincipalComponentAnalysis(data,dimensionality).reduce_dimensionality()
-            return dimensioned_data,credit_ratings
+            return dimensioned_data,self.count_unique_credit_ratings(credit_ratings)
         else:
-            return data,credit_ratings
+            return data,self.count_unique_credit_ratings(credit_ratings)
     
     def count_unique_credit_ratings(self, credit_ratings):
         unique_credit_ratings = set(credit_ratings)

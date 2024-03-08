@@ -5,25 +5,28 @@ from matplotlib.cm import ScalarMappable
 class GraphingHelper:
 
     def plot_3d_array_of_points(self, d3_arr, x_label, y_label, z_label, title,folder_name=None):
-        cleaned_d3_arr = self.remove_elements_with_None_values(d3_arr)
-        x_values = self.extract_x_values(cleaned_d3_arr)
-        y_values = self.extract_y_values(cleaned_d3_arr)
-        z_values = self.extract_z_values(cleaned_d3_arr)
-        fig = plt.figure()
-        ax = plt.figure().add_subplot(projection='3d')
-        ax.plot_trisurf(x_values, y_values, z_values, linewidth=0.2, antialiased=True)
-        ax.set_xlabel(x_label)
-        ax.set_ylabel(y_label)
-        ax.set_zlabel(z_label)
-        ax.view_init(elev=20, azim=15)
-        ax.set_title(title)
-        file_path = title+'.png'
-        if folder_name:
-            if not os.path.exists(folder_name):
-                os.makedirs(folder_name)
-            file_path = os.path.join(folder_name, file_path)
-        plt.savefig(file_path)
-        plt.close()
+        try:
+            cleaned_d3_arr = self.remove_elements_with_None_values(d3_arr)
+            x_values = self.extract_x_values(cleaned_d3_arr)
+            y_values = self.extract_y_values(cleaned_d3_arr)
+            z_values = self.extract_z_values(cleaned_d3_arr)
+            fig = plt.figure()
+            ax = plt.figure().add_subplot(projection='3d')
+            ax.plot_trisurf(x_values, y_values, z_values, linewidth=0.2, antialiased=True)
+            ax.set_xlabel(x_label)
+            ax.set_ylabel(y_label)
+            ax.set_zlabel(z_label)
+            ax.view_init(elev=20, azim=15)
+            ax.set_title(title)
+            file_path = title+'.png'
+            if folder_name:
+                if not os.path.exists(folder_name):
+                    os.makedirs(folder_name)
+                file_path = os.path.join(folder_name, file_path)
+            plt.savefig(file_path)
+            plt.close()
+        except Exception as e:
+            print(e)
     
     def remove_elements_with_None_values(self, arr):
         cleaned = []

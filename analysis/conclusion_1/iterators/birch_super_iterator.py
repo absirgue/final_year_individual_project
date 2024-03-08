@@ -30,11 +30,12 @@ class BIRCHSuperIterator:
     def get_optimal(self):
         calinski_best = self.get_values_for_max_measure_value("Calinski Harabasz Index")
         silhouette_best = self.get_values_for_max_measure_value("Silhouette Score")
-        return {"Calinski Harabasz Index Optimum":
-                {"K": calinski_best[0],"Running Time":calinski_best[4],"Threshold Value": calinski_best[2],"Branching Factor": calinski_best[3],"Calinski Harabasz Index":calinski_best[1]},
-                "Silhouette Score Optimum":
-                {"K": silhouette_best[0],"Threshold Value": calinski_best[2],"Running Time":silhouette_best[4],"Branching Factor": silhouette_best[3],"Silhouette Score":silhouette_best[1]},
-                }
+        optimums = {}
+        if calinski_best:
+            optimums["Calinski Harabasz Index Optimum"] = {"K": calinski_best[0],"Running Time":calinski_best[4],"Threshold Value": calinski_best[2],"Branching Factor": calinski_best[3],"Calinski Harabasz Index":calinski_best[1]}
+        if silhouette_best:
+            optimums["Silhouette Score Optimum"] = {"K": silhouette_best[0],"Threshold Value": calinski_best[2],"Running Time":silhouette_best[4],"Branching Factor": silhouette_best[3],"Silhouette Score":silhouette_best[1]}
+        return optimums
 
     def get_performance_on_given_K(self, K):
         return_value = {"K":K,"Running Time":{}, "Threshold Value":{}, "Branching Factor":{}}

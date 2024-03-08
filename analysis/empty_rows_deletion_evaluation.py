@@ -29,7 +29,7 @@ class EmptyRowsDeletionEvaluation:
             inflection_points = FunctionAnalysis().get_inflection_points_from_x_y_2d_array(points)
             favored_point = self.get_best_inflection_point(inflection_points,points)
             self.ideal_empty_col_thresholds[config_name] = point_product_thresh_map[favored_point[0]*favored_point[1]]
-            InterfaceBeautifier().print_percentage_progress("Optimal empty column deletion threshold evaluation",(count_config_tested)*100/len(self.configurations_to_test))
+            InterfaceBeautifier().print_percentage_progress("Progress on Optimal Empty Column Deletion Threshold Evaluation",(count_config_tested)*100/len(self.configurations_to_test))
         return self.ideal_empty_col_thresholds
 
     def get_best_inflection_point(self, inflection_points,points):

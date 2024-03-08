@@ -1,9 +1,9 @@
 class ListTransformations:
 
-    def extract_list_from_list_of_dics(self, input_list, x_value_key):
+    def extract_list_from_list_of_dics(self, input_list, key):
         list = []
         for dict in input_list:
-            list.append(dict[x_value_key])
+            list.append(dict[key])
         return list
 
     def extract_2d_list_from_list_of_dics(self, input_list, x_value_key, y_value_key):
