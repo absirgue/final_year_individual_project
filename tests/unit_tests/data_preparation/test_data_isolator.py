@@ -5,7 +5,7 @@ import pandas as pd
 class DataIsolatorUnitTests(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
-        self.data = pd.read_excel("./data/Jan download.xls", sheet_name="Screening")
+        self.data = pd.read_excel("./data/raw_financial_data_and_ratios.xls", sheet_name="Screening")
         super().__init__(methodName)
 
     def test_can_isolate_ratios(self):

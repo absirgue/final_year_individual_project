@@ -6,7 +6,7 @@ from data_preparation.data_type_isolator import DataTypeIsolator
 class TestDataFrameCleaner(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
-        self.data = pd.read_excel("./data/Jan download.xls", sheet_name="Screening")
+        self.data = pd.read_excel("./data/raw_financial_data_and_ratios.xls", sheet_name="Screening")
         super().__init__(methodName)
 
     def test_numerical_columns_are_kept(self):

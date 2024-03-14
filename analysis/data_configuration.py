@@ -17,7 +17,7 @@ class DataConfiguration:
         self.data_types=[]
         self.default_configurations = {"CREDIT MODEL":["CREDIT MODEL"],"CREDIT HEALTH":["CREDIT HEALTH"],"BOTH RATIOS AND RAW NUMBERS":["RATIO","RAW NUMBER"],"BOTH CREDIT HEALTH AND CREDIT MODEL":["CREDIT HEALTH","CREDIT MODEL"],"RAW NUMBERS":["RAW NUMBER"],"RATIOS":["RATIO"]}
         cr_and_ch_ds = DataSource(path = "./data/sp_credit_health_and_model_data.xls", sheet_name = "Screening")
-        rn_and_ra_ds = DataSource(path = "./data/Jan download.xls", sheet_name = "Screening")
+        rn_and_ra_ds = DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening")
         self.default_data_sources = {"CREDIT MODEL":cr_and_ch_ds,"CREDIT HEALTH":cr_and_ch_ds,"BOTH RATIOS AND RAW NUMBERS":rn_and_ra_ds,"BOTH CREDIT HEALTH AND CREDIT MODEL":cr_and_ch_ds,"RAW NUMBERS":rn_and_ra_ds,"RATIOS":rn_and_ra_ds}
         self.default_outlooks_weight_distribution = {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0}
         self.average_by_cr_factor = 0

@@ -12,7 +12,7 @@ class TestDataPreparator(unittest.TestCase):
         configuration.set_industry_name_encoding_preference(True)
         configuration.set_geography_diversification_encoding_preference(True,0)
         configuration.set_indutry_outlooks_encoding_preference(True,{'buy':1,'high':1,'highest':1,'hold':1,'low':1,'lowest':1,'neutral':1})
-        dp = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening"))
+        dp = DataPreparator(configuration,DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening"))
         dp.apply_configuration()
         result = dp.get_intermediary_dataframe()
         # Business diversification encoding happened
@@ -36,7 +36,7 @@ class TestDataPreparator(unittest.TestCase):
         configuration.set_industry_name_encoding_preference(True)
         configuration.set_geography_diversification_encoding_preference(True,0)
         configuration.set_indutry_outlooks_encoding_preference(True,{'buy':1,'high':1,'highest':1,'hold':1,'low':1,'lowest':1,'neutral':1})
-        dp = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening"))
+        dp = DataPreparator(configuration,DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening"))
         dp.apply_configuration()
         result = dp.get_intermediary_dataframe()
         self.assertNotIn("CUSTOMBusiness Encoding",result.columns)
@@ -44,7 +44,7 @@ class TestDataPreparator(unittest.TestCase):
     def test_data_types_not_demanded_are_not_kept(self):
         configuration = DataConfiguration()
         configuration.set_data_types_wanted(["RATIO"])
-        dp = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening"))
+        dp = DataPreparator(configuration,DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening"))
         dp.apply_configuration()
         result = dp.get_intermediary_dataframe()
         self.assertNotIn("Number of Geographic Segments [Annual]",result.columns)
@@ -55,7 +55,7 @@ class TestDataPreparator(unittest.TestCase):
     def test_col_names_order_is_maintained_and_returned_accurately(self):
         configuration = DataConfiguration()
         configuration.set_data_types_wanted(["RATIO"])
-        dp = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening"))
+        dp = DataPreparator(configuration,DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening"))
         dp.apply_configuration()
         col_names = dp.get_column_names()
         expected_col_names = ['Cost of Borrowing  Capital IQ [Latest Annual] (%)',
@@ -107,7 +107,7 @@ class TestDataPreparator(unittest.TestCase):
     def test_credit_rating_order_is_maintained_and_returned_accurately(self):
         configuration = DataConfiguration()
         configuration.set_data_types_wanted(["RATIO"])
-        dp = DataPreparator(configuration,DataSource(path = "./data/Jan download.xls", sheet_name = "Screening"))
+        dp = DataPreparator(configuration,DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening"))
         dp.apply_configuration(0.05)
         credit_ratings = dp.get_credit_ratings()
         expected_10_first_credit_ratings = [9.0,9.0,6.0,8.0,12.0,6.0,9.0,12.0,12.0,9.0]
