@@ -46,3 +46,6 @@ class CreditRatingEncoding:
     
     def get_encoding_first_junk_rating(self):
         return self.CR_NUMBER_MAPPING["BB+"]
+
+    def get_b_minus_encoding(self):
+        return self.CR_NUMBER_MAPPING["B-"]

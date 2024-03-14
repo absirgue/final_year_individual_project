@@ -114,10 +114,10 @@ class ClustersAnalyzer:
                         comparison = self.compare_cluster_and_credit_rating_values(cr_col_values,cluster_members_col_values)
                         key = "RATING " +str(rating)
                         if not (key in cluster_explanations.keys()):
-                            cluster_explanations[key] = [{self.get_col_name(col_idx) if self.col_names else col_idx:{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}}]
+                            cluster_explanations[key] = [{self.get_col_name(col_idx) if self.col_names else str(col_idx):{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}}]
                         else:
                             initial_value = cluster_explanations[key]
-                            initial_value.append({self.get_col_name(col_idx) if self.col_names else col_idx:{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}})
+                            initial_value.append({self.get_col_name(col_idx) if self.col_names else str(col_idx):{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}})
                             cluster_explanations[key] = initial_value
             explanations["CLUSTER "+str(cluster_idx)] =  cluster_explanations
         return explanations 

@@ -11,11 +11,27 @@ class PredictivePowerAnalyser:
     def analyse(self, credit_rating_clusters):
         observed_changes = RatingChangesIdentifier(self.data_source).identify_changes()
         predicted_changes = self.extract_predicted_changes_from_clusters(credit_rating_clusters)
-        direction_prediction_confusion_matrix = self.get_confusion_matrix_for_direction_prediction(observed_changes,predicted_changes)
+        observed_switch_to_or_from_below_b_minus = self.extract_jumps_to_or_from_below_b_minus(predicted_changes)
         analysis = {}
-        analysis["Metrics"] = self.calculate_prediction_quality_metrics_for_confusion_matrix(direction_prediction_confusion_matrix)
-        analysis["Confusion Matrix"] = direction_prediction_confusion_matrix
+        global_analysis = self.get_analysis_obj_for_observations_and_predictions(observed_changes,predicted_changes)
+        analysis["Global"] = global_analysis
+        to_or_from_b_minus_analysis = self.get_analysis_obj_for_observations_and_predictions(observed_switch_to_or_from_below_b_minus,predicted_changes)
+        analysis["Restricted to jumps to or from below B-"] = to_or_from_b_minus_analysis
         return analysis
+
+    def get_analysis_obj_for_observations_and_predictions(self, observations, predictions):
+        confusion_matrix = self.get_confusion_matrix_for_direction_prediction(observations,predictions)
+        analysis = {}
+        analysis["Metrics"] = self.calculate_prediction_quality_metrics_for_confusion_matrix(confusion_matrix)
+        analysis["Confusion Matrix"] = confusion_matrix
+        return analysis
+
+    def extract_jumps_to_or_from_below_b_minus(self, changes):
+        switches_to_or_from_below_b_minus = []
+        for change in changes:
+            if "Number of jumps from or to D" in change and change["Number of jumps from or to D"]:
+                switches_to_or_from_below_b_minus.append(change)
+        return switches_to_or_from_below_b_minus
     
     def calculate_prediction_quality_metrics_for_confusion_matrix(self, confusion_matrix):
         metrics_for_downgrades_without_no_change = self.calculate_prediction_quality_metrics(true_positive = confusion_matrix["predicted_down_AND_was_down"], false_positive = confusion_matrix["predicted_down_BUT_was_up"], false_negative = confusion_matrix["predicted_up_BUT_was_down"], true_negative = confusion_matrix["predicted_up_AND_was_up"])

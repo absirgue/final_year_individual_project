@@ -48,7 +48,7 @@ class CreditRatingAnalyzer:
                     del cols_entropy[current_min]
                     cols_entropy[entropy] = col_idx
         return cols_entropy.values()
-    
+
     def get_col_normalized_range(self,col_idx,full_data):
         if col_idx > full_data.shape[1]:
             return 0

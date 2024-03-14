@@ -15,13 +15,13 @@ class RatingChangesIdentifier:
         return differences
     
     def save_analysis(self,changes, original_companies,count_up,count_significant):
-        analysis = {"Number of changes":len(changes),"Share of companies that changed":len(changes)/len(original_companies),"Number of upgrades":count_up,"Share of upgrades":count_up/len(changes),"Number of jumps from or to D":count_significant}
+        analysis = {"Number of changes":len(changes),"Share of companies that changed":len(changes)/len(original_companies),"Number of upgrades":count_up,"Share of upgrades":count_up/len(changes),"Number of jumps from or to B-":count_significant}
         JSONHelper().save("./credit_rating_chages", self.data_source.path.split('/')[-1],analysis)
 
     def identify_changes_in_mapping_with_most_recent_file(self,original_mapping):
         changes = []
         count_upgrade = 0
-        jumps_to_from_d = 0
+        count_jumps_to_from_below_b_minus = 0
         data = self.get_data_frame_for_spreadhseet( self.most_recent_source.path,  self.most_recent_source.sheet_name)
         for index, row in data.iterrows():
             if str(row['S&P Entity ID']) in original_mapping.keys():
@@ -29,17 +29,19 @@ class RatingChangesIdentifier:
                     rating_was = original_mapping[str(row['S&P Entity ID'])]
                     rating_is = row['S&P Entity Credit Rating - Issuer Credit Rating - Local Currency LT [Latest] (Rating)']
                     difference = self.compute_rating_numerical_difference(rating_was, rating_is)
-                    if rating_was=="D" or rating_is=="D":
-                        jumps_to_from_d += 1
-                    changes.append({str(row['S&P Entity ID']):{"was":rating_was,"is":rating_is,"difference":difference,"is_going_below_cs":(rating_was=="D" or rating_is=="D")}})
+                    is_jump_to_or_from_below_b_minus = self.get_is_jump_to_or_from_below_b_minus()
+                    if is_jump_to_or_from_below_b_minus:
+                        count_jumps_to_from_below_b_minus += 1
+                    changes.append({str(row['S&P Entity ID']):{"was":rating_was,"is":rating_is,"difference":difference,"is_jump_from_or_to_below_b_minus":is_jump_to_or_from_below_b_minus}})
                     if difference <0:
                         count_upgrade += 1
-        return changes,count_upgrade,jumps_to_from_d
+        return changes,count_upgrade,count_jumps_to_from_below_b_minus
 
-    # In a folder, for a data source name
-    def save_changes_statistics(self):
-        # to do 
-        pass
+    def get_is_jump_to_or_from_below_b_minus(self, past_rating, present_rating):
+        numeric_rating_was = CreditRatingEncoding().compute_numeric_encoding_of_credit_rating(past_rating)
+        numeric_rating_is = CreditRatingEncoding().compute_numeric_encoding_of_credit_rating(present_rating)
+        b_minus_encoding = CreditRatingEncoding().get_b_minus_encoding()
+        return (numeric_rating_was < b_minus_encoding and numeric_rating_is >= b_minus_encoding) or (numeric_rating_was >= b_minus_encoding and numeric_rating_is < b_minus_encoding)
     
     def compute_rating_numerical_difference(self, old_rating, new_rating):
         old_rating_val = CreditRatingEncoding().compute_numeric_encoding_of_credit_rating(old_rating)
