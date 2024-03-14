@@ -1,7 +1,6 @@
 from sklearn.cluster import KMeans
 import sys
 import numpy as np
-from sklearn.metrics.pairwise import euclidean_distances
 
 class FastGlobalKMeans:
 

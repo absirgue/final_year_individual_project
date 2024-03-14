@@ -1,11 +1,11 @@
+import time
+import numpy as np 
 from analysis.conclusion_1.helper import create_ints_list
 from clustering.fast_global_k_means import FastGlobalKMeans
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
-import numpy as np 
 from analysis.conclusion_1.list_transformations import ListTransformations
-import time
 from interface_beautifier import InterfaceBeautifier
 
 class FastGlobalKMeansIterator:

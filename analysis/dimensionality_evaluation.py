@@ -1,9 +1,6 @@
-from analysis.data_configuration import DataConfiguration
+import numpy as np
 from data_treatment.principal_component_analysis import PrincipalComponentAnalysisPerformanceMeasurement
 from data_preparation.data_preparator import DataPreparator
-import numpy as np
-from analysis.function_analysis import FunctionAnalysis
-from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from interface_beautifier import InterfaceBeautifier
 class DimensionalityEvaluation:
 

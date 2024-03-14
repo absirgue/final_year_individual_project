@@ -70,15 +70,10 @@ class GraphingHelper:
     
     def create_box_plot(self,x_label,y_label, title,data,folder_name=None):
         counts = {key: len(value) for key, value in data.items()}
-        # Create a color scale based on the counts
         norm = Normalize(vmin=min(counts.values()), vmax=max(counts.values()))
         colors = [plt.cm.viridis(norm(count)) for count in counts.values()]
-
-        # Create a ScalarMappable to display the color scale
         sm = ScalarMappable(cmap=plt.cm.viridis, norm=norm)
-        sm.set_array([])  # This line is necessary for the color scale to work properly
-
-        # Create a boxplot with color-coded boxes
+        sm.set_array([])
         plt.figure(figsize=(13, 9))
         plt.grid()
         plt.xlabel(x_label)
@@ -87,12 +82,8 @@ class GraphingHelper:
         plt.title(title)
         plt.xticks(rotation=45)
         bplot = plt.boxplot(data.values(), labels=data.keys(), patch_artist=True)
-
-        # Set box colors based on the counts
         for box, color in zip(bplot['boxes'], colors):
             box.set_facecolor(color)
-
-        # Add color scale to the plot
         plt.colorbar(sm, label='Number of Elements')
         
         file_path = title+'.png'

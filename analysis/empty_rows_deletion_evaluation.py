@@ -1,4 +1,3 @@
-from analysis.data_configuration import DataConfiguration
 from data_preparation.data_preparator import DataPreparator
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis

@@ -1,5 +1,4 @@
 import os
-import json
 from analysis.conclusion_2.credit_rating_cluster import CreditRatingCluster
 from analysis.conclusion_3.predictive_power_analyser import PredictivePowerAnalyser
 from graph.graphing_helper import GraphingHelper

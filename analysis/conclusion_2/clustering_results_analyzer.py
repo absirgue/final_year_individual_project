@@ -1,12 +1,5 @@
-import json
 import os
-import numpy as np
-from sklearn.cluster import Birch
-from sklearn.cluster import DBSCAN
-from clustering.fast_global_k_means import FastGlobalKMeans
-from skfuzzy.cluster import cmeans
 from data_treatment.principal_component_analysis import PrincipalComponentAnalysis
-from sklearn.cluster import KMeans
 from analysis.data_configuration import DataConfiguration
 from data_preparation.data_preparator import DataPreparator
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
@@ -120,13 +113,6 @@ class ClusteringResultsAnalyzer:
                 analyser.insert_company(credit_ratings[cr_idx], data[cr_idx])
                 credit_ratings_analysers[credit_ratings[cr_idx]] = analyser
         return credit_ratings_analysers
-    
-    def analyse_birch(self, col_names,encoding_first_junk,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers):
-        optimum_names = ["Calinski Harabasz Index Optimum","Silhouette Score Optimum"]
-        for optimum in optimum_names:
-            birch = Birch(threshold=float(performance_metrics[optimum]["Threshold Value"]), branching_factor=int(performance_metrics[optimum]["Branching Factor"]), n_clusters=int(performance_metrics[optimum]["K"])).fit(data)
-            labels = birch.labels_
-            self.analyse_alg_optimum(col_names,encoding_first_junk,labels,"BIRCH",folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum)
     
     def analyse_alg_optimum(self,col_names,encoding_first_junk,labels,alg_name,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum):
         analysis = {}

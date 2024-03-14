@@ -1,9 +1,9 @@
+import sys 
+import time
 from analysis.conclusion_1.helper import create_floats_list,create_ints_list
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
-import sys 
-import time
 from analysis.conclusion_1.list_analyser import ListAnalyser
 from analysis.conclusion_1.list_transformations import ListTransformations
 from interface_beautifier import InterfaceBeautifier

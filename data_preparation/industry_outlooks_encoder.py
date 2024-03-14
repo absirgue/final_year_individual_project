@@ -1,5 +1,3 @@
-import pandas as pd
-
 class IndustryOutlookEncode:
     def __init__(self,data):
         self.data = data

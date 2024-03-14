@@ -1,10 +1,10 @@
+import time
 from analysis.conclusion_1.helper import create_ints_list
 from sklearn.cluster import KMeans
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
 from analysis.conclusion_1.list_transformations import ListTransformations
-import time
 from interface_beautifier import InterfaceBeautifier
 
 class KMeansIterator:

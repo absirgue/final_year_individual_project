@@ -1,5 +1,4 @@
 import pandas as pd
-import xlrd
 from data_preparation.cell_cleaning import CleanCellOfParenthesis
 
 

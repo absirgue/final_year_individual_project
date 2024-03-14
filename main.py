@@ -1,17 +1,9 @@
 import sys
 import numpy as np
-from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
-from analysis.conclusion_1.algorithms_performances_evaluation import AlgorithmsPerformancesEvaluation
 from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
 from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
-from analysis.conclusion_3.rating_changes_identifier import RatingChangesIdentifier
-from data_preparation.data_preparator import DataPreparator
-from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_configuration import DataConfiguration
-from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
 from interface_beautifier import InterfaceBeautifier
-from analysis.conclusion_1.iterators.dbscan_iterator import DBSCANIterator
-from analysis.conclusion_1.list_analyser import ListAnalyser
 np.seterr(over='ignore')
 
 class DataConfigurationWrapper:

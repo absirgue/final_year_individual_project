@@ -1,10 +1,10 @@
+import time
+import numpy as np 
 from analysis.conclusion_1.helper import create_ints_list
 from sklearn.metrics import calinski_harabasz_score,silhouette_score
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
-import time
 from skfuzzy.cluster import cmeans
-import numpy as np 
 from analysis.conclusion_1.list_transformations import ListTransformations
 from interface_beautifier import InterfaceBeautifier
 class FuzzyCMeansIterator:

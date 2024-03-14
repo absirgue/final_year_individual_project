@@ -1,6 +1,5 @@
 import os
 import json
-from analysis.data_configuration import DataConfiguration
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.dimensionality_evaluation import DimensionalityEvaluation
 from data_preparation.data_preparator import DataPreparator
@@ -10,7 +9,6 @@ from analysis.conclusion_1.iterators.dbscan_iterator import DBSCANIterator
 from analysis.conclusion_1.iterators.fast_global_kmeans_iterator import FastGlobalKMeansIterator
 from analysis.conclusion_1.iterators.fuzzy_cmean_iterator import FuzzyCMeansIterator
 from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
-from analysis.data_configuration import DataConfiguration
 from analysis.data_content_analyser import DataContentAnalyser
 from interface_beautifier import InterfaceBeautifier
 class AlgorithmsPerformancesEvaluation:
