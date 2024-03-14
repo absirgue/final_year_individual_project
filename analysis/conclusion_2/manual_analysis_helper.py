@@ -1,5 +1,6 @@
 import os
 from analysis.json_helper import JSONHelper
+from interface_beautifier import InterfaceBeautifier
 
 class ManualAnalysisHelper:
 
@@ -18,14 +19,17 @@ class ManualAnalysisHelper:
     def print_name_of_significant_files(self):
         important_files = []
         for file_path in self.files:
-            content = JSONHelper().read(file_path)
-            number_of_significant_clusters = content["Clusters Content Analysis"]["Clusters with significant ranges (count)"]
-            if "K" in content["Algorithm Parameters"].keys():
-                number_of_clusters = content["Algorithm Parameters"]["K"]
-            else:
-                number_of_clusters = content["Algorithm Parameters"]["C"]
-            if  number_of_significant_clusters/number_of_clusters>= 0.1:
-                important_files.append(file_path)
+            try:
+                content = JSONHelper().read(file_path)
+                number_of_significant_clusters = content["Clusters Content Analysis"]["Clusters with significant ranges (count)"]
+                if "K" in content["Algorithm Parameters"].keys():
+                    number_of_clusters = content["Algorithm Parameters"]["K"]
+                else:
+                    number_of_clusters = content["Algorithm Parameters"]["C"]
+                if  number_of_significant_clusters/number_of_clusters>= 0.1:
+                    important_files.append(file_path)
+            except:
+                InterfaceBeautifier().print_information_statement("ManualAnlysisHelper could not read the content of this file: "+file_path)
         print("\n************ Important Files to Analyse Manually ************\n")
         print(important_files)
         print("Number of files identified as important: "+str(len(important_files)))

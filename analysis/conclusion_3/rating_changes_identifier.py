@@ -29,7 +29,7 @@ class RatingChangesIdentifier:
                     rating_was = original_mapping[str(row['S&P Entity ID'])]
                     rating_is = row['S&P Entity Credit Rating - Issuer Credit Rating - Local Currency LT [Latest] (Rating)']
                     difference = self.compute_rating_numerical_difference(rating_was, rating_is)
-                    is_jump_to_or_from_below_b_minus = self.get_is_jump_to_or_from_below_b_minus()
+                    is_jump_to_or_from_below_b_minus = self.get_is_jump_to_or_from_below_b_minus(rating_was,rating_is)
                     if is_jump_to_or_from_below_b_minus:
                         count_jumps_to_from_below_b_minus += 1
                     changes.append({str(row['S&P Entity ID']):{"was":rating_was,"is":rating_is,"difference":difference,"is_jump_from_or_to_below_b_minus":is_jump_to_or_from_below_b_minus}})

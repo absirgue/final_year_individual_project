@@ -54,8 +54,6 @@ class PredictivePowerAnalyser:
         for cluster in credit_rating_clusters:
             row_specified_changes = cluster.get_rows_difference_with_mean_rating()
             changes = changes + self.convert_row_specified_changes_to_entity_id_specified_changes(row_specified_changes)
-        print("ANDND EF")
-        print(len(changes))
         return changes
         
     def convert_row_specified_changes_to_entity_id_specified_changes(self, changes):

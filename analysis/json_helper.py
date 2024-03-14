@@ -5,7 +5,6 @@ import numpy as np
 class JSONHelper:
 
     def save(self,folder_name, file_name,content, encoding='utf-8'):
-        print(content)
         def convert_to_serializable(obj):
             if isinstance(obj, np.ndarray):
                 return obj.tolist()
