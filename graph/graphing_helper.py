@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
 import os
+import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 class GraphingHelper:

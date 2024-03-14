@@ -1,6 +1,7 @@
-from data_preparation.cell_cleaning import CleanCellOfParenthesis
 import pandas as pd
 import numpy as np
+from data_preparation.cell_cleaning import CleanCellOfParenthesis
+
 class DataFrameCleaner:
     def __init__(self,data):
         self.data = data
