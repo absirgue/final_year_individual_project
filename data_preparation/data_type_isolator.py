@@ -1,7 +1,8 @@
 class DataTypeIsolator:
 
-    def __init__(self,data_frame, credit_rating_col_name):
+    def __init__(self,data_frame, credit_rating_col_name,entity_id_col_name):
         self.CREDIT_RATING_COLUMN_NAME = credit_rating_col_name
+        self.ENTITY_ID_COL_NAME = entity_id_col_name
         self.data = data_frame
     
     def isolate_data_types(self,data_types):
@@ -13,7 +14,7 @@ class DataTypeIsolator:
         column_names= self.data.columns
         names_columns_to_delete = []
         for column_name in column_names:
-                if not (self.is_equivalent_to_at_least_one_col_name(data_type_names,column_name) or column_name == self.CREDIT_RATING_COLUMN_NAME):
+                if not (self.is_equivalent_to_at_least_one_col_name(data_type_names,column_name) or column_name == self.CREDIT_RATING_COLUMN_NAME or column_name==self.ENTITY_ID_COL_NAME):
                     names_columns_to_delete.append(column_name)
         return names_columns_to_delete
     

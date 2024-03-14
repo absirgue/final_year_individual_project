@@ -14,14 +14,14 @@ class DBSCANIterator:
         self.data = data
         self.NB_ITERATIONS_PER_CONFIG = 1
         self.MIN_EPS = 0.1
-        self.MAX_EPS = 100
+        self.MAX_EPS = 90
         self.MIN_MIN_PTS = 1
         self.MAX_MIN_PTS = 30
         self.alg_name = "DBSCAN"
     
     def iterate(self):
         self.performance_data = []
-        eps_values = create_floats_list(self.MIN_EPS,self.MAX_EPS,0.2)
+        eps_values = create_floats_list(self.MIN_EPS,self.MAX_EPS,0.5)
         min_pts_values = create_ints_list(self.MIN_MIN_PTS,self.MAX_MIN_PTS,1)
         for eps in eps_values:
             for min_pts in min_pts_values:
@@ -57,8 +57,6 @@ class DBSCANIterator:
         calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
         silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
         optimums = {}
-        print(calinski_best)
-        print(silhouette_best)
         if calinski_best:
             optimums["Calinski Harabasz Index Optimum"] =  {"Eps": calinski_best["eps"],"MinPts": calinski_best["min pts"],"Calinski Harabasz Index":calinski_best["Calinski Harabasz Index"],"Number of Clusters":calinski_best["cluster counts"],"Time":calinski_best["time"]}
         if silhouette_best:

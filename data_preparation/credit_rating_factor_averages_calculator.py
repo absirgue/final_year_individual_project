@@ -3,7 +3,8 @@ import numpy as np
 
 class CreditRatingFactorAveragesCalculator:
 
-    def __init__(self, data):
+    def __init__(self, data,entity_id_col_name):
+        self.entity_id_col_name =entity_id_col_name
         self.data = data
         self.credit_rating_factors_to_col_names_mapping = {
             "Leverage":["Total Equity to Total Assets - Capital IQ [LTM] (%)","FFO/Debt (%) - Credit Stats Direct [LTM]","Debt/Debt And Equity (%) - Credit Stats Direct [LTM]","CreditModel - Current Liabilities / Net Worth [Latest Quarter] (Model Version 2.6)","CreditModel - Common Equity / Total Assets [Latest Quarter] (Model Version 2.6)","CreditModel - Loans / Deposits [Latest Quarter] (Model Version 2.6)","CreditModel - EBT Interest Coverage [Latest Quarter] (Model Version 2.6)","CreditModel - Retained Earnings / (Debt + Equity) [Latest Quarter] (Model Version 2.6)","CreditModel - Gearing Ratio [Latest Quarter] (Model Version 2.6)","CreditModel - PPE/ Assets [Latest Quarter] (Model Version 2.6)","CreditModel - Free Operating Cash Flow / Debt [Latest Quarter] (Model Version 2.6)","CreditModel - EBIT Interest Coverage [Latest Quarter] (Model Version 2.6)","CreditModel - Cash to Total Debt [Latest Quarter] (Model Version 2.6)","CreditModel - Cash from Operations Interest Coverage [Latest Quarter] (Model Version 2.6)","(FFO + Cash) to Short Term Debt - Capital IQ [LTM]","Total Debt/Revenue - Capital IQ [LTM]","Total Debt/Total Liabilities % - Capital IQ [LTM]","Total Debt to Capital - Capital IQ [LTM]","Net Debt/EBITDA - Capital IQ [LTM]","FFO to Total Debt - Capital IQ [LTM]","EBITDA / Interest Exp. - Capital IQ [LTM]","FFO Interest Coverage - Capital IQ [LTM]",],
@@ -42,8 +43,10 @@ class CreditRatingFactorAveragesCalculator:
                     lambda row: np.nanmean([float(val) for val in row if isinstance(val, (int, float))]),
                     axis=1
                 )
-        if "CUSTOM Credit Rating" in  self.data.columns :
+        if "CUSTOM Credit Rating" in self.data.columns :
             new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if self.entity_id_col_name in self.data.columns :
+            new_dataframe[self.entity_id_col_name] = self.data[self.entity_id_col_name]
         return new_dataframe
 
     def encode_using_median(self):
@@ -58,6 +61,8 @@ class CreditRatingFactorAveragesCalculator:
                 )
         if "CUSTOM Credit Rating" in  self.data.columns :
             new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if self.entity_id_col_name in self.data.columns :
+            new_dataframe[self.entity_id_col_name] = self.data[self.entity_id_col_name]
         return new_dataframe
     
     def precompute_column_ranges(self, column_names):
@@ -98,7 +103,8 @@ class CreditRatingFactorAveragesCalculator:
                     lambda row: self.calculate_custom_average(row, valid_columns,column_ranges),
                     axis=1
                 )
-
         if "CUSTOM Credit Rating" in  self.data.columns :
             new_dataframe["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"]
+        if self.entity_id_col_name in self.data.columns :
+            new_dataframe[self.entity_id_col_name] = self.data[self.entity_id_col_name]
         return new_dataframe

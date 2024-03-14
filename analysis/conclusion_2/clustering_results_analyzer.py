@@ -22,16 +22,14 @@ from analysis.json_helper import JSONHelper
 from graph.graphing_helper import GraphingHelper
 from interface_beautifier import InterfaceBeautifier
 class ClusteringResultsAnalyzer:
-    def __init__(self, source_file_path, output_dir,with_pca):
+    def __init__(self, source_file_path, output_dir,with_pca,configuration):
         self.clustering_results = JSONHelper().read(source_file_path)
         self.output_dir = output_dir
-        self.optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation().run_evaluation()
+        self.configurations_to_study = configuration
         self.with_pca = with_pca
-        if self.with_pca:
-            self.optimal_dimensions = DimensionalityEvaluation().run_evaluation(self.optimal_col_emptiness_tresholds)
 
     def analyse(self):
-        folder_name = "conclusion_2_results/"
+        folder_name = self.output_dir
         if self.with_pca:
             folder_name += "with_pca/"
         else:
@@ -58,47 +56,53 @@ class ClusteringResultsAnalyzer:
     def analyse_config(self, config_name, performances,folder_name):
         InterfaceBeautifier().print_major_annoucement("Analysing configuration "+config_name)
         folder_name += config_name + "/"
-        data_configuration = DataConfiguration()
-        data_configuration.set_to_default_configuration(config_name)
+        if config_name in self.configurations_to_study:
+            data_configuration = self.configurations_to_study[config_name]
+        else:
+            data_configuration = DataConfiguration()
+            data_configuration.set_to_default_configuration(config_name)
+        optimal_col_emptiness_treshold = EmptyRowsDeletionEvaluation({config_name:data_configuration}).run_evaluation()
         data_preparator = DataPreparator(data_source=data_configuration.get_data_source(),configuration=data_configuration)
-        data = data_preparator.apply_configuration(self.optimal_col_emptiness_tresholds[config_name])
+        data = data_preparator.apply_configuration(optimal_col_emptiness_treshold[config_name])
         credit_ratings = data_preparator.get_credit_ratings()
         encoding_first_junk = data_preparator.get_encoding_of_first_junk_rating()
         col_names = None
         if self.with_pca:
-            data = PrincipalComponentAnalysis(data,self.optimal_dimensions[config_name]).reduce_dimensionality()
+            optimal_dimensions = DimensionalityEvaluation({config_name:data_configuration}).run_evaluation({config_name:optimal_col_emptiness_treshold[config_name]})
+            data = PrincipalComponentAnalysis(data,optimal_dimensions[config_name]).reduce_dimensionality()
         else:
             col_names = data_preparator.get_column_names()
-            InterfaceBeautifier().print_information_statement("Analyser is not running PCA",20)
+            InterfaceBeautifier().print_information_statement("Analyser is not running PCA")
+        entity_ids = data_preparator.get_entity_ids()
         credit_rating_analyzers = self.generate_credit_ratings_analysers(credit_ratings,data)
-        InterfaceBeautifier().print_information_statement("Credit rating analysers have been generated",20)
+        InterfaceBeautifier().print_information_statement("Credit rating analysers have been generated")
         singificant_cluster_counts = {}
         if "BIRCH" in performances.keys() and performances["BIRCH"]:
-            birch_analyser = BIRCHAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            birch_analyser = BIRCHAnalyser(data_configuration.get_data_source(),entity_ids,col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
             birch_analyser.analyse(performances["BIRCH"])
             name, significant_clusters_count = birch_analyser.get_name_and_significant_cluster_count()
             singificant_cluster_counts[name] = significant_clusters_count
         InterfaceBeautifier().print_percentage_progress("Progress on Result Analysis",20)
         if "Fuzzy C-Means" in performances.keys() and performances["Fuzzy C-Means"]:
-            fuzzy_c_analyser = FuzzyCMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            fuzzy_c_analyser = FuzzyCMeansAnalyser(data_configuration.get_data_source(),entity_ids,col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
             fuzzy_c_analyser.analyse(performances["Fuzzy C-Means"])
             name, significant_clusters_count = fuzzy_c_analyser.get_name_and_significant_cluster_count()
             singificant_cluster_counts[name] = significant_clusters_count
         InterfaceBeautifier().print_percentage_progress("Progress on Result Analysis",40)
         if "K-Means" in performances.keys() and performances["K-Means"]:
-            kmeans_analyser = KMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            kmeans_analyser = KMeansAnalyser(data_configuration.get_data_source(),entity_ids,col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
             kmeans_analyser.analyse(performances["K-Means"])
             name, significant_clusters_count = kmeans_analyser.get_name_and_significant_cluster_count()
             singificant_cluster_counts[name] = significant_clusters_count
         InterfaceBeautifier().print_percentage_progress("Progress on Result Analysis",60)
         if "Fast Global K-Means" in performances.keys() and performances["Fast Global K-Means"]:
-            fgkm_analyser = FastGlobalKMeansAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            fgkm_analyser = FastGlobalKMeansAnalyser(data_configuration.get_data_source(),entity_ids,col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
             fgkm_analyser.analyse(performances["Fast Global K-Means"])
             name, significant_clusters_count = fgkm_analyser.get_name_and_significant_cluster_count()
             singificant_cluster_counts[name] = significant_clusters_count
         InterfaceBeautifier().print_percentage_progress("Progress on Result Analysis",80)
         if "DBSCAN" in performances.keys() and performances["DBSCAN"]:
-            dbscan_analyser = DBSCANAnalyser(col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
+            dbscan_analyser = DBSCANAnalyser(data_configuration.get_data_source(),entity_ids,col_names,encoding_first_junk,folder_name,data,credit_ratings,credit_rating_analyzers)
             dbscan_analyser.analyse(performances["DBSCAN"])
             name, significant_clusters_count = dbscan_analyser.get_name_and_significant_cluster_count()
             singificant_cluster_counts[name] = significant_clusters_count

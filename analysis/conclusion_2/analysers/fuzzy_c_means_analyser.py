@@ -5,7 +5,9 @@ from skfuzzy.cluster import cmeans
 
 class FuzzyCMeansAnalyser:
 
-    def __init__(self,col_names,encoding_first_junk,folder_name, data, credit_ratings,credit_rating_analyzers):
+    def __init__(self,data_source,entity_ids,col_names,encoding_first_junk,folder_name, data, credit_ratings,credit_rating_analyzers):
+        self.data_source =data_source
+        self.entity_ids = entity_ids
         self.col_names = col_names 
         self.encoding_first_junk = encoding_first_junk
         self.folder_name = folder_name
@@ -24,7 +26,7 @@ class FuzzyCMeansAnalyser:
         labels = np.argmax(u, axis=0)
         analysis = {}
         analysis["Algorithm Parameters"] = {"C":C}
-        cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
+        cluster_analyzer = ClustersAnalyzer(self.entity_ids,self.data_source,self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
         JSONHelper().save(self.folder_name,self.alg_name+file_name_appendix,analysis)
@@ -36,7 +38,7 @@ class FuzzyCMeansAnalyser:
         analysis = {}
         analysis["Algorithm Parameters"] = {"C":performance_metrics["C"]}
         analysis["Algorithm Performance"] = {"WCSS":performance_metrics["WCSS"],"Silhouette Score":performance_metrics["Silhouette Score"],"Calinski Harabasz Index":performance_metrics["Calinski Harabasz Index"]}
-        cluster_analyzer = ClustersAnalyzer(self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
+        cluster_analyzer = ClustersAnalyzer(self.entity_ids,self.data_source,self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
         JSONHelper().save(self.folder_name,self.alg_name,analysis)

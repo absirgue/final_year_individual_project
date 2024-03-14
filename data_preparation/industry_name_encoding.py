@@ -18,7 +18,6 @@ class IndustryNameHashEncoding:
                     industry_share_mapping[share] = name
             if len(cell_content.split(";")) > max_nb_industries:
                 max_nb_industries = len(cell_content.split(";"))
-            old_len = len(row_industry_share_mapping)
             row_industry_share_mapping.append(industry_share_mapping)
         for i in range(max_nb_industries):
             self.data["CUSTOM - INDUSTRY NAME ENCODING "+str(i)] = None

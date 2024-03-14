@@ -22,8 +22,6 @@ class AlgorithmsPerformancesEvaluation:
     
     def get_optimal_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
-        print("OTPIMAL COL EM")
-        print(optimal_col_emptiness_tresholds)
         InterfaceBeautifier().print_major_annoucement(text="Empty rows deletion evaluation done")
         optimal_dimensions = None
         if self.run_pca:
@@ -210,11 +208,8 @@ class AlgorithmsPerformancesEvaluation:
 
     def prepare_data(self,config,optimal_col_emptiness_tresholds,optimal_dimensions):
         col_emptiness_thresh = optimal_col_emptiness_tresholds[config]
-        configuration = DataConfiguration()
-        configuration.set_to_default_configuration(config)
+        configuration = self.configurations_to_test[config]
         data_preparator = DataPreparator(data_source=configuration.get_data_source(),configuration=configuration)
-        print(config)
-        print(col_emptiness_thresh)
         data = data_preparator.apply_configuration(col_emptiness_thresh)
         credit_ratings = data_preparator.get_credit_ratings()
         column_names = data_preparator.get_column_names()

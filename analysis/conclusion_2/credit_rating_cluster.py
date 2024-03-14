@@ -10,6 +10,7 @@ class CreditRatingCluster:
         self.data = {}
         self.first_junk_credit_rating = first_junk_credit_rating
         self.significance_threshold_for_split = significance_threshold_for_split
+        self.dataframe_rows_with_their_ratings = {}
     
     def get_credit_ratings_counts(self):
         return self.credit_ratings_counts
@@ -78,7 +79,6 @@ class CreditRatingCluster:
         std = np.std(data)
         return {"Mean":mean,"Median":median,"1st Quartile":q_25,"3rd Quartile":q_75,"Standard Deviation":std}
 
-    # TO Do -  USED FOR PRED.
     def get_measures_of_location_and_dispersion_for_credit_ratings_values(self):
         if not self.credit_ratings_counts:
             return None
@@ -104,9 +104,18 @@ class CreditRatingCluster:
                 entropy += p*math.log2(p)
         return -1 * entropy if entropy else 0
 
-    def add_clustered_credit_rating(self, credit_rating, data):
+    def add_clustered_credit_rating(self, credit_rating, data,dataframe_row_idx):
         self.insert_rating_in_proportion(credit_rating)
         self.insert_rating_and_data(credit_rating,data)
+        self.dataframe_rows_with_their_ratings[dataframe_row_idx] = credit_rating
+    
+    def get_rows_difference_with_mean_rating(self):
+        differences_with_mean = []
+        cluster_mean_rating = self.get_measures_of_location_and_dispersion_for_credit_ratings_values()["Mean"]
+        for row_idx in self.dataframe_rows_with_their_ratings.keys():
+            diff = cluster_mean_rating - self.dataframe_rows_with_their_ratings[row_idx]
+            differences_with_mean.append({row_idx:diff})
+        return differences_with_mean
         
     def insert_rating_in_proportion(self, credit_rating):
         if credit_rating in self.credit_ratings_counts.keys():

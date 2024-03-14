@@ -69,20 +69,22 @@ class DataConfigurationWrapper:
                 configs["BOTH CREDIT HEALTH AND CREDIT MODEL"+both_config_credit_health_and_credit_model.get_appendix_for_averager_modif_of_config()] = both_config_credit_health_and_credit_model
         return configs
 
-def run_demanded_program(config_name, analysis_only, run_pca):
-    configuration = DataConfigurationWrapper().get_config_package(config_name)
-    print(configuration)
-    if not analysis_only:
-        AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
-        InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
-    ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results",False).analyse()
+def run_demanded_program(config_name_pca, config_name_non_pca, analysis_only, run_pca):
+    configuration = DataConfigurationWrapper().get_config_package(config_name_non_pca)
+    # if not analysis_only:
+    #     # AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
+    #     InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
+    ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results/",False,configuration).analyse()
     InterfaceBeautifier().print_major_annoucement("analysis of non-pca clusters done")
     if run_pca:
-        if not analysis_only:
-            AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
-            InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
-        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results",True).analyse()
-        InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
+        pass
+        # if not analysis_only:
+        #     configuration = DataConfigurationWrapper().get_config_package(config_name_pca)
+        #     AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
+        #     InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
+        # RE RUN 
+        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results/",True,configuration).analyse()
+        # InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
     ManualAnalysisHelper()
     InterfaceBeautifier().print_major_annoucement("finished all tasks")
 
@@ -91,23 +93,29 @@ def main():
     # both_config_credit_health_and_credit_model.set_to_default_configuration("CREDIT MODEL")
     # dp = DataPreparator(configuration=both_config_credit_health_and_credit_model,data_source=both_config_credit_health_and_credit_model.get_data_source())
     # data = dp.apply_configuration(0.65)
+    # print(dp.get_entity_ids())
     # print(data.shape[1])
     # print(data.shape[0])
     # it = DBSCANIterator(data)
     # print(it.iterate())
     # it.graph()
+    # RatingChangesIdentifier(None).identify_changes()
     args = sys.argv[1:]
     analysis_only = False
     run_pca = True
-    if "-configs" in args:
-        config_name = args[args.index("-configs")+1]
+    if "-pca_configs" in args:
+        config_name_pca = args[args.index("-pca_configs")+1]
     else:
-        config_name = "CREDIT HEALTH AND CREDIT MODEL - COMPLEX"
+        config_name_pca = "CREDIT HEALTH AND CREDIT MODEL"
+    if "-non_pca_configs" in args:
+        config_name_non_pca = args[args.index("-non_pca_configs")+1]
+    else:
+        config_name_non_pca = "CREDIT HEALTH AND CREDIT MODEL - COMPLEX"
     if "-analysis_only" in args:
         analysis_only = True
     if "-skip_pca" in args:
         run_pca = False
-    run_demanded_program(config_name,analysis_only,run_pca)
+    run_demanded_program(config_name_pca=config_name_pca, config_name_non_pca=config_name_non_pca,analysis_only=analysis_only,run_pca=run_pca)
 
 # Allow main method to operate.
 if __name__ == "__main__":

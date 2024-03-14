@@ -15,17 +15,20 @@ class DataPreparator:
         self.intermediary_dataframe = None
         self.NAME_CREDIT_RATING_ABSTRACT_COL = "CREDIT RATING"
         self.NAME_CREDIT_RATING_COL = "S&P Entity Credit Rating - Issuer Credit Rating - Local Currency LT [Latest] (Rating)"
+        self.NAME_SP_ENTITY_ID_ABSTRACT_COL = "ENTITY ID"
+        self.NAME_SP_ENTITY_ID_COL = "S&P Entity ID"
         self.configuration = configuration 
         self.data_source = data_source
         self.col_names = None
         self.credit_ratings = None
+        self.entity_ids = None
         self.data = self.read_data_from_csv()
 
     def read_data_from_csv(self):
         return pd.read_excel(self.data_source.path, sheet_name=self.data_source.sheet_name)
     
     def apply_configuration(self,threshold_of_column_emptiness=0.05):
-        data = DataTypeIsolator(self.data,self.NAME_CREDIT_RATING_ABSTRACT_COL).isolate_data_types(self.configuration.data_types)
+        data = DataTypeIsolator(self.data,self.NAME_CREDIT_RATING_ABSTRACT_COL,self.NAME_SP_ENTITY_ID_ABSTRACT_COL).isolate_data_types(self.configuration.data_types)
         data.columns = data.iloc[0]
         data = data.drop(0)
         initial_columns_count = data.shape[1]
@@ -45,12 +48,14 @@ class DataPreparator:
             data = CountryEconomicEncoding(data,self.configuration.normalise_economic_variables).encode()
         self.number_added_columns = data.shape[1] - initial_columns_count
         if self.configuration.average_by_cr_factor:
-            data = CreditRatingFactorAveragesCalculator(data).encode(self.configuration.average_by_cr_factor)
+            data = CreditRatingFactorAveragesCalculator(data,self.NAME_SP_ENTITY_ID_COL).encode(self.configuration.average_by_cr_factor)
         self.write_to_csv_1(data)
         self.intermediary_dataframe = data
+        # Note: Entity ID is a number and it is defined for all lines, it therefore will not be affected
+        # by the dataframe cleaner
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
-        data = self.extract_and_delete_product_ratings(data)
-       
+        data = self.extract_and_delete_credit_ratings(data)
+        data = self.extract_and_delete_entity_ids(data)
         self.write_to_csv(data)
         self.col_names = data.columns
         data = data.values
@@ -60,7 +65,26 @@ class DataPreparator:
     def get_intermediary_dataframe(self):
         return self.intermediary_dataframe
     
-    def extract_and_delete_product_ratings(self,data):
+    def extract_and_delete_entity_ids(self, data):
+        if self.NAME_SP_ENTITY_ID_COL in data.columns:
+            self.entity_ids = []
+            for index, row in data.iterrows():
+                cell_content = data.loc[index,self.NAME_SP_ENTITY_ID_COL]
+                if type(cell_content) == pd.core.series.Series:
+                    cell_content = cell_content.iloc[0]
+                self.entity_ids.append(cell_content)
+            data.drop(self.NAME_SP_ENTITY_ID_COL, axis=1,inplace=True)
+        else:
+            print("NO COL NAMED CORRECTLY")
+        return data
+
+    def get_entity_id_of_row(self,row_idx):
+        return self.entity_ids[row_idx]
+
+    def get_entity_ids(self):
+        return self.entity_ids
+
+    def extract_and_delete_credit_ratings(self,data):
         if "CUSTOM Credit Rating" in data.columns:
             self.credit_ratings = []
             for index, row in data.iterrows():
@@ -80,7 +104,7 @@ class DataPreparator:
         return CreditRatingEncoding().get_encoding_first_junk_rating()
 
     def get_column_names(self):
-        return self.col_names
+        return list(self.col_names)
 
     def get_credit_ratings(self):
         return self.credit_ratings

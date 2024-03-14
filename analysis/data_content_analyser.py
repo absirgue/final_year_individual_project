@@ -11,7 +11,6 @@ class DataContentAnalyser:
 
     def analyse(self):
         analysis = self.analyse_data()
-        # self.print_analysis(analysis)
         self.save_analysis(analysis)
        
 

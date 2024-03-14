@@ -44,7 +44,7 @@ class CreditRatingAnalyzer:
                 cols_entropy[entropy] = col_idx
             else:
                 current_min = min(cols_entropy.keys())
-                if entropy > current_min:
+                if entropy < current_min:
                     del cols_entropy[current_min]
                     cols_entropy[entropy] = col_idx
         return cols_entropy.values()
