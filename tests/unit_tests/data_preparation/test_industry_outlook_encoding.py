@@ -1,5 +1,5 @@
 import unittest
-from data_preparation.industry_outlooks_encoder import IndustryOutlookEncode
+from data_preparation.industry_outlook_encoder import IndustryOutlookEncode
 import pandas as pd
 
 class TestIndustryOutlookEncoder(unittest.TestCase):

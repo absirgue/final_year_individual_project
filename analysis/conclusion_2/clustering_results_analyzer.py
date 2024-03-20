@@ -4,7 +4,6 @@ from analysis.data_configuration import DataConfiguration
 from data_preparation.data_preparator import DataPreparator
 from analysis.empty_rows_deletion_evaluation import EmptyRowsDeletionEvaluation
 from analysis.dimensionality_evaluation import DimensionalityEvaluation
-from analysis.conclusion_2.clusters_analyzer import ClustersAnalyzer
 from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
 from analysis.conclusion_2.analysers.birch_analyser import BIRCHAnalyser
 from analysis.conclusion_2.analysers.dbscan_analyser import DBSCANAnalyser
@@ -113,15 +112,3 @@ class ClusteringResultsAnalyzer:
                 analyser.insert_company(credit_ratings[cr_idx], data[cr_idx])
                 credit_ratings_analysers[credit_ratings[cr_idx]] = analyser
         return credit_ratings_analysers
-    
-    def analyse_alg_optimum(self,col_names,encoding_first_junk,labels,alg_name,folder_name, data, credit_ratings, performance_metrics,credit_rating_analyzers,optimum):
-        analysis = {}
-        analysis["Algorithm Parameters"] = {"Threshold Value":performance_metrics[optimum]["Threshold Value"],"Braching Factor":performance_metrics[optimum]["Branching Factor"],"K":performance_metrics[optimum]["K"]}
-        if "calinski" in optimum.lower():
-            analysis["Algorithm Performance"] = {"Calinski Harabasz Index":performance_metrics[optimum]["Calinski Harabasz Index"]}
-        elif "silhouette" in optimum.lower():
-            analysis["Algorithm Performance"] = {"Silhouette Score":performance_metrics[optimum]["Silhouette Score"]}
-        cluster_analyzer = ClustersAnalyzer(encoding_first_junk,labels,credit_ratings,credit_rating_analyzers,data,col_names)
-        analysis["Clusters Content Analysis"] = cluster_analyzer.analyze()
-        self.save_analysis(folder_name,alg_name+"_"+optimum,analysis)
-    

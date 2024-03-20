@@ -18,7 +18,10 @@ class DataConfiguration:
         self.default_configurations = {"CREDIT MODEL":["CREDIT MODEL"],"CREDIT HEALTH":["CREDIT HEALTH"],"BOTH RATIOS AND RAW NUMBERS":["RATIO","RAW NUMBER"],"BOTH CREDIT HEALTH AND CREDIT MODEL":["CREDIT HEALTH","CREDIT MODEL"],"RAW NUMBERS":["RAW NUMBER"],"RATIOS":["RATIO"]}
         cr_and_ch_ds = DataSource(path = "./data/sp_credit_health_and_model_data.xls", sheet_name = "Screening")
         rn_and_ra_ds = DataSource(path = "./data/raw_financial_data_and_ratios.xls", sheet_name = "Screening")
-        self.default_data_sources = {"CREDIT MODEL":cr_and_ch_ds,"CREDIT HEALTH":cr_and_ch_ds,"BOTH RATIOS AND RAW NUMBERS":rn_and_ra_ds,"BOTH CREDIT HEALTH AND CREDIT MODEL":cr_and_ch_ds,"RAW NUMBERS":rn_and_ra_ds,"RATIOS":rn_and_ra_ds}
+        renewables_cr_and_ch_ds = DataSource(path = "./data/renewable_energy_credit_model_and_credit_health.xls", sheet_name = "Screening")
+        oil_and_gas_cr_and_ch_ds = DataSource(path = "./data/oil_and_gas_credit_model_and_credit_health.xls", sheet_name = "Screening")
+        food_products_cr_and_ch_ds = DataSource(path = "./data/food_products_credit_model_and_health.xls", sheet_name = "Screening")
+        self.default_data_sources = {"CREDIT MODEL AND CREDIT HEALTH":cr_and_ch_ds,"RATIOS AND RAW NUMBERS":rn_and_ra_ds,"RENEWABLE ENERGY INDUSTRY CREDIT MODEL AND CREDIT HEALTH":renewables_cr_and_ch_ds,"FOOD PRODUCTS INDUSTRY CREDIT MODEL AND CREDIT HEALTH":food_products_cr_and_ch_ds,"OIL AND GAS INDUSTRY CREDIT MODEL AND CREDIT HEALTH":oil_and_gas_cr_and_ch_ds}
         self.default_outlooks_weight_distribution = {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0}
         self.average_by_cr_factor = 0
 
@@ -26,22 +29,14 @@ class DataConfiguration:
         return self.data_source
 
     # 1 is mean, 2 ....
-    def set_to_default_configuration(self, default_configuration_id,mixed_data = False,average_by_category=0):
-        self.data_source=  self.default_data_sources[default_configuration_id]
-        data_types_wanted = self.default_configurations[default_configuration_id]
-        if mixed_data:
-            data_types_wanted.append("INDUSTRY NAMES")
-            # TO DO: encode differently for mixed
-            data_types_wanted.append('DIVERSIFICATION - GEOGRAPHIC SEGMENTS - REVENUE')
-            data_types_wanted.append('DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE')
-            data_types_wanted.append('COUNTRY RISK SCORE')
+    def set_to_default_configuration(self, data_types_wanted,data_source_wanted,average_by_category=0):
+        self.data_source=  self.default_data_sources[data_source_wanted]
+        data_types_wanted = self.default_configurations[data_types_wanted]
         self.set_data_types_wanted(data_types_wanted)
         self.set_indutry_outlooks_encoding_preference(True,self.default_outlooks_weight_distribution)
-        if not mixed_data:
-            # We always normalise except when the configuration wanted is "Raw Numbers"
-            self.set_country_economic_data_encoding_preference(True,default_configuration_id!="RAW NUMBERS")
-            self.set_geography_diversification_encoding_preference(True, 0)
-            self.set_business_diversification_encoding_preference(True,0)
+        self.set_country_economic_data_encoding_preference(True,data_types_wanted!="RAW NUMBERS")
+        self.set_geography_diversification_encoding_preference(True, 0)
+        self.set_business_diversification_encoding_preference(True,0)
         self.average_by_cr_factor = average_by_category
 
     def set_data_types_wanted(self,data_types_wanted):

@@ -21,11 +21,11 @@ class CreditRatingEncoding:
                                   "B":15,
                                   "B-":16,
                                   "CCC+":17,
-                                  "CCC":17,
-                                  "CCC-":17,
-                                  "CC":18,
-                                  "C":19,
-                                  "D":20}
+                                  "CCC":18,
+                                  "CCC-":19,
+                                  "CC":20,
+                                  "C":21,
+                                  "D":22}
     
     def encode(self):
         for index, row in self.data.iterrows():
