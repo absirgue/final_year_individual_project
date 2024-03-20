@@ -38,30 +38,31 @@ class AlgorithmsPerformancesEvaluation:
             folder_name = self.get_folder_name(config)
             config_optimal_results = {}
             data,nb_credit_ratings = self.prepare_data(config,optimal_col_emptiness_tresholds,optimal_dimensions)
-            InterfaceBeautifier().print_major_annoucement("Data prepared for configuration "+config)
-            max_k_value_to_test = nb_credit_ratings+10
-            birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            InterfaceBeautifier().print_information_statement("BIRCH Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",20)
-            dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
-            InterfaceBeautifier().print_information_statement("DSCAN Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",40)
-            kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            InterfaceBeautifier().print_information_statement("K-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",60)
-            fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            InterfaceBeautifier().print_information_statement("Fast Global K-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",80)
-            fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
-            InterfaceBeautifier().print_information_statement("Fuzzy C-Means Hyperparameters Optimization Done")
-            InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",100)
-            algorithms_best_perf[config] = config_optimal_results
-            perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
-            algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
-            best_perf_when_K_greater_than_nb_credit_ratings = self.compute_algs_performance_when_K_greater_credit_ratings_count(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator,max_k_value_to_test)
-            algorithms_best_perf_K_superior_credit_ratings_count[config] = best_perf_when_K_greater_than_nb_credit_ratings
-            perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
-            algorithms_perf_on_nb_unique_credit_ratings[config] = perf_on_clusters_count
+            if data.shape[0] >1:
+                InterfaceBeautifier().print_major_annoucement("Data prepared for configuration "+config)
+                max_k_value_to_test = nb_credit_ratings+10
+                birch_iterator = self.measure_birch_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+                InterfaceBeautifier().print_information_statement("BIRCH Hyperparameters Optimization Done")
+                InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",20)
+                dbscan_iterator = self.measure_dbscan_optimality(data,config_optimal_results,optimal_ks,folder_name)
+                InterfaceBeautifier().print_information_statement("DSCAN Hyperparameters Optimization Done")
+                InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",40)
+                kmeans_iterator = self.measure_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+                InterfaceBeautifier().print_information_statement("K-Means Hyperparameters Optimization Done")
+                InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",60)
+                fgkm_iterator = self.measure_fast_global_kmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+                InterfaceBeautifier().print_information_statement("Fast Global K-Means Hyperparameters Optimization Done")
+                InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",80)
+                fuzzy_cmeans_iterator = self.measure_fuzzy_cmeans_optimality(data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test)
+                InterfaceBeautifier().print_information_statement("Fuzzy C-Means Hyperparameters Optimization Done")
+                InterfaceBeautifier().print_percentage_progress("Progress on Hyperparameter Optimization",100)
+                algorithms_best_perf[config] = config_optimal_results
+                perf_on_respective_optimals = self.compute_algs_performance_on_each_others_optimals(optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
+                algorithms_perf_on_others_optimal_K[config] = perf_on_respective_optimals
+                best_perf_when_K_greater_than_nb_credit_ratings = self.compute_algs_performance_when_K_greater_credit_ratings_count(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator,max_k_value_to_test)
+                algorithms_best_perf_K_superior_credit_ratings_count[config] = best_perf_when_K_greater_than_nb_credit_ratings
+                perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
+                algorithms_perf_on_nb_unique_credit_ratings[config] = perf_on_clusters_count
         self.save_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         # self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         return algorithms_best_perf,algorithms_perf_on_others_optimal_K
