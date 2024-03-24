@@ -49,14 +49,12 @@ class DataPreparator:
         self.number_added_columns = data.shape[1] - initial_columns_count
         if self.configuration.average_by_cr_factor:
             data = CreditRatingFactorAveragesCalculator(data,self.NAME_SP_ENTITY_ID_COL).encode(self.configuration.average_by_cr_factor)
-        self.write_to_csv_1(data)
         self.intermediary_dataframe = data
         # Note: Entity ID is a number and it is defined for all lines, it therefore will not be affected
         # by the dataframe cleaner
         data = DataFrameCleaner(data).clean(threshold_of_column_emptiness)
         data = self.extract_and_delete_credit_ratings(data)
         data = self.extract_and_delete_entity_ids(data)
-        self.write_to_csv(data)
         self.col_names = data.columns
         data = data.values
         data = data.astype(float)
@@ -111,15 +109,3 @@ class DataPreparator:
     
     def get_number_added_columns(self):
         return self.number_added_columns
-    
-    def write_to_csv(self,data):
-        df = pd.DataFrame(data)
-        excel_filename = 'data_preparator_output.csv'
-        df.to_csv(excel_filename, index=False)
-        return data
-
-    def write_to_csv_1(self,data):
-        df = pd.DataFrame(data)
-        excel_filename = 'data_preparator_output_1.csv'
-        df.to_csv(excel_filename, index=False)
-        return data

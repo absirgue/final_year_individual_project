@@ -24,7 +24,15 @@ class DataConfigurationWrapper:
         self.config_packages["CREDIT HEALTH AND CREDIT MODEL - COMPLEX"] = self.get_credit_health_and_credit_model(complex=True)
         self.config_packages["INDUSTRY SPECIFIC CREDIT HEALTH AND CREDIT MODEL"] = self.get_industry_specific_credit_health_and_credit_model()
         self.config_packages["INDUSTRY SPECIFIC CREDIT HEALTH AND CREDIT MODEL - COMPLEX"] = self.get_industry_specific_credit_health_and_credit_model(complex=True)
+        self.config_packages["INDUSTRY SPECIFIC & CREDIT HEALTH AND CREDIT MODEL - COMPLEX"] = self.get_industry_specific_and_credit_health_and_credit_model(complex=True)
+        self.config_packages["INDUSTRY SPECIFIC & CREDIT HEALTH AND CREDIT MODEL"] = self.get_industry_specific_and_credit_health_and_credit_model(complex=False)
 
+    def get_industry_specific_and_credit_health_and_credit_model(self, complex=False):
+        cr_and_ch = self.get_credit_health_and_credit_model(complex=True)
+        industry_specific = self.get_industry_specific_credit_health_and_credit_model(complex=True)
+        industry_specific.update(cr_and_ch)
+        return industry_specific
+    
     def get_all_configs(self,complex=False):
         raw_nb_and_ratios_configs = self.get_raw_nb_and_ratios_configs()
         credit_health_and_credit_model = self.get_credit_health_and_credit_model(complex)
@@ -94,53 +102,38 @@ class DataConfigurationWrapper:
 
 def run_demanded_program(config_name_pca, config_name_non_pca, analysis_only, run_pca):
     configuration = DataConfigurationWrapper().get_config_package(config_name_non_pca)
-    # if not analysis_only:
-    #     # AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
-    #     InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
+    if not analysis_only:
+        # AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
+        InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
     ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results/",False,configuration).analyse()
     InterfaceBeautifier().print_major_annoucement("analysis of non-pca clusters done")
     if run_pca:
-        pass
-        # if not analysis_only:
-        #     configuration = DataConfigurationWrapper().get_config_package(config_name_pca)
-        #     AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
-        #     InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
-        # RE RUN 
+        if not analysis_only:
+            configuration = DataConfigurationWrapper().get_config_package(config_name_pca)
+            AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
+            InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
         ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results/",True,configuration).analyse()
-        # InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
+        InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
     ManualAnalysisHelper()
     InterfaceBeautifier().print_major_annoucement("finished all tasks")
 
 def main():
-    configuration = DataConfigurationWrapper().get_config_package("INDUSTRY SPECIFIC CREDIT HEALTH AND CREDIT MODEL - COMPLEX")
-    AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
-    # both_config_credit_health_and_credit_model = DataConfiguration()
-    # both_config_credit_health_and_credit_model.set_to_default_configuration("CREDIT MODEL")
-    # dp = DataPreparator(configuration=both_config_credit_health_and_credit_model,data_source=both_config_credit_health_and_credit_model.get_data_source())
-    # data = dp.apply_configuration(0.65)
-    # print(dp.get_entity_ids())
-    # print(data.shape[1])
-    # print(data.shape[0])
-    # it = DBSCANIterator(data)
-    # print(it.iterate())
-    # it.graph()
-    # RatingChangesIdentifier(None).identify_changes()
-    # args = sys.argv[1:]
-    # analysis_only = False
-    # run_pca = True
-    # if "-pca_configs" in args:
-    #     config_name_pca = args[args.index("-pca_configs")+1]
-    # else:
-    #     config_name_pca = "CREDIT HEALTH AND CREDIT MODEL"
-    # if "-non_pca_configs" in args:
-    #     config_name_non_pca = args[args.index("-non_pca_configs")+1]
-    # else:
-    #     config_name_non_pca = "CREDIT HEALTH AND CREDIT MODEL - COMPLEX"
-    # if "-analysis_only" in args:
-    #     analysis_only = True
-    # if "-skip_pca" in args:
-    #     run_pca = False
-    # run_demanded_program(config_name_pca=config_name_pca, config_name_non_pca=config_name_non_pca,analysis_only=analysis_only,run_pca=run_pca)
+    args = sys.argv[1:]
+    analysis_only = False
+    run_pca = True
+    if "-pca_configs" in args:
+        config_name_pca = args[args.index("-pca_configs")+1]
+    else:
+        config_name_pca = "INDUSTRY SPECIFIC & CREDIT HEALTH AND CREDIT MODEL"
+    if "-non_pca_configs" in args:
+        config_name_non_pca = args[args.index("-non_pca_configs")+1]
+    else:
+        config_name_non_pca = "INDUSTRY SPECIFIC & CREDIT HEALTH AND CREDIT MODEL - COMPLEX"
+    if "-analysis_only" in args:
+        analysis_only = True
+    if "-skip_pca" in args:
+        run_pca = False
+    run_demanded_program(config_name_pca=config_name_pca, config_name_non_pca=config_name_non_pca,analysis_only=analysis_only,run_pca=run_pca)
 
 # Allow main method to operate.
 if __name__ == "__main__":

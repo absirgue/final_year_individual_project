@@ -44,6 +44,16 @@ class CreditRatingEncoding:
         else:
             return math.nan
     
+    def compute_letter_grade_from_numeric_encoding(self, encoding):
+        try:
+            encoding = int(encoding)
+            for key, value in self.CR_NUMBER_MAPPING.items():
+                if value == encoding:
+                    return key
+            return encoding
+        except:
+            return encoding
+    
     def get_encoding_first_junk_rating(self):
         return self.CR_NUMBER_MAPPING["BB+"]
 

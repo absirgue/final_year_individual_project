@@ -6,7 +6,7 @@ class RatingChangesIdentifier:
 
     def __init__(self, data_source):
         self.data_source = data_source
-        self.most_recent_source = DataSource("./data/latest.xls","Screening")
+        self.most_recent_source = DataSource("./data/all_cr_and_ch_most_recent_download.xls","Screening")
     
     def identify_changes(self):
         original_mapping_sp_identifier_to_credit_rating = self.generate_sp_identifier_to_credit_rating_mapping_from_data_configuration()
@@ -15,8 +15,8 @@ class RatingChangesIdentifier:
         return differences
     
     def save_analysis(self,changes, original_companies,count_up,count_significant):
-        analysis = {"Number of changes":len(changes),"Share of companies that changed":len(changes)/len(original_companies),"Number of upgrades":count_up,"Share of upgrades":count_up/len(changes),"Number of jumps from or to B-":count_significant}
-        JSONHelper().save("./credit_rating_chages", self.data_source.path.split('/')[-1],analysis)
+        analysis = {"Number of changes":len(changes),"Share of companies that changed":len(changes)/len(original_companies),"Number of upgrades":count_up,"Share of upgrades":count_up/len(changes) if len(changes)>0 else 0,"Number of jumps from or to B-":count_significant}
+        JSONHelper().save("./credit_rating_changes", self.data_source.path.split('/')[-1],analysis)
 
     def identify_changes_in_mapping_with_most_recent_file(self,original_mapping):
         changes = []

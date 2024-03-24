@@ -45,7 +45,7 @@ class PrincipalComponentAnalysisPerformanceMeasurement:
     def compute_and_plot_explained_variance_ratio_to_components_count(self,max_dimensionality_to_test = None):
         nb_features = self.data.shape[1]
         if not max_dimensionality_to_test:
-            max_dimensionality_to_test = nb_features
+            max_dimensionality_to_test = min(nb_features,self.data.shape[0])
         variance_ratios = self.calculate_explained_variance_ratios_across_components_count(max_dimensionality_to_test)
         self.plot(max_dimensionality_to_test,variance_ratios)
         return 1,variance_ratios

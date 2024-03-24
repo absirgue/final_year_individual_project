@@ -2,12 +2,13 @@ import os
 from analysis.conclusion_2.credit_rating_cluster import CreditRatingCluster
 from analysis.conclusion_3.predictive_power_analyser import PredictivePowerAnalyser
 from graph.graphing_helper import GraphingHelper
+from data_preparation.credit_rating_encoding import CreditRatingEncoding
 class ClustersAnalyzer:
 
     def __init__(self,entity_ids,data_source, encoding_first_junk_rating=None, cluster_labels=None,data_ordered_credit_ratings=None,credit_ratings_analyzers=None,data=None,col_names=None):
         self.entity_ids = entity_ids
         self.data_source = data_source
-        self.PROPORTION_OF_RATING_IN_CLUSTER_CONSIDERED_SIGNIFICANT = 0.5
+        self.PROPORTION_OF_RATING_IN_CLUSTER_CONSIDERED_SIGNIFICANT = 0.2
         self.NUMBER_OF_COLUMNS_WE_WANT_EXPLAINED = 5
         self.JUNK_INVEST_GRADE_SPLIT_CONSIDERED_SIGNIFICANT = 0.2
         self.ENCODING_FIRST_JUNK_RATING = encoding_first_junk_rating
@@ -55,7 +56,7 @@ class ClustersAnalyzer:
             cluster_shares = {}
             cr_counts = cluster.get_credit_ratings_counts()
             for cr, count in cr_counts.items():
-                cluster_shares[cr] = count/self.credit_ratings_analyzers[cr].get_companies_count()
+                cluster_shares[CreditRatingEncoding().compute_letter_grade_from_numeric_encoding(cr)] = count/self.credit_ratings_analyzers[cr].get_companies_count()
             shares.append(cluster_shares)
         return shares
 
@@ -111,7 +112,7 @@ class ClustersAnalyzer:
                         cr_col_values = analyzer.get_measures_of_location_and_dispersion(col_idx)
                         cluster_members_col_values = unique_clusters_requiring_explanations[cluster_idx].get_measures_of_location_and_dispersion_for_col_of_credit_rating_instances(col_idx, rating)
                         comparison = self.compare_cluster_and_credit_rating_values(cr_col_values,cluster_members_col_values)
-                        key = "RATING " +str(rating)
+                        key = "RATING " +CreditRatingEncoding().compute_letter_grade_from_numeric_encoding(rating)
                         if not (key in cluster_explanations.keys()):
                             cluster_explanations[key] = [{self.get_col_name(col_idx) if self.col_names else str(col_idx):{"Comparison":comparison,"Credit Rating Statistics":cr_col_values,"Cluster Statistics":cluster_members_col_values}}]
                         else:

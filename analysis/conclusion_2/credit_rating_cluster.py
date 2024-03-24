@@ -1,5 +1,6 @@
 import math
 import numpy as np
+from data_preparation.credit_rating_encoding import CreditRatingEncoding
 
 class CreditRatingCluster:
 
@@ -17,7 +18,7 @@ class CreditRatingCluster:
     def get_credit_ratings_shares(self):
         shares = {}
         for cr,count in self.credit_ratings_counts.items():
-            shares[cr] = count/self.get_companies_count()
+            shares[CreditRatingEncoding().compute_letter_grade_from_numeric_encoding(cr)] = count/self.get_companies_count()
         return shares
 
     def get_companies_count(self):

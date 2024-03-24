@@ -8,6 +8,8 @@ class EmptyRowsDeletionEvaluation:
     def __init__(self,configuration_to_test):
         self.configurations_to_test = configuration_to_test
         self.IDEAL_MIN_ROW_COUNT = 500
+        # The maximum number of credit ratings present in any data set + 10. 
+        self.MINIMUM_NUMBER_OF_ROWS = 30
     
     def run_evaluation(self):
         self.ideal_empty_col_thresholds = {}
@@ -39,7 +41,9 @@ class EmptyRowsDeletionEvaluation:
         for i in range(len(inflection_points)-1,-1,-1):
             if inflection_points[i][0] >= self.IDEAL_MIN_ROW_COUNT:
                 return inflection_points[i]
-        return inflection_points[len(inflection_points)-1]
+        for i in range(len(inflection_points)-1,-1,-1):
+            if inflection_points[i][0] >= self.MINIMUM_NUMBER_OF_ROWS:
+                return inflection_points[i]
 
     def get_optimal_col_emptiness_threshold(self, config_name):
         if config_name in self.ideal_empty_col_thresholds:
