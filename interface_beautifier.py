@@ -1,5 +1,9 @@
 class InterfaceBeautifier:
-
+    """
+    Enables communications with the user through the command line, enbaling constant styling
+    of messages.
+    """
+    
     def print_percentage_progress(self, name_of_task,percent_progress):
         pertwenty_progress = percent_progress//5
         statement = name_of_task+": "

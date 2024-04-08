@@ -4,6 +4,11 @@ from graph.graphing_helper import GraphingHelper
 from interface_beautifier import InterfaceBeautifier
 
 class BIRCHSuperIterator:
+    """
+    Coordinates all actions required to identify the optimal K number for BIRCH on a given data set
+    by comparing the result achieved when hyperparamters are optimally set for each of a range of 
+    different K values.
+    """
 
     def __init__(self,data,max_nb_of__clusters = None):
         self.data = data
@@ -28,8 +33,8 @@ class BIRCHSuperIterator:
         return self.get_optimal()
     
     def get_optimal(self):
-        calinski_best = self.get_values_for_max_measure_value("Calinski Harabasz Index")
-        silhouette_best = self.get_values_for_max_measure_value("Silhouette Score")
+        calinski_best = self.get_values_for_max_key_value("Calinski Harabasz Index")
+        silhouette_best = self.get_values_for_max_key_value("Silhouette Score")
         optimums = {}
         if calinski_best:
             optimums["Calinski Harabasz Index Optimum"] = {"K": calinski_best[0],"Running Time":calinski_best[4],"Threshold Value": calinski_best[2],"Branching Factor": calinski_best[3],"Calinski Harabasz Index":calinski_best[1]}
@@ -56,7 +61,7 @@ class BIRCHSuperIterator:
                 something_found = True
         return return_value if something_found else None
     
-    def get_values_for_max_measure_value(self,measure_of_interest):
+    def get_values_for_max_key_value(self,measure_of_interest):
         list = None
         match measure_of_interest:
             case "Silhouette Score":

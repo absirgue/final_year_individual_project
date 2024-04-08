@@ -4,6 +4,10 @@ from analysis.conclusion_3.predictive_power_analyser import PredictivePowerAnaly
 from graph.graphing_helper import GraphingHelper
 from data_preparation.credit_rating_encoding import CreditRatingEncoding
 class ClustersAnalyzer:
+    """
+    Coordinates all actions necessary to the complete analysis of a clustering result. 
+    Compiles the analysis results and saves them.
+    """
 
     def __init__(self,entity_ids,data_source, encoding_first_junk_rating=None, cluster_labels=None,data_ordered_credit_ratings=None,credit_ratings_analyzers=None,data=None,col_names=None):
         self.entity_ids = entity_ids
@@ -18,6 +22,7 @@ class ClustersAnalyzer:
         self.data = data
         self.col_names = col_names
     
+    # Intializes and orchestrates the different analysis tools.
     def analyze(self,folder_name_for_graph,alg_name):
         analysis = {}
         credit_rating_clusters = self.create_credit_rating_clusters()
@@ -44,7 +49,7 @@ class ClustersAnalyzer:
         weighted_avg_entropy = self.compute_weigthed_avg_entropy(credit_rating_clusters)
         analysis["Weighted average entropy"] = weighted_avg_entropy
         if nb_clusters_with_various_cr_ranges or nb_clusters_with_significant_incoherencies:
-            incoherencies_explanations = self.explain_incoherencies(credit_rating_clusters)
+            incoherencies_explanations = self.explain_incoherences(credit_rating_clusters)
             analysis["Incoherencies explanations"] = incoherencies_explanations
         self.create_and_save_graph(credit_rating_clusters,folder_name_for_graph,alg_name)
 
@@ -95,18 +100,19 @@ class ClustersAnalyzer:
             ranges.append(cr_cluster.get_rating_range())
         return ranges
 
-    def explain_incoherencies(self, credit_rating_clusters):
+    # Generate explanations for the major incoherences observed in a clustering result.
+    def explain_incoherences(self, credit_rating_clusters):
         clusters_with_notable_ranges = set(self.get_clusters_with_various_cr_ranges(credit_rating_clusters))
         significant_clusters = set(self.get_singificant_clusters(credit_rating_clusters))
         clusters_requiring_explanations = clusters_with_notable_ranges.union(significant_clusters)
         unique_clusters_requiring_explanations = list(set(clusters_requiring_explanations))
         explanations = {}
         for cluster_idx in range(len(unique_clusters_requiring_explanations)):
-            credit_ratings_held_in_significant_proportion = unique_clusters_requiring_explanations[cluster_idx].get_credit_ratings_held_in_significant_proportions(self.PROPORTION_OF_RATING_IN_CLUSTER_CONSIDERED_SIGNIFICANT)
+            credit_ratings_held = unique_clusters_requiring_explanations[cluster_idx].get_credit_ratings_held()
             cluster_explanations = {}
-            for rating in credit_ratings_held_in_significant_proportion:
-                analyzer = self.credit_ratings_analyzers[rating] if rating in self.credit_ratings_analyzers.keys() else None
-                if analyzer:
+            for rating in credit_ratings_held:
+                if rating in self.credit_ratings_analyzers.keys():
+                    analyzer = self.credit_ratings_analyzers[rating]
                     important_columns = analyzer.get_top_X_most_important_columns(self.NUMBER_OF_COLUMNS_WE_WANT_EXPLAINED,self.data)
                     for col_idx in important_columns:
                         cr_col_values = analyzer.get_measures_of_location_and_dispersion(col_idx)
@@ -122,7 +128,7 @@ class ClustersAnalyzer:
             explanations["CLUSTER "+str(cluster_idx)] =  cluster_explanations
         return explanations 
            
-
+    
     def compare_cluster_and_credit_rating_values(self, credit_rating_values, cluster_values):
         if cluster_values["Mean"] >= credit_rating_values["3rd Quartile"]:
             return "Cluster elements in highest 75%"
@@ -170,6 +176,7 @@ class ClustersAnalyzer:
                 clusters.append(cr_cluster)
         return clusters
         
+    # Initianlize CreditRatingCluster objects based on the clustering result we are analysing.
     def create_credit_rating_clusters(self):
         credit_rating_clusters = {}
         for element_idx in range(len(self.cluster_labels)):

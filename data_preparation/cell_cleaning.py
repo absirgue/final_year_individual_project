@@ -2,6 +2,7 @@ import re
 
 class CleanCellOfParenthesis:
 
+    # Removes all parenthetical statements from a given string.
     def clean(self,input):
         input_str = str(input)
         pattern = r'\([^)]*\)'

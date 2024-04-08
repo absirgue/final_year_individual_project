@@ -2,10 +2,16 @@ import numpy as np
 from data_treatment.principal_component_analysis import PrincipalComponentAnalysisPerformanceMeasurement
 from data_preparation.data_preparator import DataPreparator
 from interface_beautifier import InterfaceBeautifier
+
 class DimensionalityEvaluation:
+    """
+    Coordinates all actions required to obtain the minimum numper of Principal Components we can 
+    reduce a data set to while conserving a given share of total explained variance ratio. 
+    """
 
     def __init__(self,configuration_to_test):
         self.configurations_to_test = configuration_to_test
+        # the minimum total explained variance ratio is set to 95% by default.
         self.DESIRED_EXPLAINED_VARIANCE_RATIO = 0.95
     
     def run_evaluation(self,col_emptiness_thresholds=None):

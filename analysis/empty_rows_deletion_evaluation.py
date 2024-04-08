@@ -4,12 +4,16 @@ from analysis.function_analysis import FunctionAnalysis
 from interface_beautifier import InterfaceBeautifier
 
 class EmptyRowsDeletionEvaluation:
+    """
+    Coordinates all actions required to compute the optimal column emptiness threshold 
+    for a given data set. 
+    """
 
     def __init__(self,configuration_to_test):
         self.configurations_to_test = configuration_to_test
         self.IDEAL_MIN_ROW_COUNT = 500
         # The maximum number of credit ratings present in any data set + 10. 
-        self.MINIMUM_NUMBER_OF_ROWS = 30
+        self.MINIMUM_NUMBER_OF_ROWS = 32
     
     def run_evaluation(self):
         self.ideal_empty_col_thresholds = {}

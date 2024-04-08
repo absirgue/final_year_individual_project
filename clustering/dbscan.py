@@ -1,7 +1,11 @@
 from clustering.p_norm import PNorm
 
 class DBSCAN:
+    """
+    Reference implementation of DBSCAN for experimentation purposes.
 
+    It is not optimal in terms of run time and is therefore not used in our research.
+    """
     def __init__(self, data, eps=0.5, Minpts=5):
         self.eps = eps
         self.Minpts = Minpts

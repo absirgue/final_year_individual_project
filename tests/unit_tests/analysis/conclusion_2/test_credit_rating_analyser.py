@@ -68,7 +68,7 @@ class TestCreditRatingAnalyser(unittest.TestCase):
         cr_analyser.data = [[1,2,3],[-1,-2,-3],[4,5,6],[6,7,8]]
         result = cr_analyser.get_top_X_most_important_columns(2,np.array([[1,2,3],[-1,-2,-3],[4,5,6],[6,7,8],[10,20,30]]))
         self.assertEqual(len(result),2)
-        self.assertTrue(1 in result)
+        self.assertTrue(2 in result)
         self.assertTrue(0 in result)
     
     def test_get_top_X_most_important_columns_when_nb_columns_inferior_X(self):

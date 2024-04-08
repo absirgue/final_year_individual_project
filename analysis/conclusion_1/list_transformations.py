@@ -1,4 +1,7 @@
 class ListTransformations:
+    """"
+    Helper method for manipulating list of values.
+    """
 
     def extract_list_from_list_of_dics(self, input_list, key):
         list = []

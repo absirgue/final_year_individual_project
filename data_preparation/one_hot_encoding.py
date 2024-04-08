@@ -3,6 +3,10 @@ from data_preparation.cell_cleaning import CleanCellOfParenthesis
 
 
 class CountryRiskScoreOneHotEncoding:
+    """
+    Coordinates all actions needed to perform one-hot encoding of companies' country risk scores.
+    """
+
     def __init__(self,data):
         self.data = data
         self.COUNTRY_RISK_SCORE_COL_NAME = "PD Fundamental  Country/Region Risk Score [Latest Quarter] (Model Version 1.0)"

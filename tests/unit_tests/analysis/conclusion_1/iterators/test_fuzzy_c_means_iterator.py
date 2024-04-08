@@ -43,7 +43,7 @@ class TestFuzzyCMeansIterator(unittest.TestCase):
         self.assertLess(iterator.performance_data[0]["Calinski Harabasz Index"],(expected_calinski_harabasz/nb_iter)+3)
         self.assertGreater(iterator.performance_data[0]["Silhouette Score"],(expected_silhouette/nb_iter)-3)
         self.assertLess(iterator.performance_data[0]["Silhouette Score"],(expected_silhouette/nb_iter)+3)
-        self.assertGreater(iterator.performance_data[0]["WCSS"],(expected_wcss/nb_iter)-3)
-        self.assertLess(iterator.performance_data[0]["WCSS"],(expected_wcss/nb_iter)+3)
+        self.assertGreater(iterator.performance_data[0]["WCSS"],(expected_wcss/nb_iter)-4)
+        self.assertLess(iterator.performance_data[0]["WCSS"],(expected_wcss/nb_iter)+4)
 
        

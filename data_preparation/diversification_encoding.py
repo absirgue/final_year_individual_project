@@ -1,6 +1,10 @@
 from data_preparation.diversification_split_evaluations import EntropyCalculator,SegmentsCount
 
 class DiversificationEncoding:
+    """
+    Coordinates all actions to encode either busienss or geography diversification.
+    """
+
     def __init__(self,data):
         self.data = data
     

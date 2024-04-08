@@ -1,4 +1,8 @@
 class DataTypeIsolator:
+    """
+    Coordinates action required to isolate a given category of features present in our data frame.
+    """
+
 
     def __init__(self,data_frame, credit_rating_col_name,entity_id_col_name):
         self.CREDIT_RATING_COLUMN_NAME = credit_rating_col_name

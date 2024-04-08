@@ -8,6 +8,10 @@ from analysis.conclusion_1.list_analyser import ListAnalyser
 from analysis.conclusion_1.list_transformations import ListTransformations
 from interface_beautifier import InterfaceBeautifier
 class DBSCANIterator:
+    """
+    Coordinates all actions required to identify the optimal minpts and eps 
+    values for DBSCAN to perform optimally on a given data set.
+    """
 
     def __init__(self,data):
         self.performance_data = []
@@ -23,6 +27,7 @@ class DBSCANIterator:
         self.performance_data = []
         eps_values = create_floats_list(self.MIN_EPS,self.MAX_EPS,0.5)
         min_pts_values = create_ints_list(self.MIN_MIN_PTS,self.MAX_MIN_PTS,1)
+        # Iterates over all posisble pairs of hyperparameters.
         for eps in eps_values:
             for min_pts in min_pts_values:
                 calinski_harabasz_sum = 0
@@ -54,8 +59,8 @@ class DBSCANIterator:
     def get_optimal(self):
         if not self.performance_data:
             return None
-        calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
-        silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
+        calinski_best = ListAnalyser().get_values_for_max_key_value(self.performance_data,"Calinski Harabasz Index")
+        silhouette_best = ListAnalyser().get_values_for_max_key_value(self.performance_data,"Silhouette Score")
         optimums = {}
         if calinski_best:
             optimums["Calinski Harabasz Index Optimum"] =  {"Eps": calinski_best["eps"],"MinPts": calinski_best["min pts"],"Calinski Harabasz Index":calinski_best["Calinski Harabasz Index"],"Number of Clusters":calinski_best["cluster counts"],"Time":calinski_best["time"]}

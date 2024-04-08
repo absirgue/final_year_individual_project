@@ -7,6 +7,7 @@ class PNorm:
             raise ValueError("P has to be at least 1")
         self.p = p 
     
+    # Returns the p-norm of 2 vectors.
     def calculate_norm(self,x1,x2):
         x1 = np.array(x1)
         x2 = np.array(x2)

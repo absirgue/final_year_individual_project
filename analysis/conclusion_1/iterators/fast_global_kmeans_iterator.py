@@ -9,6 +9,10 @@ from analysis.conclusion_1.list_transformations import ListTransformations
 from interface_beautifier import InterfaceBeautifier
 
 class FastGlobalKMeansIterator:
+    """
+    Coordinates all actions required to identify the optimal K value for Fast Global K-Means to 
+    perform optimally on a given data set.
+    """
 
     def __init__(self,data,max_nb_of__clusters = None):
         self.performance_data = []

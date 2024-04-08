@@ -3,11 +3,15 @@ import sys
 import numpy as np
 
 class FastGlobalKMeans:
+    """
+    Implementation of the Fast Global K-Means algorithm. 
+    """
 
     def __init__(self,K,error_tolerance=0.001):
         self.K = K
         self.error_tolerance = error_tolerance
     
+    # Coordinates the clustering routine.
     def cluster(self,data):
         if self.K > data.shape[0]:
             raise ValueError()
@@ -24,12 +28,19 @@ class FastGlobalKMeans:
             self.labels = self.k_means.labels_
         return self.get_labels()
     
+    """
+    Returns the obtained cluster labels (an ordered list indicating the id of the cluster
+    each row belongs to).
+    """
     def get_labels(self):
         return self.labels
 
+    # Returns the centroids of obtained clusters.
     def get_centroids(self):
         return self.centroids
     
+    # Returns the coordinates of the best initial position for the centroid of the cluster 
+    # we will add in the coming iteration.
     def get_best_next_cluster_centroid(self,last_cluster_centroids,data):
         max_bn = sys.float_info.min
         best_point = None
@@ -40,6 +51,7 @@ class FastGlobalKMeans:
                 best_point = data_point
         return best_point
     
+    # Returns the bn value of a point based on the cluster centroids obtained during the last iteration.
     def calculate_bn(self, data_point,data,last_cluster_centroids):
         closest_centroid = self.get_closest_point(data_point,last_cluster_centroids)
         bn = 0
@@ -49,6 +61,7 @@ class FastGlobalKMeans:
             bn += max(squared_euclidian_dist-squared_p_norm, 0)
         return bn
     
+    # Returns the point in a list closest to a given point.
     def get_closest_point(self, point, list):
         minimum_dist = sys.float_info.max
         closest_point = None

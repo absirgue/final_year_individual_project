@@ -43,6 +43,6 @@ class TestDBSCANIterator(unittest.TestCase):
         self.assertEqual(len(iterator.performance_data),1)
         self.assertEqual(iterator.performance_data[0]["min pts"],3)
         self.assertEqual(iterator.performance_data[0]["eps"],0.5)
-        self.assertEqual(iterator.performance_data[0]["Calinski Harabasz Index"],expected_calinski_harabasz)
-        self.assertEqual(iterator.performance_data[0]["Silhouette Score"],expected_silhouette)
+        self.assertAlmostEqual(iterator.performance_data[0]["Calinski Harabasz Index"],round(expected_calinski_harabasz,3))
+        self.assertAlmostEqual(iterator.performance_data[0]["Silhouette Score"],round(expected_silhouette,3))
        

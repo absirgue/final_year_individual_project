@@ -13,7 +13,13 @@ from analysis.conclusion_2.analysers.fuzzy_c_means_analyser import FuzzyCMeansAn
 from analysis.json_helper import JSONHelper
 from graph.graphing_helper import GraphingHelper
 from interface_beautifier import InterfaceBeautifier
+from data_preparation.credit_rating_encoding import CreditRatingEncoding
+
 class ClusteringResultsAnalyzer:
+    """
+    Coordinates all actions for the analysis of all clustering results for all algorithms
+    and across all data configurations and constraint for hyperparameter optimisation.
+    """
     def __init__(self, source_file_path, output_dir,with_pca,configuration):
         self.clustering_results = JSONHelper().read(source_file_path)
         self.output_dir = output_dir
@@ -45,6 +51,10 @@ class ClusteringResultsAnalyzer:
         for config_name in self.clustering_results["algorithms best performance"].keys():
             self.analyse_config(config_name,self.clustering_results["algorithms best performance"][config_name],folder_name)
 
+    """
+    Performs the analysis of a specific data configurationa across all algorithms
+    and constraints for hyperparameter optimisation.
+    """
     def analyse_config(self, config_name, performances,folder_name):
         InterfaceBeautifier().print_major_annoucement("Analysing configuration "+config_name)
         folder_name += config_name + "/"
@@ -57,7 +67,7 @@ class ClusteringResultsAnalyzer:
         data_preparator = DataPreparator(data_source=data_configuration.get_data_source(),configuration=data_configuration)
         data = data_preparator.apply_configuration(optimal_col_emptiness_treshold[config_name])
         credit_ratings = data_preparator.get_credit_ratings()
-        encoding_first_junk = data_preparator.get_encoding_of_first_junk_rating()
+        encoding_first_junk = CreditRatingEncoding().get_encoding_first_junk_rating()
         col_names = None
         if self.with_pca:
             optimal_dimensions = DimensionalityEvaluation({config_name:data_configuration}).run_evaluation({config_name:optimal_col_emptiness_treshold[config_name]})

@@ -9,7 +9,7 @@ class TestDataContentAnalyser(unittest.TestCase):
         super().__init__(methodName)
 
     def test_data_content_analyser_produces_accurate_analysis(self):
-        result = DataContentAnalyser(self.data,"",[1,1,2,2,3]).analyse_data()
+        result = DataContentAnalyser(self.data,"",[1,1,2,2,3],["col 1","col 2"]).analyse_data()
         self.assertEqual(result["Number of Companies"],5)
         self.assertEqual(result["Number of Columns"],2)
         self.assertEqual(result["Share of each Credit Rating"][1],0.4)
@@ -20,7 +20,7 @@ class TestDataContentAnalyser(unittest.TestCase):
         self.assertEqual(len(result["List of Columns"]),2)
     
     def test_fails_graciously_when_no_credit_ratings_info(self):
-        result = DataContentAnalyser(self.data,"",[]).analyse_data()
+        result = DataContentAnalyser(self.data,"",[],["col 1","col 2"]).analyse_data()
         self.assertEqual(result["Number of Companies"],5)
         self.assertEqual(result["Number of Columns"],2)
         self.assertEqual(len(result["Share of each Credit Rating"].keys()),0)

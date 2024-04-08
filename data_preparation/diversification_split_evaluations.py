@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from data_preparation.number_from_string_extractor import NumberFromStringExtractor
 class EntropyCalculator:
+
+    # Returns the ecoding of a cell related to some metric of diversification based on the entropy of 
+    # the split between the different segments.
     def encode(self,cell_content):
         total_share = 0
         shares = []
@@ -26,5 +29,7 @@ class EntropyCalculator:
         return -np.sum(probabilities * np.log2(probabilities))
 
 class SegmentsCount:
+
+    # Returns the encoding of diversification based on a cell value containing the number of segemnts.
     def encode(self,cell_content):
         return cell_content

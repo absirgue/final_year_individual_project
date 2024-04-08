@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 
 class CreditRatingFactorAveragesCalculator:
+    """
+    Centralizes all operations required to aggregate the data set's features on
+    pillars of the credit ratign methodology. 
+    """
 
     def __init__(self, data,entity_id_col_name):
         self.entity_id_col_name =entity_id_col_name
@@ -22,6 +26,12 @@ class CreditRatingFactorAveragesCalculator:
             "Government Intervention Adjustment":["CreditModel - Revenue/GDP [Latest Quarter] (%) (Model Version 2.6)","CreditModel - Likelihood of Government Support [Latest Quarter] (Model Version 2.6)"],
         }
     
+    """
+    Coordinates the operations.
+    Params:
+        - encoding_type - default value is 1. A value of 1 will encode by Mean, of 2 by Median,
+        and of 3 by Normalized Mean.
+    """
     def encode(self,encoding_type=1):
         match encoding_type:
             case 1:
@@ -65,6 +75,7 @@ class CreditRatingFactorAveragesCalculator:
             new_dataframe[self.entity_id_col_name] = self.data[self.entity_id_col_name]
         return new_dataframe
     
+    # Compute the range of values present in a given column.
     def precompute_column_ranges(self, column_names):
         column_ranges = {}
         for col in column_names:
@@ -76,7 +87,8 @@ class CreditRatingFactorAveragesCalculator:
                 column_ranges[col] = [range,min]
         return column_ranges
     
-    def calculate_custom_average(self, row, valid_columns, column_ranges):
+    # Calculate the normalized average of all values in a row and a given set of columns.
+    def calculate_normalized_average(self, row, valid_columns, column_ranges):
         normalized_values = []
         for col in valid_columns:
             col_data = column_ranges.get(col)
@@ -100,7 +112,7 @@ class CreditRatingFactorAveragesCalculator:
                 column_ranges = self.precompute_column_ranges(valid_columns)
                 # Apply the custom average calculation using precomputed ranges
                 new_dataframe[factor] = self.data.apply(
-                    lambda row: self.calculate_custom_average(row, valid_columns,column_ranges),
+                    lambda row: self.calculate_normalized_average(row, valid_columns,column_ranges),
                     axis=1
                 )
         if "CUSTOM Credit Rating" in  self.data.columns :

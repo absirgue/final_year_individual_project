@@ -12,13 +12,22 @@ from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
 from analysis.data_content_analyser import DataContentAnalyser
 from interface_beautifier import InterfaceBeautifier
 class AlgorithmsPerformancesEvaluation:
+    """
+    Coordinates all actions of our Hyperparameter Optimisation subsystem.
+    """
 
     def __init__(self,configurations_to_test,run_pca=False):
         self.RESULTS_FILE_NAME = "performance_metrics.json"
         self.run_pca = run_pca
         self.configurations_to_test = configurations_to_test
     
-    def get_optimal_parameters(self):
+    """
+    Returns:
+        - the optimal column emptiness threshold for the data configuration at hand
+        - the optimal number of principal components for the data configuration at hand if needed, 
+        else None
+    """
+    def get_optimal_data_preprocessing_parameters(self):
         optimal_col_emptiness_tresholds = EmptyRowsDeletionEvaluation(self.configurations_to_test).run_evaluation()
         InterfaceBeautifier().print_major_annoucement(text="Empty rows deletion evaluation done")
         optimal_dimensions = None
@@ -27,12 +36,16 @@ class AlgorithmsPerformancesEvaluation:
             InterfaceBeautifier().print_major_annoucement(text="Dimensionality evaluation done")
         return optimal_col_emptiness_tresholds,optimal_dimensions
     
+    """
+    Orchestrates all actions for Hyperparameter Optimisation of all algorithms on all 
+    data configurations specified.
+    """
     def run_evaluation(self):
         algorithms_best_perf = {}
         algorithms_perf_on_others_optimal_K = {}
         algorithms_perf_on_nb_unique_credit_ratings = {}
         algorithms_best_perf_K_superior_credit_ratings_count = {}
-        optimal_col_emptiness_tresholds,optimal_dimensions = self.get_optimal_parameters()
+        optimal_col_emptiness_tresholds,optimal_dimensions = self.get_optimal_data_preprocessing_parameters()
         for config in self.configurations_to_test.keys():
             optimal_ks = set()
             folder_name = self.get_folder_name(config)
@@ -64,9 +77,9 @@ class AlgorithmsPerformancesEvaluation:
                 perf_on_clusters_count = self.compute_algs_performance_on_nb_cluster(nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator)
                 algorithms_perf_on_nb_unique_credit_ratings[config] = perf_on_clusters_count
         self.save_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
-        # self.print_results(algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count)
         return algorithms_best_perf,algorithms_perf_on_others_optimal_K
     
+    # Formats and saves the results of our hyperparameter optimization process.
     def save_results(self,algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count):
         data = {}
         data["algorithms best performance"] = algorithms_best_perf
@@ -88,6 +101,10 @@ class AlgorithmsPerformancesEvaluation:
             folder_name += "/"+config_name
         return folder_name
 
+    """
+    Returns the performance of algorithms when the number of clusters is fixed to the number
+    of different credit ratings in the data set.
+    """
     def compute_algs_performance_on_nb_cluster(self,nb_clusters,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator):
         perf_on_clusters_count = {}
         kmeans_perf = kmeans_iterator.get_performance_on_given_K(nb_clusters)
@@ -102,6 +119,10 @@ class AlgorithmsPerformancesEvaluation:
         perf_on_clusters_count[dbscan_iterator.alg_name] = dbscan_perf
         return perf_on_clusters_count
 
+    """
+    Returns the optimal performance of algorithms when the number of clusters is fixed to 
+    be greater than the number of different credit ratings in the data set.
+    """
     def compute_algs_performance_when_K_greater_credit_ratings_count(self,nb_credit_ratings,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator,max_k_value_to_test):
         result = {}
         result["BIRCH"] = self.get_best_alg_performance_on_given_range_from_iterator(birch_iterator,nb_credit_ratings,max_k_value_to_test)
@@ -123,6 +144,10 @@ class AlgorithmsPerformancesEvaluation:
                 best_silhouette_score = result["Silhouette Score"]
         return best_perf
     
+    """
+    Returns each algorithm's performance on each of different number of clusters considered as optimal
+    by each algorithm.
+    """
     def compute_algs_performance_on_each_others_optimals(self,optimal_ks,kmeans_iterator,birch_iterator,dbscan_iterator,fuzzy_cmeans_iterator,fgkm_iterator):
         perf_on_respective_optimals = {}
         for K in optimal_ks:
@@ -138,22 +163,6 @@ class AlgorithmsPerformancesEvaluation:
             dbscan_perf = dbscan_iterator.get_performance_on_given_K(K)
             perf_on_respective_optimals[K][dbscan_iterator.alg_name] = dbscan_perf
         return perf_on_respective_optimals
-
-    def print_results(self,algorithms_best_perf,algorithms_perf_on_others_optimal_K,algorithms_perf_on_nb_unique_credit_ratings,algorithms_best_perf_K_superior_credit_ratings_count):
-        print("***************************************************************\n")
-        if self.run_pca:
-            print("!!!!!!!!!!!!!! CONCLUSION 1 (WITH PCA) RESULTS !!!!!!!!!!!!!!\n")
-        else:
-            print("!!!!!!!!!!!!!! CONCLUSION 1 (WITHOUT PCA) RESULTS !!!!!!!!!!!!!!\n")
-        print("############## OPTIMAL PERFORMANCE OF THE ALGORITHMS ##############\n")
-        print(algorithms_best_perf)
-        print("\n############## PERFORMANCE ON OTHERS OPTIMAL K ##############\n")
-        print(algorithms_perf_on_others_optimal_K)
-        print("\n############## PERFORMANCE ON NUMBER OF UNIQUE CREDIT RATINGS ##############\n")
-        print(algorithms_perf_on_nb_unique_credit_ratings)
-        print("\n############## PERFORMANCE WHEN K>NUMBER OF CREDIT RATINGS ##############\n")
-        print(algorithms_best_perf_K_superior_credit_ratings_count)
-        print("\n***************************************************************")
 
     def measure_fuzzy_cmeans_optimality(self,data,config_optimal_results,optimal_ks,folder_name,max_k_value_to_test):
         fuzzy_cmeans_iterator = FuzzyCMeansIterator(data,max_k_value_to_test)
@@ -205,6 +214,7 @@ class AlgorithmsPerformancesEvaluation:
         birch_iterator.graph(folder_name)
         return birch_iterator
 
+    # Coordinates all actions needed to prepare a data set for a given data configuration.
     def prepare_data(self,config,optimal_col_emptiness_tresholds,optimal_dimensions):
         col_emptiness_thresh = optimal_col_emptiness_tresholds[config]
         configuration = self.configurations_to_test[config]
@@ -220,6 +230,7 @@ class AlgorithmsPerformancesEvaluation:
         else:
             return data,self.count_unique_credit_ratings(credit_ratings)
     
+    # Count the number of unique credit ratings in the data set at hadn.
     def count_unique_credit_ratings(self, credit_ratings):
         unique_credit_ratings = set(credit_ratings)
         return len(unique_credit_ratings)

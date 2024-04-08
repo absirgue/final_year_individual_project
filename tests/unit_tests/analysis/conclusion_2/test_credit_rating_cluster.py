@@ -50,19 +50,19 @@ class TestCreditRatingCluster(unittest.TestCase):
         cr_cluster = CreditRatingCluster(9,0.1)
         self.assertEqual(cr_cluster.get_credit_ratings_held_in_significant_proportions(0.1),[])
 
-    def test_get_credit_ratings_proportion_gives_expected_result(self):
+    def test_get_credit_ratings_shares_gives_expected_result(self):
         cr_cluster = CreditRatingCluster(9,0.1)
         cr_cluster.credit_ratings_counts = {"1":4,"2":2,"4":3,"10":1}
-        result = cr_cluster.get_credit_ratings_proportion()
+        result = cr_cluster.get_credit_ratings_shares()
         self.assertEqual(len(result.keys()),4)
-        self.assertEqual(result["1"],0.4)
-        self.assertEqual(result["2"],0.2)
-        self.assertEqual(result["4"],0.3)
-        self.assertEqual(result["10"],0.1)
+        self.assertEqual(result["AAA"],0.4)
+        self.assertEqual(result["AA+"],0.2)
+        self.assertEqual(result["AA-"],0.3)
+        self.assertEqual(result["BBB-"],0.1)
     
-    def test_get_credit_ratings_proportion_gives_expected_result_when_no_data(self):
+    def test_get_credit_ratings_shares_gives_expected_result_when_no_data(self):
         cr_cluster = CreditRatingCluster(9,0.1)
-        result = cr_cluster.get_credit_ratings_proportion()
+        result = cr_cluster.get_credit_ratings_shares()
         self.assertEqual(len(result.keys()),0)
     
     def test_get_measures_of_location_and_dispersion_for_col_of_credit_rating_instances_gives_expected_results_cr_1(self):
@@ -150,24 +150,24 @@ class TestCreditRatingCluster(unittest.TestCase):
      
     def test_add_clustered_credit_rating_first_data_point(self):
         cr_cluster = CreditRatingCluster(9,0.1)
-        cr_cluster.add_clustered_credit_rating("1",[1,2,3])
+        cr_cluster.add_clustered_credit_rating("1",[1,2,3],1)
         self.assertEqual(cr_cluster.get_companies_count(),1)
         self.assertEqual(cr_cluster.get_credit_ratings_counts(),{"1":1})
         self.assertEqual(cr_cluster.data,{"1":[[1,2,3]]})
 
     def test_add_clustered_credit_rating_data_point_with_same_rating(self):
         cr_cluster = CreditRatingCluster(9,0.1)
-        cr_cluster.add_clustered_credit_rating("1",[1,2,3])
-        cr_cluster.add_clustered_credit_rating("1",[3,4,5])
+        cr_cluster.add_clustered_credit_rating("1",[1,2,3],0)
+        cr_cluster.add_clustered_credit_rating("1",[3,4,5],0)
         self.assertEqual(cr_cluster.get_companies_count(),2)
         self.assertEqual(cr_cluster.get_credit_ratings_counts(),{"1":2})
         self.assertEqual(cr_cluster.data,{"1":[[1,2,3],[3,4,5]]})
     
     def test_add_clustered_credit_rating_data_point_with_other_rating(self):
         cr_cluster = CreditRatingCluster(9,0.1)
-        cr_cluster.add_clustered_credit_rating("1",[1,2,3])
-        cr_cluster.add_clustered_credit_rating("1",[3,4,5])
-        cr_cluster.add_clustered_credit_rating("2",[-3,6,-8])
+        cr_cluster.add_clustered_credit_rating("1",[1,2,3],0)
+        cr_cluster.add_clustered_credit_rating("1",[3,4,5],0)
+        cr_cluster.add_clustered_credit_rating("2",[-3,6,-8],0)
         self.assertEqual(cr_cluster.get_companies_count(),3)
         self.assertEqual(cr_cluster.get_credit_ratings_counts(),{"1":2,"2":1})
         self.assertEqual(cr_cluster.data,{"1":[[1,2,3],[3,4,5]],"2":[[-3,6,-8]]})

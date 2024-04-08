@@ -5,7 +5,7 @@ class TestDataConfiguration(unittest.TestCase):
 
     def test_default_config_for_ratios_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("RATIOS")
+        config.set_to_default_configuration("RATIOS","RATIOS AND RAW NUMBERS")
         self.assertTrue("RATIO" in config.data_types)
         self.assertFalse("RAW NUMBER" in config.data_types)
         self.assertTrue(config.encode_industry_outlooks)
@@ -19,7 +19,7 @@ class TestDataConfiguration(unittest.TestCase):
         
     def test_default_config_for_raw_nbs_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("RAW NUMBERS")
+        config.set_to_default_configuration("RAW NUMBERS","RATIOS AND RAW NUMBERS")
         self.assertFalse("RATIO" in config.data_types)
         self.assertTrue("RAW NUMBER" in config.data_types)
         self.assertTrue(config.encode_industry_outlooks)
@@ -33,10 +33,10 @@ class TestDataConfiguration(unittest.TestCase):
     
     def test_default_config_for_ratios_and_textual_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("RATIOS",True)
+        config.set_to_default_configuration("RATIOS","RATIOS AND RAW NUMBERS",True)
         self.assertTrue("RATIO" in config.data_types)
         self.assertFalse("RAW NUMBER" in config.data_types)
-        self.assertTrue("INDUSTRY NAMES" in config.data_types)
+        self.assertFalse("INDUSTRY NAMES" in config.data_types)
         self.assertTrue("DIVERSIFICATION - GEOGRAPHIC SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
@@ -44,15 +44,14 @@ class TestDataConfiguration(unittest.TestCase):
         self.assertEqual(config.outlooks_weight_distribution, {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0})
         self.assertFalse(config.encode_country_risk_score)
         self.assertFalse(config.encode_industry_name)
-        self.assertFalse(config.encode_geography_diversification)
-        self.assertFalse(config.encode_business_diversification)
+        self.assertTrue(config.encode_geography_diversification)
+        self.assertTrue(config.encode_business_diversification)
     
     def test_default_config_for_raw_nbs_and_textual_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("RAW NUMBERS",True)
+        config.set_to_default_configuration("RAW NUMBERS","RATIOS AND RAW NUMBERS",True)
         self.assertFalse("RATIO" in config.data_types)
         self.assertTrue("RAW NUMBER" in config.data_types)
-        self.assertTrue("INDUSTRY NAMES" in config.data_types)
         self.assertTrue("DIVERSIFICATION - GEOGRAPHIC SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
@@ -60,12 +59,12 @@ class TestDataConfiguration(unittest.TestCase):
         self.assertEqual(config.outlooks_weight_distribution, {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0})
         self.assertFalse(config.encode_country_risk_score)
         self.assertFalse(config.encode_industry_name)
-        self.assertFalse(config.encode_geography_diversification)
-        self.assertFalse(config.encode_business_diversification)
+        self.assertTrue(config.encode_geography_diversification)
+        self.assertTrue(config.encode_business_diversification)
     
     def test_default_config_for_both_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS")
+        config.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS","RATIOS AND RAW NUMBERS")
         self.assertTrue("RATIO" in config.data_types)
         self.assertTrue("RAW NUMBER" in config.data_types)
         self.assertTrue(config.encode_industry_outlooks)
@@ -79,10 +78,10 @@ class TestDataConfiguration(unittest.TestCase):
     
     def test_default_config_for_both_and_textual_is_as_expected(self):
         config = DataConfiguration()
-        config.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS",True)
+        config.set_to_default_configuration("BOTH RATIOS AND RAW NUMBERS","RATIOS AND RAW NUMBERS",True)
         self.assertTrue("RATIO" in config.data_types)
         self.assertTrue("RAW NUMBER" in config.data_types)
-        self.assertTrue("INDUSTRY NAMES" in config.data_types)
+        self.assertFalse("INDUSTRY NAMES" in config.data_types)
         self.assertTrue("DIVERSIFICATION - GEOGRAPHIC SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
         self.assertTrue("DIVERSIFICATION - BUSINESS SEGMENTS - REVENUE" in config.data_types)
@@ -90,5 +89,5 @@ class TestDataConfiguration(unittest.TestCase):
         self.assertEqual(config.outlooks_weight_distribution, {'buy':2,'high':1,'highest':2,'hold':0,'low':-1,'lowest':-2,'neutral':0})
         self.assertFalse(config.encode_country_risk_score)
         self.assertFalse(config.encode_industry_name)
-        self.assertFalse(config.encode_geography_diversification)
-        self.assertFalse(config.encode_business_diversification)
+        self.assertTrue(config.encode_geography_diversification)
+        self.assertTrue(config.encode_business_diversification)

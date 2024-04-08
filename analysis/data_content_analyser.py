@@ -1,6 +1,9 @@
 from analysis.json_helper import JSONHelper
 
 class DataContentAnalyser:
+    """
+    Performs and saves the analysis of a given data set's content. 
+    """
 
     def __init__(self,data,config_name,ordered_credit_ratings,col_names):
         self.folder_name = "data_configs_analysis"

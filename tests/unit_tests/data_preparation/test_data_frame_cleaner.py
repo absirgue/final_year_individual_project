@@ -32,7 +32,7 @@ class TestDataFrameCleaner(unittest.TestCase):
         self.assertEqual("0.2055 ",result.loc[1,"Market Signal Probability of Default (NonRatings) [Latest]"])
     
     def run_data_preparation(self, data_types_wanted):
-        raw_return =  DataTypeIsolator(self.data,"").isolate_data_types(data_types_wanted)
+        raw_return =  DataTypeIsolator(self.data,"","").isolate_data_types(data_types_wanted)
         raw_return.columns = raw_return.iloc[0]
         raw_return = raw_return.drop(0)
         return raw_return

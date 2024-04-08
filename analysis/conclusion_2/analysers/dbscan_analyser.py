@@ -3,6 +3,10 @@ from analysis.conclusion_2.clusters_analyzer import ClustersAnalyzer
 from analysis.json_helper import JSONHelper
 
 class DBSCANAnalyser:
+    """
+    Runs DBSCAN with specified hyperparameters and on a specified data set before coordianting the 
+    analysis of its result.
+    """
 
     def __init__(self,data_source,entity_ids,col_names,encoding_first_junk,folder_name, data, credit_ratings,credit_rating_analyzers):
         self.data_source = data_source
@@ -50,7 +54,7 @@ class DBSCANAnalyser:
         cluster_analyzer = ClustersAnalyzer(self.entity_ids,self.data_source,self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
-        JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
+        JSONHelper().save(self.folder_name,self.alg_name,analysis)
     
     def analyse_alg_optimum_in_format_2(self,optimum,performance_metrics):
         dbscan = DBSCAN(eps=float(performance_metrics["Eps"][optimum]),min_samples=int(performance_metrics["MinPts"][optimum])).fit(self.data)
@@ -64,4 +68,4 @@ class DBSCANAnalyser:
         cluster_analyzer = ClustersAnalyzer(self.entity_ids,self.data_source,self.encoding_first_junk,labels,self.credit_ratings,self.credit_rating_analyzers,self.data,self.col_names)
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
-        JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
+        JSONHelper().save(self.folder_name,self.alg_name,analysis)

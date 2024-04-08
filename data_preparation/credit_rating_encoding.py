@@ -1,5 +1,8 @@
 import math
 class CreditRatingEncoding:
+    """
+    Centralizes operations to encode and decode credit ratings.
+    """
 
     def __init__(self, data=[], credit_rating_col_name=""):
         self.NAME_COL_TO_ENCODE  = credit_rating_col_name
@@ -27,6 +30,10 @@ class CreditRatingEncoding:
                                   "C":21,
                                   "D":22}
     
+    """
+    Performs the encoding. There is only one credit rating for each row and it is defined for 
+    every row.
+    """
     def encode(self):
         for index, row in self.data.iterrows():
             cell_content = str(row[self.NAME_COL_TO_ENCODE])
@@ -38,12 +45,17 @@ class CreditRatingEncoding:
         self.data["CUSTOM Credit Rating"] = self.data["CUSTOM Credit Rating"].astype(float)
         return self.data, "CUSTOM Credit Rating"
     
+    # Returns the numerical encoding of a given credit rating if it exists in our mapping.
     def compute_numeric_encoding_of_credit_rating(self, rating):
         if rating in self.CR_NUMBER_MAPPING.keys():
             return self.CR_NUMBER_MAPPING[rating]
         else:
             return math.nan
     
+    """
+    Performs the reverse operation to encoding and returns the letter grade associated 
+    with a given numerical encoding.
+    """ 
     def compute_letter_grade_from_numeric_encoding(self, encoding):
         try:
             encoding = int(encoding)
@@ -54,8 +66,10 @@ class CreditRatingEncoding:
         except:
             return encoding
     
+    # Returns the numerical encoding of the first "non-invetment grade" (aka "junk") rating. 
     def get_encoding_first_junk_rating(self):
         return self.CR_NUMBER_MAPPING["BB+"]
 
+    # Returns the numerical encoding of the B- rating.
     def get_b_minus_encoding(self):
         return self.CR_NUMBER_MAPPING["B-"]

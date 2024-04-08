@@ -1,4 +1,9 @@
 class IndustryOutlookEncode:
+    """
+    Coordinates actions required for the encoding of analysts' outlooks on companies' industry(ies)
+    of operation.
+    """
+
     def __init__(self,data):
         self.data = data
 

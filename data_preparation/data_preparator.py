@@ -10,6 +10,9 @@ from data_preparation.industry_name_encoding import IndustryNameHashEncoding
 from data_preparation.credit_rating_encoding import CreditRatingEncoding
 from data_preparation.credit_rating_factor_averages_calculator import CreditRatingFactorAveragesCalculator
 class DataPreparator:
+    """
+    Coordinates all operations of our Data Preprocessing subsystem. 
+    """
 
     def __init__(self,configuration,data_source):
         self.intermediary_dataframe = None
@@ -27,6 +30,14 @@ class DataPreparator:
     def read_data_from_csv(self):
         return pd.read_excel(self.data_source.path, sheet_name=self.data_source.sheet_name)
     
+    """
+    Coordinates the application of all preprocessing technqiues specified in a given data 
+    configuration. The encoded data set is then cleaned and striped of empty values. 
+    We however save ordered lists of encoded credit rating values, column names, and 
+    S&P Entity ID values (a unique identified for each company.)
+
+    Returns: the modified data set in the form of a 2D array of numbers. 
+    """
     def apply_configuration(self,threshold_of_column_emptiness=0.05):
         data = DataTypeIsolator(self.data,self.NAME_CREDIT_RATING_ABSTRACT_COL,self.NAME_SP_ENTITY_ID_ABSTRACT_COL).isolate_data_types(self.configuration.data_types)
         data.columns = data.iloc[0]
@@ -60,9 +71,11 @@ class DataPreparator:
         data = data.astype(float)
         return data
 
+    # Useful only to provide insights on the encoded data frame before it is cleaned. 
     def get_intermediary_dataframe(self):
         return self.intermediary_dataframe
     
+    # Extracts and stores an ordered list of S&P Entity ID values before deleting the related feature.
     def extract_and_delete_entity_ids(self, data):
         if self.NAME_SP_ENTITY_ID_COL in data.columns:
             self.entity_ids = []
@@ -73,15 +86,18 @@ class DataPreparator:
                 self.entity_ids.append(cell_content)
             data.drop(self.NAME_SP_ENTITY_ID_COL, axis=1,inplace=True)
         else:
-            print("NO COL NAMED CORRECTLY")
+            print("NO COLUMN NAMED CORRECTLY FOR DATA TYPE EXTRACTION")
         return data
 
+    # Returns the S&P Entity ID value of a given row of our encoded data set.
     def get_entity_id_of_row(self,row_idx):
         return self.entity_ids[row_idx]
 
+    # Returns the ordered list of S&P Entity IDs.
     def get_entity_ids(self):
         return self.entity_ids
 
+    # Extracts and stores an ordered list of Credit Ratin values before deleting the related feature.
     def extract_and_delete_credit_ratings(self,data):
         if "CUSTOM Credit Rating" in data.columns:
             self.credit_ratings = []
@@ -93,19 +109,14 @@ class DataPreparator:
             data.drop(self.NAME_CREDIT_RATING_COL, axis=1,inplace=True)
         return data
     
-    def remove_custom_columns(self,dataframe):
-        columns_to_remove = [col for col in dataframe.columns if col.startswith("CUSTOM")]
-        dataframe.drop(columns=columns_to_remove, inplace=True)
-        return dataframe
-    
-    def get_encoding_of_first_junk_rating(self):
-        return CreditRatingEncoding().get_encoding_first_junk_rating()
-
+    # Returns an ordered list of column names
     def get_column_names(self):
         return list(self.col_names)
 
+    # Returns an ordered list of credit rating values.
     def get_credit_ratings(self):
         return self.credit_ratings
     
+    # Returns the number of columns that was added by our encoding operations.
     def get_number_added_columns(self):
         return self.number_added_columns

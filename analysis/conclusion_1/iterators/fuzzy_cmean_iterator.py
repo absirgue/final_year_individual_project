@@ -8,6 +8,10 @@ from skfuzzy.cluster import cmeans
 from analysis.conclusion_1.list_transformations import ListTransformations
 from interface_beautifier import InterfaceBeautifier
 class FuzzyCMeansIterator:
+    """
+    Coordinates all actions required to identify the optimal C value for Fuzzy C-Means to 
+    perform optimally on a given data set.
+    """
 
     def __init__(self,data,max_nb_of__clusters = None,nb_iterations=5):
         self.performance_data = []

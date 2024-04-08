@@ -3,7 +3,11 @@ import random
 import math 
 import pandas as pd
 class OCIL:
-
+    """
+    Reference implementation of OCIL for experimentation purposes.
+    We will not study this algorithm further.
+    """
+    
     def __init__(self,K):
         self.K = K
         

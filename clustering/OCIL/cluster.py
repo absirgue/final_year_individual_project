@@ -2,7 +2,11 @@ from clustering.vector_calculations import VectorCalculations
 import math 
 
 class Cluster:
-
+    """
+    Element of our reference implementation of OCIL for experimentation purposes.
+    We will not study this algorithm further.
+    """
+    
     def __init__(self,categorical_attributes_count):
         self.categorical_attributes_frequency = {}
         self.intialize_categorical_attributes_frequency(categorical_attributes_count)

@@ -3,6 +3,10 @@ from analysis.conclusion_2.clusters_analyzer import ClustersAnalyzer
 from analysis.json_helper import JSONHelper
 
 class BIRCHAnalyser:
+    """
+    Runs BIRCH with specified hyperparameters and on a specified data set before coordianting the 
+    analysis of its result.
+    """
 
     def __init__(self,data_source,entity_ids,col_names,encoding_first_junk,folder_name, data, credit_ratings,credit_rating_analyzers):
         self.data_source = data_source
@@ -51,7 +55,7 @@ class BIRCHAnalyser:
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name+"_"+optimum)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
         self.alg_name = self.alg_name+"_"+optimum
-        JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
+        JSONHelper().save(self.folder_name,self.alg_name,analysis)
     
     def analyse_alg_optimum_in_format_2(self,optimum,performance_metrics):
         birch = Birch(threshold=float(performance_metrics["Threshold Value"][optimum]), branching_factor=int(performance_metrics["Branching Factor"][optimum]), n_clusters=int(performance_metrics["K"])).fit(self.data)
@@ -66,4 +70,4 @@ class BIRCHAnalyser:
         analysis["Clusters Content Analysis"] = cluster_analyzer.analyze(self.folder_name,self.alg_name+"_"+optimum)
         self.significant_clusters_count = analysis["Clusters Content Analysis"]["Significant Clusters (count)"]
         self.alg_name = self.alg_name+"_"+optimum
-        JSONHelper().save(self.folder_name,self.alg_name+"_"+optimum,analysis)
+        JSONHelper().save(self.folder_name,self.alg_name,analysis)

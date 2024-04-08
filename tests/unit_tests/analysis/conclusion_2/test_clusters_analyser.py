@@ -11,10 +11,10 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster.companies_count = 10
         result = ClustersAnalyzer(None,None,None,None,None,None).get_cluster_cr_shares([cr_cluster])
         result = result[0]
-        self.assertEqual(result["1"],0.4)
-        self.assertEqual(result["2"],0.2)
-        self.assertEqual(result["4"],0.3)
-        self.assertEqual(result["10"],0.1)
+        self.assertEqual(result["AAA"],0.4)
+        self.assertEqual(result["AA+"],0.2)
+        self.assertEqual(result["AA-"],0.3)
+        self.assertEqual(result["BBB-"],0.1)
 
     def test_get_cluster_cr_shares_gives_expected_results_many_cr_in_2_cluster(self):
         cr_cluster1 = CreditRatingCluster(0,0)
@@ -24,13 +24,13 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster2.credit_ratings_counts = {"12":1,"13":1,"14":3}
         cr_cluster2.companies_count = 5
         result = ClustersAnalyzer(None,None,None,None,None,None).get_cluster_cr_shares([cr_cluster1,cr_cluster2])
-        self.assertEqual(result[0]["1"],0.4)
-        self.assertEqual(result[0]["2"],0.2)
-        self.assertEqual(result[0]["4"],0.3)
-        self.assertEqual(result[0]["10"],0.1)
-        self.assertEqual(result[1]["12"],0.2)
-        self.assertEqual(result[1]["13"],0.2)
-        self.assertEqual(result[1]["14"],0.6)
+        self.assertEqual(result[0]["AAA"],0.4)
+        self.assertEqual(result[0]["AA+"],0.2)
+        self.assertEqual(result[0]["AA-"],0.3)
+        self.assertEqual(result[0]["BBB-"],0.1)
+        self.assertEqual(result[1]["BB"],0.2)
+        self.assertEqual(result[1]["BB-"],0.2)
+        self.assertEqual(result[1]["B+"],0.6)
 
     def test_get_cluster_cr_shares_gives_expected_results_no_cr(self):
         cr_cluster = CreditRatingCluster(0,0)
@@ -44,7 +44,7 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster = CreditRatingCluster(0,0)
         cr_cluster.credit_ratings_counts = {"1":4,"2":2,"4":3,"10":1}
         cr_cluster.data = ["test"]*10
-        cr_analyser = ClustersAnalyzer(None,None,None,None,None,None)
+        cr_analyser = ClustersAnalyzer([],"",None,None,None,None,None,None)
         analyser_1 = CreditRatingAnalyzer()
         analyser_1.data = ["test"]*5
         analyser_2 = CreditRatingAnalyzer()
@@ -56,10 +56,10 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_analyser.credit_ratings_analyzers = {"1":analyser_1,"2":analyser_2,"4":analyser_4,"10":analyser_10}
         result = cr_analyser.get_clusters_share_of_overal_credit_ratings([cr_cluster])
         result = result[0]
-        self.assertEqual(result["1"],0.8)
-        self.assertEqual(result["2"],0.5)
-        self.assertEqual(result["4"],0.3)
-        self.assertEqual(result["10"],0.5)
+        self.assertEqual(result["AAA"],0.8)
+        self.assertEqual(result["AA+"],0.5)
+        self.assertEqual(result["AA-"],0.3)
+        self.assertEqual(result["BBB-"],0.5)
     
     def test_get_share_of_companies_in_each_clusters_gives_expected_result(self):
         cr_cluster1 = CreditRatingCluster(0,0)
@@ -141,16 +141,16 @@ class TestClustersAnalyser(unittest.TestCase):
         self.assertEqual(result, "")
 
     def test_get_col_name_gives_expected_result(self):
-        result = ClustersAnalyzer(None,None,None,None,None,["Col 1","Col 2"]).get_col_name(1)
+        result = ClustersAnalyzer([],"",None,None,None,None,None,["Col 1","Col 2"]).get_col_name(1)
         self.assertEqual(result,"Col 2")
 
     def test_get_col_name_gives_index_out_of_bounds(self):
         try:
-            ClustersAnalyzer(None,None,None,None,None,["Col 1","Col 2"]).get_col_name(2)
+            res = ClustersAnalyzer([],"",None,None,None,None,None,["Col 1","Col 2"]).get_col_name(2)
             self.assertTrue(False)
         except IndexError:
             self.assertTrue(True)
-        except:
+        except Exception as e:
             self.assertTrue(False)
 
     def test_compute_weigthed_avg_entropy_gives_expected_results_many_cr_in_2_clusters(self):
@@ -161,7 +161,7 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster2.credit_ratings_counts = {"12":2,"13":1,"14":3}
         cr_cluster2.companies_count = 6
         expected_result = cr_cluster1.get_entropy()*0.4+cr_cluster2.get_entropy()*0.6
-        result = ClustersAnalyzer(data=["test"]*10).compute_weigthed_avg_entropy([cr_cluster1,cr_cluster2])
+        result = ClustersAnalyzer([],"",data=["test"]*10).compute_weigthed_avg_entropy([cr_cluster1,cr_cluster2])
         self.assertEqual(result,expected_result)
     
     def test_get_clusters_entropies_gives_expected_results_many_cr_in_2_clusters(self):
@@ -172,7 +172,7 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster2.credit_ratings_counts = {"12":2,"13":1,"14":3}
         cr_cluster2.companies_count = 6
         expected_result = [cr_cluster1.get_entropy(),cr_cluster2.get_entropy()]
-        result = ClustersAnalyzer(data=["test"]*10).get_clusters_entropies([cr_cluster1,cr_cluster2])
+        result = ClustersAnalyzer([],"",data=["test"]*10).get_clusters_entropies([cr_cluster1,cr_cluster2])
         self.assertEqual(result,expected_result)
 
     def test_get_clusters_with_various_cr_ranges_gives_expected_results_many_cr_in_2_clusters_scenar_1(self):
@@ -182,7 +182,7 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster2 = CreditRatingCluster(0,0)
         cr_cluster2.credit_ratings_counts = {"12":2,"13":1,"14":3}
         cr_cluster2.companies_count = 6
-        result = ClustersAnalyzer().get_clusters_with_various_cr_ranges([cr_cluster1,cr_cluster2])
+        result = ClustersAnalyzer([],"").get_clusters_with_various_cr_ranges([cr_cluster1,cr_cluster2])
         self.assertEqual(len(result),1)
     
     def test_get_clusters_with_various_cr_ranges_gives_expected_results_many_cr_in_2_clusters_scenar_2(self):
@@ -192,11 +192,11 @@ class TestClustersAnalyser(unittest.TestCase):
         cr_cluster2 = CreditRatingCluster(0,0)
         cr_cluster2.credit_ratings_counts = {"12":2,"13":1,"18":3}
         cr_cluster2.companies_count = 6
-        result = ClustersAnalyzer().get_clusters_with_various_cr_ranges([cr_cluster1,cr_cluster2])
+        result = ClustersAnalyzer([],"").get_clusters_with_various_cr_ranges([cr_cluster1,cr_cluster2])
         self.assertEqual(len(result),2)
     
     def test_create_credit_rating_clusters_scenario_1(self):
-        cr_analyser = ClustersAnalyzer()
+        cr_analyser = ClustersAnalyzer([],"")
         cr_analyser.data = [["data "+str(i)] for i in range(10)]
         cr_analyser.row_credit_ratings = ["1","2","4","1","2","3","2","4","3","2"]
         cr_analyser.cluster_labels = [0,0,1,0,1,2,2,2,1,0]
@@ -233,7 +233,7 @@ class TestClustersAnalyser(unittest.TestCase):
 
 
     #  TO DO - Clean
-    # def explain_incoherencies(self, credit_rating_clusters):
+    # def explain_incoherences(self, credit_rating_clusters):
     #     clusters_with_notable_ranges = set(self.get_clusters_with_various_cr_ranges(credit_rating_clusters))
     #     significant_clusters = set(self.get_singificant_clusters(credit_rating_clusters))
     #     clusters_requiring_explanations = clusters_with_notable_ranges.union(significant_clusters)

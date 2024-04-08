@@ -4,6 +4,10 @@ from analysis.json_helper import JSONHelper
 from skfuzzy.cluster import cmeans
 
 class FuzzyCMeansAnalyser:
+    """
+    Runs Fuzzy C-Means with specified hyperparameters and on a specified data set before 
+    coordianting the analysis of its result.
+    """
 
     def __init__(self,data_source,entity_ids,col_names,encoding_first_junk,folder_name, data, credit_ratings,credit_rating_analyzers):
         self.data_source =data_source

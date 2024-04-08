@@ -19,7 +19,7 @@ class TestCreditRatigFactorAveragesCalculator(unittest.TestCase):
         super().__init__(methodName)
 
     def test_mean_averager_gives_expected_result(self):
-        result = CreditRatingFactorAveragesCalculator(self.data).encode(1)
+        result = CreditRatingFactorAveragesCalculator(self.data,"").encode(1)
         expected_efficiency = [-0.05,0.75,0.4]
         expected_liquidity = [0.4,0.4,0.48]
         for i in range(3):
@@ -27,7 +27,7 @@ class TestCreditRatigFactorAveragesCalculator(unittest.TestCase):
             self.assertAlmostEqual(expected_liquidity[i],list(result["Liquidity"])[i])
 
     def test_median_averager_gives_expected_result(self):
-        result = CreditRatingFactorAveragesCalculator(self.data).encode(2)
+        result = CreditRatingFactorAveragesCalculator(self.data,"").encode(2)
         expected_efficiency = [-0.05,0.75,0.4]
         expected_liquidity = [0.5,0.4,0.5]
         for i in range(3):
@@ -36,7 +36,7 @@ class TestCreditRatigFactorAveragesCalculator(unittest.TestCase):
 
         
     def test_normalized_mean_averager_gives_expected_result(self):
-        result = CreditRatingFactorAveragesCalculator(self.data).encode(3)
+        result = CreditRatingFactorAveragesCalculator(self.data,"").encode(3)
         expected_efficiency = [0,1,0.616666666666]
         expected_liquidity = [0.2717948717,0.33333333333333,0.333333333333]
         for i in range(3):

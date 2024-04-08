@@ -7,6 +7,10 @@ from analysis.conclusion_1.list_transformations import ListTransformations
 from analysis.conclusion_1.list_analyser import ListAnalyser
 
 class BIRCHIterator:
+    """
+    Coordinates all actions required to identify the optimal branching factor and threshold 
+    values for BIRCH to perform optimally on a given data set.
+    """
 
     def __init__(self,data,number_of_clusters):
         self.performance_data = []
@@ -23,6 +27,7 @@ class BIRCHIterator:
         self.performance_data = []
         branching_factor_values = create_ints_list(self.MIN_BRANCHING_FACTOR,self.MAX_BRANCHING_FACTOR,5)
         threshold_values = create_floats_list(self.MIN_THRESHOLD,self.MAX_THRESHOLD,0.25)
+        # Iterates over all possible pairs of hyperparameters.
         for threshold in threshold_values:
             for branching_factor in branching_factor_values:
                 calinski_harabasz_sum = 0
@@ -46,8 +51,8 @@ class BIRCHIterator:
     def get_optimal(self):
         if not self.performance_data:
             return None
-        calinski_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Calinski Harabasz Index")
-        silhouette_best = ListAnalyser().get_values_for_max_measure_value(self.performance_data,"Silhouette Score")
+        calinski_best = ListAnalyser().get_values_for_max_key_value(self.performance_data,"Calinski Harabasz Index")
+        silhouette_best = ListAnalyser().get_values_for_max_key_value(self.performance_data,"Silhouette Score")
         optimums = {}
         if calinski_best:
             optimums["Calinski Harabasz Index Optimum"] =  {"Threshold Value": calinski_best["threshold"],"Branching Factor": calinski_best["branching factor"],"Calinski Harabasz Index":calinski_best["Calinski Harabasz Index"],"Time":calinski_best["time"]}

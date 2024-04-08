@@ -1,10 +1,14 @@
 from data_preparation.number_from_string_extractor import NumberFromStringExtractor
 
 class IndustryNameHashEncoding:
+    """
+    Coordinates actions required for the hash-based encoding of the names of companies' industry(ies)
+    of operation.
+    """
+
     def __init__(self,data_frame):
         self.data = data_frame
 
-    #  TO DO - rename to "encode" and create such a "clean" function
     def encode(self):
         row_industry_share_mapping = []
         max_nb_industries = 0

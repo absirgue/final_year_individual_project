@@ -3,7 +3,11 @@ import random
 from clustering.p_norm import PNorm
 
 class KMeans:
+    """
+    Reference implementation of K-Means for experimentation purposes.
 
+    It is not optimal in terms of run time and is therefore not used in our research.
+    """
     def __init__(self,K,error_tolerance):
         self.K = K
         self.error_tolerance = error_tolerance
