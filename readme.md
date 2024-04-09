@@ -1,6 +1,6 @@
 # Clustering Algorithms for the Study of Credit Ratings and of their Coherence with Raw Financial Data - Source Code
 
-This project and its source code, the content of this repository, was realised in the context of my Final Year Individual Project as part of my Computer Science (AI) with Magement (BSc.) at King's College London. In this file, you will find a quick description of the paper, guides for installing, running, and testing its source code, and a qukc description of the raw analysis files present alongside the code in this repository.
+This project and its source code, the content of this repository, was realised in the context of my Final Year Individual Project as part of my Computer Science (AI) with Magement (BSc.) at King's College London. In this file, you will find a quick description of the paper, guides for installing, running, and testing its source code, and a quick description of the raw analysis files present alongside the code in this repository.
 
 ## Project Presentation - Abstract
 
