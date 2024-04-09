@@ -1,0 +1,1200 @@
+{
+  "Algorithm Parameters": {
+    "K": 12
+  },
+  "Algorithm Performance": {
+    "WCSS": 149877721.3896258,
+    "Silhouette Score": 0.4950038032369483,
+    "Calinski Harabasz Index": 578.6886629701054
+  },
+  "Clusters Content Analysis": {
+    "Predictive Power": {
+      "Global": {
+        "Metrics": {
+          "Class: Upgrade": "No element of this class",
+          "Class: Downgrade": "No element of this class"
+        },
+        "Confusion Matrix": {
+          "predicted_down_AND_was_down": 0,
+          "predicted_up_AND_was_up": 0,
+          "predicted_no_change_AND_was_no_change": 9,
+          "predicted_down_BUT_was_up": 0,
+          "predicted_down_BUT_was_no_change": 22,
+          "predicted_no_change_BUT_was_up": 0,
+          "predicted_no_change_BUT_was_down": 0,
+          "predicted_up_BUT_was_down": 0,
+          "predicted_up_BUT_was_no_change": 23
+        }
+      },
+      "Restricted to jumps to or from below B-": {
+        "Metrics": {
+          "Class: Upgrade": "No element of this class",
+          "Class: Downgrade": "No element of this class"
+        },
+        "Confusion Matrix": {
+          "predicted_down_AND_was_down": 0,
+          "predicted_up_AND_was_up": 0,
+          "predicted_no_change_AND_was_no_change": 9,
+          "predicted_down_BUT_was_up": 0,
+          "predicted_down_BUT_was_no_change": 22,
+          "predicted_no_change_BUT_was_up": 0,
+          "predicted_no_change_BUT_was_down": 0,
+          "predicted_up_BUT_was_down": 0,
+          "predicted_up_BUT_was_no_change": 23
+        }
+      }
+    },
+    "Share of total companies in each clusters": [
+      0.018518518518518517,
+      0.05555555555555555,
+      0.18518518518518517,
+      0.018518518518518517,
+      0.07407407407407407,
+      0.037037037037037035,
+      0.07407407407407407,
+      0.14814814814814814,
+      0.3333333333333333,
+      0.018518518518518517,
+      0.018518518518518517,
+      0.018518518518518517,
+      {
+        "SUM": 0.9999999999999999
+      }
+    ],
+    "Clusters with significant ranges (count)": 4,
+    "Significant Clusters (count)": 1,
+    "Cluster Credit Ratings Shares": [
+      {
+        "AA-": 1
+      },
+      {
+        "AA-": 0.3333333333333333,
+        "BBB+": 0.3333333333333333,
+        "BBB": 0.3333333333333333
+      },
+      {
+        "AA-": 0.1,
+        "A": 0.1,
+        "A-": 0.1,
+        "BBB+": 0.2,
+        "BBB": 0.3,
+        "BBB-": 0.2
+      },
+      {
+        "A+": 1
+      },
+      {
+        "A+": 0.25,
+        "BBB": 0.25,
+        "BBB-": 0.25,
+        "BB+": 0.25
+      },
+      {
+        "A": 1
+      },
+      {
+        "A": 0.25,
+        "A-": 0.25,
+        "BBB": 0.5
+      },
+      {
+        "A-": 0.375,
+        "BBB+": 0.25,
+        "BBB": 0.25,
+        "BB+": 0.125
+      },
+      {
+        "A-": 0.05555555555555555,
+        "BBB+": 0.05555555555555555,
+        "BBB": 0.2777777777777778,
+        "BBB-": 0.16666666666666666,
+        "BB+": 0.05555555555555555,
+        "BB": 0.16666666666666666,
+        "BB-": 0.05555555555555555,
+        "B+": 0.05555555555555555,
+        "B": 0.1111111111111111
+      },
+      {
+        "BBB+": 1
+      },
+      {
+        "BBB+": 1
+      },
+      {
+        "BBB": 1
+      }
+    ],
+    "Share of total companies with given credit rating in each cluter": [
+      {
+        "AA-": 0.3333333333333333
+      },
+      {
+        "AA-": 0.3333333333333333,
+        "BBB+": 0.125,
+        "BBB": 0.06666666666666667
+      },
+      {
+        "AA-": 0.3333333333333333,
+        "A": 0.25,
+        "A-": 0.16666666666666666,
+        "BBB+": 0.25,
+        "BBB": 0.2,
+        "BBB-": 0.3333333333333333
+      },
+      {
+        "A+": 0.5
+      },
+      {
+        "A+": 0.5,
+        "BBB": 0.06666666666666667,
+        "BBB-": 0.16666666666666666,
+        "BB+": 0.3333333333333333
+      },
+      {
+        "A": 0.5
+      },
+      {
+        "A": 0.25,
+        "A-": 0.16666666666666666,
+        "BBB": 0.13333333333333333
+      },
+      {
+        "A-": 0.5,
+        "BBB+": 0.25,
+        "BBB": 0.13333333333333333,
+        "BB+": 0.3333333333333333
+      },
+      {
+        "A-": 0.16666666666666666,
+        "BBB+": 0.125,
+        "BBB": 0.3333333333333333,
+        "BBB-": 0.5,
+        "BB+": 0.3333333333333333,
+        "BB": 1,
+        "BB-": 1,
+        "B+": 1,
+        "B": 1
+      },
+      {
+        "BBB+": 0.125
+      },
+      {
+        "BBB+": 0.125
+      },
+      {
+        "BBB": 0.06666666666666667
+      }
+    ],
+    "Cluster ranges": [
+      0,
+      5,
+      6,
+      0,
+      6,
+      0,
+      3,
+      4,
+      8,
+      0,
+      0,
+      0
+    ],
+    "Cluster metrics of location and dispersion": [
+      {
+        "Mean": 4,
+        "Median": 4,
+        "1st Quartile": 4,
+        "3rd Quartile": 4,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 7,
+        "Median": 8,
+        "1st Quartile": 6,
+        "3rd Quartile": 8.5,
+        "Standard Deviation": 2.160246899469287,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 8,
+        "Median": 8.5,
+        "1st Quartile": 7.25,
+        "3rd Quartile": 9,
+        "Standard Deviation": 1.7888543819998317,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 5,
+        "Median": 5,
+        "1st Quartile": 5,
+        "3rd Quartile": 5,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 8.75,
+        "Median": 9.5,
+        "1st Quartile": 8,
+        "3rd Quartile": 10.25,
+        "Standard Deviation": 2.277608394786075,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 6,
+        "Median": 6,
+        "1st Quartile": 6,
+        "3rd Quartile": 6,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 7.75,
+        "Median": 8,
+        "1st Quartile": 6.75,
+        "3rd Quartile": 9,
+        "Standard Deviation": 1.299038105676658,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 8.25,
+        "Median": 8,
+        "1st Quartile": 7,
+        "3rd Quartile": 9,
+        "Standard Deviation": 1.299038105676658,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 10.777777777777779,
+        "Median": 10,
+        "1st Quartile": 9,
+        "3rd Quartile": 12,
+        "Standard Deviation": 2.298684540619689,
+        "Is Signficant": true
+      },
+      {
+        "Mean": 8,
+        "Median": 8,
+        "1st Quartile": 8,
+        "3rd Quartile": 8,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 8,
+        "Median": 8,
+        "1st Quartile": 8,
+        "3rd Quartile": 8,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      },
+      {
+        "Mean": 9,
+        "Median": 9,
+        "1st Quartile": 9,
+        "3rd Quartile": 9,
+        "Standard Deviation": 0,
+        "Is Signficant": false
+      }
+    ],
+    "Cluster entropies": [
+      0,
+      1.584962500721156,
+      2.4464393446710155,
+      0,
+      2,
+      0,
+      1.5,
+      1.9056390622295665,
+      2.8855130303998817,
+      0,
+      0,
+      0
+    ],
+    "Maximum entropy": 2.8855130303998817,
+    "Weighted average entropy": 2.0445116295168155,
+    "Incoherencies explanations": {
+      "CLUSTER 0": {
+        "RATING BBB": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 14.704975000000001,
+                "Median": 15.288499999999999,
+                "1st Quartile": 12.380874999999998,
+                "3rd Quartile": 16.588875,
+                "Standard Deviation": 2.761583935292692
+              },
+              "Cluster Statistics": {
+                "Mean": 15.222249999999997,
+                "Median": 15.771625,
+                "1st Quartile": 13.991999999999999,
+                "3rd Quartile": 16.7271875,
+                "Standard Deviation": 2.2668054361626795
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 13.7206,
+                "Median": 14.6972,
+                "1st Quartile": 10.356200000000001,
+                "3rd Quartile": 16.2539,
+                "Standard Deviation": 3.9515319317955666
+              },
+              "Cluster Statistics": {
+                "Mean": 11.398333333333333,
+                "Median": 10.0958,
+                "1st Quartile": 9.7489,
+                "3rd Quartile": 12.3965,
+                "Standard Deviation": 2.3497844686032137
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 21465.32,
+                "Median": 13064.45,
+                "1st Quartile": 6153.95,
+                "3rd Quartile": 30979.275,
+                "Standard Deviation": 20407.44416868348
+              },
+              "Cluster Statistics": {
+                "Mean": 10484.583333333334,
+                "Median": 10505.35,
+                "1st Quartile": 9194.65,
+                "3rd Quartile": 11784.900000000001,
+                "Standard Deviation": 2114.981245517059
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 13.015680000000001,
+                "Median": 11.1588,
+                "1st Quartile": 7.495499999999999,
+                "3rd Quartile": 14.4358,
+                "Standard Deviation": 9.322574960399443
+              },
+              "Cluster Statistics": {
+                "Mean": 7.912066666666665,
+                "Median": 8.678999999999998,
+                "1st Quartile": 6.2886999999999995,
+                "3rd Quartile": 9.918899999999999,
+                "Standard Deviation": 3.0132476492242635
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 1.1398000000000001,
+                "Median": 1.0876666666666666,
+                "1st Quartile": 0.7196666666666667,
+                "3rd Quartile": 1.3048333333333333,
+                "Standard Deviation": 0.584118922442644
+              },
+              "Cluster Statistics": {
+                "Mean": 1.0055555555555555,
+                "Median": 1.1723333333333332,
+                "1st Quartile": 0.8708333333333333,
+                "3rd Quartile": 1.2236666666666667,
+                "Standard Deviation": 0.31129030553646814
+              }
+            }
+          }
+        ]
+      },
+      "CLUSTER 1": {
+        "RATING BBB": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 14.704975000000001,
+                "Median": 15.288499999999999,
+                "1st Quartile": 12.380874999999998,
+                "3rd Quartile": 16.588875,
+                "Standard Deviation": 2.761583935292692
+              },
+              "Cluster Statistics": {
+                "Mean": 15.257125000000002,
+                "Median": 15.535499999999999,
+                "1st Quartile": 15.288499999999999,
+                "3rd Quartile": 16.639125,
+                "Standard Deviation": 2.682154215831
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 13.7206,
+                "Median": 14.6972,
+                "1st Quartile": 10.356200000000001,
+                "3rd Quartile": 16.2539,
+                "Standard Deviation": 3.9515319317955666
+              },
+              "Cluster Statistics": {
+                "Mean": 14.228519999999998,
+                "Median": 14.8148,
+                "1st Quartile": 12.960799999999997,
+                "3rd Quartile": 16.138399999999997,
+                "Standard Deviation": 2.7992526019636035
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 21465.32,
+                "Median": 13064.45,
+                "1st Quartile": 6153.95,
+                "3rd Quartile": 30979.275,
+                "Standard Deviation": 20407.44416868348
+              },
+              "Cluster Statistics": {
+                "Mean": 5122.36,
+                "Median": 5872.85,
+                "1st Quartile": 4209.75,
+                "3rd Quartile": 5877.5,
+                "Standard Deviation": 1207.5865548274376
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in upper half",
+              "Credit Rating Statistics": {
+                "Mean": 13.015680000000001,
+                "Median": 11.1588,
+                "1st Quartile": 7.495499999999999,
+                "3rd Quartile": 14.4358,
+                "Standard Deviation": 9.322574960399443
+              },
+              "Cluster Statistics": {
+                "Mean": 11.9986,
+                "Median": 13.092400000000001,
+                "1st Quartile": 9.3338,
+                "3rd Quartile": 14.375600000000002,
+                "Standard Deviation": 3.744472256540299
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 1.1398000000000001,
+                "Median": 1.0876666666666666,
+                "1st Quartile": 0.7196666666666667,
+                "3rd Quartile": 1.3048333333333333,
+                "Standard Deviation": 0.584118922442644
+              },
+              "Cluster Statistics": {
+                "Mean": 0.9084666666666668,
+                "Median": 0.8913333333333333,
+                "1st Quartile": 0.6733333333333333,
+                "3rd Quartile": 1.0876666666666666,
+                "Standard Deviation": 0.23477683020264162
+              }
+            }
+          }
+        ]
+      },
+      "CLUSTER 2": {
+        "RATING A+": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 18.8603125,
+                "Median": 18.8603125,
+                "1st Quartile": 17.82109375,
+                "3rd Quartile": 19.89953125,
+                "Standard Deviation": 2.0784374999999997
+              },
+              "Cluster Statistics": {
+                "Mean": 16.781875,
+                "Median": 16.781875,
+                "1st Quartile": 16.781875,
+                "3rd Quartile": 16.781875,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 19.844500000000004,
+                "Median": 19.844500000000004,
+                "1st Quartile": 19.229650000000003,
+                "3rd Quartile": 20.45935,
+                "Standard Deviation": 1.2296999999999993
+              },
+              "Cluster Statistics": {
+                "Mean": 18.614800000000002,
+                "Median": 18.614800000000002,
+                "1st Quartile": 18.614800000000002,
+                "3rd Quartile": 18.614800000000002,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 49735.475000000006,
+                "Median": 49735.475000000006,
+                "1st Quartile": 47076.2125,
+                "3rd Quartile": 52394.7375,
+                "Standard Deviation": 5318.524999999998
+              },
+              "Cluster Statistics": {
+                "Mean": 44416.950000000004,
+                "Median": 44416.950000000004,
+                "1st Quartile": 44416.950000000004,
+                "3rd Quartile": 44416.950000000004,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 17.108400000000003,
+                "Median": 17.108400000000003,
+                "1st Quartile": 16.177500000000002,
+                "3rd Quartile": 18.0393,
+                "Standard Deviation": 1.8618000000000006
+              },
+              "Cluster Statistics": {
+                "Mean": 15.2466,
+                "Median": 15.2466,
+                "1st Quartile": 15.2466,
+                "3rd Quartile": 15.2466,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 1.1101666666666667,
+                "Median": 1.1101666666666667,
+                "1st Quartile": 0.9945833333333334,
+                "3rd Quartile": 1.22575,
+                "Standard Deviation": 0.23116666666666663
+              },
+              "Cluster Statistics": {
+                "Mean": 1.3413333333333333,
+                "Median": 1.3413333333333333,
+                "1st Quartile": 1.3413333333333333,
+                "3rd Quartile": 1.3413333333333333,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ],
+        "RATING BBB": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in upper half",
+              "Credit Rating Statistics": {
+                "Mean": 14.704975000000001,
+                "Median": 15.288499999999999,
+                "1st Quartile": 12.380874999999998,
+                "3rd Quartile": 16.588875,
+                "Standard Deviation": 2.761583935292692
+              },
+              "Cluster Statistics": {
+                "Mean": 16.538625,
+                "Median": 16.538625,
+                "1st Quartile": 16.538625,
+                "3rd Quartile": 16.538625,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 13.7206,
+                "Median": 14.6972,
+                "1st Quartile": 10.356200000000001,
+                "3rd Quartile": 16.2539,
+                "Standard Deviation": 3.9515319317955666
+              },
+              "Cluster Statistics": {
+                "Mean": 19.8166,
+                "Median": 19.8166,
+                "1st Quartile": 19.8166,
+                "3rd Quartile": 19.8166,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 21465.32,
+                "Median": 13064.45,
+                "1st Quartile": 6153.95,
+                "3rd Quartile": 30979.275,
+                "Standard Deviation": 20407.44416868348
+              },
+              "Cluster Statistics": {
+                "Mean": 44608.7,
+                "Median": 44608.7,
+                "1st Quartile": 44608.7,
+                "3rd Quartile": 44608.7,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 13.015680000000001,
+                "Median": 11.1588,
+                "1st Quartile": 7.495499999999999,
+                "3rd Quartile": 14.4358,
+                "Standard Deviation": 9.322574960399443
+              },
+              "Cluster Statistics": {
+                "Mean": 40.318400000000004,
+                "Median": 40.318400000000004,
+                "1st Quartile": 40.318400000000004,
+                "3rd Quartile": 40.318400000000004,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 1.1398000000000001,
+                "Median": 1.0876666666666666,
+                "1st Quartile": 0.7196666666666667,
+                "3rd Quartile": 1.3048333333333333,
+                "Standard Deviation": 0.584118922442644
+              },
+              "Cluster Statistics": {
+                "Mean": 0.766,
+                "Median": 0.766,
+                "1st Quartile": 0.766,
+                "3rd Quartile": 0.766,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ],
+        "RATING BBB-": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 17.581041666666664,
+                "Median": 17.4708125,
+                "1st Quartile": 16.874187499999998,
+                "3rd Quartile": 18.153031250000005,
+                "Standard Deviation": 0.9484817766069926
+              },
+              "Cluster Statistics": {
+                "Mean": 19.15925,
+                "Median": 19.15925,
+                "1st Quartile": 19.15925,
+                "3rd Quartile": 19.15925,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 11.701566666666665,
+                "Median": 13.824499999999999,
+                "1st Quartile": 7.3709,
+                "3rd Quartile": 15.011149999999999,
+                "Standard Deviation": 5.009233320468201
+              },
+              "Cluster Statistics": {
+                "Mean": 4.311999999999999,
+                "Median": 4.311999999999999,
+                "1st Quartile": 4.311999999999999,
+                "3rd Quartile": 4.311999999999999,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 12411.908333333333,
+                "Median": 8457.2,
+                "1st Quartile": 5378.887500000001,
+                "3rd Quartile": 10555.637499999999,
+                "Standard Deviation": 13015.685628675648
+              },
+              "Cluster Statistics": {
+                "Mean": 40633.899999999994,
+                "Median": 40633.899999999994,
+                "1st Quartile": 40633.899999999994,
+                "3rd Quartile": 40633.899999999994,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in upper half",
+              "Credit Rating Statistics": {
+                "Mean": 14.287966666666668,
+                "Median": 9.724899999999998,
+                "1st Quartile": 7.760150000000001,
+                "3rd Quartile": 17.486549999999998,
+                "Standard Deviation": 9.00582802072574
+              },
+              "Cluster Statistics": {
+                "Mean": 10.241999999999999,
+                "Median": 10.241999999999999,
+                "1st Quartile": 10.241999999999999,
+                "3rd Quartile": 10.241999999999999,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 0.8839999999999999,
+                "Median": 1.0905,
+                "1st Quartile": 0.6736666666666666,
+                "3rd Quartile": 1.1058333333333334,
+                "Standard Deviation": 0.34521866393045136
+              },
+              "Cluster Statistics": {
+                "Mean": 1.1063333333333334,
+                "Median": 1.1063333333333334,
+                "1st Quartile": 1.1063333333333334,
+                "3rd Quartile": 1.1063333333333334,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ],
+        "RATING BB+": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 18.219916666666666,
+                "Median": 17.697125,
+                "1st Quartile": 17.2100625,
+                "3rd Quartile": 18.968375,
+                "Standard Deviation": 1.4824857936831044
+              },
+              "Cluster Statistics": {
+                "Mean": 20.239625,
+                "Median": 20.239625,
+                "1st Quartile": 20.239625,
+                "3rd Quartile": 20.239625,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 7.903016666666669,
+                "Median": 10.491400000000002,
+                "1st Quartile": 6.368325000000001,
+                "3rd Quartile": 10.731900000000003,
+                "Standard Deviation": 4.005461520710054
+              },
+              "Cluster Statistics": {
+                "Mean": 10.972400000000002,
+                "Median": 10.972400000000002,
+                "1st Quartile": 10.972400000000002,
+                "3rd Quartile": 10.972400000000002,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 21018.183333333334,
+                "Median": 16468.35,
+                "1st Quartile": 11104.625,
+                "3rd Quartile": 28656.825,
+                "Standard Deviation": 14687.987435561832
+              },
+              "Cluster Statistics": {
+                "Mean": 40845.3,
+                "Median": 40845.3,
+                "1st Quartile": 40845.3,
+                "3rd Quartile": 40845.3,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 9.8162,
+                "Median": 11.2024,
+                "1st Quartile": 6.2015,
+                "3rd Quartile": 14.124,
+                "Standard Deviation": 6.542536158605978
+              },
+              "Cluster Statistics": {
+                "Mean": 1.2006,
+                "Median": 1.2006,
+                "1st Quartile": 1.2006,
+                "3rd Quartile": 1.2006,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 1.505111111111111,
+                "Median": 1.2893333333333334,
+                "1st Quartile": 0.9233333333333333,
+                "3rd Quartile": 1.979,
+                "Standard Deviation": 0.8753483680410326
+              },
+              "Cluster Statistics": {
+                "Mean": 2.6686666666666667,
+                "Median": 2.6686666666666667,
+                "1st Quartile": 2.6686666666666667,
+                "3rd Quartile": 2.6686666666666667,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ]
+      },
+      "CLUSTER 3": {
+        "RATING AA-": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 18.914458333333332,
+                "Median": 18.577624999999998,
+                "1st Quartile": 16.5355,
+                "3rd Quartile": 21.125,
+                "Standard Deviation": 3.754872636174081
+              },
+              "Cluster Statistics": {
+                "Mean": 14.493375,
+                "Median": 14.493375,
+                "1st Quartile": 14.493375,
+                "3rd Quartile": 14.493375,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements are located around median",
+              "Credit Rating Statistics": {
+                "Mean": 22.885933333333337,
+                "Median": 20.9374,
+                "1st Quartile": 19.955800000000004,
+                "3rd Quartile": 24.8418,
+                "Standard Deviation": 4.220630491078579
+              },
+              "Cluster Statistics": {
+                "Mean": 20.9374,
+                "Median": 20.9374,
+                "1st Quartile": 20.9374,
+                "3rd Quartile": 20.9374,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements are located around median",
+              "Credit Rating Statistics": {
+                "Mean": 42237.03333333333,
+                "Median": 39468,
+                "1st Quartile": 24837.5,
+                "3rd Quartile": 58252.05,
+                "Standard Deviation": 27353.035308759107
+              },
+              "Cluster Statistics": {
+                "Mean": 39468,
+                "Median": 39468,
+                "1st Quartile": 39468,
+                "3rd Quartile": 39468,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 19.539199999999997,
+                "Median": 16.4942,
+                "1st Quartile": 14.3737,
+                "3rd Quartile": 23.182199999999995,
+                "Standard Deviation": 7.507493634140933
+              },
+              "Cluster Statistics": {
+                "Mean": 29.870199999999993,
+                "Median": 29.870199999999993,
+                "1st Quartile": 29.870199999999993,
+                "3rd Quartile": 29.870199999999993,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Country Risk": {
+              "Comparison": "Cluster elements are located around median",
+              "Credit Rating Statistics": {
+                "Mean": 0.22676656267808618,
+                "Median": 0.23101282659034772,
+                "1st Quartile": 0.22382862983575497,
+                "3rd Quartile": 0.23182762747654817,
+                "Standard Deviation": 0.007188278939442376
+              },
+              "Cluster Statistics": {
+                "Mean": 0.23101282659034772,
+                "Median": 0.23101282659034772,
+                "1st Quartile": 0.23101282659034772,
+                "3rd Quartile": 0.23101282659034772,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ],
+        "RATING BBB+": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 16.229234375,
+                "Median": 15.8855625,
+                "1st Quartile": 15.488000000000001,
+                "3rd Quartile": 16.60990625,
+                "Standard Deviation": 1.0871968263423992
+              },
+              "Cluster Statistics": {
+                "Mean": 15.141125,
+                "Median": 15.141125,
+                "1st Quartile": 15.141125,
+                "3rd Quartile": 15.141125,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 13.525500000000001,
+                "Median": 14.521900000000002,
+                "1st Quartile": 10.13985,
+                "3rd Quartile": 16.854300000000002,
+                "Standard Deviation": 4.160015909825346
+              },
+              "Cluster Statistics": {
+                "Mean": 7.1408000000000005,
+                "Median": 7.1408000000000005,
+                "1st Quartile": 7.1408000000000005,
+                "3rd Quartile": 7.1408000000000005,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 23397.66875,
+                "Median": 16762.275,
+                "1st Quartile": 9564.425000000001,
+                "3rd Quartile": 27444.15,
+                "Standard Deviation": 19848.585037823505
+              },
+              "Cluster Statistics": {
+                "Mean": 37087.8,
+                "Median": 37087.8,
+                "1st Quartile": 37087.8,
+                "3rd Quartile": 37087.8,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in upper half",
+              "Credit Rating Statistics": {
+                "Mean": 21.640825,
+                "Median": 23.463900000000002,
+                "1st Quartile": 17.615750000000002,
+                "3rd Quartile": 25.6828,
+                "Standard Deviation": 7.684605285528659
+              },
+              "Cluster Statistics": {
+                "Mean": 24.7196,
+                "Median": 24.7196,
+                "1st Quartile": 24.7196,
+                "3rd Quartile": 24.7196,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in lowest 25%",
+              "Credit Rating Statistics": {
+                "Mean": 0.87675,
+                "Median": 0.9273333333333333,
+                "1st Quartile": 0.7699166666666667,
+                "3rd Quartile": 1.0486666666666666,
+                "Standard Deviation": 0.2252756182250238
+              },
+              "Cluster Statistics": {
+                "Mean": 0.4293333333333333,
+                "Median": 0.4293333333333333,
+                "1st Quartile": 0.4293333333333333,
+                "3rd Quartile": 0.4293333333333333,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ],
+        "RATING BBB": [
+          {
+            "Leverage": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 14.704975000000001,
+                "Median": 15.288499999999999,
+                "1st Quartile": 12.380874999999998,
+                "3rd Quartile": 16.588875,
+                "Standard Deviation": 2.761583935292692
+              },
+              "Cluster Statistics": {
+                "Mean": 12.549374999999998,
+                "Median": 12.549374999999998,
+                "1st Quartile": 12.549374999999998,
+                "3rd Quartile": 12.549374999999998,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Profitability": {
+              "Comparison": "Cluster elements in lower half",
+              "Credit Rating Statistics": {
+                "Mean": 13.7206,
+                "Median": 14.6972,
+                "1st Quartile": 10.356200000000001,
+                "3rd Quartile": 16.2539,
+                "Standard Deviation": 3.9515319317955666
+              },
+              "Cluster Statistics": {
+                "Mean": 14.148600000000002,
+                "Median": 14.148600000000002,
+                "1st Quartile": 14.148600000000002,
+                "3rd Quartile": 14.148600000000002,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Financial Statement Lines": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 21465.32,
+                "Median": 13064.45,
+                "1st Quartile": 6153.95,
+                "3rd Quartile": 30979.275,
+                "Standard Deviation": 20407.44416868348
+              },
+              "Cluster Statistics": {
+                "Mean": 38181,
+                "Median": 38181,
+                "1st Quartile": 38181,
+                "3rd Quartile": 38181,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Liquidity": {
+              "Comparison": "Cluster elements in upper half",
+              "Credit Rating Statistics": {
+                "Mean": 13.015680000000001,
+                "Median": 11.1588,
+                "1st Quartile": 7.495499999999999,
+                "3rd Quartile": 14.4358,
+                "Standard Deviation": 9.322574960399443
+              },
+              "Cluster Statistics": {
+                "Mean": 11.4162,
+                "Median": 11.4162,
+                "1st Quartile": 11.4162,
+                "3rd Quartile": 11.4162,
+                "Standard Deviation": 0
+              }
+            }
+          },
+          {
+            "Efficiency": {
+              "Comparison": "Cluster elements in highest 75%",
+              "Credit Rating Statistics": {
+                "Mean": 1.1398000000000001,
+                "Median": 1.0876666666666666,
+                "1st Quartile": 0.7196666666666667,
+                "3rd Quartile": 1.3048333333333333,
+                "Standard Deviation": 0.584118922442644
+              },
+              "Cluster Statistics": {
+                "Mean": 1.7416666666666665,
+                "Median": 1.7416666666666665,
+                "1st Quartile": 1.7416666666666665,
+                "3rd Quartile": 1.7416666666666665,
+                "Standard Deviation": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

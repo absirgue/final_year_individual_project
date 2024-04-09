@@ -92,7 +92,7 @@ class AlgorithmsPerformancesEvaluation:
             json.dump(data, json_file)
 
     def get_folder_name(self, config_name=None):
-        folder_name = "conclusion_1_graphs/algorithms_comparisons/"
+        folder_name = "hyperparameter_optimisation_results/algorithms_comparisons/"
         if self.run_pca:
             folder_name +="/with_pca"
         else:

@@ -146,14 +146,14 @@ def run_demanded_program(config_name_pca, config_name_non_pca, analysis_only, ru
     if not analysis_only:
         AlgorithmsPerformancesEvaluation(configuration).run_evaluation()
         InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with non-pca")
-    ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/without_pca/performance_metrics.json", "./conclusion_2_results/",False,configuration).analyse()
+    ClusteringResultsAnalyzer("./hyperparameter_optimisation_results/algorithms_comparisons/without_pca/performance_metrics.json", "./clusters_content_analyses/",False,configuration).analyse()
     InterfaceBeautifier().print_major_annoucement("analysis of non-pca clusters done")
     if run_pca:
         if not analysis_only:
             configuration = DataConfigurationWrapper().get_config_package(config_name_pca)
             AlgorithmsPerformancesEvaluation(configuration,run_pca=True).run_evaluation()
             InterfaceBeautifier().print_major_annoucement("algorithms hyperparameters optimization done with pca")
-        ClusteringResultsAnalyzer("./conclusion_1_graphs/algorithms_comparisons/with_pca/performance_metrics.json", "./conclusion_2_results/",True,configuration).analyse()
+        ClusteringResultsAnalyzer("./hyperparameter_optimisation_results/algorithms_comparisons/with_pca/performance_metrics.json", "./clusters_content_analyses/",True,configuration).analyse()
         InterfaceBeautifier().print_major_annoucement("analysis of pca clusters done")
     InterfaceBeautifier().print_major_annoucement("finished all tasks")
 

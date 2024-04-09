@@ -1,0 +1,4588 @@
+{
+    "algorithms best performance": {
+      "CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 11,
+            "Running Time": 0.10042810440063477,
+            "Threshold Value": 1.0999999999999999,
+            "Branching Factor": 12,
+            "Calinski Harabasz Index": 1569.0475379800735
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 1.0999999999999999,
+            "Running Time": 0.01610422134399414,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.9674593137873175
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 1.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 735963.009,
+            "Number of Clusters": 27,
+            "Time": 0.027156
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 63.6,
+            "MinPts": 30,
+            "Silhouette Score": 0.967,
+            "Number of Clusters": 1,
+            "Running Time": 0.033567
+          }
+        },
+        "K-Means": {
+          "K": 6,
+          "WCSS": 10551.037779411676,
+          "Running": 0.04644255638122559,
+          "Silhouette Score": 0.756625672842315,
+          "Calinski Harabasz Index": 1377.209703049392
+        },
+        "Fast Global K-Means": {
+          "K": 7,
+          "WCSS": 11612.664295559449,
+          "Silhouette Score": 0.9472090797492261,
+          "Calinski Harabasz Index": 1009.2379050066874,
+          "Running Time": 128.2421133518219
+        },
+        "Fuzzy C-Means": {
+          "C": 6,
+          "WCSS": 20306.53609744719,
+          "Silhouette Score": 0.958713205604661,
+          "Running Time": 0.008378314971923827,
+          "Calinski Harabasz Index": 562.1217170761047
+        }
+      },
+      "CREDIT HEALTH": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 2,
+            "Running Time": 0.11338996887207031,
+            "Threshold Value": 0.8499999999999999,
+            "Branching Factor": 12,
+            "Calinski Harabasz Index": 55.05162873548185
+          },
+          "Silhouette Score Optimum": {
+            "K": 27,
+            "Threshold Value": 0.8499999999999999,
+            "Running Time": 0.012979984283447266,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.7823171731835235
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 1.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 56.58,
+            "Number of Clusters": 590,
+            "Time": 0.002906
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 21.6,
+            "MinPts": 30,
+            "Silhouette Score": 0.782,
+            "Number of Clusters": 1,
+            "Running Time": 0.015797
+          }
+        },
+        "K-Means": {
+          "K": 10,
+          "WCSS": 12750.132519080658,
+          "Running": 0.014909744262695312,
+          "Silhouette Score": 0.11987384734827769,
+          "Calinski Harabasz Index": 48.15442101451997
+        },
+        "Fast Global K-Means": {
+          "K": 7,
+          "WCSS": 15451.22712306004,
+          "Silhouette Score": 0.10330288455948715,
+          "Calinski Harabasz Index": 42.73774457090995,
+          "Running Time": 11.17894732952118
+        },
+        "Fuzzy C-Means": {
+          "C": 13,
+          "WCSS": 22170.764108698204,
+          "Silhouette Score": -0.11610071939364164,
+          "Running Time": 0.00405278205871582,
+          "Calinski Harabasz Index": 19.53984086972577
+        }
+      },
+      "BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 11,
+            "Running Time": 0.11467385292053223,
+            "Threshold Value": 0.1,
+            "Branching Factor": 22,
+            "Calinski Harabasz Index": 1262.5846875574528
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 0.1,
+            "Running Time": 0.026650190353393555,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.9247683767412161
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 0.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 9181.59,
+            "Number of Clusters": 1413,
+            "Time": 0.058503
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 49.6,
+            "MinPts": 30,
+            "Silhouette Score": 0.925,
+            "Number of Clusters": 1,
+            "Running Time": 0.079962
+          }
+        },
+        "K-Means": {
+          "K": 8,
+          "WCSS": 20248.893569704644,
+          "Running": 0.020453357696533205,
+          "Silhouette Score": 0.6911245269820274,
+          "Calinski Harabasz Index": 1285.6509654222887
+        },
+        "Fast Global K-Means": {
+          "K": 12,
+          "WCSS": 16246.122838556113,
+          "Silhouette Score": 0.6958131158931974,
+          "Calinski Harabasz Index": 1102.5168877823064,
+          "Running Time": 788.2841781377792
+        },
+        "Fuzzy C-Means": {
+          "C": 5,
+          "WCSS": 44450.978176872675,
+          "Silhouette Score": 0.6325164830470531,
+          "Running Time": 0.053834962844848636,
+          "Calinski Harabasz Index": 707.6810530861804
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 18,
+            "Running Time": 0.0007660388946533203,
+            "Threshold Value": 0.6,
+            "Branching Factor": 17,
+            "Calinski Harabasz Index": 17.921350373187877
+          },
+          "Silhouette Score Optimum": {
+            "K": 18,
+            "Threshold Value": 0.6,
+            "Running Time": 0.0003209114074707031,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.6601598755038247
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 1.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 87.28,
+            "Number of Clusters": 35,
+            "Time": 0.000272
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 15.1,
+            "MinPts": 30,
+            "Silhouette Score": 0.66,
+            "Number of Clusters": 1,
+            "Running Time": 0.000273
+          }
+        },
+        "K-Means": {
+          "K": 9,
+          "WCSS": 210.1214429118395,
+          "Running": 0.0028943538665771483,
+          "Silhouette Score": 0.12629009873769553,
+          "Calinski Harabasz Index": 10.604029298712595
+        },
+        "Fast Global K-Means": {
+          "K": 7,
+          "WCSS": 296.2732284849394,
+          "Silhouette Score": 0.2843145560790419,
+          "Calinski Harabasz Index": 9.350984420744036,
+          "Running Time": 0.06362748146057129
+        },
+        "Fuzzy C-Means": {
+          "C": 17,
+          "WCSS": 642.4080189174704,
+          "Silhouette Score": -0.07211427086539692,
+          "Running Time": 0.0058290958404541016,
+          "Calinski Harabasz Index": 3.800677344285373
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 2,
+            "Running Time": 0.0025949478149414062,
+            "Threshold Value": 0.6,
+            "Branching Factor": 7,
+            "Calinski Harabasz Index": 12.285160428401873
+          },
+          "Silhouette Score Optimum": {
+            "K": 22,
+            "Threshold Value": 0.6,
+            "Running Time": 0.00042700767517089844,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.49466598184322985
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 1.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 68.252,
+            "Number of Clusters": 60,
+            "Time": 0.005165
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 11.6,
+            "MinPts": 30,
+            "Silhouette Score": 0.492,
+            "Number of Clusters": 1,
+            "Running Time": 0.003247
+          }
+        },
+        "K-Means": {
+          "K": 9,
+          "WCSS": 966.8427089689073,
+          "Running": 0.0029585838317871095,
+          "Silhouette Score": 0.2043927395090047,
+          "Calinski Harabasz Index": 9.176581230094573
+        },
+        "Fast Global K-Means": {
+          "K": 15,
+          "WCSS": 654.8596669745526,
+          "Silhouette Score": 0.21073707071083286,
+          "Calinski Harabasz Index": 8.449034570666782,
+          "Running Time": 0.3999825716018677
+        },
+        "Fuzzy C-Means": {
+          "C": 3,
+          "WCSS": 1933.9822180189065,
+          "Silhouette Score": 0.18614470134875602,
+          "Running Time": 0.0009212493896484375,
+          "Calinski Harabasz Index": 9.402599951527122
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 4,
+            "Running Time": 0.006356954574584961,
+            "Threshold Value": 2.8499999999999996,
+            "Branching Factor": 2,
+            "Calinski Harabasz Index": 13.185516248350424
+          },
+          "Silhouette Score Optimum": {
+            "K": 19,
+            "Threshold Value": 2.8499999999999996,
+            "Running Time": 0.00039696693420410156,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.6292944595209963
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 1.6,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 62.046,
+            "Number of Clusters": 48,
+            "Time": 0.000274
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 20.1,
+            "MinPts": 30,
+            "Silhouette Score": 0.629,
+            "Number of Clusters": 1,
+            "Running Time": 0.000288
+          }
+        },
+        "K-Means": {
+          "K": 8,
+          "WCSS": 744.3073919769338,
+          "Running": 0.004598140716552734,
+          "Silhouette Score": 0.18690059284818267,
+          "Calinski Harabasz Index": 11.086690684968247
+        },
+        "Fast Global K-Means": {
+          "K": 8,
+          "WCSS": 795.6772878784584,
+          "Silhouette Score": 0.19754111327919607,
+          "Calinski Harabasz Index": 9.97313942784027,
+          "Running Time": 0.1260770559310913
+        },
+        "Fuzzy C-Means": {
+          "C": 4,
+          "WCSS": 1939.6509180738199,
+          "Silhouette Score": 0.0922894463453049,
+          "Running Time": 0.001981639862060547,
+          "Calinski Harabasz Index": 4.744649326073911
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 22,
+            "Running Time": 0.0008037090301513672,
+            "Threshold Value": 0.8499999999999999,
+            "Branching Factor": 22,
+            "Calinski Harabasz Index": 265.70317607514886
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 0.8499999999999999,
+            "Running Time": 0.0006988048553466797,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.7235520946242986
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 0.6,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 915201.584,
+            "Number of Clusters": 29,
+            "Time": 0.000359
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 13.6,
+            "MinPts": 30,
+            "Silhouette Score": 0.724,
+            "Number of Clusters": 1,
+            "Running Time": 0.000364
+          }
+        },
+        "K-Means": {
+          "K": 9,
+          "WCSS": 422.24129023621754,
+          "Running": 0.0029038906097412108,
+          "Silhouette Score": 0.6102997862380583,
+          "Calinski Harabasz Index": 42.2777757899013
+        },
+        "Fast Global K-Means": {
+          "K": 12,
+          "WCSS": 326.2090046104491,
+          "Silhouette Score": 0.46322402298266907,
+          "Calinski Harabasz Index": 40.17068296968959,
+          "Running Time": 0.5188134908676147
+        },
+        "Fuzzy C-Means": {
+          "C": 4,
+          "WCSS": 1407.1598200407645,
+          "Silhouette Score": 0.5876460672338802,
+          "Running Time": 0.001106405258178711,
+          "Calinski Harabasz Index": 17.374458707559707
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 7,
+            "Running Time": 0.0004973411560058594,
+            "Threshold Value": 0.8499999999999999,
+            "Branching Factor": 67,
+            "Calinski Harabasz Index": 7.724949545714712
+          },
+          "Silhouette Score Optimum": {
+            "K": 21,
+            "Threshold Value": 0.8499999999999999,
+            "Running Time": 0.00037598609924316406,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.4972007792159892
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 2.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 18.214,
+            "Number of Clusters": 46,
+            "Time": 0.000277
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 13.1,
+            "MinPts": 30,
+            "Silhouette Score": 0.497,
+            "Number of Clusters": 1,
+            "Running Time": 0.000286
+          }
+        },
+        "K-Means": {
+          "K": 10,
+          "WCSS": 652.692877788944,
+          "Running": 0.0029644489288330076,
+          "Silhouette Score": 0.13734169459552362,
+          "Calinski Harabasz Index": 6.924479718909237
+        },
+        "Fast Global K-Means": {
+          "K": 9,
+          "WCSS": 704.3626437462932,
+          "Silhouette Score": 0.1128855599561461,
+          "Calinski Harabasz Index": 7.058330225071052,
+          "Running Time": 0.1310795545578003
+        },
+        "Fuzzy C-Means": {
+          "C": 15,
+          "WCSS": 1747.3195311734944,
+          "Silhouette Score": 0.01290705286439292,
+          "Running Time": 0.00084686279296875,
+          "Calinski Harabasz Index": 4.531127088956806
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 21,
+            "Running Time": 0.0053958892822265625,
+            "Threshold Value": 1.8499999999999999,
+            "Branching Factor": 2,
+            "Calinski Harabasz Index": 165.6197602915813
+          },
+          "Silhouette Score Optimum": {
+            "K": 19,
+            "Threshold Value": 1.8499999999999999,
+            "Running Time": 0.0007569789886474609,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.7241740639622104
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 0.6,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 3771170.059,
+            "Number of Clusters": 28,
+            "Time": 0.000386
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 0.6,
+            "MinPts": 1,
+            "Silhouette Score": 0.714,
+            "Number of Clusters": 28,
+            "Running Time": 0.000386
+          }
+        },
+        "K-Means": {
+          "K": 10,
+          "WCSS": 837.9287901512869,
+          "Running": 0.003951025009155273,
+          "Silhouette Score": 0.6780356881755949,
+          "Calinski Harabasz Index": 34.07941489728323
+        },
+        "Fast Global K-Means": {
+          "K": 10,
+          "WCSS": 784.1134601744017,
+          "Silhouette Score": 0.6783135696301561,
+          "Calinski Harabasz Index": 36.87824418147543,
+          "Running Time": 0.43495142459869385
+        },
+        "Fuzzy C-Means": {
+          "C": 4,
+          "WCSS": 2172.568873840663,
+          "Silhouette Score": 0.6410673448267534,
+          "Running Time": 0.0013841629028320313,
+          "Calinski Harabasz Index": 27.856906643897638
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 20,
+            "Running Time": 0.0066111087799072266,
+            "Threshold Value": 0.6,
+            "Branching Factor": 2,
+            "Calinski Harabasz Index": 27.04106757631121
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 0.6,
+            "Running Time": 0.0003688335418701172,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.5999276791121518
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 0.6,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 326.935,
+            "Number of Clusters": 37,
+            "Time": 0.000273
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 12.1,
+            "MinPts": 30,
+            "Silhouette Score": 0.6,
+            "Number of Clusters": 1,
+            "Running Time": 0.000261
+          }
+        },
+        "K-Means": {
+          "K": 7,
+          "WCSS": 224.30260711576392,
+          "Running": 0.002861499786376953,
+          "Silhouette Score": 0.21306745237783495,
+          "Calinski Harabasz Index": 15.736585728061863
+        },
+        "Fast Global K-Means": {
+          "K": 8,
+          "WCSS": 207.75498752026166,
+          "Silhouette Score": 0.3284810650628285,
+          "Calinski Harabasz Index": 14.395451340472679,
+          "Running Time": 0.08056783676147461
+        },
+        "Fuzzy C-Means": {
+          "C": 12,
+          "WCSS": 436.52410050491716,
+          "Silhouette Score": 0.05530838404862237,
+          "Running Time": 0.0036348342895507813,
+          "Calinski Harabasz Index": 6.894518836591506
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 23,
+            "Running Time": 0.0009889602661132812,
+            "Threshold Value": 0.8499999999999999,
+            "Branching Factor": 37,
+            "Calinski Harabasz Index": 11.275583521973125
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 0.8499999999999999,
+            "Running Time": 0.0015268325805664062,
+            "Branching Factor": 2,
+            "Silhouette Score": 0.4268322148259293
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 2.1,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 12.347,
+            "Number of Clusters": 42,
+            "Time": 0.000279
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 12.1,
+            "MinPts": 30,
+            "Silhouette Score": 0.444,
+            "Number of Clusters": 1,
+            "Running Time": 0.000286
+          }
+        },
+        "K-Means": {
+          "K": 12,
+          "WCSS": 472.04251337431754,
+          "Running": 0.00446624755859375,
+          "Silhouette Score": 0.14783023785349877,
+          "Calinski Harabasz Index": 8.521842676134245
+        },
+        "Fast Global K-Means": {
+          "K": 10,
+          "WCSS": 593.2540233221451,
+          "Silhouette Score": 0.2294586600977043,
+          "Calinski Harabasz Index": 7.877706474751279,
+          "Running Time": 0.14194798469543457
+        },
+        "Fuzzy C-Means": {
+          "C": 4,
+          "WCSS": 1518.657609886773,
+          "Silhouette Score": 0.06657903722168074,
+          "Running Time": 0.002505636215209961,
+          "Calinski Harabasz Index": 5.031623707805505
+        }
+      },
+      "OIL AND GAS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "Calinski Harabasz Index Optimum": {
+            "K": 19,
+            "Running Time": 0.0004200935363769531,
+            "Threshold Value": 1.5999999999999999,
+            "Branching Factor": 67,
+            "Calinski Harabasz Index": 10.786418317859917
+          },
+          "Silhouette Score Optimum": {
+            "K": 2,
+            "Threshold Value": 1.5999999999999999,
+            "Running Time": 0.0003361701965332031,
+            "Branching Factor": 67,
+            "Silhouette Score": 0.5573481323857482
+          }
+        },
+        "DBSCAN": {
+          "Calinski Harabasz Index Optimum": {
+            "Eps": 2.6,
+            "MinPts": 1,
+            "Calinski Harabasz Index": 14.89,
+            "Number of Clusters": 29,
+            "Time": 0.000301
+          },
+          "Silhouette Score Optimum": {
+            "Eps": 15.1,
+            "MinPts": 29,
+            "Silhouette Score": 0.557,
+            "Number of Clusters": 1,
+            "Running Time": 0.000383
+          }
+        },
+        "K-Means": {
+          "K": 7,
+          "WCSS": 404.5579285652393,
+          "Running": 0.004097270965576172,
+          "Silhouette Score": 0.14060035563767315,
+          "Calinski Harabasz Index": 8.379618575532458
+        },
+        "Fast Global K-Means": {
+          "K": 6,
+          "WCSS": 454.9429323750429,
+          "Silhouette Score": 0.1670632691206085,
+          "Calinski Harabasz Index": 8.783515124290403,
+          "Running Time": 0.04044055938720703
+        },
+        "Fuzzy C-Means": {
+          "C": 16,
+          "WCSS": 998.5935427917086,
+          "Silhouette Score": -0.033396138428006136,
+          "Running Time": 0.003641176223754883,
+          "Calinski Harabasz Index": 3.6306142302776694
+        }
+      }
+    },
+    "algorithms performance on others optimal K number": {
+      "CREDIT MODEL": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.11818814277648926,
+            "Calinski Harabasz Index": 747.4344843707615,
+            "Silhouette Score": 0.9575896953293712,
+            "WCSS": 34071.47031773877
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.1829512119293213,
+              "Silhouette Score Optimum": 0.01610422134399414
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 9.35,
+              "Silhouette Score Optimum": 10.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 677.1193353798333,
+            "Silhouette Score": 0.9674593137873175
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 101.60425090570793,
+            "time": 0.005126428604125976,
+            "Silhouette Score": 0.48828524422983766,
+            "WCSS": 43713.63730068454
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 22.43879997730255,
+            "Calinski Harabasz Index": 1117.465015202865,
+            "Silhouette Score": 0.9512397752915025,
+            "WCSS": 29661.896762456774
+          },
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 2,
+            "Calinski Harabasz Index": 657.341,
+            "Silhouette Score": 0.628,
+            "cluster counts": 2,
+            "time": 0.034318
+          }
+        },
+        "6": {
+          "K-Means": {
+            "K": 6,
+            "time": 0.04644255638122559,
+            "Calinski Harabasz Index": 1377.209703049392,
+            "Silhouette Score": 0.756625672842315,
+            "WCSS": 10551.037779411676
+          },
+          "BIRCH": {
+            "K": 6,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.015920162200927734,
+              "Silhouette Score Optimum": 0.04303908348083496
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 7.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 1429.4393335133343,
+            "Silhouette Score": 0.9516698294861735
+          },
+          "Fuzzy C-Means": {
+            "C": 6,
+            "Calinski Harabasz Index": 562.1217170761047,
+            "time": 0.008378314971923827,
+            "Silhouette Score": 0.958713205604661,
+            "WCSS": 20306.53609744719
+          },
+          "Fast Global K-Means": {
+            "K": 6,
+            "time": 108.25468409061432,
+            "Calinski Harabasz Index": 859.3100366068267,
+            "Silhouette Score": 0.9499216451372524,
+            "WCSS": 14828.754715946088
+          },
+          "DBSCAN": null
+        },
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.030924177169799803,
+            "Calinski Harabasz Index": 1450.0871880100526,
+            "Silhouette Score": 0.6933507979822011,
+            "WCSS": 8766.102029505582
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.027029037475585938,
+              "Silhouette Score Optimum": 0.036157846450805664
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 9.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 1441.917846361608,
+            "Silhouette Score": 0.9485627307933738
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 550.0412564455578,
+            "time": 0.02010312080383301,
+            "Silhouette Score": 0.9590236481944538,
+            "WCSS": 19167.76367964265
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 128.2421133518219,
+            "Calinski Harabasz Index": 1009.2379050066874,
+            "Silhouette Score": 0.9472090797492261,
+            "WCSS": 11612.664295559449
+          },
+          "DBSCAN": null
+        },
+        "11": {
+          "K-Means": {
+            "K": 11,
+            "time": 0.15844922065734862,
+            "Calinski Harabasz Index": 1867.7178579872095,
+            "Silhouette Score": 0.7782404617851629,
+            "WCSS": 4548.534827991067
+          },
+          "BIRCH": {
+            "K": 11,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.10042810440063477,
+              "Silhouette Score Optimum": 0.0997469425201416
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.0999999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 12,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 1569.0475379800735,
+            "Silhouette Score": 0.9426459448943378
+          },
+          "Fuzzy C-Means": {
+            "C": 11,
+            "Calinski Harabasz Index": 968.0039689974631,
+            "time": 0.04638972282409668,
+            "Silhouette Score": 0.953928688439216,
+            "WCSS": 12497.274873836152
+          },
+          "Fast Global K-Means": {
+            "K": 11,
+            "time": 217.401069521904,
+            "Calinski Harabasz Index": 1246.9603981428513,
+            "Silhouette Score": 0.9423175686319011,
+            "WCSS": 6476.80804630087
+          },
+          "DBSCAN": {
+            "eps": 20.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 895.136,
+            "Silhouette Score": 0.945,
+            "cluster counts": 11,
+            "time": 0.0434
+          }
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 1097.455,
+            "Silhouette Score": 0.951,
+            "cluster counts": 1,
+            "time": 0.042985
+          }
+        },
+        "27.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 735963.009,
+            "Silhouette Score": 0.958,
+            "cluster counts": 27,
+            "time": 0.020097
+          }
+        }
+      },
+      "CREDIT HEALTH": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.013671255111694336,
+            "Calinski Harabasz Index": 49.49214505165655,
+            "Silhouette Score": 0.30511551583293367,
+            "WCSS": 20478.7333539391
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.11338996887207031,
+              "Silhouette Score Optimum": 0.008537054061889648
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 12,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 55.05162873548185,
+            "Silhouette Score": 0.7823171731835235
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 59.933693253558886,
+            "time": 0.0017518043518066407,
+            "Silhouette Score": 0.13460616252766003,
+            "WCSS": 22176.597022882634
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 1.8989815711975098,
+            "Calinski Harabasz Index": 62.76545271379576,
+            "Silhouette Score": 0.17458056956260012,
+            "WCSS": 20058.556066427307
+          },
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 5,
+            "Calinski Harabasz Index": 12.791,
+            "Silhouette Score": -0.087,
+            "cluster counts": 2,
+            "time": 0.011131
+          }
+        },
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.015668439865112304,
+            "Calinski Harabasz Index": 46.58044656168566,
+            "Silhouette Score": 0.11054833609613438,
+            "WCSS": 15046.97476296265
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.029530048370361328,
+              "Silhouette Score Optimum": 0.014779090881347656
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.5999999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 12,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 48.59793919214714,
+            "Silhouette Score": 0.7823171731835235
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 19.320795439292922,
+            "time": 0.003072309494018555,
+            "Silhouette Score": -0.1040467488101812,
+            "WCSS": 22173.520284761384
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 11.17894732952118,
+            "Calinski Harabasz Index": 42.73774457090995,
+            "Silhouette Score": 0.10330288455948715,
+            "WCSS": 15451.22712306004
+          },
+          "DBSCAN": {
+            "eps": 11.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 19.8,
+            "Silhouette Score": 0.621,
+            "cluster counts": 7,
+            "time": 0.02345
+          }
+        },
+        "10": {
+          "K-Means": {
+            "K": 10,
+            "time": 0.014909744262695312,
+            "Calinski Harabasz Index": 48.15442101451997,
+            "Silhouette Score": 0.11987384734827769,
+            "WCSS": 12750.132519080658
+          },
+          "BIRCH": {
+            "K": 10,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.10806512832641602,
+              "Silhouette Score Optimum": 0.007157087326049805
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 45.628674089418624,
+            "Silhouette Score": 0.7823171731835235
+          },
+          "Fuzzy C-Means": {
+            "C": 10,
+            "Calinski Harabasz Index": 16.784813267117354,
+            "time": 0.00335078239440918,
+            "Silhouette Score": -0.10900114066453157,
+            "WCSS": 22172.846804150187
+          },
+          "Fast Global K-Means": {
+            "K": 10,
+            "time": 16.740752339363098,
+            "Calinski Harabasz Index": 32.802214963791236,
+            "Silhouette Score": 0.09913607479343389,
+            "WCSS": 14748.125499242304
+          },
+          "DBSCAN": {
+            "eps": 10.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 16.6,
+            "Silhouette Score": 0.514,
+            "cluster counts": 10,
+            "time": 0.019629
+          }
+        },
+        "13": {
+          "K-Means": {
+            "K": 13,
+            "time": 0.04713449478149414,
+            "Calinski Harabasz Index": 45.26108803863827,
+            "Silhouette Score": 0.11047354736859634,
+            "WCSS": 11487.324253644096
+          },
+          "BIRCH": {
+            "K": 13,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.02677774429321289,
+              "Silhouette Score Optimum": 0.04513716697692871
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 62,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 44.363516705079576,
+            "Silhouette Score": 0.7823171731835235
+          },
+          "Fuzzy C-Means": {
+            "C": 13,
+            "Calinski Harabasz Index": 19.53984086972577,
+            "time": 0.00405278205871582,
+            "Silhouette Score": -0.11610071939364164,
+            "WCSS": 22170.764108698204
+          },
+          "Fast Global K-Means": {
+            "K": 13,
+            "time": 22.160659909248352,
+            "Calinski Harabasz Index": 28.276803157535976,
+            "Silhouette Score": 0.101862592873749,
+            "WCSS": 14018.762525784963
+          },
+          "DBSCAN": null
+        },
+        "27": {
+          "K-Means": {
+            "K": 27,
+            "time": 0.026528596878051758,
+            "Calinski Harabasz Index": 39.36688121489577,
+            "Silhouette Score": 0.10384368224390934,
+            "WCSS": 7925.593006176462
+          },
+          "BIRCH": {
+            "K": 27,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.04747319221496582,
+              "Silhouette Score Optimum": 0.012979984283447266
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.0999999999999999,
+              "Silhouette Score Optimum": 9.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 32,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 38.689310635821265,
+            "Silhouette Score": 0.7823171731835235
+          },
+          "Fuzzy C-Means": {
+            "C": 27,
+            "Calinski Harabasz Index": 13.920882407389808,
+            "time": 0.00855879783630371,
+            "Silhouette Score": -0.18937618060169797,
+            "WCSS": 22166.367661625376
+          },
+          "Fast Global K-Means": {
+            "K": 27,
+            "time": 48.31051301956177,
+            "Calinski Harabasz Index": 35.94679643027031,
+            "Silhouette Score": 0.13778501957362815,
+            "WCSS": 8392.640981480596
+          },
+          "DBSCAN": {
+            "eps": 6.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 12.143,
+            "Silhouette Score": 0.308,
+            "cluster counts": 27,
+            "time": 0.017107
+          }
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 3,
+            "Calinski Harabasz Index": 2.303,
+            "Silhouette Score": -0.135,
+            "cluster counts": 1,
+            "time": 0.019989
+          }
+        },
+        "590.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 56.58,
+            "Silhouette Score": 0.004,
+            "cluster counts": 590,
+            "time": 0.002906
+          }
+        }
+      },
+      "BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.02853560447692871,
+            "Calinski Harabasz Index": 722.900774086375,
+            "Silhouette Score": 0.721179441078802,
+            "WCSS": 58209.78664997179
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.15804481506347656,
+              "Silhouette Score Optimum": 0.026650190353393555
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.1,
+              "Silhouette Score Optimum": 5.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 27,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 462.37386951430267,
+            "Silhouette Score": 0.9247683767412161
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 1220.8260696998716,
+            "time": 0.007488393783569336,
+            "Silhouette Score": 0.5502046499471642,
+            "WCSS": 52566.16185846599
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 70.18231558799744,
+            "Calinski Harabasz Index": 1229.3215436294524,
+            "Silhouette Score": 0.5501346092729325,
+            "WCSS": 51867.244526210794
+          },
+          "DBSCAN": {
+            "eps": 3.1,
+            "min pts": 25,
+            "Calinski Harabasz Index": 370.388,
+            "Silhouette Score": 0.653,
+            "cluster counts": 2,
+            "time": 0.108297
+          }
+        },
+        "5": {
+          "K-Means": {
+            "K": 5,
+            "time": 0.030399560928344727,
+            "Calinski Harabasz Index": 1018.2433223501066,
+            "Silhouette Score": 0.6259459335509329,
+            "WCSS": 33022.923942747584
+          },
+          "BIRCH": {
+            "K": 5,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.15614581108093262,
+              "Silhouette Score Optimum": 0.03576397895812988
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.1,
+              "Silhouette Score Optimum": 2.5999999999999996
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 7,
+              "Silhouette Score Optimum": 47
+            },
+            "Calinski Harabasz Index": 964.8651424692795,
+            "Silhouette Score": 0.8351105941559352
+          },
+          "Fuzzy C-Means": {
+            "C": 5,
+            "Calinski Harabasz Index": 707.6810530861804,
+            "time": 0.053834962844848636,
+            "Silhouette Score": 0.6325164830470531,
+            "WCSS": 44450.978176872675
+          },
+          "Fast Global K-Means": {
+            "K": 5,
+            "time": 285.2947463989258,
+            "Calinski Harabasz Index": 950.566651038867,
+            "Silhouette Score": 0.6639501839691728,
+            "WCSS": 34197.039407197095
+          },
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 13,
+            "Calinski Harabasz Index": 278.737,
+            "Silhouette Score": 0.377,
+            "cluster counts": 5,
+            "time": 0.045218
+          }
+        },
+        "8": {
+          "K-Means": {
+            "K": 8,
+            "time": 0.020453357696533205,
+            "Calinski Harabasz Index": 1285.6509654222887,
+            "Silhouette Score": 0.6911245269820274,
+            "WCSS": 20248.893569704644
+          },
+          "BIRCH": {
+            "K": 8,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.06085515022277832,
+              "Silhouette Score Optimum": 0.10283184051513672
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 4.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 977.1154092051063,
+            "Silhouette Score": 0.7458728603692028
+          },
+          "Fuzzy C-Means": {
+            "C": 8,
+            "Calinski Harabasz Index": 377.8886006820404,
+            "time": 0.09922099113464355,
+            "Silhouette Score": 0.552362500350532,
+            "WCSS": 44914.07613486951
+          },
+          "Fast Global K-Means": {
+            "K": 8,
+            "time": 501.15495586395264,
+            "Calinski Harabasz Index": 936.8185898058085,
+            "Silhouette Score": 0.6885130848714442,
+            "WCSS": 25045.399675358007
+          },
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 6,
+            "Calinski Harabasz Index": 183.906,
+            "Silhouette Score": 0.381,
+            "cluster counts": 8,
+            "time": 0.045473
+          }
+        },
+        "11": {
+          "K-Means": {
+            "K": 11,
+            "time": 0.02818617820739746,
+            "Calinski Harabasz Index": 1245.6206387226366,
+            "Silhouette Score": 0.678885691531019,
+            "WCSS": 15924.096839893604
+          },
+          "BIRCH": {
+            "K": 11,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.11467385292053223,
+              "Silhouette Score Optimum": 0.022758007049560547
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.1,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 1262.5846875574528,
+            "Silhouette Score": 0.7441457833492343
+          },
+          "Fuzzy C-Means": {
+            "C": 11,
+            "Calinski Harabasz Index": 427.295685197823,
+            "time": 0.14517931938171386,
+            "Silhouette Score": 0.561062239105941,
+            "WCSS": 44218.35857483579
+          },
+          "Fast Global K-Means": {
+            "K": 11,
+            "time": 715.6724314689636,
+            "Calinski Harabasz Index": 1043.2168325872533,
+            "Silhouette Score": 0.6928569435431805,
+            "WCSS": 18192.5121355807
+          },
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 4,
+            "Calinski Harabasz Index": 320.725,
+            "Silhouette Score": 0.596,
+            "cluster counts": 11,
+            "time": 0.081675
+          }
+        },
+        "12": {
+          "K-Means": {
+            "K": 12,
+            "time": 0.04124164581298828,
+            "Calinski Harabasz Index": 1247.7367989222312,
+            "Silhouette Score": 0.6768804856322054,
+            "WCSS": 14797.238525896766
+          },
+          "BIRCH": {
+            "K": 12,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.10268807411193848,
+              "Silhouette Score Optimum": 0.025691986083984375
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.1,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 1242.7204314862804,
+            "Silhouette Score": 0.7441457833492343
+          },
+          "Fuzzy C-Means": {
+            "C": 12,
+            "Calinski Harabasz Index": 454.6067927771002,
+            "time": 0.15239534378051758,
+            "Silhouette Score": 0.5671075604490814,
+            "WCSS": 43218.90340614703
+          },
+          "Fast Global K-Means": {
+            "K": 12,
+            "time": 788.2841781377792,
+            "Calinski Harabasz Index": 1102.5168877823064,
+            "Silhouette Score": 0.6958131158931974,
+            "WCSS": 16246.122838556113
+          },
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 7,
+            "Calinski Harabasz Index": 284.554,
+            "Silhouette Score": 0.591,
+            "cluster counts": 12,
+            "time": 0.069091
+          }
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 4.1,
+            "min pts": 7,
+            "Calinski Harabasz Index": 255.358,
+            "Silhouette Score": 0.768,
+            "cluster counts": 1,
+            "time": 0.120834
+          }
+        },
+        "1413.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 9181.59,
+            "Silhouette Score": 0.567,
+            "cluster counts": 1413,
+            "time": 0.058503
+          }
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT MODEL": {
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.00454864501953125,
+            "Calinski Harabasz Index": 9.871282822383112,
+            "Silhouette Score": 0.1184854051548581,
+            "WCSS": 286.44796429272145
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00033283233642578125,
+              "Silhouette Score Optimum": 0.00033283233642578125
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 4.35,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 15.080224222462904,
+            "Silhouette Score": 0.6601598755038247
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 6.564215300257568,
+            "time": 0.002671670913696289,
+            "Silhouette Score": 0.06574478199552782,
+            "WCSS": 667.4795126602479
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 0.06362748146057129,
+            "Calinski Harabasz Index": 9.350984420744036,
+            "Silhouette Score": 0.2843145560790419,
+            "WCSS": 296.2732284849394
+          },
+          "DBSCAN": {
+            "eps": 5.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 7.881,
+            "Silhouette Score": 0.261,
+            "cluster counts": 7,
+            "time": 0.000275
+          }
+        },
+        "9": {
+          "K-Means": {
+            "K": 9,
+            "time": 0.0028943538665771483,
+            "Calinski Harabasz Index": 10.604029298712595,
+            "Silhouette Score": 0.12629009873769553,
+            "WCSS": 210.1214429118395
+          },
+          "BIRCH": {
+            "K": 9,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0003218650817871094,
+              "Silhouette Score Optimum": 0.0003218650817871094
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 4.35,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 15.080224222462904,
+            "Silhouette Score": 0.6601598755038247
+          },
+          "Fuzzy C-Means": {
+            "C": 9,
+            "Calinski Harabasz Index": 5.7354725137405085,
+            "time": 0.002305126190185547,
+            "Silhouette Score": 0.09148257121689307,
+            "WCSS": 659.9512086336397
+          },
+          "Fast Global K-Means": {
+            "K": 9,
+            "time": 0.08776581287384033,
+            "Calinski Harabasz Index": 9.531079639977698,
+            "Silhouette Score": 0.2750866978785489,
+            "WCSS": 227.37020358312031
+          },
+          "DBSCAN": {
+            "eps": 4.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 7.536,
+            "Silhouette Score": 0.227,
+            "cluster counts": 9,
+            "time": 0.00027
+          }
+        },
+        "17": {
+          "K-Means": {
+            "K": 17,
+            "time": 0.0032887935638427736,
+            "Calinski Harabasz Index": 15.810688759127416,
+            "Silhouette Score": 0.12051201296691376,
+            "WCSS": 61.26027605683603
+          },
+          "BIRCH": {
+            "K": 17,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.004050016403198242,
+              "Silhouette Score Optimum": 0.00032019615173339844
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.0999999999999999,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.222902702260747,
+            "Silhouette Score": 0.6601598755038247
+          },
+          "Fuzzy C-Means": {
+            "C": 17,
+            "Calinski Harabasz Index": 3.800677344285373,
+            "time": 0.0058290958404541016,
+            "Silhouette Score": -0.07211427086539692,
+            "WCSS": 642.4080189174704
+          },
+          "Fast Global K-Means": {
+            "K": 17,
+            "time": 0.17010343074798584,
+            "Calinski Harabasz Index": 16.374965959357695,
+            "Silhouette Score": 0.11123468871531925,
+            "WCSS": 58.78983441781287
+          },
+          "DBSCAN": null
+        },
+        "18": {
+          "K-Means": {
+            "K": 18,
+            "time": 0.003613567352294922,
+            "Calinski Harabasz Index": 17.039328790662367,
+            "Silhouette Score": 0.10635487257205152,
+            "WCSS": 50.95645028266083
+          },
+          "BIRCH": {
+            "K": 18,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0007660388946533203,
+              "Silhouette Score Optimum": 0.0003209114074707031
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 17,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.921350373187877,
+            "Silhouette Score": 0.6601598755038247
+          },
+          "Fuzzy C-Means": {
+            "C": 18,
+            "Calinski Harabasz Index": 5.083669829750974,
+            "time": 0.004026889801025391,
+            "Silhouette Score": -0.015032337233723292,
+            "WCSS": 605.4947065887402
+          },
+          "Fast Global K-Means": {
+            "K": 18,
+            "time": 0.1917405128479004,
+            "Calinski Harabasz Index": 16.910782010282638,
+            "Silhouette Score": 0.10148362292189345,
+            "WCSS": 51.23174565083354
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.365,
+            "Silhouette Score": -0.272,
+            "cluster counts": 1,
+            "time": 0.000281
+          }
+        },
+        "35.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 87.28,
+            "Silhouette Score": 0.027,
+            "cluster counts": 35,
+            "time": 0.000272
+          }
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT HEALTH": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.008736658096313476,
+            "Calinski Harabasz Index": 9.79672343213436,
+            "Silhouette Score": 0.3289122802917235,
+            "WCSS": 1984.3116354223064
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0025949478149414062,
+              "Silhouette Score Optimum": 0.0004622936248779297
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 9.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 7,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 12.285160428401873,
+            "Silhouette Score": 0.49466598184322985
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 13.217020462517041,
+            "time": 0.0007856845855712891,
+            "Silhouette Score": 0.2104844071823087,
+            "WCSS": 1949.4823862883109
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 0.030213475227355957,
+            "Calinski Harabasz Index": 7.246167748229845,
+            "Silhouette Score": 0.38529669378915626,
+            "WCSS": 2054.8088951214877
+          },
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 2,
+            "Calinski Harabasz Index": 1.733,
+            "Silhouette Score": -0.15,
+            "cluster counts": 2,
+            "time": 0.001992
+          }
+        },
+        "3": {
+          "K-Means": {
+            "K": 3,
+            "time": 0.004129457473754883,
+            "Calinski Harabasz Index": 10.216065315046176,
+            "Silhouette Score": 0.20944844669951995,
+            "WCSS": 1710.962559393459
+          },
+          "BIRCH": {
+            "K": 3,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0005450248718261719,
+              "Silhouette Score Optimum": 0.0004248619079589844
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 9.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 11.101435354828189,
+            "Silhouette Score": 0.49466598184322985
+          },
+          "Fuzzy C-Means": {
+            "C": 3,
+            "Calinski Harabasz Index": 9.402599951527122,
+            "time": 0.0009212493896484375,
+            "Silhouette Score": 0.18614470134875602,
+            "WCSS": 1933.9822180189065
+          },
+          "Fast Global K-Means": {
+            "K": 3,
+            "time": 0.056334495544433594,
+            "Calinski Harabasz Index": 4.312269210423272,
+            "Silhouette Score": 0.13919541331640314,
+            "WCSS": 2009.2566953350681
+          },
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 2.633,
+            "Silhouette Score": -0.063,
+            "cluster counts": 3,
+            "time": 0.00221
+          }
+        },
+        "9": {
+          "K-Means": {
+            "K": 9,
+            "time": 0.0029585838317871095,
+            "Calinski Harabasz Index": 9.176581230094573,
+            "Silhouette Score": 0.2043927395090047,
+            "WCSS": 966.8427089689073
+          },
+          "BIRCH": {
+            "K": 9,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0011301040649414062,
+              "Silhouette Score Optimum": 0.00042319297790527344
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 9.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 17,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 10.281637830387503,
+            "Silhouette Score": 0.49466598184322985
+          },
+          "Fuzzy C-Means": {
+            "C": 9,
+            "Calinski Harabasz Index": 7.424670022390293,
+            "time": 0.001940298080444336,
+            "Silhouette Score": 0.06647196823772868,
+            "WCSS": 1953.652690162556
+          },
+          "Fast Global K-Means": {
+            "K": 9,
+            "time": 0.20702588558197021,
+            "Calinski Harabasz Index": 5.32135820280227,
+            "Silhouette Score": 0.17541082565146382,
+            "WCSS": 1277.1387329279241
+          },
+          "DBSCAN": null
+        },
+        "15": {
+          "K-Means": {
+            "K": 15,
+            "time": 0.0031440258026123047,
+            "Calinski Harabasz Index": 8.997824051547859,
+            "Silhouette Score": 0.21129878883030834,
+            "WCSS": 627.041265580812
+          },
+          "BIRCH": {
+            "K": 15,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0010879039764404297,
+              "Silhouette Score Optimum": 0.0004248619079589844
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 2.3499999999999996,
+              "Silhouette Score Optimum": 9.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 12,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 10.891796667087243,
+            "Silhouette Score": 0.49466598184322985
+          },
+          "Fuzzy C-Means": {
+            "C": 15,
+            "Calinski Harabasz Index": 4.747406717605513,
+            "time": 0.0018280029296875,
+            "Silhouette Score": -0.07460576031016514,
+            "WCSS": 1951.5694081393444
+          },
+          "Fast Global K-Means": {
+            "K": 15,
+            "time": 0.3999825716018677,
+            "Calinski Harabasz Index": 8.449034570666782,
+            "Silhouette Score": 0.21073707071083286,
+            "WCSS": 654.8596669745526
+          },
+          "DBSCAN": {
+            "eps": 5.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 4.891,
+            "Silhouette Score": 0.103,
+            "cluster counts": 15,
+            "time": 0.002056
+          }
+        },
+        "22": {
+          "K-Means": {
+            "K": 22,
+            "time": 0.0032976150512695314,
+            "Calinski Harabasz Index": 10.035866323099107,
+            "Silhouette Score": 0.16782600192051758,
+            "WCSS": 367.9847404567401
+          },
+          "BIRCH": {
+            "K": 22,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.002129793167114258,
+              "Silhouette Score Optimum": 0.00042700767517089844
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.3499999999999999,
+              "Silhouette Score Optimum": 9.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 7,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 11.975164891435659,
+            "Silhouette Score": 0.49466598184322985
+          },
+          "Fuzzy C-Means": {
+            "C": 22,
+            "Calinski Harabasz Index": 4.117045472322017,
+            "time": 0.001955080032348633,
+            "Silhouette Score": -0.09022609730940989,
+            "WCSS": 1949.6300757173892
+          },
+          "Fast Global K-Means": {
+            "K": 22,
+            "time": 0.5162227153778076,
+            "Calinski Harabasz Index": 8.926276535688096,
+            "Silhouette Score": 0.20975733804144647,
+            "WCSS": 405.0030797669954
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.82,
+            "Silhouette Score": -0.234,
+            "cluster counts": 1,
+            "time": 0.010025
+          }
+        },
+        "60.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 68.252,
+            "Silhouette Score": 0.01,
+            "cluster counts": 60,
+            "time": 0.005165
+          }
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "4": {
+          "K-Means": {
+            "K": 4,
+            "time": 0.0032135486602783204,
+            "Calinski Harabasz Index": 9.68447199554514,
+            "Silhouette Score": 0.17101074488255746,
+            "WCSS": 1313.005383446973
+          },
+          "BIRCH": {
+            "K": 4,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.006356954574584961,
+              "Silhouette Score Optimum": 0.0004019737243652344
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 2.8499999999999996,
+              "Silhouette Score Optimum": 6.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 13.185516248350424,
+            "Silhouette Score": 0.6292944595209963
+          },
+          "Fuzzy C-Means": {
+            "C": 4,
+            "Calinski Harabasz Index": 4.744649326073911,
+            "time": 0.001981639862060547,
+            "Silhouette Score": 0.0922894463453049,
+            "WCSS": 1939.6509180738199
+          },
+          "Fast Global K-Means": {
+            "K": 4,
+            "time": 0.05735647678375244,
+            "Calinski Harabasz Index": 6.6360200297702985,
+            "Silhouette Score": 0.17146802849104364,
+            "WCSS": 1490.9177606975672
+          },
+          "DBSCAN": {
+            "eps": 8.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 8.868,
+            "Silhouette Score": 0.372,
+            "cluster counts": 4,
+            "time": 0.000297
+          }
+        },
+        "8": {
+          "K-Means": {
+            "K": 8,
+            "time": 0.004598140716552734,
+            "Calinski Harabasz Index": 11.086690684968247,
+            "Silhouette Score": 0.18690059284818267,
+            "WCSS": 744.3073919769338
+          },
+          "BIRCH": {
+            "K": 8,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00039887428283691406,
+              "Silhouette Score Optimum": 0.00039887428283691406
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 6.1,
+              "Silhouette Score Optimum": 6.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 12.505056747862184,
+            "Silhouette Score": 0.6292944595209963
+          },
+          "Fuzzy C-Means": {
+            "C": 8,
+            "Calinski Harabasz Index": 4.975780892830219,
+            "time": 0.001738739013671875,
+            "Silhouette Score": 0.0883965188485492,
+            "WCSS": 1936.4096741175442
+          },
+          "Fast Global K-Means": {
+            "K": 8,
+            "time": 0.1260770559310913,
+            "Calinski Harabasz Index": 9.97313942784027,
+            "Silhouette Score": 0.19754111327919607,
+            "WCSS": 795.6772878784584
+          },
+          "DBSCAN": null
+        },
+        "19": {
+          "K-Means": {
+            "K": 19,
+            "time": 0.0036118030548095703,
+            "Calinski Harabasz Index": 10.321250390220534,
+            "Silhouette Score": 0.12058131223102286,
+            "WCSS": 300.3235778432839
+          },
+          "BIRCH": {
+            "K": 19,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00039696693420410156,
+              "Silhouette Score Optimum": 0.00039696693420410156
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 6.1,
+              "Silhouette Score Optimum": 6.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 12.505056747862184,
+            "Silhouette Score": 0.6292944595209963
+          },
+          "Fuzzy C-Means": {
+            "C": 19,
+            "Calinski Harabasz Index": 3.232038335222385,
+            "time": 0.0036159515380859374,
+            "Silhouette Score": -0.06764978070176493,
+            "WCSS": 1924.8603324221356
+          },
+          "Fast Global K-Means": {
+            "K": 19,
+            "time": 0.3344540596008301,
+            "Calinski Harabasz Index": 10.584924392669986,
+            "Silhouette Score": 0.13337221897178209,
+            "WCSS": 292.5472779364271
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.322,
+            "Silhouette Score": -0.257,
+            "cluster counts": 1,
+            "time": 0.000289
+          }
+        },
+        "48.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 62.046,
+            "Silhouette Score": 0.021,
+            "cluster counts": 48,
+            "time": 0.000274
+          }
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT MODEL": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.010054302215576173,
+            "Calinski Harabasz Index": 17.353487321165893,
+            "Silhouette Score": 0.6246465952651825,
+            "WCSS": 1825.0716447654427
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0048520565032958984,
+              "Silhouette Score Optimum": 0.0006988048553466797
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 4.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 26.288991059092478,
+            "Silhouette Score": 0.7235520946242986
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 8.434348409425871,
+            "time": 0.0007574558258056641,
+            "Silhouette Score": 0.3490690756802385,
+            "WCSS": 2012.0502384546683
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 0.052134037017822266,
+            "Calinski Harabasz Index": 26.288991059092478,
+            "Silhouette Score": 0.6664232553242871,
+            "WCSS": 1674.0971155911682
+          },
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 5,
+            "Calinski Harabasz Index": 11.874,
+            "Silhouette Score": 0.557,
+            "cluster counts": 2,
+            "time": 0.000372
+          }
+        },
+        "4": {
+          "K-Means": {
+            "K": 4,
+            "time": 0.003817176818847656,
+            "Calinski Harabasz Index": 17.61499861159032,
+            "Silhouette Score": 0.4241709650977744,
+            "WCSS": 1351.7669999604161
+          },
+          "BIRCH": {
+            "K": 4,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.004765033721923828,
+              "Silhouette Score Optimum": 0.0007138252258300781
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 3.8499999999999996
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 24.4990766854622,
+            "Silhouette Score": 0.7209557123980761
+          },
+          "Fuzzy C-Means": {
+            "C": 4,
+            "Calinski Harabasz Index": 17.374458707559707,
+            "time": 0.001106405258178711,
+            "Silhouette Score": 0.5876460672338802,
+            "WCSS": 1407.1598200407645
+          },
+          "Fast Global K-Means": {
+            "K": 4,
+            "time": 0.14126527309417725,
+            "Calinski Harabasz Index": 13.808300533879915,
+            "Silhouette Score": 0.5963314524084586,
+            "WCSS": 1467.3932571711687
+          },
+          "DBSCAN": {
+            "eps": 1.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 6.363,
+            "Silhouette Score": 0.619,
+            "cluster counts": 4,
+            "time": 0.00036
+          }
+        },
+        "9": {
+          "K-Means": {
+            "K": 9,
+            "time": 0.0029038906097412108,
+            "Calinski Harabasz Index": 42.2777757899013,
+            "Silhouette Score": 0.6102997862380583,
+            "WCSS": 422.24129023621754
+          },
+          "BIRCH": {
+            "K": 9,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0007572174072265625,
+              "Silhouette Score Optimum": 0.0007548332214355469
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 4.6,
+              "Silhouette Score Optimum": 3.5999999999999996
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 33.65941756307528,
+            "Silhouette Score": 0.623994170627413
+          },
+          "Fuzzy C-Means": {
+            "C": 9,
+            "Calinski Harabasz Index": 15.083049840025819,
+            "time": 0.002290821075439453,
+            "Silhouette Score": 0.60890654217527,
+            "WCSS": 1394.0909026783638
+          },
+          "Fast Global K-Means": {
+            "K": 9,
+            "time": 0.3705679178237915,
+            "Calinski Harabasz Index": 28.018386901175624,
+            "Silhouette Score": 0.625797944170196,
+            "WCSS": 577.135984566153
+          },
+          "DBSCAN": null
+        },
+        "12": {
+          "K-Means": {
+            "K": 12,
+            "time": 0.0028997421264648437,
+            "Calinski Harabasz Index": 74.90862921860052,
+            "Silhouette Score": 0.6575815852750935,
+            "WCSS": 190.55080559977478
+          },
+          "BIRCH": {
+            "K": 12,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0006539821624755859,
+              "Silhouette Score Optimum": 0.0005948543548583984
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 40.226161505685695,
+            "Silhouette Score": 0.5729304364907338
+          },
+          "Fuzzy C-Means": {
+            "C": 12,
+            "Calinski Harabasz Index": 14.077711275549385,
+            "time": 0.003625965118408203,
+            "Silhouette Score": 0.6352110776061295,
+            "WCSS": 1393.3885856611298
+          },
+          "Fast Global K-Means": {
+            "K": 12,
+            "time": 0.5188134908676147,
+            "Calinski Harabasz Index": 40.17068296968959,
+            "Silhouette Score": 0.46322402298266907,
+            "WCSS": 326.2090046104491
+          },
+          "DBSCAN": {
+            "eps": 4.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 28.205,
+            "Silhouette Score": 0.545,
+            "cluster counts": 12,
+            "time": 0.000394
+          }
+        },
+        "22": {
+          "K-Means": {
+            "K": 22,
+            "time": 0.0032720565795898438,
+            "Calinski Harabasz Index": 298.03651164460393,
+            "Silhouette Score": 0.7160298047961007,
+            "WCSS": 24.11397814933279
+          },
+          "BIRCH": {
+            "K": 22,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0008037090301513672,
+              "Silhouette Score Optimum": 0.005075931549072266
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 1.3499999999999999
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 265.70317607514886,
+            "Silhouette Score": 0.6627843896329451
+          },
+          "Fuzzy C-Means": {
+            "C": 22,
+            "Calinski Harabasz Index": 11.65558642965034,
+            "time": 0.006913471221923828,
+            "Silhouette Score": 0.6605578162231289,
+            "WCSS": 1373.3917796996273
+          },
+          "Fast Global K-Means": {
+            "K": 22,
+            "time": 0.9941120147705078,
+            "Calinski Harabasz Index": 241.83845240491704,
+            "Silhouette Score": 0.6529372977340169,
+            "WCSS": 28.726997650848112
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 17,
+            "Calinski Harabasz Index": 8.269,
+            "Silhouette Score": 0.243,
+            "cluster counts": 1,
+            "time": 0.000344
+          }
+        },
+        "29.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 915201.584,
+            "Silhouette Score": 0.707,
+            "cluster counts": 29,
+            "time": 0.007712
+          }
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT HEALTH": {
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.002940797805786133,
+            "Calinski Harabasz Index": 5.823297797151165,
+            "Silhouette Score": 0.08182934958519708,
+            "WCSS": 936.1873413486358
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004973411560058594,
+              "Silhouette Score Optimum": 0.00037932395935058594
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.724949545714712,
+            "Silhouette Score": 0.4972007792159892
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 6.393048164991641,
+            "time": 0.0008261680603027343,
+            "Silhouette Score": 0.11455178396062575,
+            "WCSS": 1748.8450731188684
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 0.10582709312438965,
+            "Calinski Harabasz Index": 6.655148226593751,
+            "Silhouette Score": 0.1454954116624932,
+            "WCSS": 876.267170797134
+          },
+          "DBSCAN": {
+            "eps": 6.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 4.295,
+            "Silhouette Score": 0.113,
+            "cluster counts": 7,
+            "time": 0.0003
+          }
+        },
+        "9": {
+          "K-Means": {
+            "K": 9,
+            "time": 0.002838134765625,
+            "Calinski Harabasz Index": 5.855779295589244,
+            "Silhouette Score": 0.10795935930996214,
+            "WCSS": 788.0742038772402
+          },
+          "BIRCH": {
+            "K": 9,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004999637603759766,
+              "Silhouette Score Optimum": 0.00036716461181640625
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.5134978678540385,
+            "Silhouette Score": 0.4972007792159892
+          },
+          "Fuzzy C-Means": {
+            "C": 9,
+            "Calinski Harabasz Index": 5.808701210307511,
+            "time": 0.0008208274841308594,
+            "Silhouette Score": 0.07272913057248259,
+            "WCSS": 1747.98155715625
+          },
+          "Fast Global K-Means": {
+            "K": 9,
+            "time": 0.1310795545578003,
+            "Calinski Harabasz Index": 7.058330225071052,
+            "Silhouette Score": 0.1128855599561461,
+            "WCSS": 704.3626437462932
+          },
+          "DBSCAN": null
+        },
+        "10": {
+          "K-Means": {
+            "K": 10,
+            "time": 0.0029644489288330076,
+            "Calinski Harabasz Index": 6.924479718909237,
+            "Silhouette Score": 0.13734169459552362,
+            "WCSS": 652.692877788944
+          },
+          "BIRCH": {
+            "K": 10,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0064508914947509766,
+              "Silhouette Score Optimum": 0.0003628730773925781
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.522966641058117,
+            "Silhouette Score": 0.4972007792159892
+          },
+          "Fuzzy C-Means": {
+            "C": 10,
+            "Calinski Harabasz Index": 6.393048164991641,
+            "time": 0.0008506298065185547,
+            "Silhouette Score": 0.11455178396062575,
+            "WCSS": 1748.0554946870132
+          },
+          "Fast Global K-Means": {
+            "K": 10,
+            "time": 0.14478707313537598,
+            "Calinski Harabasz Index": 6.728349139438681,
+            "Silhouette Score": 0.11108877314102895,
+            "WCSS": 664.1141790169063
+          },
+          "DBSCAN": null
+        },
+        "15": {
+          "K-Means": {
+            "K": 15,
+            "time": 0.0031919956207275392,
+            "Calinski Harabasz Index": 5.972641419382351,
+            "Silhouette Score": 0.09368329012450098,
+            "WCSS": 485.841963526084
+          },
+          "BIRCH": {
+            "K": 15,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.000537872314453125,
+              "Silhouette Score Optimum": 0.00037097930908203125
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.229111267036916,
+            "Silhouette Score": 0.4972007792159892
+          },
+          "Fuzzy C-Means": {
+            "C": 15,
+            "Calinski Harabasz Index": 4.531127088956806,
+            "time": 0.00084686279296875,
+            "Silhouette Score": 0.01290705286439292,
+            "WCSS": 1747.3195311734944
+          },
+          "Fast Global K-Means": {
+            "K": 15,
+            "time": 0.21718716621398926,
+            "Calinski Harabasz Index": 6.433175114456057,
+            "Silhouette Score": 0.12095290757834376,
+            "WCSS": 459.0415201736534
+          },
+          "DBSCAN": null
+        },
+        "21": {
+          "K-Means": {
+            "K": 21,
+            "time": 0.003411102294921875,
+            "Calinski Harabasz Index": 6.487569304103353,
+            "Silhouette Score": 0.12328816184796976,
+            "WCSS": 292.4325841446409
+          },
+          "BIRCH": {
+            "K": 21,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0008399486541748047,
+              "Silhouette Score Optimum": 0.00037598609924316406
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.0999999999999999,
+              "Silhouette Score Optimum": 6.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 42,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.426521664831562,
+            "Silhouette Score": 0.4972007792159892
+          },
+          "Fuzzy C-Means": {
+            "C": 21,
+            "Calinski Harabasz Index": 5.323176805188621,
+            "time": 0.0009185791015625,
+            "Silhouette Score": 0.07912746156192671,
+            "WCSS": 1745.1324030452256
+          },
+          "Fast Global K-Means": {
+            "K": 21,
+            "time": 0.3237440586090088,
+            "Calinski Harabasz Index": 6.2456111879600975,
+            "Silhouette Score": 0.10676340969732219,
+            "WCSS": 301.67555779712427
+          },
+          "DBSCAN": {
+            "eps": 4.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 3.7,
+            "Silhouette Score": 0.014,
+            "cluster counts": 21,
+            "time": 0.000304
+          }
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.65,
+            "Silhouette Score": -0.174,
+            "cluster counts": 1,
+            "time": 0.00028
+          }
+        },
+        "46.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 18.214,
+            "Silhouette Score": 0.002,
+            "cluster counts": 46,
+            "time": 0.000277
+          }
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "4": {
+          "K-Means": {
+            "K": 4,
+            "time": 0.0055046558380126955,
+            "Calinski Harabasz Index": 22.958155277898793,
+            "Silhouette Score": 0.5613092588195677,
+            "WCSS": 2273.99501130578
+          },
+          "BIRCH": {
+            "K": 4,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.004808902740478516,
+              "Silhouette Score Optimum": 0.0012569427490234375
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 2.8499999999999996,
+              "Silhouette Score Optimum": 4.35
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 7
+            },
+            "Calinski Harabasz Index": 18.905018977471965,
+            "Silhouette Score": 0.553059647850885
+          },
+          "Fuzzy C-Means": {
+            "C": 4,
+            "Calinski Harabasz Index": 27.856906643897638,
+            "time": 0.0013841629028320313,
+            "Silhouette Score": 0.6410673448267534,
+            "WCSS": 2172.568873840663
+          },
+          "Fast Global K-Means": {
+            "K": 4,
+            "time": 0.14098143577575684,
+            "Calinski Harabasz Index": 21.316090907960394,
+            "Silhouette Score": 0.5242159979984787,
+            "WCSS": 2327.4258311133935
+          },
+          "DBSCAN": {
+            "eps": 11.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 8.465,
+            "Silhouette Score": 0.591,
+            "cluster counts": 4,
+            "time": 0.000397
+          }
+        },
+        "10": {
+          "K-Means": {
+            "K": 10,
+            "time": 0.003951025009155273,
+            "Calinski Harabasz Index": 34.07941489728323,
+            "Silhouette Score": 0.6780356881755949,
+            "WCSS": 837.9287901512869
+          },
+          "BIRCH": {
+            "K": 10,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0006580352783203125,
+              "Silhouette Score Optimum": 0.0005507469177246094
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.1,
+              "Silhouette Score Optimum": 7.599999999999999
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.843196573563958,
+            "Silhouette Score": 0.5419458106828168
+          },
+          "Fuzzy C-Means": {
+            "C": 10,
+            "Calinski Harabasz Index": 18.600561868852502,
+            "time": 0.003139495849609375,
+            "Silhouette Score": 0.6325415384328659,
+            "WCSS": 2246.411335861612
+          },
+          "Fast Global K-Means": {
+            "K": 10,
+            "time": 0.43495142459869385,
+            "Calinski Harabasz Index": 36.87824418147543,
+            "Silhouette Score": 0.6783135696301561,
+            "WCSS": 784.1134601744017
+          },
+          "DBSCAN": {
+            "eps": 9.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 9.191,
+            "Silhouette Score": 0.466,
+            "cluster counts": 10,
+            "time": 0.000367
+          }
+        },
+        "19": {
+          "K-Means": {
+            "K": 19,
+            "time": 0.005084180831909179,
+            "Calinski Harabasz Index": 118.8422759447953,
+            "Silhouette Score": 0.7222726237085885,
+            "WCSS": 130.06558303868138
+          },
+          "BIRCH": {
+            "K": 19,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.001251220703125,
+              "Silhouette Score Optimum": 0.0007569789886474609
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 3.0999999999999996,
+              "Silhouette Score Optimum": 3.0999999999999996
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 12,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 128.3372902327466,
+            "Silhouette Score": 0.7241740639622104
+          },
+          "Fuzzy C-Means": {
+            "C": 19,
+            "Calinski Harabasz Index": 15.181814268284478,
+            "time": 0.0051767826080322266,
+            "Silhouette Score": 0.5511760545715636,
+            "WCSS": 2218.900783805502
+          },
+          "Fast Global K-Means": {
+            "K": 19,
+            "time": 0.8505239486694336,
+            "Calinski Harabasz Index": 89.92429104111424,
+            "Silhouette Score": 0.704425402025514,
+            "WCSS": 169.06514188513842
+          },
+          "DBSCAN": null
+        },
+        "21": {
+          "K-Means": {
+            "K": 21,
+            "time": 0.0035182476043701173,
+            "Calinski Harabasz Index": 181.0288374184461,
+            "Silhouette Score": 0.7210979045378029,
+            "WCSS": 75.18695281925818
+          },
+          "BIRCH": {
+            "K": 21,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0053958892822265625,
+              "Silhouette Score Optimum": 0.005333900451660156
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 3.3499999999999996
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 165.6197602915813,
+            "Silhouette Score": 0.7200824821528798
+          },
+          "Fuzzy C-Means": {
+            "C": 21,
+            "Calinski Harabasz Index": 16.216592483278497,
+            "time": 0.004753637313842774,
+            "Silhouette Score": 0.556221460279247,
+            "WCSS": 2207.6896706201646
+          },
+          "Fast Global K-Means": {
+            "K": 21,
+            "time": 0.954566478729248,
+            "Calinski Harabasz Index": 126.60594573298938,
+            "Silhouette Score": 0.717360535136306,
+            "WCSS": 106.6616008930171
+          },
+          "DBSCAN": null
+        },
+        "28.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 3771170.059,
+            "Silhouette Score": 0.714,
+            "cluster counts": 28,
+            "time": 0.002485
+          }
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT MODEL": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.005047750473022461,
+            "Calinski Harabasz Index": 13.018104237710606,
+            "Silhouette Score": 0.4716063816617123,
+            "WCSS": 673.5975744673984
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0031082630157470703,
+              "Silhouette Score Optimum": 0.0003688335418701172
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.8499999999999999,
+              "Silhouette Score Optimum": 4.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.4967165241434,
+            "Silhouette Score": 0.5999276791121518
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 16.471822604507917,
+            "time": 0.0006762027740478515,
+            "Silhouette Score": 0.417580347598897,
+            "WCSS": 634.6473684471771
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 0.013508439064025879,
+            "Calinski Harabasz Index": 16.471822604507917,
+            "Silhouette Score": 0.417580347598897,
+            "WCSS": 621.3103179318849
+          },
+          "DBSCAN": {
+            "eps": 1.6,
+            "min pts": 3,
+            "Calinski Harabasz Index": 2.176,
+            "Silhouette Score": -0.066,
+            "cluster counts": 2,
+            "time": 0.000303
+          }
+        },
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.002861499786376953,
+            "Calinski Harabasz Index": 15.736585728061863,
+            "Silhouette Score": 0.21306745237783495,
+            "WCSS": 224.30260711576392
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00040411949157714844,
+              "Silhouette Score Optimum": 0.00032210350036621094
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.5999999999999999,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.285438279501374,
+            "Silhouette Score": 0.45457545081332273
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 6.713384589371808,
+            "time": 0.0040706157684326175,
+            "Silhouette Score": 0.023416803359044235,
+            "WCSS": 513.6759046628262
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 0.07563042640686035,
+            "Calinski Harabasz Index": 13.503647593679327,
+            "Silhouette Score": 0.327967965903123,
+            "WCSS": 250.60574925954566
+          },
+          "DBSCAN": {
+            "eps": 4.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 5.662,
+            "Silhouette Score": 0.229,
+            "cluster counts": 7,
+            "time": 0.000266
+          }
+        },
+        "8": {
+          "K-Means": {
+            "K": 8,
+            "time": 0.0030031204223632812,
+            "Calinski Harabasz Index": 15.951711104409009,
+            "Silhouette Score": 0.21026807813778822,
+            "WCSS": 192.1802469165753
+          },
+          "BIRCH": {
+            "K": 8,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004489421844482422,
+              "Silhouette Score Optimum": 0.0003330707550048828
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.35,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 17.779843461458402,
+            "Silhouette Score": 0.45457545081332273
+          },
+          "Fuzzy C-Means": {
+            "C": 8,
+            "Calinski Harabasz Index": 6.777105303582966,
+            "time": 0.0034230232238769533,
+            "Silhouette Score": 0.044519294272264205,
+            "WCSS": 521.0384185836336
+          },
+          "Fast Global K-Means": {
+            "K": 8,
+            "time": 0.08056783676147461,
+            "Calinski Harabasz Index": 14.395451340472679,
+            "Silhouette Score": 0.3284810650628285,
+            "WCSS": 207.75498752026166
+          },
+          "DBSCAN": null
+        },
+        "12": {
+          "K-Means": {
+            "K": 12,
+            "time": 0.002973651885986328,
+            "Calinski Harabasz Index": 16.777057547058718,
+            "Silhouette Score": 0.1622657114424047,
+            "WCSS": 112.0661188377585
+          },
+          "BIRCH": {
+            "K": 12,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004220008850097656,
+              "Silhouette Score Optimum": 0.00032210350036621094
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.35,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 19.401856282142177,
+            "Silhouette Score": 0.45457545081332273
+          },
+          "Fuzzy C-Means": {
+            "C": 12,
+            "Calinski Harabasz Index": 6.894518836591506,
+            "time": 0.0036348342895507813,
+            "Silhouette Score": 0.05530838404862237,
+            "WCSS": 436.52410050491716
+          },
+          "Fast Global K-Means": {
+            "K": 12,
+            "time": 0.11810433864593506,
+            "Calinski Harabasz Index": 14.746701384970908,
+            "Silhouette Score": 0.2168317520239738,
+            "WCSS": 125.09913167205542
+          },
+          "DBSCAN": null
+        },
+        "20": {
+          "K-Means": {
+            "K": 20,
+            "time": 0.003317403793334961,
+            "Calinski Harabasz Index": 22.29429238027027,
+            "Silhouette Score": 0.15530683227601083,
+            "WCSS": 37.24477603471453
+          },
+          "BIRCH": {
+            "K": 20,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0066111087799072266,
+              "Silhouette Score Optimum": 0.0003211498260498047
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.6,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 27.04106757631121,
+            "Silhouette Score": 0.45457545081332273
+          },
+          "Fuzzy C-Means": {
+            "C": 20,
+            "Calinski Harabasz Index": 4.4316752556199885,
+            "time": 0.0035535812377929686,
+            "Silhouette Score": -0.01185434334063589,
+            "WCSS": 394.11497173581864
+          },
+          "Fast Global K-Means": {
+            "K": 20,
+            "time": 0.22662949562072754,
+            "Calinski Harabasz Index": 23.6453216323891,
+            "Silhouette Score": 0.1579522219871547,
+            "WCSS": 34.885510495435085
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.6,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.5,
+            "Silhouette Score": -0.259,
+            "cluster counts": 1,
+            "time": 0.000275
+          }
+        },
+        "37.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 0.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 326.935,
+            "Silhouette Score": 0.021,
+            "cluster counts": 37,
+            "time": 0.000273
+          }
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT HEALTH": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.011779308319091797,
+            "Calinski Harabasz Index": 7.186634812910745,
+            "Silhouette Score": 0.2560332928020752,
+            "WCSS": 1470.898178165916
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004718303680419922,
+              "Silhouette Score Optimum": 0.0015268325805664062
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 2.0999999999999996,
+              "Silhouette Score Optimum": 4.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 2
+            },
+            "Calinski Harabasz Index": 7.933790197457102,
+            "Silhouette Score": 0.4268322148259293
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 7.860318994229203,
+            "time": 0.0012577056884765625,
+            "Silhouette Score": 0.18550224978409147,
+            "WCSS": 1570.7356616160905
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 0.06051504611968994,
+            "Calinski Harabasz Index": 7.915838823985585,
+            "Silhouette Score": 0.18870255133655736,
+            "WCSS": 1450.5205348096158
+          },
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 1.181,
+            "Silhouette Score": -0.189,
+            "cluster counts": 2,
+            "time": 0.000293
+          }
+        },
+        "4": {
+          "K-Means": {
+            "K": 4,
+            "time": 0.003108644485473633,
+            "Calinski Harabasz Index": 6.591553488348524,
+            "Silhouette Score": 0.1995983728911989,
+            "WCSS": 1173.2324571714757
+          },
+          "BIRCH": {
+            "K": 4,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0005049705505371094,
+              "Silhouette Score Optimum": 0.0003769397735595703
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.0999999999999999,
+              "Silhouette Score Optimum": 6.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 7.839044800695928,
+            "Silhouette Score": 0.38921146160963255
+          },
+          "Fuzzy C-Means": {
+            "C": 4,
+            "Calinski Harabasz Index": 5.031623707805505,
+            "time": 0.002505636215209961,
+            "Silhouette Score": 0.06657903722168074,
+            "WCSS": 1518.657609886773
+          },
+          "Fast Global K-Means": {
+            "K": 4,
+            "time": 0.04846453666687012,
+            "Calinski Harabasz Index": 7.898738835210172,
+            "Silhouette Score": 0.22612037357748696,
+            "WCSS": 1105.0214176469449
+          },
+          "DBSCAN": {
+            "eps": 9.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 4.823,
+            "Silhouette Score": 0.371,
+            "cluster counts": 4,
+            "time": 0.000292
+          }
+        },
+        "10": {
+          "K-Means": {
+            "K": 10,
+            "time": 0.003589010238647461,
+            "Calinski Harabasz Index": 7.682790435617522,
+            "Silhouette Score": 0.13991118527416913,
+            "WCSS": 603.275116614483
+          },
+          "BIRCH": {
+            "K": 10,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0011699199676513672,
+              "Silhouette Score Optimum": 0.0003688335418701172
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.3499999999999999,
+              "Silhouette Score Optimum": 6.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 8.734411831872844,
+            "Silhouette Score": 0.38921146160963255
+          },
+          "Fuzzy C-Means": {
+            "C": 10,
+            "Calinski Harabasz Index": 3.6861165823681867,
+            "time": 0.004451227188110351,
+            "Silhouette Score": -0.05902757977093938,
+            "WCSS": 1522.1759628073373
+          },
+          "Fast Global K-Means": {
+            "K": 10,
+            "time": 0.14194798469543457,
+            "Calinski Harabasz Index": 7.877706474751279,
+            "Silhouette Score": 0.2294586600977043,
+            "WCSS": 593.2540233221451
+          },
+          "DBSCAN": null
+        },
+        "12": {
+          "K-Means": {
+            "K": 12,
+            "time": 0.00446624755859375,
+            "Calinski Harabasz Index": 8.521842676134245,
+            "Silhouette Score": 0.14783023785349877,
+            "WCSS": 472.04251337431754
+          },
+          "BIRCH": {
+            "K": 12,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0010819435119628906,
+              "Silhouette Score Optimum": 0.0003712177276611328
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.3499999999999999,
+              "Silhouette Score Optimum": 6.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 22,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 9.165502925485466,
+            "Silhouette Score": 0.38921146160963255
+          },
+          "Fuzzy C-Means": {
+            "C": 12,
+            "Calinski Harabasz Index": 3.3734638510070623,
+            "time": 0.003780984878540039,
+            "Silhouette Score": -0.042783389969551396,
+            "WCSS": 1506.654545259399
+          },
+          "Fast Global K-Means": {
+            "K": 12,
+            "time": 0.17288267612457275,
+            "Calinski Harabasz Index": 7.542491920864682,
+            "Silhouette Score": 0.1998138088129331,
+            "WCSS": 514.4662695281811
+          },
+          "DBSCAN": null
+        },
+        "23": {
+          "K-Means": {
+            "K": 23,
+            "time": 0.0038494586944580076,
+            "Calinski Harabasz Index": 10.482583835058573,
+            "Silhouette Score": 0.1012842754050636,
+            "WCSS": 166.3406784808115
+          },
+          "BIRCH": {
+            "K": 23,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0009889602661132812,
+              "Silhouette Score Optimum": 0.0003688335418701172
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 0.8499999999999999,
+              "Silhouette Score Optimum": 6.85
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 37,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 11.275583521973125,
+            "Silhouette Score": 0.38921146160963255
+          },
+          "Fuzzy C-Means": {
+            "C": 23,
+            "Calinski Harabasz Index": 2.7023087989046415,
+            "time": 0.005330848693847656,
+            "Silhouette Score": -0.12312294024624262,
+            "WCSS": 1502.0039886898194
+          },
+          "Fast Global K-Means": {
+            "K": 23,
+            "time": 0.34819936752319336,
+            "Calinski Harabasz Index": 10.100869353380409,
+            "Silhouette Score": 0.1045497415883137,
+            "WCSS": 171.92552470604696
+          },
+          "DBSCAN": null
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 3,
+            "Calinski Harabasz Index": 1.852,
+            "Silhouette Score": -0.124,
+            "cluster counts": 1,
+            "time": 0.000285
+          }
+        },
+        "42.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.1,
+            "min pts": 1,
+            "Calinski Harabasz Index": 12.347,
+            "Silhouette Score": 0.011,
+            "cluster counts": 42,
+            "time": 0.000279
+          }
+        }
+      },
+      "OIL AND GAS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "2": {
+          "K-Means": {
+            "K": 2,
+            "time": 0.029930782318115235,
+            "Calinski Harabasz Index": 8.529474026236196,
+            "Silhouette Score": 0.5220335061686401,
+            "WCSS": 986.9564630258294
+          },
+          "BIRCH": {
+            "K": 2,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0003361701965332031,
+              "Silhouette Score Optimum": 0.0003361701965332031
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 7.1,
+              "Silhouette Score Optimum": 7.1
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 8.734249195234662,
+            "Silhouette Score": 0.5573481323857482
+          },
+          "Fuzzy C-Means": {
+            "C": 2,
+            "Calinski Harabasz Index": 8.267158592767778,
+            "time": 0.0008856773376464844,
+            "Silhouette Score": 0.21860959899758275,
+            "WCSS": 1071.7909359609712
+          },
+          "Fast Global K-Means": {
+            "K": 2,
+            "time": 0.01130664348602295,
+            "Calinski Harabasz Index": 8.427071073133655,
+            "Silhouette Score": 0.27239877918291866,
+            "WCSS": 989.6044375758778
+          },
+          "DBSCAN": {
+            "eps": 3.1,
+            "min pts": 2,
+            "Calinski Harabasz Index": 1.137,
+            "Silhouette Score": -0.113,
+            "cluster counts": 2,
+            "time": 0.000403
+          }
+        },
+        "6": {
+          "K-Means": {
+            "K": 6,
+            "time": 0.004527378082275391,
+            "Calinski Harabasz Index": 7.943202889287937,
+            "Silhouette Score": 0.12669217381533993,
+            "WCSS": 487.4656263583287
+          },
+          "BIRCH": {
+            "K": 6,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00029587745666503906,
+              "Silhouette Score Optimum": 0.0002841949462890625
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 6.6,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 9.233042868481542,
+            "Silhouette Score": 0.3253366251307782
+          },
+          "Fuzzy C-Means": {
+            "C": 6,
+            "Calinski Harabasz Index": 4.199710647006788,
+            "time": 0.0036595821380615234,
+            "Silhouette Score": -0.023862332077082837,
+            "WCSS": 1063.0559986126962
+          },
+          "Fast Global K-Means": {
+            "K": 6,
+            "time": 0.04044055938720703,
+            "Calinski Harabasz Index": 8.783515124290403,
+            "Silhouette Score": 0.1670632691206085,
+            "WCSS": 454.9429323750429
+          },
+          "DBSCAN": {
+            "eps": 6.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 7.313,
+            "Silhouette Score": 0.21,
+            "cluster counts": 6,
+            "time": 0.000288
+          }
+        },
+        "7": {
+          "K-Means": {
+            "K": 7,
+            "time": 0.004097270965576172,
+            "Calinski Harabasz Index": 8.379618575532458,
+            "Silhouette Score": 0.14060035563767315,
+            "WCSS": 404.5579285652393
+          },
+          "BIRCH": {
+            "K": 7,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.00035691261291503906,
+              "Silhouette Score Optimum": 0.00028896331787109375
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 2.0999999999999996,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 9.487540740001009,
+            "Silhouette Score": 0.3253366251307782
+          },
+          "Fuzzy C-Means": {
+            "C": 7,
+            "Calinski Harabasz Index": 3.495096834837534,
+            "time": 0.004793643951416016,
+            "Silhouette Score": -0.06816545810746757,
+            "WCSS": 1061.8817414311204
+          },
+          "Fast Global K-Means": {
+            "K": 7,
+            "time": 0.05055809020996094,
+            "Calinski Harabasz Index": 8.288584609260019,
+            "Silhouette Score": 0.15498871308339968,
+            "WCSS": 407.12999668657307
+          },
+          "DBSCAN": null
+        },
+        "16": {
+          "K-Means": {
+            "K": 16,
+            "time": 0.003894805908203125,
+            "Calinski Harabasz Index": 8.896052958823041,
+            "Silhouette Score": 0.09048842046084167,
+            "WCSS": 122.87875469311761
+          },
+          "BIRCH": {
+            "K": 16,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0035178661346435547,
+              "Silhouette Score Optimum": 0.0003082752227783203
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.5999999999999999,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 2,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 10.507972075342705,
+            "Silhouette Score": 0.3253366251307782
+          },
+          "Fuzzy C-Means": {
+            "C": 16,
+            "Calinski Harabasz Index": 3.6306142302776694,
+            "time": 0.003641176223754883,
+            "Silhouette Score": -0.033396138428006136,
+            "WCSS": 998.5935427917086
+          },
+          "Fast Global K-Means": {
+            "K": 16,
+            "time": 0.1260700225830078,
+            "Calinski Harabasz Index": 9.164230113714849,
+            "Silhouette Score": 0.11685171957541143,
+            "WCSS": 119.00029603149122
+          },
+          "DBSCAN": null
+        },
+        "19": {
+          "K-Means": {
+            "K": 19,
+            "time": 0.004697990417480469,
+            "Calinski Harabasz Index": 9.660558245748248,
+            "Silhouette Score": 0.06488786425277135,
+            "WCSS": 76.6946725571415
+          },
+          "BIRCH": {
+            "K": 19,
+            "Running Time": {
+              "Calinski Harabasz Index Optimum": 0.0004200935363769531,
+              "Silhouette Score Optimum": 0.00030517578125
+            },
+            "Threshold Value": {
+              "Calinski Harabasz Index Optimum": 1.5999999999999999,
+              "Silhouette Score Optimum": 5.6
+            },
+            "Branching Factor": {
+              "Calinski Harabasz Index Optimum": 67,
+              "Silhouette Score Optimum": 67
+            },
+            "Calinski Harabasz Index": 10.786418317859917,
+            "Silhouette Score": 0.3253366251307782
+          },
+          "Fuzzy C-Means": {
+            "C": 19,
+            "Calinski Harabasz Index": 3.6463791815408677,
+            "time": 0.0045222282409667965,
+            "Silhouette Score": -0.06086329835611248,
+            "WCSS": 886.7048876755082
+          },
+          "Fast Global K-Means": {
+            "K": 19,
+            "time": 0.1613694429397583,
+            "Calinski Harabasz Index": 9.21506216952586,
+            "Silhouette Score": 0.06790565591412737,
+            "WCSS": 80.06885488287838
+          },
+          "DBSCAN": {
+            "eps": 3.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 7.143,
+            "Silhouette Score": 0.014,
+            "cluster counts": 19,
+            "time": 0.000272
+          }
+        },
+        "1.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.6,
+            "min pts": 2,
+            "Calinski Harabasz Index": 0.393,
+            "Silhouette Score": -0.224,
+            "cluster counts": 1,
+            "time": 0.000317
+          }
+        },
+        "29.0": {
+          "K-Means": null,
+          "BIRCH": null,
+          "Fuzzy C-Means": null,
+          "Fast Global K-Means": null,
+          "DBSCAN": {
+            "eps": 2.6,
+            "min pts": 1,
+            "Calinski Harabasz Index": 14.89,
+            "Silhouette Score": 0.007,
+            "cluster counts": 29,
+            "time": 0.000301
+          }
+        }
+      }
+    },
+    "algorithms performance on number of unique credit ratings": {
+      "CREDIT MODEL": {
+        "K-Means": {
+          "K": 9,
+          "time": 0.042917633056640626,
+          "Calinski Harabasz Index": 1592.455338037194,
+          "Silhouette Score": 0.7498435957981997,
+          "WCSS": 6403.952955461957
+        },
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.01573491096496582,
+            "Silhouette Score Optimum": 0.0452578067779541
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.6,
+            "Silhouette Score Optimum": 9.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 2
+          },
+          "Calinski Harabasz Index": 1487.1363522883903,
+          "Silhouette Score": 0.9475687662924491
+        },
+        "Fuzzy C-Means": {
+          "C": 9,
+          "Calinski Harabasz Index": 601.157433785035,
+          "time": 0.07107386589050294,
+          "Silhouette Score": 0.9563365029973954,
+          "WCSS": 17278.993254959572
+        },
+        "Fast Global K-Means": {
+          "K": 9,
+          "time": 173.43220615386963,
+          "Calinski Harabasz Index": 1102.2446280586173,
+          "Silhouette Score": 0.9427443184677303,
+          "WCSS": 8657.83019960459
+        },
+        "DBSCAN": {
+          "eps": 21.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 800.802,
+          "Silhouette Score": 0.95,
+          "cluster counts": 9,
+          "time": 0.043096
+        }
+      },
+      "CREDIT HEALTH": {
+        "K-Means": {
+          "K": 17,
+          "time": 0.02781252861022949,
+          "Calinski Harabasz Index": 43.33345507398072,
+          "Silhouette Score": 0.10124087025578887,
+          "WCSS": 10101.480166436737
+        },
+        "BIRCH": {
+          "K": 17,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.030411958694458008,
+            "Silhouette Score Optimum": 0.009387016296386719
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.8499999999999999,
+            "Silhouette Score Optimum": 9.85
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 12,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 43.37121897317992,
+          "Silhouette Score": 0.7823171731835235
+        },
+        "Fuzzy C-Means": {
+          "C": 17,
+          "Calinski Harabasz Index": 17.80263006076668,
+          "time": 0.004475164413452149,
+          "Silhouette Score": -0.16511253738589585,
+          "WCSS": 22170.277749361492
+        },
+        "Fast Global K-Means": {
+          "K": 17,
+          "time": 29.51775097846985,
+          "Calinski Harabasz Index": 33.99304528031615,
+          "Silhouette Score": 0.11567657727341815,
+          "WCSS": 11435.768745915297
+        },
+        "DBSCAN": null
+      },
+      "BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "K-Means": {
+          "K": 19,
+          "time": 0.0414891242980957,
+          "Calinski Harabasz Index": 1265.0333020972844,
+          "Silhouette Score": 0.6810257377843071,
+          "WCSS": 9714.341930709814
+        },
+        "BIRCH": {
+          "K": 19,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.10838508605957031,
+            "Silhouette Score Optimum": 0.026167869567871094
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.1,
+            "Silhouette Score Optimum": 6.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 27,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 1175.6330853028674,
+          "Silhouette Score": 0.7441457833492343
+        },
+        "Fuzzy C-Means": {
+          "C": 19,
+          "Calinski Harabasz Index": 329.25290103448594,
+          "time": 0.37821016311645506,
+          "Silhouette Score": 0.5323157823458894,
+          "WCSS": 44518.400209660205
+        },
+        "Fast Global K-Means": {
+          "K": 19,
+          "time": 1294.8594045639038,
+          "Calinski Harabasz Index": 997.7615982225738,
+          "Silhouette Score": 0.6921819339196887,
+          "WCSS": 11862.638954934613
+        },
+        "DBSCAN": {
+          "eps": 1.6,
+          "min pts": 3,
+          "Calinski Harabasz Index": 201.745,
+          "Silhouette Score": 0.567,
+          "cluster counts": 19,
+          "time": 0.082008
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT MODEL": {
+        "K-Means": {
+          "K": 8,
+          "time": 0.002789926528930664,
+          "Calinski Harabasz Index": 10.087568625258239,
+          "Silhouette Score": 0.18400499899856668,
+          "WCSS": 247.01310440658352
+        },
+        "BIRCH": {
+          "K": 8,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.00032782554626464844,
+            "Silhouette Score Optimum": 0.00032782554626464844
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 4.35,
+            "Silhouette Score Optimum": 4.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 15.080224222462904,
+          "Silhouette Score": 0.6601598755038247
+        },
+        "Fuzzy C-Means": {
+          "C": 8,
+          "Calinski Harabasz Index": 6.7787361358973115,
+          "time": 0.003609371185302734,
+          "Silhouette Score": 0.11546054714169793,
+          "WCSS": 675.3417130957775
+        },
+        "Fast Global K-Means": {
+          "K": 8,
+          "time": 0.07632601261138916,
+          "Calinski Harabasz Index": 9.339990871247993,
+          "Silhouette Score": 0.28648431926931245,
+          "WCSS": 260.71053036099227
+        },
+        "DBSCAN": null
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT HEALTH": {
+        "K-Means": {
+          "K": 12,
+          "time": 0.003034067153930664,
+          "Calinski Harabasz Index": 8.689017082583034,
+          "Silhouette Score": 0.17627682918504678,
+          "WCSS": 794.6603346609215
+        },
+        "BIRCH": {
+          "K": 12,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0011601448059082031,
+            "Silhouette Score Optimum": 0.00042700767517089844
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 9.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 17,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 10.625473365743979,
+          "Silhouette Score": 0.49466598184322985
+        },
+        "Fuzzy C-Means": {
+          "C": 12,
+          "Calinski Harabasz Index": 5.920703640390975,
+          "time": 0.0018668174743652344,
+          "Silhouette Score": -0.03541283765864304,
+          "WCSS": 1952.4822275887077
+        },
+        "Fast Global K-Means": {
+          "K": 12,
+          "time": 0.26888108253479004,
+          "Calinski Harabasz Index": 5.413880041811812,
+          "Silhouette Score": 0.15755267909572812,
+          "WCSS": 1051.0774593540145
+        },
+        "DBSCAN": {
+          "eps": 6.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 4.878,
+          "Silhouette Score": 0.108,
+          "cluster counts": 12,
+          "time": 0.002243
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "K-Means": {
+          "K": 9,
+          "time": 0.01297774314880371,
+          "Calinski Harabasz Index": 10.527019585221918,
+          "Silhouette Score": 0.14509802671405486,
+          "WCSS": 692.5630131645937
+        },
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.00040078163146972656,
+            "Silhouette Score Optimum": 0.00040078163146972656
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 6.1,
+            "Silhouette Score Optimum": 6.1
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 12.505056747862184,
+          "Silhouette Score": 0.6292944595209963
+        },
+        "Fuzzy C-Means": {
+          "C": 9,
+          "Calinski Harabasz Index": 4.665578658622495,
+          "time": 0.0023000240325927734,
+          "Silhouette Score": 0.05260500171063535,
+          "WCSS": 1939.4188343259216
+        },
+        "Fast Global K-Means": {
+          "K": 9,
+          "time": 0.15407240390777588,
+          "Calinski Harabasz Index": 9.706119076158737,
+          "Silhouette Score": 0.2017191301634038,
+          "WCSS": 731.1588318245953
+        },
+        "DBSCAN": {
+          "eps": 6.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 5.93,
+          "Silhouette Score": 0.176,
+          "cluster counts": 9,
+          "time": 0.000297
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT MODEL": {
+        "K-Means": {
+          "K": 12,
+          "time": 0.0028997421264648437,
+          "Calinski Harabasz Index": 74.90862921860052,
+          "Silhouette Score": 0.6575815852750935,
+          "WCSS": 190.55080559977478
+        },
+        "BIRCH": {
+          "K": 12,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0006539821624755859,
+            "Silhouette Score Optimum": 0.0005948543548583984
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.6,
+            "Silhouette Score Optimum": 4.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 40.226161505685695,
+          "Silhouette Score": 0.5729304364907338
+        },
+        "Fuzzy C-Means": {
+          "C": 12,
+          "Calinski Harabasz Index": 14.077711275549385,
+          "time": 0.003625965118408203,
+          "Silhouette Score": 0.6352110776061295,
+          "WCSS": 1393.3885856611298
+        },
+        "Fast Global K-Means": {
+          "K": 12,
+          "time": 0.5188134908676147,
+          "Calinski Harabasz Index": 40.17068296968959,
+          "Silhouette Score": 0.46322402298266907,
+          "WCSS": 326.2090046104491
+        },
+        "DBSCAN": {
+          "eps": 4.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 28.205,
+          "Silhouette Score": 0.545,
+          "cluster counts": 12,
+          "time": 0.000394
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT HEALTH": {
+        "K-Means": {
+          "K": 11,
+          "time": 0.0033606529235839845,
+          "Calinski Harabasz Index": 6.412443921358528,
+          "Silhouette Score": 0.10985291004090492,
+          "WCSS": 629.7793553862022
+        },
+        "BIRCH": {
+          "K": 11,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0066089630126953125,
+            "Silhouette Score Optimum": 0.00037097930908203125
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 6.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 2,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 7.394826251662144,
+          "Silhouette Score": 0.4972007792159892
+        },
+        "Fuzzy C-Means": {
+          "C": 11,
+          "Calinski Harabasz Index": 5.858112485090131,
+          "time": 0.0008976459503173828,
+          "Silhouette Score": 0.09683962276127622,
+          "WCSS": 1747.7715592830289
+        },
+        "Fast Global K-Means": {
+          "K": 11,
+          "time": 0.1607217788696289,
+          "Calinski Harabasz Index": 6.680599238185503,
+          "Silhouette Score": 0.10234023018757749,
+          "WCSS": 613.1620481462143
+        },
+        "DBSCAN": null
+      },
+      "FOOD PRODUCTS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "K-Means": {
+          "K": 11,
+          "time": 0.003058052062988281,
+          "Calinski Harabasz Index": 37.3647405846782,
+          "Silhouette Score": 0.6891789860407233,
+          "WCSS": 704.8809056159599
+        },
+        "BIRCH": {
+          "K": 11,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0006608963012695312,
+            "Silhouette Score Optimum": 0.0006041526794433594
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.1,
+            "Silhouette Score Optimum": 7.599999999999999
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 17.83503687596021,
+          "Silhouette Score": 0.5419458106828168
+        },
+        "Fuzzy C-Means": {
+          "C": 11,
+          "Calinski Harabasz Index": 18.83080983748105,
+          "time": 0.0036703109741210937,
+          "Silhouette Score": 0.631938744554262,
+          "WCSS": 2252.31282678578
+        },
+        "Fast Global K-Means": {
+          "K": 11,
+          "time": 0.4669853448867798,
+          "Calinski Harabasz Index": 41.210722744089445,
+          "Silhouette Score": 0.6792560118195197,
+          "WCSS": 649.0765085475832
+        },
+        "DBSCAN": {
+          "eps": 9.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 9.964,
+          "Silhouette Score": 0.472,
+          "cluster counts": 11,
+          "time": 0.000372
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT MODEL": {
+        "K-Means": {
+          "K": 10,
+          "time": 0.003131103515625,
+          "Calinski Harabasz Index": 15.261985492784557,
+          "Silhouette Score": 0.17191939039126602,
+          "WCSS": 153.99898922556514
+        },
+        "BIRCH": {
+          "K": 10,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0013887882232666016,
+            "Silhouette Score Optimum": 0.00032401084899902344
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.6,
+            "Silhouette Score Optimum": 5.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 7,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 18.673705680321913,
+          "Silhouette Score": 0.45457545081332273
+        },
+        "Fuzzy C-Means": {
+          "C": 10,
+          "Calinski Harabasz Index": 5.8504713067989655,
+          "time": 0.0025534629821777344,
+          "Silhouette Score": -0.025329216729512334,
+          "WCSS": 513.3009298917403
+        },
+        "Fast Global K-Means": {
+          "K": 10,
+          "time": 0.10231137275695801,
+          "Calinski Harabasz Index": 14.740189790694208,
+          "Silhouette Score": 0.25028029434121984,
+          "WCSS": 157.8257515744295
+        },
+        "DBSCAN": {
+          "eps": 3.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 14.226,
+          "Silhouette Score": 0.289,
+          "cluster counts": 10,
+          "time": 0.000271
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT HEALTH": {
+        "K-Means": {
+          "K": 13,
+          "time": 0.0031420707702636717,
+          "Calinski Harabasz Index": 8.177273211207028,
+          "Silhouette Score": 0.1282729674062138,
+          "WCSS": 448.44254069552443
+        },
+        "BIRCH": {
+          "K": 13,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0010280609130859375,
+            "Silhouette Score Optimum": 0.0003647804260253906
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.3499999999999999,
+            "Silhouette Score Optimum": 6.85
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 22,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 9.133384651096497,
+          "Silhouette Score": 0.38921146160963255
+        },
+        "Fuzzy C-Means": {
+          "C": 13,
+          "Calinski Harabasz Index": 2.9230149343744847,
+          "time": 0.0030267715454101564,
+          "Silhouette Score": -0.08507270802958644,
+          "WCSS": 1499.468850080566
+        },
+        "Fast Global K-Means": {
+          "K": 13,
+          "time": 0.18773341178894043,
+          "Calinski Harabasz Index": 7.493887793333447,
+          "Silhouette Score": 0.19606017283410823,
+          "WCSS": 476.3162015946667
+        },
+        "DBSCAN": null
+      },
+      "OIL AND GAS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "K-Means": {
+          "K": 9,
+          "time": 0.0038645267486572266,
+          "Calinski Harabasz Index": 7.8893532126168155,
+          "Silhouette Score": 0.12217005256562449,
+          "WCSS": 321.48644018526176
+        },
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0008599758148193359,
+            "Silhouette Score Optimum": 0.00030112266540527344
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 5.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 7,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 9.434960308407335,
+          "Silhouette Score": 0.3253366251307782
+        },
+        "Fuzzy C-Means": {
+          "C": 9,
+          "Calinski Harabasz Index": 4.047800035223593,
+          "time": 0.004663610458374023,
+          "Silhouette Score": -0.03200755765122215,
+          "WCSS": 1037.5332665575365
+        },
+        "Fast Global K-Means": {
+          "K": 9,
+          "time": 0.08569908142089844,
+          "Calinski Harabasz Index": 8.077359390796188,
+          "Silhouette Score": 0.1690785568720054,
+          "WCSS": 315.77491933285035
+        },
+        "DBSCAN": {
+          "eps": 5.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 6.388,
+          "Silhouette Score": 0.163,
+          "cluster counts": 9,
+          "time": 0.000293
+        }
+      }
+    },
+    "algorithms best performance when K>number of credit ratings": {
+      "CREDIT MODEL": {
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.01573491096496582,
+            "Silhouette Score Optimum": 0.0452578067779541
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.6,
+            "Silhouette Score Optimum": 9.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 2
+          },
+          "Calinski Harabasz Index": 1487.1363522883903,
+          "Silhouette Score": 0.9475687662924491
+        },
+        "DBSCAN": {
+          "eps": 21.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 800.802,
+          "Silhouette Score": 0.95,
+          "cluster counts": 9,
+          "time": 0.043096
+        },
+        "K-MEANS": {
+          "K": 19,
+          "time": 0.2286072254180908,
+          "Calinski Harabasz Index": 5417.8230833829475,
+          "Silhouette Score": 0.9593993103331577,
+          "WCSS": 942.2884268631876
+        },
+        "Fast Global K-Means": {
+          "K": 10,
+          "time": 195.63863801956177,
+          "Calinski Harabasz Index": 1205.3926001203658,
+          "Silhouette Score": 0.9438608224494462,
+          "WCSS": 7293.1480411804805
+        },
+        "Fuzz C-Means": {
+          "C": 14,
+          "Calinski Harabasz Index": 936.681869265678,
+          "time": 0.08412623405456543,
+          "Silhouette Score": 0.9614684198758289,
+          "WCSS": 12753.489841825758
+        }
+      },
+      "CREDIT HEALTH": {
+        "BIRCH": {
+          "K": 17,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.030411958694458008,
+            "Silhouette Score Optimum": 0.009387016296386719
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.8499999999999999,
+            "Silhouette Score Optimum": 9.85
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 12,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 43.37121897317992,
+          "Silhouette Score": 0.7823171731835235
+        },
+        "DBSCAN": {
+          "eps": 7.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 14.561,
+          "Silhouette Score": 0.34,
+          "cluster counts": 19,
+          "time": 0.020117
+        },
+        "K-MEANS": {
+          "K": 17,
+          "time": 0.02781252861022949,
+          "Calinski Harabasz Index": 43.33345507398072,
+          "Silhouette Score": 0.10124087025578887,
+          "WCSS": 10101.480166436737
+        },
+        "Fast Global K-Means": {
+          "K": 21,
+          "time": 37.304746985435486,
+          "Calinski Harabasz Index": 38.74869321651078,
+          "Silhouette Score": 0.13916117478519915,
+          "WCSS": 9446.39291484499
+        },
+        "Fuzz C-Means": null
+      },
+      "BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "K": 19,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.10838508605957031,
+            "Silhouette Score Optimum": 0.026167869567871094
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.1,
+            "Silhouette Score Optimum": 6.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 27,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 1175.6330853028674,
+          "Silhouette Score": 0.7441457833492343
+        },
+        "DBSCAN": {
+          "eps": 1.6,
+          "min pts": 3,
+          "Calinski Harabasz Index": 201.745,
+          "Silhouette Score": 0.567,
+          "cluster counts": 19,
+          "time": 0.082008
+        },
+        "K-MEANS": {
+          "K": 20,
+          "time": 0.03808755874633789,
+          "Calinski Harabasz Index": 1270.8951029347397,
+          "Silhouette Score": 0.6839640316749633,
+          "WCSS": 9231.067769493076
+        },
+        "Fast Global K-Means": {
+          "K": 19,
+          "time": 1294.8594045639038,
+          "Calinski Harabasz Index": 997.7615982225738,
+          "Silhouette Score": 0.6921819339196887,
+          "WCSS": 11862.638954934613
+        },
+        "Fuzz C-Means": {
+          "C": 24,
+          "Calinski Harabasz Index": 349.5779972954241,
+          "time": 0.5904688358306884,
+          "Silhouette Score": 0.5403605824963519,
+          "WCSS": 43123.35704625949
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "K": 8,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.00032782554626464844,
+            "Silhouette Score Optimum": 0.00032782554626464844
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 4.35,
+            "Silhouette Score Optimum": 4.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 15.080224222462904,
+          "Silhouette Score": 0.6601598755038247
+        },
+        "DBSCAN": {
+          "eps": 4.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 7.536,
+          "Silhouette Score": 0.227,
+          "cluster counts": 9,
+          "time": 0.00027
+        },
+        "K-MEANS": {
+          "K": 8,
+          "time": 0.002789926528930664,
+          "Calinski Harabasz Index": 10.087568625258239,
+          "Silhouette Score": 0.18400499899856668,
+          "WCSS": 247.01310440658352
+        },
+        "Fast Global K-Means": {
+          "K": 8,
+          "time": 0.07632601261138916,
+          "Calinski Harabasz Index": 9.339990871247993,
+          "Silhouette Score": 0.28648431926931245,
+          "WCSS": 260.71053036099227
+        },
+        "Fuzz C-Means": {
+          "C": 8,
+          "Calinski Harabasz Index": 6.7787361358973115,
+          "time": 0.003609371185302734,
+          "Silhouette Score": 0.11546054714169793,
+          "WCSS": 675.3417130957775
+        }
+      },
+      "RENEWABLE ENERGY INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "K": 12,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0011601448059082031,
+            "Silhouette Score Optimum": 0.00042700767517089844
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 9.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 17,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 10.625473365743979,
+          "Silhouette Score": 0.49466598184322985
+        },
+        "DBSCAN": {
+          "eps": 5.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 5.173,
+          "Silhouette Score": 0.115,
+          "cluster counts": 20,
+          "time": 0.002095
+        },
+        "K-MEANS": {
+          "K": 17,
+          "time": 0.003933382034301758,
+          "Calinski Harabasz Index": 9.549474103193214,
+          "Silhouette Score": 0.21008732766624622,
+          "WCSS": 525.3884472272808
+        },
+        "Fast Global K-Means": {
+          "K": 18,
+          "time": 0.48363780975341797,
+          "Calinski Harabasz Index": 8.670042744780842,
+          "Silhouette Score": 0.2166753545032411,
+          "WCSS": 529.443366696611
+        },
+        "Fuzz C-Means": null
+      },
+      "RENEWABLE ENERGY INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.00040078163146972656,
+            "Silhouette Score Optimum": 0.00040078163146972656
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 6.1,
+            "Silhouette Score Optimum": 6.1
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 67,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 12.505056747862184,
+          "Silhouette Score": 0.6292944595209963
+        },
+        "DBSCAN": {
+          "eps": 6.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 5.93,
+          "Silhouette Score": 0.176,
+          "cluster counts": 9,
+          "time": 0.000297
+        },
+        "K-MEANS": {
+          "K": 10,
+          "time": 0.003420448303222656,
+          "Calinski Harabasz Index": 10.70308491556851,
+          "Silhouette Score": 0.1642878761928681,
+          "WCSS": 620.3560040234192
+        },
+        "Fast Global K-Means": {
+          "K": 9,
+          "time": 0.15407240390777588,
+          "Calinski Harabasz Index": 9.706119076158737,
+          "Silhouette Score": 0.2017191301634038,
+          "WCSS": 731.1588318245953
+        },
+        "Fuzz C-Means": {
+          "C": 11,
+          "Calinski Harabasz Index": 5.130303604849716,
+          "time": 0.0029611110687255858,
+          "Silhouette Score": 0.1117312489934617,
+          "WCSS": 1944.0734307448176
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "K": 18,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.001444101333618164,
+            "Silhouette Score Optimum": 0.0006699562072753906
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.35,
+            "Silhouette Score Optimum": 0.35
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 12,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 163.56263641171913,
+          "Silhouette Score": 0.667667011171712
+        },
+        "DBSCAN": {
+          "eps": 2.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 58.757,
+          "Silhouette Score": 0.549,
+          "cluster counts": 19,
+          "time": 0.000372
+        },
+        "K-MEANS": {
+          "K": 19,
+          "time": 0.0031738758087158205,
+          "Calinski Harabasz Index": 171.4819942365541,
+          "Silhouette Score": 0.7188003394223565,
+          "WCSS": 49.20275755703314
+        },
+        "Fast Global K-Means": {
+          "K": 22,
+          "time": 0.9941120147705078,
+          "Calinski Harabasz Index": 241.83845240491704,
+          "Silhouette Score": 0.6529372977340169,
+          "WCSS": 28.726997650848112
+        },
+        "Fuzz C-Means": {
+          "C": 12,
+          "Calinski Harabasz Index": 14.077711275549385,
+          "time": 0.003625965118408203,
+          "Silhouette Score": 0.6352110776061295,
+          "WCSS": 1393.3885856611298
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "K": 11,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0066089630126953125,
+            "Silhouette Score Optimum": 0.00037097930908203125
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 6.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 2,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 7.394826251662144,
+          "Silhouette Score": 0.4972007792159892
+        },
+        "DBSCAN": {
+          "eps": 5.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 4.176,
+          "Silhouette Score": 0.04,
+          "cluster counts": 12,
+          "time": 0.000299
+        },
+        "K-MEANS": {
+          "K": 21,
+          "time": 0.003411102294921875,
+          "Calinski Harabasz Index": 6.487569304103353,
+          "Silhouette Score": 0.12328816184796976,
+          "WCSS": 292.4325841446409
+        },
+        "Fast Global K-Means": {
+          "K": 11,
+          "time": 0.1607217788696289,
+          "Calinski Harabasz Index": 6.680599238185503,
+          "Silhouette Score": 0.10234023018757749,
+          "WCSS": 613.1620481462143
+        },
+        "Fuzz C-Means": {
+          "C": 12,
+          "Calinski Harabasz Index": 6.393048164991641,
+          "time": 0.0008690834045410156,
+          "Silhouette Score": 0.11455178396062575,
+          "WCSS": 1747.438743265681
+        }
+      },
+      "FOOD PRODUCTS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "K": 19,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.001251220703125,
+            "Silhouette Score Optimum": 0.0007569789886474609
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 3.0999999999999996,
+            "Silhouette Score Optimum": 3.0999999999999996
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 12,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 128.3372902327466,
+          "Silhouette Score": 0.7241740639622104
+        },
+        "DBSCAN": {
+          "eps": 5.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 30.61,
+          "Silhouette Score": 0.601,
+          "cluster counts": 17,
+          "time": 0.000362
+        },
+        "K-MEANS": {
+          "K": 20,
+          "time": 0.003234720230102539,
+          "Calinski Harabasz Index": 152.58239962212193,
+          "Silhouette Score": 0.7255354332215705,
+          "WCSS": 95.42052909437572
+        },
+        "Fast Global K-Means": {
+          "K": 15,
+          "time": 0.6843894720077515,
+          "Calinski Harabasz Index": 54.56104456186069,
+          "Silhouette Score": 0.7187862537477707,
+          "WCSS": 360.2097339847637
+        },
+        "Fuzz C-Means": {
+          "C": 11,
+          "Calinski Harabasz Index": 18.83080983748105,
+          "time": 0.0036703109741210937,
+          "Silhouette Score": 0.631938744554262,
+          "WCSS": 2252.31282678578
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT MODEL": {
+        "BIRCH": {
+          "K": 10,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0013887882232666016,
+            "Silhouette Score Optimum": 0.00032401084899902344
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 0.6,
+            "Silhouette Score Optimum": 5.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 7,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 18.673705680321913,
+          "Silhouette Score": 0.45457545081332273
+        },
+        "DBSCAN": {
+          "eps": 3.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 14.226,
+          "Silhouette Score": 0.289,
+          "cluster counts": 10,
+          "time": 0.000271
+        },
+        "K-MEANS": {
+          "K": 10,
+          "time": 0.003131103515625,
+          "Calinski Harabasz Index": 15.261985492784557,
+          "Silhouette Score": 0.17191939039126602,
+          "WCSS": 153.99898922556514
+        },
+        "Fast Global K-Means": {
+          "K": 10,
+          "time": 0.10231137275695801,
+          "Calinski Harabasz Index": 14.740189790694208,
+          "Silhouette Score": 0.25028029434121984,
+          "WCSS": 157.8257515744295
+        },
+        "Fuzz C-Means": {
+          "C": 12,
+          "Calinski Harabasz Index": 6.894518836591506,
+          "time": 0.0036348342895507813,
+          "Silhouette Score": 0.05530838404862237,
+          "WCSS": 436.52410050491716
+        }
+      },
+      "OIL AND GAS INDUSTRY - CREDIT HEALTH": {
+        "BIRCH": {
+          "K": 13,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0010280609130859375,
+            "Silhouette Score Optimum": 0.0003647804260253906
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.3499999999999999,
+            "Silhouette Score Optimum": 6.85
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 22,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 9.133384651096497,
+          "Silhouette Score": 0.38921146160963255
+        },
+        "DBSCAN": {
+          "eps": 4.1,
+          "min pts": 1,
+          "Calinski Harabasz Index": 6.789,
+          "Silhouette Score": 0.178,
+          "cluster counts": 18,
+          "time": 0.000298
+        },
+        "K-MEANS": {
+          "K": 13,
+          "time": 0.0031420707702636717,
+          "Calinski Harabasz Index": 8.177273211207028,
+          "Silhouette Score": 0.1282729674062138,
+          "WCSS": 448.44254069552443
+        },
+        "Fast Global K-Means": {
+          "K": 13,
+          "time": 0.18773341178894043,
+          "Calinski Harabasz Index": 7.493887793333447,
+          "Silhouette Score": 0.19606017283410823,
+          "WCSS": 476.3162015946667
+        },
+        "Fuzz C-Means": null
+      },
+      "OIL AND GAS INDUSTRY - BOTH CREDIT HEALTH AND CREDIT MODEL": {
+        "BIRCH": {
+          "K": 9,
+          "Running Time": {
+            "Calinski Harabasz Index Optimum": 0.0008599758148193359,
+            "Silhouette Score Optimum": 0.00030112266540527344
+          },
+          "Threshold Value": {
+            "Calinski Harabasz Index Optimum": 1.8499999999999999,
+            "Silhouette Score Optimum": 5.6
+          },
+          "Branching Factor": {
+            "Calinski Harabasz Index Optimum": 7,
+            "Silhouette Score Optimum": 67
+          },
+          "Calinski Harabasz Index": 9.434960308407335,
+          "Silhouette Score": 0.3253366251307782
+        },
+        "DBSCAN": {
+          "eps": 5.6,
+          "min pts": 1,
+          "Calinski Harabasz Index": 6.388,
+          "Silhouette Score": 0.163,
+          "cluster counts": 9,
+          "time": 0.000293
+        },
+        "K-MEANS": {
+          "K": 9,
+          "time": 0.0038645267486572266,
+          "Calinski Harabasz Index": 7.8893532126168155,
+          "Silhouette Score": 0.12217005256562449,
+          "WCSS": 321.48644018526176
+        },
+        "Fast Global K-Means": {
+          "K": 11,
+          "time": 0.08431589603424072,
+          "Calinski Harabasz Index": 8.888540676274937,
+          "Silhouette Score": 0.18508106908573682,
+          "WCSS": 226.73509824894887
+        },
+        "Fuzz C-Means": null
+      }
+    }
+  }
