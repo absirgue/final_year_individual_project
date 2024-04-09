@@ -80,3 +80,10 @@ This folders in this repository also hold an important number of files (both tex
 - The `/clusters_content_analyses` contains the results of our Cluster Analysis. These results are divided in 2 folders, one containg the results for all those data configurations which required the running of PCA, the other for all others data configurations. They each contain a series of folders, one for each data configuration studied. In each one of these subfolders, you will find:
   - a `.json` file containing the analysis of the clusters produced by a given algorithm (which name is specified in the file name), possibly under a specific set of optimal hyperparameters (for BIRCH and DBSCAN). During the analysis of these files, you may struggle to make the connection between the cluster numbers as expressed throughout the files and those expressed in the `Incoherencies explanations` section. The cluster numbering in this section is based on the list of all those clusters that are signficant or that have a significant range and not on the list of all clusters produced by the algorithm (which is the case everywhere else in the file). We will be working on a fix to make reading the file easier.
   - a `.jpeg` for each such analysis presenting a visualisation of the clusters produced
+
+Additionally, intermediary results can be found in the following folders:
+
+- `credit_rating_changes` - storing analyses of the credit rating changes which occured between a data configuration and the most up-to-date ratings at the time of our last run
+- `data_configs_analysis` - presenting an analysis of some key aspects of each data configuration
+- `dimensionality_evaluation` - presenting graphs produced during our optimal Principal Components count search for each data configuration
+- `empty_rows_deletion_evaluation_graphs` - presenting graphs produced during the search for optimal column enmptiness threshold for each data configuration
