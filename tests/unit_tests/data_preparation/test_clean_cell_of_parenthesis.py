@@ -1,5 +1,5 @@
 import unittest
-from data_preparation.cell_cleaning import CleanCellOfParenthesis
+from data_preprocessing.cell_cleaning import CleanCellOfParenthesis
 
 class TestCleanCellOfParenthesis(unittest.TestCase):
 

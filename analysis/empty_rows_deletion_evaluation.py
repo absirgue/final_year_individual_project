@@ -1,4 +1,4 @@
-from data_preparation.data_preparator import DataPreparator
+from data_preprocessing.data_preparator import DataPreparator
 from graph.graphing_helper import GraphingHelper
 from analysis.function_analysis import FunctionAnalysis
 from interface_beautifier import InterfaceBeautifier

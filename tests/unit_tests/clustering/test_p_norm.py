@@ -1,5 +1,5 @@
 import unittest
-from clustering.p_norm import PNorm
+from clustering_algorithms.p_norm import PNorm
 import pandas as pd
 import numpy as np
 

@@ -1,6 +1,6 @@
 import unittest
-from clustering.OCIL.ocil import OCIL
-from clustering.OCIL.cluster import Cluster
+from clustering_algorithms.OCIL.ocil import OCIL
+from clustering_algorithms.OCIL.cluster import Cluster
 import pandas as pd
 import numpy as np
 

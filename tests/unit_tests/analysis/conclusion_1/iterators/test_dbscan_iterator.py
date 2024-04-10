@@ -1,5 +1,5 @@
 import unittest
-from analysis.conclusion_1.iterators.dbscan_iterator import DBSCANIterator
+from analysis.hyperparameters_optimisation.iterators.dbscan_iterator import DBSCANIterator
 from tests.unit_tests.analysis.conclusion_1.iterators.helper import get_random_2d_array
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import calinski_harabasz_score,silhouette_score

@@ -1,6 +1,6 @@
 import numpy as np
-from data_treatment.principal_component_analysis import PrincipalComponentAnalysisPerformanceMeasurement
-from data_preparation.data_preparator import DataPreparator
+from data_preprocessing.principal_component_analysis import PrincipalComponentAnalysisPerformanceMeasurement
+from data_preprocessing.data_preparator import DataPreparator
 from interface_beautifier import InterfaceBeautifier
 
 class DimensionalityEvaluation:

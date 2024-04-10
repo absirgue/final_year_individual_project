@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
-from analysis.conclusion_2.credit_rating_analyzer import CreditRatingAnalyzer
-from analysis.conclusion_2.credit_rating_cluster import CreditRatingCluster
-from analysis.conclusion_2.clusters_analyzer import ClustersAnalyzer
+from analysis.clusters_analysis.credit_rating_analyzer import CreditRatingAnalyzer
+from analysis.clusters_analysis.credit_rating_cluster import CreditRatingCluster
+from analysis.clusters_analysis.clusters_analyzer import ClustersAnalyzer
 
 class TestCreditRatingAnalyser(unittest.TestCase):
 

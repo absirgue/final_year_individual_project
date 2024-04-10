@@ -1,8 +1,8 @@
 import unittest
 import math
 import numpy as np
-from analysis.conclusion_1.iterators.fast_global_kmeans_iterator import FastGlobalKMeansIterator
-from clustering.fast_global_k_means import FastGlobalKMeans
+from analysis.hyperparameters_optimisation.iterators.fast_global_kmeans_iterator import FastGlobalKMeansIterator
+from clustering_algorithms.fast_global_k_means import FastGlobalKMeans
 from tests.unit_tests.analysis.conclusion_1.iterators.helper import get_random_2d_array
 from sklearn.cluster import Birch
 from sklearn.metrics import calinski_harabasz_score,silhouette_score

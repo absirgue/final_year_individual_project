@@ -1,5 +1,5 @@
 import unittest
-from data_preparation.diversification_split_evaluations import EntropyCalculator,SegmentsCount
+from data_preprocessing.diversification_split_evaluations import EntropyCalculator,SegmentsCount
 
 class TestEntropyCalculator(unittest.TestCase):
 

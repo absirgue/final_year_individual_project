@@ -1,5 +1,5 @@
 import unittest
-from clustering.fast_global_k_means import FastGlobalKMeans
+from clustering_algorithms.fast_global_k_means import FastGlobalKMeans
 import pandas as pd
 import numpy as np
 

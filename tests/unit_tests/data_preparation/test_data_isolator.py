@@ -1,5 +1,5 @@
 import unittest
-from data_preparation.data_type_isolator import DataTypeIsolator
+from data_preprocessing.data_type_isolator import DataTypeIsolator
 import pandas as pd
 
 class DataIsolatorUnitTests(unittest.TestCase):

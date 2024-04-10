@@ -1,5 +1,5 @@
 import unittest
-from data_treatment.principal_component_analysis import PrincipalComponentAnalysis
+from data_preprocessing.principal_component_analysis import PrincipalComponentAnalysis
 import pandas as pd
 import numpy as np
 class TestPrincipalComponentAnalysis(unittest.TestCase):

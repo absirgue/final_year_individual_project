@@ -1,5 +1,5 @@
 import unittest
-from analysis.conclusion_1.list_transformations import ListTransformations
+from analysis.hyperparameters_optimisation.list_transformations import ListTransformations
 
 class TestListTransformations(unittest.TestCase):
 

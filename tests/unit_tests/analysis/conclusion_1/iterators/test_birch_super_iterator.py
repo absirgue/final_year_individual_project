@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from analysis.conclusion_1.iterators.birch_super_iterator import BIRCHSuperIterator
+from analysis.hyperparameters_optimisation.iterators.birch_super_iterator import BIRCHSuperIterator
 from tests.unit_tests.analysis.conclusion_1.iterators.helper import get_random_2d_array
 from sklearn.cluster import Birch
 from sklearn.metrics import calinski_harabasz_score,silhouette_score

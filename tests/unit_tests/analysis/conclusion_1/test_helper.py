@@ -1,5 +1,5 @@
 import unittest
-from analysis.conclusion_1.helper import create_floats_list,create_ints_list
+from analysis.hyperparameters_optimisation.helper import create_floats_list,create_ints_list
 
 class TestConc1Helper(unittest.TestCase):
 

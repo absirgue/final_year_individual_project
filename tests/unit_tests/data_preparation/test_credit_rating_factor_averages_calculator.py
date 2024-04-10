@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from data_preparation.credit_rating_factor_averages_calculator import CreditRatingFactorAveragesCalculator
+from data_preprocessing.credit_rating_factor_averages_calculator import CreditRatingFactorAveragesCalculator
 
 class TestCreditRatigFactorAveragesCalculator(unittest.TestCase):
 

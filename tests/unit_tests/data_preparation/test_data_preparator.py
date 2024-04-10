@@ -1,6 +1,6 @@
 import unittest
 from analysis.data_configuration import DataConfiguration
-from data_preparation.data_preparator import DataPreparator
+from data_preprocessing.data_preparator import DataPreparator
 from analysis.data_configuration import DataSource
 class TestDataPreparator(unittest.TestCase):
     

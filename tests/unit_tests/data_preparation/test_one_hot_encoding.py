@@ -1,5 +1,5 @@
 import unittest
-from data_preparation.one_hot_encoding import CountryRiskScoreOneHotEncoding
+from data_preprocessing.one_hot_encoding import CountryRiskScoreOneHotEncoding
 import pandas as pd
 
 class TestCountryRiskScoreOneHotEncoding(unittest.TestCase):

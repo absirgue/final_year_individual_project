@@ -2,7 +2,7 @@ import unittest
 import math
 import numpy as np
 from skfuzzy.cluster import cmeans
-from analysis.conclusion_1.iterators.fuzzy_cmean_iterator import FuzzyCMeansIterator
+from analysis.hyperparameters_optimisation.iterators.fuzzy_cmean_iterator import FuzzyCMeansIterator
 from tests.unit_tests.analysis.conclusion_1.iterators.helper import get_random_2d_array
 from sklearn.cluster import Birch
 from sklearn.metrics import calinski_harabasz_score,silhouette_score

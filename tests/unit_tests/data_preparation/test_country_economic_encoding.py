@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from data_preparation.country_economic_encoding import CountryEconomicEncoding
+from data_preprocessing.country_economic_encoding import CountryEconomicEncoding
 
 class TestCountryEconomicEncoding(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from data_preparation.diversification_encoding import DiversificationEncoding
+from data_preprocessing.diversification_encoding import DiversificationEncoding
 
 class TestDiversificationEncoding(unittest.TestCase):
 

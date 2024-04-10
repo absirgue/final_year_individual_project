@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
-from data_preparation.data_frame_cleaner import DataFrameCleaner
-from data_preparation.data_type_isolator import DataTypeIsolator
+from data_preprocessing.data_frame_cleaner import DataFrameCleaner
+from data_preprocessing.data_type_isolator import DataTypeIsolator
 
 class TestDataFrameCleaner(unittest.TestCase):
 

@@ -1,5 +1,5 @@
 import unittest
-from clustering.OCIL.cluster import Cluster
+from clustering_algorithms.OCIL.cluster import Cluster
 import math 
 import pandas as pd
 class TestOCILCluster(unittest.TestCase):

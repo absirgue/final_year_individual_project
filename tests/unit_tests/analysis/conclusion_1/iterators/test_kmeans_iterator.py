@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from sklearn.cluster import KMeans
-from analysis.conclusion_1.iterators.kmeans_iterator import KMeansIterator
+from analysis.hyperparameters_optimisation.iterators.kmeans_iterator import KMeansIterator
 from tests.unit_tests.analysis.conclusion_1.iterators.helper import get_random_2d_array
 from sklearn.cluster import Birch
 from sklearn.metrics import calinski_harabasz_score,silhouette_score

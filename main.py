@@ -2,12 +2,12 @@ import sys
 
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-from data_preparation.data_preparator import DataPreparator
+from data_preprocessing.data_preparator import DataPreparator
 
 import numpy as np
-from analysis.conclusion_2.clustering_results_analyzer import ClusteringResultsAnalyzer
-# from analysis.conclusion_2.manual_analysis_helper import ManualAnalysisHelper
-from analysis.conclusion_1.algorithms_performances_evaluation import AlgorithmsPerformancesEvaluation
+from analysis.clusters_analysis.clustering_results_analyzer import ClusteringResultsAnalyzer
+# from analysis.clusters_analysis.manual_analysis_helper import ManualAnalysisHelper
+from analysis.hyperparameters_optimisation.algorithms_performances_evaluation import AlgorithmsPerformancesEvaluation
 from analysis.data_configuration import DataConfiguration
 from interface_beautifier import InterfaceBeautifier
 np.seterr(over='ignore')

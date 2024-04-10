@@ -1,5 +1,5 @@
 import unittest
-from clustering.vector_calculations import VectorCalculations
+from clustering_algorithms.vector_calculations import VectorCalculations
 
 class TestVectorCalculations(unittest.TestCase):
 
